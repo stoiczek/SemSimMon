@@ -16,6 +16,13 @@ target
 *.backup
 *.aux
 *.toc
+*.bbl
+*.blg
+*.lof
+*.log
+*.lot
+masters.pdf
+
 
 *omorrow
 logs
