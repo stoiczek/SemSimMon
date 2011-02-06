@@ -1,0 +1,18 @@
+# Idea stuff
+
+*.iml
+*.ipr
+*.iws
+
+# mvn stuff
+
+target
+
+# temps
+*~
+
+# Latex stuff
+
+*.backup
+*.aux
+*.toc
