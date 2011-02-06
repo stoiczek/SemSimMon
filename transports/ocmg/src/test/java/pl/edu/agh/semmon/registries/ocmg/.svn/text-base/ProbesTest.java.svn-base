@@ -1,0 +1,80 @@
+package pl.edu.agh.semmon.registries.ocmg;
+
+import org.balticgrid.ocmg.objects.Application;
+import org.balticgrid.ocmg.objects.Node;
+import org.balticgrid.ocmg.objects.Site;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants;
+import pl.edu.agh.semmon.common.api.resource.ResourcePropertyNames;
+import pl.edu.agh.semmon.common.vo.core.measurement.CapabilityValue;
+import pl.edu.agh.semmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semmon.registries.ocmg.probe.node.LoadAvgProbe;
+
+import static org.testng.Assert.*;
+
+import java.util.Collections;
+
+/**
+ * TODO description
+ *
+ * @author tkozak
+ *         Created at 19:27 05-09-2010
+ */
+public class ProbesTest extends OcmgRequringTest {
+
+  private OcmgConnection ocmgConnection;
+
+  private Resource testAppResource;
+
+  private Application app;
+
+  Resource nodeResource;
+
+  @BeforeClass
+  public void setupOcmgConnection() throws Exception {
+    Resource rootResource = createTestResource();
+    testAppResource = new Resource(rootResource.getUri() + "/" + TEST_APP_NAME, KnowledgeConstants.APPLICATION_URI, rootResource.getProperties());
+    testAppResource.setProperty(ResourcePropertyNames.Application.NAME, TEST_APP_NAME);
+    ocmgConnection = new OcmgConnection(testAppResource);
+    ocmgConnection.connect();
+    app = ocmgConnection.attachToApplication(testAppResource);
+    final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
+    site.attach();
+    String siteID = site.getCacheName();
+    final Node node = app.getHierarchy().getSiteTree().get(0).getNodeTree().get(0).getNode();
+    node.attach();
+    String nodeId = node.getCacheName();
+    nodeResource = new Resource(testAppResource.getUri() + "/" + siteID + "/" + nodeId, KnowledgeConstants.NODE_URI,
+        Collections.<String, Object>emptyMap());
+  }
+
+  @AfterClass
+  public void tearDownOcmgApp() throws OcmgException {
+    ocmgConnection.detachFromApplication(testAppResource);
+  }
+
+  @Test
+  public void nodeLoad1MinTest() throws Exception {
+    testLoadAvg(LoadAvgProbe.Type._1MIN);
+  }
+
+  private void testLoadAvg(LoadAvgProbe.Type type) throws OcmgException {
+    LoadAvgProbe loadAvgProbe = new LoadAvgProbe();
+    loadAvgProbe.setType(type);
+    CapabilityValue value = loadAvgProbe.getCapabilityValue(nodeResource, app);
+    assertNotNull(value);
+    assertEquals(value.getValueType(), CapabilityValue.ValueType.NUMERIC);
+  }
+
+  @Test
+  public void nodeLoad5MinTest() throws Exception {
+    testLoadAvg(LoadAvgProbe.Type._5MIN);
+  }
+
+  @Test
+  public void nodeLoad15MinTest() throws Exception {
+    testLoadAvg(LoadAvgProbe.Type._15MIN);
+  }
+}

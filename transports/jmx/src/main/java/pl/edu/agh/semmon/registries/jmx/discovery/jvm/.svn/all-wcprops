@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/!svn/ver/170/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/discovery/jvm
+END
+ThreadsDiscoveryAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/!svn/ver/200/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/discovery/jvm/ThreadsDiscoveryAgent.java
+END
+GCDiscoveryAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/!svn/ver/170/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/discovery/jvm/GCDiscoveryAgent.java
+END

@@ -1,0 +1,14 @@
+%---------------------------------------------------------------------------
+% Chapter 2 - Technology background.
+%
+%---------------------------------------------------------------------------
+
+\chapter{Technology background}
+\label{cha:background}
+
+
+\input{chapter2/ch2_related}
+
+\input{chapter2/ch2_similar}
+
+

@@ -1,0 +1,76 @@
+%---------------------------------------------------------------------------
+% Chapter 1 - Introduction
+%
+%---------------------------------------------------------------------------
+
+
+\chapter{Introduction}
+\label{cha:intro}
+
+%---------------------------------------------------------------------------
+
+\section{Motivatiogn}
+\label{ch1:Motivation}
+
+% @TODO think about motivation.
+
+% Write about:
+% - scale - current devs have tools which allows them to create stuff for hardware scaling from mobile phone/ J2SE up
+% to distributed clusters
+% - work on any soft has optimizations stage which is sehr important
+% - how important measurements are
+% - sth about distributed envirionments - they usage
+% - how difficult it is to write sth on such an envs
+% - mixing of languages - how funky it is to write something using multiple langs to suit it best to one's needs
+
+
+%---------------------------------------------------------------------------
+
+\section{Objectives}
+\label{ch1:Objectives}
+
+Main objective of this thesis is to design, implement and document system, that can be used to easily monitor
+applications with wide range of scale. From single process applications running on one PC machine, through those
+working on medium scaled clusters, up to highly distributed solutions, that use multiple computing nodes and grid
+environment. Created solution should be easy to use by variety of users - students, lecturers, software engineers or
+scientists.
+
+To extend application's life time, it should be released as open source project, and meet all criteria for such a
+software: open standards, open protocols, open source dependencies. Additionally, what is probably most important,
+development process should come in pair with extensive documentation, to shorten learning curve for new or additional
+developers.
+
+Another aspect of having widely used application is portability - user should be able to work with application on
+majority of currently available platforms, which includes all flavors of *nixs (Unix, Linux, Mac OS X\textregistered)
+and Microsoft\textregistered~Windows\textregistered. 
+
+
+\section{Document structure}
+\label{ch1:docStructure}
+
+Reader of this Thesis can find its content divided into \ref{cha:summary} chapters. 
+
+Chapter~\ref{cha:background} contains detailed description of problem domain. Covers background technologies and review
+of software
+with similar purpose. One may find there results of initial analysis that made rest of this work possible.
+
+Chapters ~\ref{cha:requirements}~to~\ref{cha:deployment} focuses solely on development process of created application.
+All steps of application's initial life cycle have been described - starting from gathering requirements of potential
+users and formalizing them into use cases (chapter~\ref{cha:requirements}). As next step, chapter~\ref{cha:sys_arch}
+I'd like to take reader through design stage. This chapter contains system analysis, top to bottom. - from
+highest point of view (high level functional decomposition), down to deep insight into way each high level component
+should work. 
+
+Implementation process was described in Chapter~\ref{cha:implementation}), where we can find detailed description of
+developing tools used and short overview on system from programming point of view.
+
+Description of initial application's life cycle steps ends on Chapter~\ref{cha:deployment}, covering tests and
+deployment of ready solution.
+
+Additionally, in last chapter (Chapter~\ref{cha:summary}), author tries to summarize achieved results. Within this
+part of thesis dear reader may find also short description of ideas on next steps that could be taken to let application
+evolve.
+
+
+
+

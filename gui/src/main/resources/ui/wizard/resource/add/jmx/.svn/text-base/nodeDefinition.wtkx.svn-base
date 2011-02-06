@@ -1,0 +1,9 @@
+<FlowPane xmlns:wtkx="http://pivot.apache.org/wtkx"
+          xmlns:su="pl.edu.agh.semmon.gui.util"
+          xmlns="org.apache.pivot.wtk">
+  <Label text="%wizards.resources.add.jmx.nodeUri"/>
+  <TextInput wtkx:id="nodeUriTextInput" preferredWidth="350"
+             text="service:jmx:rmi:///jndi/rmi://localhost:7009/jmxrmi"/>
+  <PushButton wtkx:id="removeButton" buttonData="X"/>
+</FlowPane>
+

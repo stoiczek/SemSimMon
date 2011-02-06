@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/141/trunk/trunk/something_new/commons/src/test/resources
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/94/trunk/trunk/something_new/commons/src/test/resources/log4j.properties
+END
+bundle-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/141/trunk/trunk/something_new/commons/src/test/resources/bundle-context.xml
+END

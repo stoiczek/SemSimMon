@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/!svn/ver/177/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource
+END
+ResourceAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/176/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource/ResourceAgent.java
+END
+AbstractResourceAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/!svn/ver/176/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource/AbstractResourceAgent.java
+END
+ClustersResourceAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/!svn/ver/177/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource/ClustersResourceAgent.java
+END
+NodeResourceAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/!svn/ver/177/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource/NodeResourceAgent.java
+END
+ThreadResourceAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/!svn/ver/177/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource/ThreadResourceAgent.java
+END
+ProcessFunctionsResourceAgent.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/!svn/ver/177/trunk/trunk/something_new/transports/ocmg/src/main/java/pl/edu/agh/semmon/registries/ocmg/resource/ProcessFunctionsResourceAgent.java
+END

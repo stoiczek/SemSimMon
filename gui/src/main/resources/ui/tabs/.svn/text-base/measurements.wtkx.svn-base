@@ -1,0 +1,71 @@
+<TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
+           xmlns:wtkx="http://pivot.apache.org/wtkx"
+           xmlns:smUtil="pl.edu.agh.semmon.gui.util"
+           wtkx:id="resourcesPane"
+           styles="{horizontalSpacing:4,showHorizontalGridLines:false, showVerticalGridLines:false}">
+  <columns>
+    <TablePane.Column width="200"/>
+    <TablePane.Column width="1*"/>
+  </columns>
+  <rows>
+    <TablePane.Row height="1*">
+      <Border styles="{padding:2}">
+        <content>
+          <!--TODO add scroll pane here-->
+          <BoxPane wtkx:id="measurementsWrapper" orientation="vertical"
+                   styles="{verticalAlignment:'top',horizontalAlignment:'center',fill:true}">
+            <ListView wtkx:id="measurementsList"/>
+          </BoxPane>
+        </content>
+      </Border>
+      <BoxPane orientation="vertical" styles="{fill:true}">
+        <Label text="Measurement details:"/>
+        <Expander title="%tabs.measurements.details.sectionLabel">
+          <content>
+            <wtkx:include src="../common/measurementDetailsTable.wtkx" wtkx:id="details"/>
+          </content>
+        </Expander>
+        <Expander title="%tabs.measurements.values.sectionLabel">
+          <content>
+            <ScrollPane horizontalScrollBarPolicy="fill_to_capacity" styles="{}">
+              <view>
+                <TablePane wtkx:id="measurementValues"
+                           styles="{showVerticalGridLines:true,showHorizontalGridLines:true,horizontalSpacing:1,verticalSpacing:1}">
+                  <columns>
+                    <TablePane.Column width="240"/>
+                    <TablePane.Column width="1*"/>
+                  </columns>
+                  <rows>
+                    <TablePane.Row highlighted="true" >
+                      <Label text="%tabs.measurements.values.valueTimestamp" styles="{padding:{left:10}}"/>
+                      <Label text="%tabs.measurements.values.value" styles="{padding:{left:10}}"/>
+                    </TablePane.Row>
+                  </rows>
+                </TablePane>
+              </view>
+            </ScrollPane>
+          </content>
+        </Expander>
+      </BoxPane>
+    </TablePane.Row>
+    <TablePane.Row height="-1">
+      <FlowPane styles="{horizontalSpacing:8,alignment:'center',padding:4}">
+        <PushButton wtkx:id="pauseMeasurementButton">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.pause" icon="ui/img/alarm-16.png"/>
+          </buttonData>
+        </PushButton>
+        <PushButton wtkx:id="resumeMeasurementButton" visible="false">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.resume" icon="ui/img/alarm-16.png"/>
+          </buttonData>
+        </PushButton>
+        <PushButton wtkx:id="removeMeasurementButton" >
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.remove" icon="ui/img/alarm-16.png"/>
+          </buttonData>
+        </PushButton>
+      </FlowPane>
+    </TablePane.Row>
+  </rows>
+</TablePane>

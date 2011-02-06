@@ -16,3 +16,8 @@ target
 *.backup
 *.aux
 *.toc
+
+*omorrow
+logs
+
+*.bak

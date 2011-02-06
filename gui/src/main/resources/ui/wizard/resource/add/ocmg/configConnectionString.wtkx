@@ -1,0 +1,18 @@
+<?xml version="1.0"  ?>
+<BoxPane
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns:su="pl.edu.agh.semmon.gui.util"
+    xmlns="org.apache.pivot.wtk" preferredWidth="600" preferredHeight="350" orientation="vertical" styles="{fill:true}">
+
+  <Form>
+    <sections>
+      <Form.Section heading="%wizards.resources.add.ocmg.configConnString">
+        <FlowPane wtkx:id="connStringPane" Form.label="%wizards.resources.add.ocmg.connStringLabel">
+          <TextInput wtkx:id="connStringInput" prompt="username@example.com:22"/>
+        </FlowPane>
+      </Form.Section>
+    </sections>
+  </Form>
+
+
+</BoxPane>

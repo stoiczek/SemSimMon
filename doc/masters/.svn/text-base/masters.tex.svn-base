@@ -1,0 +1,59 @@
+\documentclass[en]{aghMasters}
+\usepackage[english]{babel}
+\usepackage[latin2]{inputenc}
+
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\lstloadlanguages{TeX}
+
+%---------------------------------------------------------------------------
+
+\author{Taduesz Kozak}
+\shortauthor{T. Kozak}
+
+\title{Semantic-oriented applications monitoring}
+
+\titlePL{Semantic-oriented performance measurement and visualization of distributed applications}
+\titleEN{Semantic-oriented performance measurement and visualization of distributed applications}
+
+\shorttitlePL{Semantic-oriented applications monitoring} 
+\shorttitleEN{Semantic-oriented applications monitoring}
+
+\thesistypePL{Praca magisterska}
+\thesistypeEN{Master of Science Thesis}
+
+\supervisorPL{dr in\.z. W\l{}odzimierz Funika}
+\supervisorEN{W\l{}odzimierz Funika Ph.D}
+
+\date{2010}
+
+\facultyPL{Wydzia\l{} Elektrotechniki, Automatyki, Informatyki i Elektroniki}
+\facultyEN{Faculty of Electrical Engineering, Automatics, Computer Science and Electronics}
+
+\acknowledgements{For my Mother, as she is the one who made this all possible.}
+
+\graphicspath{{./img/}}
+
+%---------------------------------------------------------------------------
+
+\begin{document}
+
+\titlepages
+\tableofcontents
+\clearpage
+
+\include{cha_introduction/content}
+\include{cha_background/content}
+\include{cha_use_cases/content}
+\include{cha_arch/content}
+\include{cha_impl/content}
+\include{cha_depl/content}
+\include{cha_summary/content}
+
+\listoffigures
+\listoftables
+\bibliography{bibliography}
+
+\end{document}

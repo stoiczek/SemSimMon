@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+  <context:annotation-config/>
+
+  <bean id="baseController" class="pl.edu.agh.semmon.gui.controllers.BaseController" abstract="true">
+    <property name="listenerFactory" ref="buttonPressListenerFactory"/>
+  </bean>
+
+
+  <bean id="mainWindowController" class="pl.edu.agh.semmon.gui.MainWindowController">
+    <property name="wtkxContentResource" value="classpath:ui/main.wtkx"/>
+    <!--suppress SpringModelInspection -->
+    <property name="display" ref="display"/>
+    <property name="actionMap" ref="actionMap"/>
+  </bean>
+
+  <bean id="window" factory-bean="mainWindowController" factory-method="getWindow" scope="prototype"/>
+
+  <bean id="resourcesTabController" class="pl.edu.agh.semmon.gui.controllers.tab.ResourcesTabController"
+        parent="baseController">
+    <property name="wtkxContentResource" value="classpath:ui/tabs/resources.wtkx"/>
+    <property name="tabIcon" value="classpath:ui/img/structure.png"/>
+    <property name="tabLabelKey" value="tabs.resources.tabname"/>
+    <property name="resourcesService" ref="resourcesService"/>
+    <property name="iconsMap" ref="resourceIconsMap"/>
+    <property name="measurementService" ref="measurementService"/>
+  </bean>
+
+  <bean id="measurementsTabController" class="pl.edu.agh.semmon.gui.controllers.tab.MeasurementsTabController"
+        parent="baseController">
+    <property name="tabLabelKey" value="tabs.measurements.tabname"/>
+    <property name="tabIcon" value="classpath:ui/img/metric.png"/>
+    <property name="wtkxContentResource" value="classpath:ui/tabs/measurements.wtkx"/>
+    <property name="measurementService" ref="measurementService"/>
+  </bean>
+
+  <bean id="visualizationsTabController"
+        class="pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationsTabController">
+    <property name="wtkxContentResource" value="classpath:ui/tabs/visualizations.wtkx"/>
+    <property name="tabLabelKey" value="tabs.visualizations.tabname"/>
+    <property name="tabIcon" value="classpath:ui/img/visualisation.png"/>
+  </bean>
+
+  <bean id="uiFactory" class="pl.edu.agh.semmon.gui.UiFactory">
+    <lookup-method name="createAddJmxResourceDialog" bean="addJmxResourceWizard"/>
+    <lookup-method name="createAddMeasurementControllerInternal" bean="addMeasurementController"/>
+    <lookup-method name="createVisualizationTab" bean="visualizationController"/>
+    <lookup-method name="createAddMeasurToVisDialog" bean="addMeasurementToVisualizationDialogCtrl"/>
+    <lookup-method name="createAddOcmgResourceDialog" bean="addOcmgResourcesWizard"/>
+  </bean>
+
+  <bean id="visualizationController" class="pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationController"
+        scope="prototype" parent="baseController" lazy-init="true">
+    <property name="wtkxContentResource" value="classpath:ui/tabs/visualizationTab.wtkx"/>
+    <property name="measurementService" ref="measurementService"/>
+    <property name="uiFactory" ref="uiFactory"/>
+  </bean>
+
+  <bean id="baseDialogController" abstract="true" class="pl.edu.agh.semmon.gui.controllers.dialog.BaseDialogController"
+        parent="baseController">
+    <property name="parentWindow" ref="window"/>
+  </bean>
+
+  <bean id="addMeasurementToVisualizationDialogCtrl"
+        class="pl.edu.agh.semmon.gui.controllers.dialog.AddMeasurToVisDialogCtrl"
+        scope="prototype"
+        parent="baseDialogController" lazy-init="true">
+    <property name="wtkxContentResource" value="classpath:ui/dialogs/addMeasurementToVisualization.wtkx"/>
+  </bean>
+
+  <bean id="addMeasurementController" class="pl.edu.agh.semmon.gui.controllers.dialog.AddMeasurementDialogController"
+        scope="prototype"
+        parent="baseDialogController" lazy-init="true">
+    <property name="measurementService" ref="measurementService"/>
+    <property name="wtkxContentResource" value="classpath:ui/dialogs/addMeasurement.wtkx"/>
+  </bean>
+
+  <bean id="baseWizardController" class="pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardController"
+        parent="baseDialogController" abstract="true">
+    <property name="parentWindow" ref="window"/>
+    <!--suppress SpringModelInspection -->
+    <property name="wtkxContentResource" value="classpath:ui/wizard/BaseWizardView.wtkx"/>
+  </bean>
+
+  <bean id="addJmxResourceWizard"
+        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.AddJMXResourceWizardController"
+        parent="baseWizardController" scope="prototype" lazy-init="true">
+    <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
+    <property name="resourcesService" ref="resourcesService"/>
+    <property name="description" value="Some desc"/>
+    <property name="titleKey" value="wizards.resources.add.jmx.wizardTitle"/>
+    <property name="pages">
+      <util:list>
+        <ref bean="configMonitorPage"/>
+        <ref bean="configJmxHierarchyPage"/>
+        <ref bean="configJmxNodesPage"/>
+      </util:list>
+    </property>
+  </bean>
+
+  <bean id="configMonitorPage" class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ConfigMonitorPage"
+        scope="prototype" lazy-init="true" parent="baseController">
+    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/configMonitorView.wtkx"/>
+    <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
+    <property name="connectionTypeIcons">
+      <util:map>
+        <entry key="EMBEDDED" value="classpath:ui/img/manage.png"/>
+        <entry key="EXTERNAL" value="classpath:ui/img/metric-run.png"/>
+        <entry key="EXTERNAL_PROCESS" value="classpath:ui/img/metric_det.png"/>
+      </util:map>
+    </property>
+  </bean>
+
+  <bean id="configJmxNodesPage" class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.ConfigJmxNodes"
+        scope="prototype" lazy-init="true" parent="baseController">
+    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXNodesView.wtkx"/>
+    <property name="nodeDefinitionResource" value="classpath:ui/wizard/resource/add/jmx/nodeDefinition.wtkx"/>
+  </bean>
+
+  <bean id="configJmxHierarchyPage"
+        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.ConfigHierarchyPage"
+        scope="prototype" lazy-init="true" parent="baseController">
+    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXHierarchyView.wtkx"/>
+  </bean>
+
+  <bean id="addOcmgResourcesWizard"
+        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.AddOcmgResourceWizardController"
+        parent="baseWizardController" scope="prototype" lazy-init="true">
+    <property name="pages">
+      <util:list>
+        <ref bean="configMonitorPage"/>
+        <ref bean="configMainSmPageController"/>
+        <ref bean="selectAppsController"/>
+      </util:list>
+    </property>
+    <property name="parentWindow" ref="window"/>
+    <property name="titleKey" value="wizards.resources.add.ocmg.wizardTitle"/>
+    <property name="resourcesService" ref="resourcesService"/>
+    <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
+  </bean>
+
+  <bean id="configMainSmPageController"
+        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.ConfigMainSMPage" parent="baseController"
+        scope="prototype" lazy-init="true">
+    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/ocmg/configConnectionString.wtkx"/>
+
+  </bean>
+
+  <bean id="selectAppsController"
+        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.SelectAppsPageController"
+        parent="baseController" scope="prototype" lazy-init="true">
+    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/ocmg/chooseApplications.wtkx"/>
+  </bean>
+
+  <util:map id="resourceIconsMap" key-type="java.lang.String" value-type="org.springframework.core.io.Resource">
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.APPLICATION_URI"/>
+      </key>
+      <value>classpath:ui/img/down.png</value>
+    </entry>
+
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLUSTER_URI"/>
+      </key>
+      <value>classpath:ui/img/instance-info.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
+      </key>
+      <value>classpath:ui/img/manage.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CPU_URI"/>
+      </key>
+      <value>classpath:ui/img/metric.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
+      </key>
+      <value>classpath:ui/img/metric.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
+      </key>
+      <value>classpath:ui/img/metric.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PROCESS_URI"/>
+      </key>
+      <value>classpath:ui/img/metric.png</value>
+    </entry>
+  </util:map>
+
+  <bean id="buttonPressListenerFactory"
+        class="pl.edu.agh.semmon.gui.controllers.action.ReflectionButtonPressListenerFactoryImpl">
+    <lookup-method name="createEmptyListener" bean="buttonPressListener"/>
+
+  </bean>
+
+  <bean id="buttonPressListener" class="pl.edu.agh.semmon.gui.controllers.action.ReflectionButtonPressListener"
+        scope="prototype">
+    <property name="executorService" ref="actionExecutorService"/>
+    <property name="exceptionHandler" ref="promptExceptionHandler"/>
+  </bean>
+
+  <bean id="promptExceptionHandler" class="pl.edu.agh.semmon.gui.controllers.action.PopupExceptionHandler">
+    <!--<property name="parentWindow" ref="window"/>-->
+  </bean>
+
+  <bean id="actionExecutorService" class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean">
+    <property name="daemon" value="true"/>
+    <property name="waitForTasksToCompleteOnShutdown" value="false"/>
+    <property name="corePoolSize" value="1"/>
+    <property name="maxPoolSize" value="5"/>
+    <property name="threadGroupName" value="ActionThreads"/>
+    <property name="threadNamePrefix" value="ActionThread_"/>
+  </bean>
+
+  <util:map id="actionMap" key-type="java.lang.String" value-type="org.apache.pivot.wtk.Action">
+    <entry key="close" value-ref="closeAction"/>
+    <entry key="addOcmgResource" value-ref="addOcmgResourceAction"/>
+    <entry key="addJmxResource" value-ref="addJmxResourceAction"/>
+    <entry key="pauseAllMeasurements" value-ref="pauseAllMeasurementsAction"/>
+    <entry key="resumeAllMeasurements" value-ref="resumeAllMeasurementsAction"/>
+    <entry key="removeAllMeasurements" value-ref="removeAllMeasurementsAction"/>
+
+  </util:map>
+
+  <bean id="closeAction" class="pl.edu.agh.semmon.gui.action.CloseAction">
+    <property name="enabled" value="true"/>
+  </bean>
+
+  <bean id="addOcmgResourceAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="resourcesService"/>
+    <property name="method" value="showAddOcmgResourceWizard"/>
+  </bean>
+
+  <bean id="addJmxResourceAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="resourcesService"/>
+    <property name="method" value="showAddJmxResourceWizard"/>
+  </bean>
+
+  <bean id="pauseAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="measurementService"/>
+    <property name="method" value="pauseAllMeasurements"/>
+  </bean>
+  <bean id="resumeAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="measurementService"/>
+    <property name="method" value="resumeAllMeasurements"/>
+  </bean>
+  <bean id="removeAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="measurementService"/>
+    <property name="method" value="removeAllMeasurements"/>
+  </bean>
+
+</beans>

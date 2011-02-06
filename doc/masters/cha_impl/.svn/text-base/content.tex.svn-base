@@ -1,0 +1,22 @@
+ 
+%---------------------------------------------------------------------------
+% Content of Chapter 6 - Implementation
+%
+%---------------------------------------------------------------------------
+
+
+\chapter{Implementation details}
+\label{cha:implementation}
+
+
+%---------------------------------------------------------------------------
+
+\section{Introduction}
+\label{sec:ch6_introdocution}
+
+It's not so obvious - each component's implementation in detail.
+
+
+%---------------------------------------------------------------------------
+
+

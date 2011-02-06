@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>pl.edu.agh.semmon</groupId>
+    <artifactId>knowledge</artifactId>
+    <name>SemMon - Knowledge</name>
+    <version>0.1-SNAPSHOT</version>
+
+    <parent>
+        <groupId>pl.edu.agh.semmon</groupId>
+        <artifactId>semmon</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>pl.edu.agh.semmon</groupId>
+            <artifactId>commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hp.hpl.jena</groupId>
+            <artifactId>jena</artifactId>
+            <version>${jena.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!--Pellet dependencies -->
+        <dependency>
+            <groupId>pellet</groupId>
+            <artifactId>pellet-jena</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>aterm-java</groupId>
+            <artifactId>aterm-java</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>pellet</groupId>
+            <artifactId>pellet-core</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pellet</groupId>
+            <artifactId>pellet-rules</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pellet</groupId>
+            <artifactId>pellet-datatypes</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>pellet</groupId>
+            <artifactId>pellet-el</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>relaxngDatatype</groupId>
+            <artifactId>relaxngDatatype</artifactId>
+            <version>20020414</version>
+        </dependency>
+        <dependency>
+            <groupId>xsdlib</groupId>
+            <artifactId>xsdlib</artifactId>
+            <version>20030225</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- standard Maven folder -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- plus root folder -->
+            <resource>
+                <directory>${basedir}/.</directory>
+                <includes>
+                    <include>plugin.xml</include>
+                    <include>META-INF/**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+
+    </build>
+
+</project>

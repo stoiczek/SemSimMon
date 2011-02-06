@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+       default-init-method="init">
+
+
+  <bean id="jmxTransportProxy" class="pl.edu.agh.semmon.registries.jmx.JmxTransportProxy">
+    <property name="discoveryAgents" ref="jmxDiscoveryAgents"/>
+    <property name="capabilityProbes" ref="jmxCapabilityProbes"/>
+  </bean>
+
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+  <!--                              Discovery agents                                                 -->
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+
+
+  <util:map id="jmxDiscoveryAgents" key-type="java.lang.String" value-type="java.util.HashMap">
+    <entry value-ref="nodeDiscoveryAgents">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="jvmDiscoveryAgents">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
+      </key>
+    </entry>
+  </util:map>
+
+  <util:map id="nodeDiscoveryAgents" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.discovery.DiscoveryAgent" map-class="java.util.HashMap">
+    <entry value-ref="osDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="cpuDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CPU_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="jvmDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="genericDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="genericDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="genericDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.HARD_DRIVE_URI"/>
+      </key>
+    </entry>
+
+    <entry value-ref="genericDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NETWORK_INTERFACE_URI"/>
+      </key>
+    </entry>
+
+
+  </util:map>
+
+  <util:map id="jvmDiscoveryAgents" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.discovery.DiscoveryAgent" map-class="java.util.HashMap">
+    <entry value-ref="genericDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASS_LOADER_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="genericDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
+      </key>
+    </entry>
+
+    <entry value-ref="threadDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
+      </key>
+    </entry>
+
+    <entry value-ref="gcDiscoveryAgent">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
+      </key>
+    </entry>
+
+  </util:map>
+
+  <bean id="genericDiscoveryAgent" class="pl.edu.agh.semmon.registries.jmx.discovery.GenericDiscoveryAgent"/>
+
+  <!--Node's resource agents-->
+  <bean id="osDiscoveryAgent" class="pl.edu.agh.semmon.registries.jmx.discovery.node.OsDiscoveryAgent"/>
+  <bean id="cpuDiscoveryAgent" class="pl.edu.agh.semmon.registries.jmx.discovery.node.CPUDiscoveryAgent"/>
+  <bean id="jvmDiscoveryAgent" class="pl.edu.agh.semmon.registries.jmx.discovery.node.JvmDiscoveryAgent"/>
+
+
+  <!-- JVM's resource agents -->
+  <bean id="threadDiscoveryAgent" class="pl.edu.agh.semmon.registries.jmx.discovery.jvm.ThreadsDiscoveryAgent"/>
+  <bean id="gcDiscoveryAgent" class="pl.edu.agh.semmon.registries.jmx.discovery.jvm.GCDiscoveryAgent"/>
+
+
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+  <!--                              Capability probes                                                -->
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+
+  <util:map id="jmxCapabilityProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="java.util.HashMap">
+    <entry value-ref="physicalMemoryProbes">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
+      </key>
+    </entry>
+    <entry value-ref="virtMemoryProbes">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
+      </key>
+    </entry>
+
+    <entry value-ref="osProbes">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
+      </key>
+    </entry>
+
+    <entry value-ref="gcProbes">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
+      </key>
+    </entry>
+
+    <entry value-ref="threadProbes">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
+      </key>
+    </entry>
+
+
+    <entry value-ref="jvmProbes">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
+      </key>
+    </entry>
+
+
+  </util:map>
+
+
+  <!--===============================================================================================-->
+  <!--                          Memory Probes                                                        -->
+  <!--===============================================================================================-->
+  <util:map id="physicalMemoryProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.CapabilityProbe">
+    <entry value-ref="nodeMemoryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.FREE_MEM_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="nodeMemoryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.TOTAL_MEM_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="nodeMemoryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.USED_MEM_CAP"/>
+      </key>
+    </entry>
+  </util:map>
+
+  <util:map id="virtMemoryProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.CapabilityProbe">
+    <entry value-ref="nodeMemoryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.FREE_MEM_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="nodeMemoryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.TOTAL_MEM_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="nodeMemoryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.USED_MEM_CAP"/>
+      </key>
+    </entry>
+  </util:map>
+
+  <bean id="nodeMemoryProbe" class="pl.edu.agh.semmon.registries.jmx.probe.memory.MemoryProbe"/>
+
+  <!--===============================================================================================-->
+  <!--                          OS Probes                                                           -->
+  <!--===============================================================================================-->
+
+  <util:map id="osProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.CapabilityProbe">
+    <entry value-ref="osQueryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.LOAD_1MIN_CAP"/>
+      </key>
+    </entry>
+
+
+  </util:map>
+
+  <bean id="osQueryProbe" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQueryCapabilityProbe">
+    <property name="queries" ref="osQueries"/>
+  </bean>
+
+  <util:map id="osQueries" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <entry value-ref="osLoad1min">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.LOAD_1MIN_CAP"/>
+      </key>
+    </entry>
+  </util:map>
+
+  <bean id="osLoad1min" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="SystemLoadAverage"/>
+  </bean>
+
+
+  <!--===============================================================================================-->
+  <!--                          GC Probes                                                           -->
+  <!--===============================================================================================-->
+
+  <util:map id="gcProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.CapabilityProbe">
+    <entry value-ref="gcCollectionProbes">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_COUNT_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="gcCollectionProbes">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_TIME_CAP"/>
+      </key>
+    </entry>
+  </util:map>
+  <bean id="gcCollectionProbes" class="pl.edu.agh.semmon.registries.jmx.probe.gc.CollectionsProbe"/>
+
+  <!--===============================================================================================-->
+  <!--                          Thread Probes                                                           -->
+  <!--===============================================================================================-->
+
+  <util:map id="threadProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.CapabilityProbe">
+    <entry value-ref="threadTimingProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_CPU_TIME_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="threadTimingProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_USER_TIME_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="threadSynchronizationProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_BLOCKED_COUNT_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="threadSynchronizationProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_BLOCKED_TIME_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="threadSynchronizationProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_WAITED_COUNT_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="threadSynchronizationProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_WAITED_TIME_CAP"/>
+      </key>
+    </entry>
+
+
+  </util:map>
+
+  <bean id="threadTimingProbe" class="pl.edu.agh.semmon.registries.jmx.probe.thread.ThreadTimingProbe"/>
+  <bean id="threadSynchronizationProbe"
+        class="pl.edu.agh.semmon.registries.jmx.probe.thread.ThreadSynchronizationDetailsProbe"/>
+
+
+  <!--===============================================================================================-->
+  <!--                          JVM Probes                                                           -->
+  <!--===============================================================================================-->
+  <util:map id="jvmProbes" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.CapabilityProbe">
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASSES_LOADED_TOTAL_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.TOTAL_COMPILATION_TIME_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.OPEN_FILE_DESCRIPTOR_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.LIVE_THREADS_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmMemoryUsageProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.HEAP_USAGE_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.STARTED_THREADS_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="jvmMemoryUsageProbe">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NON_HEAP_USAGE_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASSES_UNLOADED_TOTAL_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.TOTAL_CPU_TIME_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASSES_LOADED_CAP"/>
+      </key>
+    </entry>
+    <entry value-ref="jvmQueryProbe">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.UPTIME_CAP"/>
+      </key>
+    </entry>
+
+  </util:map>
+
+
+  <bean id="jvmMemoryUsageProbe" class="pl.edu.agh.semmon.registries.jmx.probe.jvm.MemoryUsageProbe"/>
+
+  <bean id="jvmQueryProbe" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQueryCapabilityProbe">
+    <property name="queries" ref="jvmQueries"/>
+  </bean>
+
+  <!--===============================================================================================-->
+  <!--Map with jvm probe queries:-->
+  <!--===============================================================================================-->
+  <util:map id="jvmQueries" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+
+    <entry value-ref="totalClassLoadedQuery">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASSES_LOADED_TOTAL_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="totalCompilationTimeQuery">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.TOTAL_COMPILATION_TIME_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="openFileDescriptors">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.OPEN_FILE_DESCRIPTOR_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="jvmThreadCountQuery">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.LIVE_THREADS_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="totalStartedThreads">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.STARTED_THREADS_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="classUnloadedQuery">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASSES_UNLOADED_TOTAL_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="processCpuTime">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.TOTAL_CPU_TIME_CAP"/>
+      </key>
+    </entry>
+
+
+    <entry value-ref="jvmUptimeQuery">
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.UPTIME_CAP"/>
+      </key>
+    </entry>
+
+    <entry value-ref="classLoadedQuery">
+      <key>
+        <util:constant
+            static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASSES_LOADED_CAP"/>
+      </key>
+    </entry>
+  </util:map>
+
+  <bean id="totalStartedThreads" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.THREAD_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="TotalStartedThreadCount"/>
+  </bean>
+
+
+  <bean id="jvmUptimeQuery" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.RUNTIME_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="Uptime"/>
+  </bean>
+
+  <bean id="jvmThreadCountQuery" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.THREAD_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="ThreadCount"/>
+  </bean>
+
+
+  <bean id="openFileDescriptors" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="OpenFileDescriptorCount"/>
+  </bean>
+
+
+  <bean id="processCpuTime" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="ProcessCpuTime"/>
+  </bean>
+
+  <bean id="totalCompilationTimeQuery" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.COMPILATION_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="TotalCompilationTime"/>
+  </bean>
+
+  <bean id="totalClassLoadedQuery" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.CLASS_LOADING_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="TotalLoadedClassCount"/>
+  </bean>
+
+  <bean id="classLoadedQuery" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.CLASS_LOADING_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="LoadedClassCount"/>
+  </bean>
+
+
+  <bean id="classUnloadedQuery" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.CLASS_LOADING_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="UnloadedClassCount"/>
+  </bean>
+
+
+  <bean id="freeVirtualMem" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="FreePhysicalMemorySize"/>
+  </bean>
+
+  <bean id="freePhysicalMem" class="pl.edu.agh.semmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="FreeSwapSpaceSize"/>
+  </bean>
+
+</beans>

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/200/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource
+END
+ResourcePropertyNames.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/177/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/ResourcePropertyNames.java
+END
+ResourceEventsListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/146/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/ResourceEventsListener.java
+END
+CoreResourcesService.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/!svn/ver/198/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/CoreResourcesService.java
+END
+ResourceState.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/177/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/ResourceState.java
+END
+ResourceEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/200/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/ResourceEvent.java
+END
+IResourceDiscoveryEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/177/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/IResourceDiscoveryEvent.java
+END
+IResourceDiscoveryListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/177/trunk/trunk/something_new/commons/src/main/java/pl/edu/agh/semmon/common/api/resource/IResourceDiscoveryListener.java
+END

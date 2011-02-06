@@ -1,0 +1,160 @@
+{
+    "menu" :{
+        "file" : "File",
+        "fileGroup" : {
+            "close" : "Close"
+        },
+        "resources" : "Resources",
+        "resourcesGroup" : {
+            "addJmx" : "Add JMX resource",
+            "addOcmg" : "Add OCMG resource"
+        },
+        "measurements" : "Measurements",
+        "measurementsGroup" : {
+            "pauseAll" : "Pause all measurements",
+            "resumeAll" : "Resume all measurements",
+            "removeAll" : "Remove all measurements"
+        },
+        "visualizations" : "Visualizations",
+        "visualizationsGroup" : {
+            "pauseAll" : "Pause all visualizations",
+            "resumeAll" : "Resume all visualizations",
+            "removeAll" : "Remove all visualizations"
+        }
+
+    },
+
+    "general" : {
+        "dateTimeFormat" : "HH:mm:ss dd/MM/yyyy"
+    },
+    "tabs":{
+        "resources":{
+            "tabname":"Resources",
+            "attributes": "Resource attributes",
+            "capabilities": "Resource capabilities",
+            "add" : "Add Resource",
+            "addjmx" : "Add JMX resource",
+            "addocmg" : "OCMG Resource",
+            "addmeasurement": "Add Measurement",
+            "pause":"Pause",
+            "stop":"Stop",
+            "remove":"Remove",
+            "resume" : "Resume",
+            "emptyTree":"You don't have any resources currently.",
+            "refreshCapabilities" : "Refresh"
+        },
+        "measurements":{
+            "tabname":"Measurements",
+            "remove":"Remove",
+            "resume" : "Resume",
+            "pause" : "Pause",
+
+            "details" : {
+                "sectionLabel":"Measurement details:",
+                "capability" : "Measured capability:",
+                "resource" : "Measured resource:",
+                "startDate": "Start Date:",
+                "id" : "Internal ID:"
+            },
+            "values" : {
+                "sectionLabel": "Measurement values:",
+                "valueTimestamp" : "Value Timestamp",
+                "value" : "Value"
+            }
+        },
+        "visualizations":{
+            "tabname":"Visualizations",
+            "visulizationOptions":"Visualization Options",
+            "chartOptions":"Chart Options",
+            "measurementOptions":"Measurement Options",
+            "actions":"Actions",
+            "visLabel" : "Visualization Label",
+            "chartTypeLabel" : "Chart Type",
+            "chartTitle" : "Chart Title",
+            "chartSubTitle" : "Chart Subtitle",
+            "measurements" : "Measurements" ,
+            "addMeasurement" : "Add Measurement",
+            "removeMeasurement" : "Remove Measurement",
+            "pauseVis" : "Pause Visualization",
+            "resumeVis" : "Resume Visualization",
+            "removeVis" : "Remove Visualization",
+            "chartType" : {
+                "pie" : "Pie Chart",
+                "bar" : "Bar Chart",
+                "line" : "Line Chart",
+                "area" : "Area Chart",
+                "highLow" : "High-Low Chart",
+                "spiderWeb" :"Spider Web"
+
+            }
+
+
+        }
+    },
+    "wizards": {
+
+        "resources":{
+            "add" : {
+                "jmx" : {
+                    "wizardTitle" : "Add JMX resources",
+                    "addNode" : "Add Node",
+                    "configNodes" : "Configure nodes to be added to cluster:",
+                    "nodeUri" : "Node's Jmx service URI: ",
+                    "configMonitor" : "Specify monitor",
+                    "monitorConnection" : "Choose monitor connection type",
+                    "monitorConnectionDetails" : "Setup monitor details",
+                    "startNewMonitor" : "Start new monitor",
+                    "useExistingMonitor" :"Use already configured monitor",
+                    "externalMonitor" : "Attach to external monitor",
+                    "sshConn" : "Connection details for SSH access:",
+                    "sshConnStatus" : "Connection staus:",
+                    "uploadStatus" : "Upload staus:",
+                    "userAndHost" : "User name nad host:",
+                    "passwd" : "Password:",
+                    "passwdBlank" : "SuperSecret",
+                    "chooseMonitor" : "Choose monitor to use:",
+                    "externalMonitorHost" : "Monitor host:",
+                    "hierarchy" : "Specify hierarchy",
+                    "selectApp" : "Select application",
+                    "selectCluster" : "Select Cluster",
+                    "removeNode" : "Remove",
+                    "msgs" : "Connection Log:"
+                },
+                "ocmg":{
+                    "wizardTitle" : "Add OCM-G resources",
+                    "configConnString" :"Configure MainSM connection String",
+                    "connStringLabel" : "Connection String:",
+                    "selectApps" : "Choose applications:",
+                    "invalidConnString" : "Invalid connection string"
+                },
+                "externalCoreMsgs" :{
+                    "startingCore" : "Starting remote core instance",
+                    "addingId" : "Adding user's default identity file: {0}",
+                    "establishingSSH" : "Establishing SSH connaction, this may take a while...",
+                    "openingShell" : "Opening shell",
+                    "shellInitialised" : "Shell initialized",
+                    "checkingCoreInstalled" : "Checking whether core have been already installed on host",
+                    "uploading" : "Core haven't been installed - need to upload",
+                    "uploadingData" : "Uploading {0} bytes",
+                    "uploadDone" : "Finished upload in {0} seconds",
+                    "untaring" : "Extracting package",
+                    "uploadDoneTotal" : "Core successfully uploaded",
+                    "startingCoreProcess" : "Starting semmon-core process",
+                    "coreStarted" : "Successfully started new core instance",
+                    "coreConnecting" : "Trying to connect to core service. Attempt {0}." ,
+                    "coreConnectingError" : "Cannot connect to core service. Either core could fail to start or network issue occured (firewall)"
+                }
+            }
+        },
+        "measurement":{
+            "add" : {
+                "frameTitle" : "Add new measurement",
+                "label" : "Label:",
+                "chooseCapability" : "Select capability:",
+                "refreshInterval" : "Update interval"
+            }
+
+        }
+    }
+}
+

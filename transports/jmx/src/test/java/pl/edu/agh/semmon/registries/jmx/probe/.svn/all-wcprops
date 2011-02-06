@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/!svn/ver/170/trunk/trunk/something_new/transports/jmx/src/test/java/pl/edu/agh/semmon/registries/jmx/probe
+END
+ProbeTestUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/!svn/ver/165/trunk/trunk/something_new/transports/jmx/src/test/java/pl/edu/agh/semmon/registries/jmx/probe/ProbeTestUtils.java
+END
+JmxQueryCapabilityProbeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/!svn/ver/165/trunk/trunk/something_new/transports/jmx/src/test/java/pl/edu/agh/semmon/registries/jmx/probe/JmxQueryCapabilityProbeTest.java
+END

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pl.edu.agh.semmon.transports</groupId>
+  <artifactId>ocmg</artifactId>
+  <version>0.1-SNAPSHOT</version>
+
+  <name>SemMon - Transports - OCMG</name>
+
+  <parent>
+    <artifactId>transports</artifactId>
+    <groupId>pl.edu.agh.semmon</groupId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>src/test/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <forkMode>never</forkMode>
+        </configuration>
+      </plugin>
+
+
+    </plugins>
+
+    <testResources>
+      <testResource>
+        <filtering>false</filtering>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
+
+  </build>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>pl.edu.agh.semmon</groupId>
+      <artifactId>commons</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.balticgrid.ocmg</groupId>
+      <artifactId>OCMGJAPI</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.cogkit</groupId>
+          <artifactId>ui</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-exec</artifactId>
+      <version>1.0.1</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>cyfronet_ocmg</id>
+      <name>OCGM Maven repository</name>
+      <layout>default</layout>
+      <url>http://grid.cyfronet.pl/ocmg/maven/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+
+  </repositories>
+
+</project>

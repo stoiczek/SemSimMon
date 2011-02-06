@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/!svn/ver/170/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/probe/thread
+END
+ThreadTimingProbe.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/!svn/ver/200/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/probe/thread/ThreadTimingProbe.java
+END
+ThreadSynchronizationDetailsProbe.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/!svn/ver/200/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/probe/thread/ThreadSynchronizationDetailsProbe.java
+END

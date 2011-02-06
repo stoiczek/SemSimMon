@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="OCMG transport proxy test suite" verbose="1">
+
+  <test name="OCMG transport proxy test">
+    <classes>
+      <class name="pl.edu.agh.semmon.gui.logic.resource.ResourceServiceTest"/>
+    </classes>
+  </test>
+
+</suite>

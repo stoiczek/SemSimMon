@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/165/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/probe/jvm
+END
+MemoryUsageProbe.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/!svn/ver/200/trunk/trunk/something_new/transports/jmx/src/main/java/pl/edu/agh/semmon/registries/jmx/probe/jvm/MemoryUsageProbe.java
+END

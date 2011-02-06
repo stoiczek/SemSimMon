@@ -1,0 +1,31 @@
+%---------------------------------------------------------------------------
+% System deployment description.
+%
+%---------------------------------------------------------------------------
+
+
+\section{Sytem Deployment}
+\label{sec:ch5_deployment}
+
+\subsection{Simple deployment}
+\label{subsec:simple_depl}
+
+Below is diagram of simplest deployment of application - one gui, using monitoring hub embedded in gui + 2 transport
+proxies.
+
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{simplest_deployment}
+   \caption{Simplest deployment diagram}
+ \end{figure}
+
+\subsection{Distributed deployment}
+\label{subsec:distributed_depl}
+
+Below is diagram of more sophisticated deployment of application - gui, external monitoring hub + 2 transport proxies.
+
+\begin{figure}[h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{distributed_deployment}
+   \caption{Distributed deployment diagram}
+ \end{figure}

@@ -1,0 +1,57 @@
+%---------------------------------------------------------------------------
+% Content of Chapter 5 - System architecture
+%
+%---------------------------------------------------------------------------
+
+
+\chapter{System architecture}
+\label{cha:sys_arch}
+
+
+\section{Introduction}
+\label{sec:ch5_gui}
+
+Design stage is probably most important in whole application life cycle. Decisions made during this stage affects 
+all following stages. Properly designed architecture of system or application reduces possibility of pitfalls during
+implementation stage. It also allows easier extension, growth of application, as well as better integration with other
+systems, thus makes application lifetime longer. 
+
+While designing application I have been trying to follow few well known, software design principles, like:
+\begin{itemize}
+ \item {\bf Single Responsibility
+principle}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
+Application should be divided into distinct features with as
+little overlap as possible. Architecture should strain to minimize amount of interaction points to achieve high cohesion
+and low coupling.
+ \item {\bf Principle of Least Knowledge (Law of Demeter~-~LoD)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
+Each component or module should be responsible for only a specific feature or functionality, or aggregation of cohesive
+functionality.
+ \item {\bf Don't repeat yourself (DRY)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
+You should only need to specify intent in one place. For example, in terms of application design, specific functionality
+should be implemented in only one component; the functionality should not be duplicated in any other component.
+ \item {\bf Keep It Simple Stupid! (KISS)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
+It's a broad principle, but works in software architecture domain quite well. Generally speaking, it states that while
+designing application, one should try to avoid creating unnecessarily complex structures.
+\end{itemize}
+
+To be able to meet both functional and nonfunctional requirements, 
+
+
+In this chapter, I would like to describe architecture of proposed system. First I would like to distinguish high level
+components, describe them roughly and present most important data flows between components.
+(Section~\ref{sec:ch5_decomposition}). Then, I will try to analyze each component separately, constituting good base
+for further development
+(Sections~\ref{sec:ch5_gui},~\ref{sec:ch5_monitoring_hub},~\ref{sec:ch5_knowledge},~\ref{sec:ch5_tproxy})
+
+%---------------------------------------------------------------------------
+
+
+\input{chapter5/ch5_decomposition}
+\input{chapter5/ch5_monitoring_hub}
+\input{chapter5/ch5_monitoring_hub_application}
+\input{chapter5/ch5_knowledge}
+\input{chapter5/ch5_tproxy}
+\input{chapter5/ch5_gui}
+
+
+

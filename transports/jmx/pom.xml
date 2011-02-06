@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pl.edu.agh.semmon.transports</groupId>
+  <artifactId>jmx</artifactId>
+  <version>0.1-SNAPSHOT</version>
+
+  <name>SemMon - Transports - JMX</name>
+
+  <parent>
+    <artifactId>transports</artifactId>
+    <groupId>pl.edu.agh.semmon</groupId>
+    <version>0.1-SNAPSHOT</version>    
+  </parent>
+
+
+  <build>
+    <resources>
+      <!-- standard Maven folder -->
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <!-- plus root folder -->
+      <resource>
+        <directory>${basedir}/.</directory>
+        <includes>
+          <include>plugin.xml</include>
+          <include>META-INF/**/*</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${basedir}/META-INF</directory>
+              <includes>
+                <include>MANIFEST.MF</include>
+              </includes>
+              <followSymlinks>false</followSymlinks>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>pl.edu.agh.semmon</groupId>
+      <artifactId>commons</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>

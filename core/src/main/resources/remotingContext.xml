@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+       default-init-method="init">
+
+  <!--JMX exposure -->
+  <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+    <property name="beans">
+      <map>
+        <entry key="pl.edu.agh.semmon:type=CoreServiceFacade" value-ref="coreServiceFacade"/>
+        <!--<entry key="pl.edu.agh.semmon:type=Knowledge" value-ref="knowledgeBean"/>-->
+      </map>
+    </property>
+  </bean>
+
+
+  <!--RMI exposure-->
+
+  <bean id="rmiRegistry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
+    <property name="port">
+      <util:constant static-field="pl.edu.agh.semmon.common.consts.RemotingConsts.CORE_RMI_REGISTRY_PORT"/>
+    </property>
+  </bean>
+
+  <bean class="org.springframework.remoting.rmi.RmiServiceExporter" depends-on="rmiRegistry">
+    <property name="serviceName">
+      <util:constant static-field="pl.edu.agh.semmon.common.consts.RemotingConsts.CORE_SERVICE_FACADE_NAME"/>
+    </property>
+    <property name="service" ref="coreServiceFacade"/>
+    <property name="serviceInterface" value="pl.edu.agh.semmon.common.api.CoreServiceFacade"/>
+    <property name="registry" ref="rmiRegistry"/>
+  </bean>
+
+
+  <!--<bean class="org.springframework.remoting.rmi.RmiServiceExporter" depends-on="rmiRegistry">-->
+  <!--<property name="serviceName" value="ManagementService"/>-->
+  <!--<property name="service" ref="coreManagementBean"/>-->
+  <!--<property name="serviceInterface" value="pl.edu.agh.semmon.common.api.core.ICoreServiceFacadeade"/>-->
+  <!--<property name="registry" ref="rmiRegistry"/>-->
+
+  <!--</bean>-->
+
+
+  <!--<bean class="org.springframework.remoting.rmi.RmiServiceExporter" depends-on="rmiRegistry">-->
+  <!--<property name="serviceName" value="KnowledgeService"/>-->
+  <!--<property name="service" ref="knowledgeBean"/>-->
+  <!--<property name="serviceInterface" value="pl.edu.agh.semmon.common.api.knowledge.IKnowledge"/>-->
+  <!--<property name="registry" ref="rmiRegistry"/>-->
+  <!--</bean>-->
+</beans>

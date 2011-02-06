@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/178/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection
+END
+ExternalCoreFeedbackSink.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/207/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection/ExternalCoreFeedbackSink.java
+END
+CoreConnectionsManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/178/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection/CoreConnectionsManager.java
+END
+CoreConnectionsManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/!svn/ver/178/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection/CoreConnectionsManagerImpl.java
+END
+RemoteEventsListenerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/!svn/ver/207/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection/RemoteEventsListenerImpl.java
+END
+ExternalProcessCoreConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/!svn/ver/196/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection/ExternalProcessCoreConnection.java
+END
+ExternalCoreConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/!svn/ver/178/trunk/trunk/something_new/gui/src/main/java/pl/edu/agh/semmon/gui/logic/connection/ExternalCoreConnection.java
+END

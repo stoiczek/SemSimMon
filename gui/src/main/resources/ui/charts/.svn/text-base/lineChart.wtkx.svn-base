@@ -1,0 +1,5 @@
+<TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
+           xmlns:wtkx="http://pivot.apache.org/wtkx"
+           xmlns:content="org.apache.pivot.wtk.content" wtkx:id="measurementDetails">
+  
+           </TablePane>

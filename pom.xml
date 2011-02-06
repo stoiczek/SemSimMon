@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pl.edu.agh.semmon</groupId>
+  <artifactId>semmon</artifactId>
+  <version>0.1-SNAPSHOT</version>
+
+  <packaging>pom</packaging>
+
+  <name>SemMon - Base</name>
+
+  <url>https://gforge.cyfronet.pl/projects/semmon/</url>
+
+
+  <modules>
+    <module>commons</module>
+    <module>core</module>
+    <module>knowledge</module>
+    <module>transports</module>
+    <module>core-app</module>
+    <module>gui</module>
+
+  </modules>
+
+  <properties>
+    <jena.version>2.6.3</jena.version>
+    <weka.version>3.6.1</weka.version>
+    <pellet.version>2.0.1</pellet.version>
+    <hsqldb.version>1.8.0.10</hsqldb.version>
+    <config.dir>${project.basedir}/config</config.dir>
+    <jdk.level>1.6</jdk.level>
+    <spring.version>3.0.0.RELEASE</spring.version>
+  </properties>
+
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+
+    <!--<filters>-->
+    <!--<filter>${config.dir}/build.properties</filter>-->
+    <!--<filter>${config.dir}/${user.name}/build.properties</filter>-->
+    <!--</filters>-->
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+
+    <!-- SLF4J -->
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+
+    <!--test dependencies -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>5.8</version>
+      <classifier>jdk15</classifier>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.8.5</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+</project>
+
