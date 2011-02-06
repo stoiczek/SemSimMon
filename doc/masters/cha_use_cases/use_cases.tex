@@ -7,21 +7,21 @@
 \section{Use cases}
 \label{sec:ch4_usecases}
 
-System use cases have been divided into three functional parts related to each functional block of application:
-resources, measurements and visualizations. For each block, diagram in UML notation with additional textual description
-is provided. This is equal to the second level of detail in writing use cases, as proposed by A.
-Cockburn\cite{0201702258}. Application doesn't differ roles of it's users - there is only one type of actor that
-interacts with application, namely User.
+System use cases have been divided into three functional parts. Each part is related to functional block of
+application and there are three such a blocks, namely: resources, measurements and visualizations. For each block,
+diagram in UML notation with additional description is provided. This is equal to the second level of detail in
+writing use cases, as proposed by A. Cockburn\cite{0201702258}. Application doesn't differ roles of it's users - there
+is only one type of actor that interacts with application: User.
 
 \pagebreak
 
 \subsection{Resources Management}
 \label{subsec:resources_mgmnt}
 
-Figure \ref{fig:usecase_resources} shows diagram with application use cases related to resources management. This
-includes most generic entity operations like adding, removing, viewing state. Additionally user can control activity of
-specific resources (e.g. threads, processes) by pausing, stopping or resuming them. Additionally diagram contains
-indirect actions user may perform - connecting to monitoring hub, starting it, selecting one previously connected.
+Figure \ref{fig:usecase_resources} shows diagram with use cases related to resources management. This includes most
+generic entity operations like adding, removing, viewing state. Additionally user can control activity of specific
+resources (e.g. threads, processes) by pausing, stopping or resuming them. Additionally diagram contains indirect
+actions user may perform - connecting to monitoring hub, starting it, selecting one previously connected.
 
 \begin{figure}[ht]
   \centering
