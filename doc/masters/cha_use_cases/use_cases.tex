@@ -7,21 +7,25 @@
 \section{Use cases}
 \label{sec:ch4_usecases}
 
-System use cases have been divided into three functional parts. Each part is related to functional block of
-application and there are three such a blocks, namely: resources, measurements and visualizations. For each block,
-diagram in UML notation with additional description is provided. This is equal to the second level of detail in
-writing use cases, as proposed by A. Cockburn\cite{0201702258}. Application doesn't differ roles of it's users - there
-is only one type of actor that interacts with application: User.
+System use cases have been divided into three functional parts. Each of those parts is related to specific functional
+block, related to: resources, measurements and visualizations. For each block, diagram in UML notation with additional
+description is provided. This approach is equal to the second level of detail in writing use cases, as proposed by A.
+Cockburn\cite{0201702258}. 
+
+Because system isn't expected to work with sensitive information, there is no authorization mechanisms or access
+control management considered. This also implies, that in all use case diagrams, there is only one actor, namely
+user.
 
 \pagebreak
 
 \subsection{Resources Management}
 \label{subsec:resources_mgmnt}
 
-Figure \ref{fig:usecase_resources} shows diagram with use cases related to resources management. This includes most
-generic entity operations like adding, removing, viewing state. Additionally user can control activity of specific
-resources (e.g. threads, processes) by pausing, stopping or resuming them. Additionally diagram contains indirect
-actions user may perform - connecting to monitoring hub, starting it, selecting one previously connected.
+Figure \ref{fig:usecase_resources} shows diagram depicting use cases related to resources management. This includes most
+generic actions like adding, removing, viewing state. Additionally application gives user ability to manage life cycle
+of specific resources (e.g. threads, processes) - user can pause, stop or resume previously paused item. What also
+should be mentioned, diagram covers indirect actions that might be performed by user, like selecting which monitoring
+hub should be used to manage given resource, connecting to external monitoring hub, or even starting it.
 
 \begin{figure}[ht]
   \centering
@@ -30,7 +34,7 @@ actions user may perform - connecting to monitoring hub, starting it, selecting 
   \label{fig:usecase_resources}
 \end{figure}
 
-Direct use cases (actions performed by user directly to achieve his/hers aims):
+Main use cases (actions performed by user directly to achieve his/hers aims):
 
 \begin{itemize}
  \item {\bf Add OCMG Resource}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
