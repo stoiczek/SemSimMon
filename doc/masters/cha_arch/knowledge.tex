@@ -5,22 +5,17 @@
 
 
 \section{Knowledge component}
-\label{sec:ch5_knowledge}
+\label{sec:arch_knowledge}
  
 
-Knowledge component provides means to other components 
+Knowledge component is responsible for realization of semantic approach to proposed system. It creates, and manages
+ontologies that can 
 
 
-
-\section{Default ontologies}
-\label{sec:ch3_default_ontologies}
-
-Default measuring ontologies have been proposed, to make resulting application functional. All system functionalities
-are built around two main ontologies - first one grouping resources, and the second, covering resources capabilities.
-Main principle, I have been trying to follow, while designing them was to maximize wideness of applications that
-can be monitored using APPNAME system. As was stated previously - application user's should be able to monitor wide
-range of applications - from those running single process on one computing machine, up to highly distributed, grid-based
-ones.
+All system functionalities are built around two main ontologies - first one grouping resources, and the second, covering
+resources capabilities. Main principle, I have been trying to follow, while designing them was to maximize wideness of
+applications that can be monitored using SemSimMon system. User of application should be able to monitor wide range of
+applications - from those running single process on one computing machine, up to highly distributed, grid-based ones.
 
 To be able to describe proposed ontologies in more detail, two root concepts have to be explained: concept of the
 resource and the capability. Every other entity used in application is subclass of one of above class. The resource
@@ -46,7 +41,7 @@ notation is inspired by UML use case diagrams.
 \pagebreak
 
 \subsection{Resources ontology}
-\label{sec:ch3_resources}
+\label{subsec:arch_knowledge_resources}
 
 Due to resources ontology complexity, diagrams containing both is-a and has-a relationships have been split into 3
 parts - the ones containing most general classes (application, node, cluster), other for hardware resources and
@@ -158,7 +153,7 @@ OperatingSystem resource may have only one resource type, namely VirtualMemory.
 \pagebreak
 
 \subsection{Capabilities ontology}
-\label{sec:ch3_capabilitie}
+\label{subsec:arch_knowledge_capabilitie}
 
 For concepts related to capabilities of resources, only is-a relationships exists, which can be seen in
 Figure~\ref{fig:onto_capabilities}. Because capability types are tightly coupled with resources, relations between them
