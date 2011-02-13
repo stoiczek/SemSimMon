@@ -8,30 +8,36 @@
 \label{sec:arch_knowledge}
  
 
-Knowledge component is responsible for realization of semantic approach to proposed system. It creates, and manages
-ontologies that can 
+Knowledge component is responsible for realization of semantic approach to proposed system. Although end-user can
+barely notice its existence, it is crucial to allow high scalability and ease of use. Ontologies provided by
+system gives generic measurement semantic. Such a approach allows user to get to know system only once and work using
+it with many different types of hardware, protocols or more general - with any type of measured items that can be
+mapped into generic components introduced by ontologies. Additionally it allows to work with all those different items
+simultaneously, thus it makes possible monitoring application that are written using different technologies
+and that are cooperating with each other.
 
+\subsection{Default ontologies}
 
 All system functionalities are built around two main ontologies - first one grouping resources, and the second, covering
-resources capabilities. Main principle, I have been trying to follow, while designing them was to maximize wideness of
+resource capabilities. Main principle, I have been trying to follow, while designing them was to maximize wideness of
 applications that can be monitored using SemSimMon system. User of application should be able to monitor wide range of
 applications - from those running single process on one computing machine, up to highly distributed, grid-based ones.
 
-To be able to describe proposed ontologies in more detail, two root concepts have to be explained: concept of the
-resource and the capability. Every other entity used in application is subclass of one of above class. The resource
+To be able to describe proposed ontologies in more detail, two root concepts must be explained: concept of the
+resource and the capability. Every other entity used in application is subclass of one of above. The resource
 class wraps all components, either physical of virtual that are being used by user of application to
 perform requested computations. Resource can be physical device that takes part in computation (hardware
 resources), or any software component that can be either dependency (library) or is created by user (program, library).
 On the other hand, the capability concept is used to generalize all measurable features of each resource. Capabilities
-exists only in context of resources that contains them. Each resource may have multiple capabilities, but given
-capability may exist within multiple resources.
+exists only in context of resources that contains them. Each resource may have multiple capabilities and given
+capability may exist with multiple resources.
 
-Above ontologies are being described using diagrams containing two types of relationships: is-a, and has-a
-relationship. Is-a, is formalized as rdfs:subClassOf and states that all the instances of one class are instances of
+Above ontologies are being described using diagrams containing two types of relationships: is-a, and has-a. Is-a, is
+formalized as rdfs:subClassOf and states that all the instances of one class are instances of
 another\cite{rdfRef:2004}. Has-a relationship is used only to describe resources. It's main purpose is to show
-composition arrangement, to ease understanding which resources are used by given resource to operate (e.g. virtual
-machine uses class loader, garbage collector; computing node is built from one or more CPU, storage device, network
-device and so on).
+composition arrangement, to ease understanding which resources are used by given parent resource to operate (e.g.
+virtual machine uses class loader, garbage collector; computing node is built from one or more CPU, storage device,
+network device and so on).
 
 In following diagrams, entities are drawn as filled ellipse with entity name inside. The graphical representation of
 is-a relationship between two entities is a hollow triangle shape on the supertype end of line that connects it to one
@@ -44,8 +50,8 @@ notation is inspired by UML use case diagrams.
 \label{subsec:arch_knowledge_resources}
 
 Due to resources ontology complexity, diagrams containing both is-a and has-a relationships have been split into 3
-parts - the ones containing most general classes (application, node, cluster), other for hardware resources and
-finally - software resources diagrams.
+parts: the one containing most general classes (application, node, cluster), second one for hardware resources
+and software resources diagram.
 
 \begin{figure}[ht]
   \centering
@@ -56,24 +62,23 @@ finally - software resources diagrams.
 
 
 
-Figure~\ref{fig:onto_resources_admin} contains is-a relationship between general concepts. The root class of every
+Figure~\ref{fig:onto_resources_admin} depicts is-a relationship between general concepts. The root class of every
 entity in OWL compliant ontologies is owl:Thing, as specified in OWL language reference\cite{owlRef:2004}. To cover all
-possible resources - generic Resource class was introduced, which acts as resources root concept and the only one direct
-subclass of owl:Thing. Resource has 6 direct subtypes: Application, Cluster, Node, Memory, HardwareResource and
-SoftwareResource. Application with Cluster types are so called 'management' class resources - they doesn't
-represent actual components, that are being used in computations, but instead, are used to aggregate one or more
-elements, thus allows, to build more manageable structure. Application is most important item, in context of
-has-a relationship, which illustrates Figure~\ref{fig:onto_resources_has_a_admin}. It represent program created by
-user, which user wants to analyze using proposed tool. Each application, in theoretical model may run on multiple
-clusters, or multiple nodes.
+possible resources - generic Resource class was introduced. It acts as a root concept for all resources and
+the only one direct subclass of owl:Thing. Resource has 6 direct subtypes: Application, Cluster, Node, Memory,
+HardwareResource and SoftwareResource. Application and Cluster types are so called 'management' class resources - they
+doesn't represent actual components, those that can be used in computations. Instead, they can be used to aggregate one
+or more elements, which allows user to building more manageable measurement structures. Application is most important
+item, in context of has-a relationship, which illustrates Figure~\ref{fig:onto_resources_has_a_admin}. It represent
+program created by user, which he or she wants to analyze using proposed tool. Each application, in theoretical model
+may be running on multiple clusters, and multiple nodes.
 
-Cluster refers to group of computing nodes which are connected using high efficiency
-network,thus in some way may be treated as single entity. It is equivalent of sites in OMIS nomenclature\cite{tl9702e}.
-Node can be interpreted as a bridge between high-level resources and software, hardware resources. Generally speaking,
-it is smallest independent computing unit, e.g. single PC or unit in cluster's rack. It can be treated as administrative
-type of resource, as it's not component that is used directly to aid computations, it rather aggregates such a
-components (all it's hardware with operating system). But, on the other hand, node is an actual device that is used in
-application processing. 
+Cluster refers to group of computing nodes which are connected using high efficiency network,thus in some way may be
+treated as single entity. It is equivalent of site in OMIS nomenclature\cite{tl9702e}. Node can be interpreted as a
+bridge between high-level resources and software, hardware resources. Generally speaking, it is smallest independent
+computing unit, e.g. single PC or unit in cluster's rack. It can be treated as administrative type of resource, as it's
+not component that is used directly to aid computations, it rather aggregates such a components (all it's hardware with
+operating system). But, on the other hand, node is an actual device that is used in application processing. 
 
 There exists also special class of resources - Memory. It's extracted to subclass Resource type directly, because there
 exists at least two types of memory: software based (virtual memory) and hardware (physical memory) that share
