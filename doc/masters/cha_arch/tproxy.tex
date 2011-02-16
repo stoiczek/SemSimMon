@@ -8,3 +8,40 @@
 \section{Transport Proxy component}
 \label{sec:arch_tproxy}
  
+Transport proxies are components responsible for communicating with external components that performs actual, low-level
+analysis of processing tree and measurements. Each proxy implementation can specialize generic, ontology base concept
+into item specific to platform or measuring system. All transport proxies implementation are being used by Monitoring
+Hub component, and distributed in form of library (Java JAR). 
+
+Because all proxies has rather straight purpose, further decomposition of those components won't be provided. In
+following subsection, author covers overall design principles of Two transport proxies provided with initial
+implementation of SemSimMon system.
+
+ 
+\subsection{JMX Transport Proxy}
+
+Implementation of transport proxy component responsible for integration with Java JMX consist of one root component -
+JmxTransportProxy, several DiscoveryAgent and CapabilityProbe components. JmxTransportProxy component implements
+interface used by other high-level system modules and performs all operations, delegating requests to appropriate
+probes or discovery agents.
+
+DiscoveryAgents are responsible for fetching all subresources of given resource. Each agent can be interpreted as a
+mapping between ontology based, generic concept and item specific to JVM domain. Additionally, agents are responsible
+for gathering all static properties of all discovered components.
+
+If DiscoveryAgent can be seen as mapping between resource and JMX-specific entity, then CapabilityProbe should be
+interpreted as mapping between generic capability described by ontology language into JMX specific feature. The only
+responsibility of CapabilityProbe is to fetch value of capability that it can measure and using given resource.
+
+To fulfill it's duties, JmxTransportProxy component maintains maps of discovery agents and capability probes. In both
+cases map associates ontology URL of given concept to explicit probe or agent. Additionally it is responsible for
+setting up and maintaining connection to JVM.
+
+
+\subsection{OCM-G Transport Proxy}
+
+OCM-G Transport Proxy component integrates SemSimMon with distributed monitoring system compliant with OMIS interface
+specification. This implementation will use OMIS java bindings developed under OCM-G project. Because this transport
+proxy implements similar functionality that JMX transport proxy, 
+
+

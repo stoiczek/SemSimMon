@@ -62,23 +62,23 @@ and software resources diagram.
 
 
 
-Figure~\ref{fig:onto_resources_admin} depicts is-a relationship between general concepts. The root class of every
-entity in OWL compliant ontologies is owl:Thing, as specified in OWL language reference\cite{owlRef:2004}. To cover all
-possible resources - generic Resource class was introduced. It acts as a root concept for all resources and
-the only one direct subclass of owl:Thing. Resource has 6 direct subtypes: Application, Cluster, Node, Memory,
+Figure~\ref{fig:onto_resources_admin} depicts is-a relationship between general SemSimMon concepts. The root class of
+every entity in OWL compliant ontologies is owl:Thing, as specified in OWL language reference\cite{owlRef:2004}. To
+cover all possible resources - generic Resource class was introduced. It acts as a root concept for all other resources
+and the only one direct subclass of owl:Thing. Resource has 6 direct subtypes: Application, Cluster, Node, Memory,
 HardwareResource and SoftwareResource. Application and Cluster types are so called 'management' class resources - they
-doesn't represent actual components, those that can be used in computations. Instead, they can be used to aggregate one
-or more elements, which allows user to building more manageable measurement structures. Application is most important
-item, in context of has-a relationship, which illustrates Figure~\ref{fig:onto_resources_has_a_admin}. It represent
-program created by user, which he or she wants to analyze using proposed tool. Each application, in theoretical model
-may be running on multiple clusters, and multiple nodes.
+doesn't represent actual components, which can be used to perform computations. Instead, they can be used to aggregate
+one or more elements, which allows user to building more manageable measurement structures. Application is most
+important item, in context of has-a relationship, which illustrates Figure~\ref{fig:onto_resources_has_a_admin}. It
+represent program created by user, which he or she wants to analyze using proposed tool. Each application, in
+theoretical model may be running on multiple clusters, and multiple nodes.
 
 Cluster refers to group of computing nodes which are connected using high efficiency network,thus in some way may be
 treated as single entity. It is equivalent of site in OMIS nomenclature\cite{tl9702e}. Node can be interpreted as a
 bridge between high-level resources and software, hardware resources. Generally speaking, it is smallest independent
-computing unit, e.g. single PC or unit in cluster's rack. It can be treated as administrative type of resource, as it's
+computing unit, e.g. single PC or unit in a rack. It can be treated as administrative type of resource, as it's
 not component that is used directly to aid computations, it rather aggregates such a components (all it's hardware with
-operating system). But, on the other hand, node is an actual device that is used in application processing. 
+operating system). But, on the other hand, node is an actual device that is used in processing. 
 
 There exists also special class of resources - Memory. It's extracted to subclass Resource type directly, because there
 exists at least two types of memory: software based (virtual memory) and hardware (physical memory) that share
@@ -101,9 +101,9 @@ common semantics.
   \label{fig:onto_resources_hardware}
 \end{figure}
 
-Classes related to hardware resources, as seen on Figure~\ref{fig:onto_resources_hardware}
-and ~\ref{fig:onto_resources_has_a_hardware} was designed in a way that will allow to cover most of computer parts
-available nowadays on marked. Both diagrams are quite straightforward. HardwareResource has 4 direct sub-types:
+Classes related to hardware resources, as can be seen in Figures~\ref{fig:onto_resources_hardware}
+and~\ref{fig:onto_resources_has_a_hardware} were designed in a way that will allow to cover most of computer parts
+available nowadays on market. Both diagrams are quite straightforward. HardwareResource has 4 direct sub-types:
 PhysicalMemory, StorageResource, NetworkInterface and CPU. PhysicalMemory, is also subtype of Memory class, to share
 common semantics, as was stated before. Also, StorageResource has one deriving class - HardDisk. 
 Hardware resources has-a relationship diagram is even more elementary - Node may have all hardware resources, and there
@@ -125,22 +125,21 @@ with one, or more CPUs with at least one core (each core is treated as separate 
   \label{fig:onto_resources_software}
 \end{figure}
 
-System is aware of more software resource types then hardware ones. That fact more sophisticated relationships between
-those concepts, as can be seen in Figure~\ref{fig:onto_resources_software}
-and Figure~\ref{fig:onto_resources_has_a_software}. Class SoftwareResource has 4 direct subtypes: VirtualMemory (which
+System is aware of more software resource types then hardware ones. This implies more sophisticated relationships
+between those concepts, which are depicted in Figures~\ref{fig:onto_resources_software} and
+Figure~\ref{fig:onto_resources_has_a_software}. Class SoftwareResource has 4 direct subtypes: VirtualMemory (which
 also derives from generic Memory concept), OperatingSystem, Process and SoftwareComponent concept. First 3 types are
 quite straightforward and represent what one expects them to.
-What should be noticed is special subtype of Process resource, namely VirtualMachine. It was extracted from more
+What should be noticed is special subtype of Process, namely VirtualMachine. It was extracted from more
 general type, because of it's specific nature which differs it from all general purpose processes. Each virtual
 machine acts as runtime environment for running application, thus it has specific features common for all virtual
 machines, but unlikely seen in casual process.
 SoftwareComponent resource type is logical wrapper for all low level software components that can be used to create
 program. There are generic components, like Thread, Function. There are also types specific to Object Oriented
 Programming: Class, Object, Method (which subtypes Function). The third group of SoftwareComponents subtypes is specific
-to virtual machines. This group contains: GarbageCollector and ClassLoader.
+to virtual machines. It contains only two items: GarbageCollector and ClassLoader.
 
-\pagebreak
-Regarding ownership relations in software category there is one root concept - rucNode. Each node have: OperatingSystem,
+Regarding ownership relations in software category there is one root concept - Node. Each node have: OperatingSystem,
 and multiple Processes. Some processes may be VirtualMachines, thus this resource is last type that Node may own.
 Each process may have following software components: Thread, Object, Class and Function. VirtualMachine may have
 all components that generic process has, and also, two specific: ClassLoader and GarbageCollector. Additionally, Class
@@ -172,9 +171,9 @@ is another direct subtype of most generic ResourceCapability, which doesn't requ
 
 Complex structure of software resources influences relationships between capabilities related to those components.
 SoftwareCapability has 3 subtypes: OperatingSystemCapability, ProcessCapability and SoftwareComponentCapability.
-Additionally, from ProcessCapability, VirtualMachineCapability was extracted because of same reasons that motivates
-extraction of VirtualMachine resource type from Process - different semantics and thus different capabilities. The only
-one type that extends SoftwareComponentCapability is ThreadCapability.
+Additionally, VirtualMachineCapability was extracted from ProcessCapability, because of same reasons that motivates
+extraction of VirtualMachine resource type from Process - different semantics. The only one type that extends
+SoftwareComponentCapability is ThreadCapability.
 
 
 \begin{figure}[ht]
