@@ -5,7 +5,7 @@
        xmlns="org.apache.pivot.wtk">
   <content>
     <BoxPane orientation="vertical" styles="{fill:true}">
-      <TablePane wtkx:id="resourceAttributes" styles="{horizontalPadding:5}">
+      <TablePane wtkx:id="resourceAttributes" styles="{horizontalSpacing:5}">
         <columns>
           <TablePane.Column width="130"/>
           <TablePane.Column width="250"/>

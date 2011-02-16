@@ -60,9 +60,11 @@ public class AddMeasurToVisDialogCtrl extends BaseDialogController {
   @ButtonAction
   private void okButtonPressed() {
     Sequence items = measurementsList.getSelectedItems();
-    for (int i = 0; i < items.getLength(); i++) {
-      ListItemDataContainer container  = (ListItemDataContainer) items.get(i);
-      owner.addMeasurement((Measurement) container.getAdditionalContent());
+    if (items != null) {
+      for (int i = 0; i < items.getLength(); i++) {
+        ListItemDataContainer container = (ListItemDataContainer) items.get(i);
+        owner.addMeasurement((Measurement) container.getAdditionalContent());
+      }
     }
     cancelButtonPressed();
   }
