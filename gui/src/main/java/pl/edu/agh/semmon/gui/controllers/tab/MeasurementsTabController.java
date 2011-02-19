@@ -168,7 +168,7 @@ public class MeasurementsTabController extends BaseTabController implements Meas
     }
     final List data = measurementValues.getTableData();
         displayMeasurementValues(data, values);
-//    measurementValues.repaint();
+    measurementValues.repaint();
   }
 
   public void setMeasurementService(MeasurementService measurementService) {

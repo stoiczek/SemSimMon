@@ -9,10 +9,10 @@
       <Separator/>
 
       <FlowPane styles="{horizontalSpacing:10,alignment:'center'}">
-        <PushButton bxml:id="cancelButton" buttonData="Cancel"/>
-        <PushButton bxml:id="backButton" buttonData="Back" visible="false"/>
-        <PushButton bxml:id="nextButton" buttonData="Next >>"/>
-        <PushButton bxml:id="finishButton" buttonData="Finish" visible="false"/>
+        <PushButton bxml:id="cancelButton" buttonData="%general.cancel"/>
+        <PushButton bxml:id="backButton" buttonData="%general.back" visible="false"/>
+        <PushButton bxml:id="nextButton" buttonData="%general.next"/>
+        <PushButton bxml:id="finishButton" buttonData="%general.finish" visible="false"/>
       </FlowPane>
     </BoxPane>
 

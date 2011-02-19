@@ -81,7 +81,7 @@ public abstract class BaseWizardController extends BaseDialogController {
     switchPages(false);
   }
 
-  @ButtonAction(type = ButtonAction.Type.BACKGROUND)
+  @ButtonAction(type = ButtonAction.Type.INSTANT)
   private void nextButtonPressed() {
     if (!switchPages(true)) {
       return;
@@ -89,8 +89,7 @@ public abstract class BaseWizardController extends BaseDialogController {
     if (currentPageNo == pages.size() - 1) {
       nextButton.setVisible(false);
       finishButton.setVisible(true);
-    }
-    if (currentPageNo == 0) {
+    } else if (currentPageNo > 0) {
       cancelButton.setVisible(false);
       backButton.setVisible(true);
     }

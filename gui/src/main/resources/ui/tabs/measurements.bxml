@@ -1,6 +1,7 @@
 <TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
            xmlns:bxml="http://pivot.apache.org/bxml"
            xmlns:smUtil="pl.edu.agh.semmon.gui.util"
+           xmlns:collections="org.apache.pivot.collections"
            bxml:id="resourcesPane"
            styles="{horizontalSpacing:4,showHorizontalGridLines:false, showVerticalGridLines:false}">
   <columns>
@@ -28,39 +29,39 @@
         </Expander>
         <Expander title="%tabs.measurements.values.sectionLabel">
           <content>
-            <BoxPane styles="{fill:true,padding:5}" orientation="vertical">
-              <ScrollPane horizontalScrollBarPolicy="never" verticalScrollBarPolicy="fill_to_capacity">
-                <view>
-                  <!--<Border >-->
-                  <!--<content>-->
-                  <!--<TablePane bxml:id="measurementValues"-->
-                  <!--styles="{showVerticalGridLines:true,showHorizontalGridLines:true,horizontalSpacing:1,verticalSpacing:1}">-->
-                  <!--<columns>-->
-                  <!--<TablePane.Column width="120"/>-->
-                  <!--<TablePane.Column width="100"/>-->
-                  <!--</columns>-->
-                  <!--<rows>-->
-                  <!--<TablePane.Row highlighted="true">-->
-                  <!--<Label text="%tabs.measurements.values.valueTimestamp" styles="{padding:{left:10}}"/>-->
-                  <!--<Label text="%tabs.measurements.values.value" styles="{padding:{left:10}}"/>-->
-                  <!--</TablePane.Row>-->
-                  <!--</rows>-->
-                  <!--</TablePane>-->
-                  <!--</content>-->
-                  <!--</Border>-->
-                  <TableView bxml:id="measurementValues" styles="{}">
-                    <columns>
-                      <TableView.Column name="timestamp" width="120"
-                                        headerData="%tabs.measurements.values.valueTimestamp"/>
-                      <TableView.Column name="value" width="100" headerData="%tabs.measurements.values.value"/>
-                      <!--<TableView.Column name="timestamp" width="120" headerData="Timestamp"/>-->
-                      <!--<TableView.Column name="value" width="100" headerData="Value"/>-->
-                    </columns>
+            <TablePane>
+              <columns>
+                <TablePane.Column width="240"/>
+                <TablePane.Column width="1*"/>
+              </columns>
+              <rows>
+                <TablePane.Row height="360">
+                  <Border>
+                    <content>
+                      <ScrollPane >
 
-                  </TableView>
-                </view>
-              </ScrollPane>
-            </BoxPane>
+                        <TableView bxml:id="measurementValues">
+                          <columns>
+                            <TableView.Column name="timestamp" width="125"
+                                              headerData="%tabs.measurements.values.valueTimestamp"/>
+                            <TableView.Column name="value" width="100" headerData="%tabs.measurements.values.value"/>
+                          </columns>
+
+
+                        </TableView>
+
+                        <columnHeader>
+                          <TableViewHeader tableView="$measurementValues"/>
+                        </columnHeader>
+                      </ScrollPane>
+
+                    </content>
+                  </Border>
+                  <TablePane.Filler/>
+                </TablePane.Row>
+
+              </rows>
+            </TablePane>
 
           </content>
         </Expander>

@@ -26,7 +26,12 @@
 
     "general" : {
         "dateTimeFormat" : "HH:mm:ss dd/MM/yyyy",
-        "timeFormat" : "HH:mm:ss"
+        "timeFormat" : "HH:mm:ss",
+        "next" : "Next >>",
+        "back" : "<< Back",
+        "cancel" : "Cancel",
+        "finish" : "Finish"
+
     },
     "tabs":{
         "resources":{
