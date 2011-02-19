@@ -1,8 +1,8 @@
 package pl.edu.agh.semmon.gui.controllers.dialog;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.LinkedList;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.common.exception.MeasurementException;
@@ -26,19 +26,19 @@ public class AddMeasurementDialogController extends BaseDialogController {
 
   private static final Logger log = LoggerFactory.getLogger(AddMeasurementDialogController.class);
 
-  @WTKX
+  @BXML
   private PushButton cancelButton;
 
-  @WTKX
+  @BXML
   private PushButton okButton;
 
-  @WTKX
+  @BXML
   private ListButton capabilityList;
 
-  @WTKX
+  @BXML
   private TextInput pollIntervalTextInput;
 
-  @WTKX
+  @BXML
   private TextInput labelTextInput;
 
   private MeasurementService measurementService;

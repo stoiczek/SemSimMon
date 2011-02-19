@@ -1,7 +1,8 @@
 package pl.edu.agh.semmon.gui.controllers.wizard.resource.add;
 
+import org.apache.pivot.beans.BXML;
+import org.apache.pivot.json.JSON;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -28,35 +29,35 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
 
   private static final Logger log = LoggerFactory.getLogger(ConfigMonitorPage.class.getName());
 
-  @WTKX
+  @BXML
   private ButtonGroup connectionTypeButtonGroup;
 
-  @WTKX
+  @BXML
   private TablePane existingMonitorPane;
 
-  @WTKX
+  @BXML
   private TablePane externalMonitorPane;
 
-  @WTKX
+  @BXML
   private BoxPane startNewMonitorPane;
 
-  @WTKX
+  @BXML
   private TextInput sshUserAndHostTextInput;
 
-  @WTKX
+  @BXML
   private TextInput passwordTextInput;
 
-  @WTKX
+  @BXML
   private TextInput externalMonitorHostTextInput;
 
 
-  @WTKX
+  @BXML
   private ListButton monitorsList;
 
-  @WTKX
+  @BXML
   private Meter uploadProgressMeter;
 
-  @WTKX
+  @BXML
   private BoxPane sshExternalLogsSink;
 
 
@@ -161,9 +162,17 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
       monitorsList.setSelectedIndex(0);
     }
     monitorsList.getListButtonSelectionListeners().add(new ListButtonSelectionListener() {
+
       @Override
       public void selectedIndexChanged(ListButton listButton, int previousSelectedIndex) {
         log.debug("Selection changed");
+
+      }
+
+      @Override
+      public void selectedItemChanged(ListButton listButton, Object previousSelectedItem) {
+        log.debug("Selection changed");
+
       }
     });
     connectionTypeButtonGroup.getButtonGroupListeners().add(new ButtonGroupListener.Adapter() {
@@ -204,7 +213,7 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
   @Override
   public void appendLogStatus(String msg, String... args) {
     log.debug("Appending log from connection");
-    sshExternalLogsSink.add(new Label(resources.getString(msg, args)));
+    sshExternalLogsSink.add(new Label(JSON.<String>get(resources, msg)));
     sshExternalLogsSink.getParent().repaint();
   }
 

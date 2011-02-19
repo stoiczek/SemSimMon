@@ -1,8 +1,9 @@
 package pl.edu.agh.semmon.gui.controllers.wizard;
 
+import org.apache.pivot.beans.BXML;
+import org.apache.pivot.json.JSON;
 import org.apache.pivot.wtk.FlowPane;
 import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.gui.controllers.action.ButtonAction;
@@ -30,19 +31,19 @@ public abstract class BaseWizardController extends BaseDialogController {
 
   private int currentPageNo = 0;
 
-  @WTKX
+  @BXML
   private PushButton cancelButton;
 
-  @WTKX
+  @BXML
   private PushButton backButton;
 
-  @WTKX
+  @BXML
   private PushButton nextButton;
 
-  @WTKX
+  @BXML
   private PushButton finishButton;
 
-  @WTKX
+  @BXML
   private FlowPane pageContainer;
 
 
@@ -123,7 +124,7 @@ public abstract class BaseWizardController extends BaseDialogController {
       nextButton.setVisible(false);
       finishButton.setVisible(true);
     }
-    component.setTitle(resources.getString(titleKey));
+    component.setTitle(JSON.<String>get(resources, titleKey));
     pageContainer.add(pages.get(currentPageNo).getComponent());
     log.debug("Opening wizard");
     component.setLocation(100, 100);

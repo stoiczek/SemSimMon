@@ -1,9 +1,8 @@
 package pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.serialization.SerializationException;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
-import org.apache.pivot.wtkx.WTKXSerializer;
 import org.springframework.core.io.Resource;
 import pl.edu.agh.semmon.gui.controllers.action.ButtonAction;
 import pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardPageController;
@@ -25,13 +24,13 @@ public class ConfigJmxNodes extends BaseWizardPageController {
   private static final String NODE_SERVICE_URI_ID = "nodeUriTextInput";
 
 
-  @WTKX
+  @BXML
   private PushButton addButton;
 
-  @WTKX
+  @BXML
   private TextInput firstNodeUriTextInput;
 
-  @WTKX
+  @BXML
   private BoxPane nodesPane;
 
   private List<TextInput> nodeUrisTextInputs = new LinkedList<TextInput>();
@@ -55,9 +54,9 @@ public class ConfigJmxNodes extends BaseWizardPageController {
 
   @ButtonAction
   private void addButtonPressed() throws IOException, SerializationException {
-    final FlowPane newNodePane = (FlowPane) serializer.readObject(nodeDefinitionResource.getURL());
-    final PushButton removeButton = (PushButton) serializer.get(REMOVE_BUTTON_ID);
-    final TextInput nodeServiceTextInput = (TextInput) serializer.get(NODE_SERVICE_URI_ID);
+    final FlowPane newNodePane = (FlowPane) serializer.readObject(FlowPane.class, nodeDefinitionResource.getURL().toString());
+    final PushButton removeButton = (PushButton) serializer.readObject(PushButton.class, REMOVE_BUTTON_ID);
+    final TextInput nodeServiceTextInput = (TextInput) serializer.readObject(TextInput.class, NODE_SERVICE_URI_ID);
     nodeUrisTextInputs.add(nodeServiceTextInput);
     removeButton.setAction(new Action() {
       @Override

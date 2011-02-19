@@ -14,5 +14,5 @@ import java.io.IOException;
  */
 public interface Controller<T extends Component> {
   @PostConstruct
-  void serializeContent() throws SerializationException, IOException, IllegalAccessException;
+  void deserializeContent() throws SerializationException, IOException, IllegalAccessException;
 }

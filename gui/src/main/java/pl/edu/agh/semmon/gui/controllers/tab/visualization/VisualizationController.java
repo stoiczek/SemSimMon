@@ -1,7 +1,7 @@
 package pl.edu.agh.semmon.gui.controllers.tab.visualization;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.gui.UiFactory;
@@ -33,49 +33,49 @@ public class VisualizationController extends BaseController<BoxPane> {
 
   private static final Logger log = LoggerFactory.getLogger(VisualizationController.class);
 
-  @WTKX
+  @BXML
   private BoxPane separator;
 
-  @WTKX
+  @BXML
   private TablePane.Column optionsColumn;
 
-  @WTKX
+  @BXML
   private TablePane.Row mainRow;
 
-  @WTKX
+  @BXML
   private GridPane chartWrapper;
 
-  @WTKX
+  @BXML
   private TextInput labelTextInput;
 
-  @WTKX
+  @BXML
   private TextInput chartTitleTextInput;
 
-  @WTKX
+  @BXML
   private TextInput chartSubtitleTextInput;
 
-  @WTKX
+  @BXML
   private Form optionsForm;
 
-  @WTKX
+  @BXML
   private ListView measurementsList;
 
-  @WTKX
+  @BXML
   private PushButton addMeasurementPushButton;
 
-  @WTKX
+  @BXML
   private PushButton removeMeasurementPushButton;
 
-  @WTKX
+  @BXML
   private PushButton pauseVisualizationPushButton;
 
-  @WTKX
+  @BXML
   private PushButton resumeVisualizationPushButton;
 
-  @WTKX
+  @BXML
   private PushButton removeVisualizationPushButton;
 
-  @WTKX
+  @BXML
   private ButtonGroup chartTypeButtonGroup;
 
   private VisualizationChart visualizationChart;
@@ -157,7 +157,7 @@ public class VisualizationController extends BaseController<BoxPane> {
       throw new RuntimeException(e);
     }
     visualizationChart.getChartComponent().setTitle(chartTitle);
-    TabPane.setLabel(component, chartTitle);
+    TabPane.setTabData(component, chartTitle);
     labelTextInput.setText(chartTitle);
     chartTitleTextInput.setText(chartTitle);
     final GridPane.Row row = new GridPane.Row();
@@ -168,20 +168,23 @@ public class VisualizationController extends BaseController<BoxPane> {
     separator.getComponentMouseListeners().add(createOptionShowMouseListener());
     component.getComponentListeners().add(createResizingComponentListener());
 
-    labelTextInput.getTextInputTextListeners().add(new TextInputTextListener() {
+    labelTextInput.getTextInputContentListeners().add(new TextInputContentListener.Adapter() {
+
       @Override
       public void textChanged(TextInput textInput) {
-        TabPane.setLabel(component, textInput.getText());
+        TabPane.setTabData(component, textInput.getText());
       }
     });
-    chartTitleTextInput.getTextInputTextListeners().add(new TextInputTextListener() {
+
+    chartTitleTextInput.getTextInputContentListeners().add(new TextInputContentListener.Adapter() {
+
       @Override
       public void textChanged(TextInput textInput) {
         visualizationChart.getChartComponent().setTitle(textInput.getText());
         visualizationChart.getChartComponent().repaint();
       }
     });
-    chartSubtitleTextInput.getTextInputTextListeners().add(new TextInputTextListener() {
+    chartSubtitleTextInput.getTextInputContentListeners().add(new TextInputContentListener.Adapter() {
       @Override
       public void textChanged(TextInput textInput) {
         visualizationChart.updateChartSubTitle(textInput.getText());

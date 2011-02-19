@@ -1,9 +1,9 @@
 package pl.edu.agh.semmon.gui.controllers.tab.visualization;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.util.Vote;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class VisualizationsTabController extends BaseTabController<TabPane> {
 
   private static final Logger log = LoggerFactory.getLogger(VisualizationsTabController.class);
 
-  @WTKX
+  @BXML
   private TabPane visualizationsTabPane;
 
   @Autowired
@@ -38,7 +38,7 @@ public class VisualizationsTabController extends BaseTabController<TabPane> {
     VisualizationController controller = uiFactory.createVisualizationTab();
     final BoxPane tab = controller.getComponent();
     component.getTabs().insert(tab, 0);
-    TabPane.setLabel(tab, "Visualization1");
+    TabPane.setTabData(tab, "Visualization1");
     component.setSelectedIndex(0);
     visualizationsTabPane.getTabPaneSelectionListeners().add(new TabPaneSelectionListener.Adapter() {
 
@@ -79,9 +79,8 @@ public class VisualizationsTabController extends BaseTabController<TabPane> {
   private void addTab(int selectedIndex) {
     VisualizationController controller = uiFactory.createVisualizationTab();
     visualizationsTabPane.getTabs().insert(controller.getComponent(), selectedIndex);
-    TabPane.setLabel(controller.getComponent(), "Test" + selectedIndex);
+    TabPane.setTabData(controller.getComponent(), "Test" + selectedIndex);
     visualizationsTabPane.setSelectedIndex(selectedIndex);
-    TabPane.setCloseable(controller.getComponent(), true);
   }
 
 

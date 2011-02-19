@@ -1,7 +1,7 @@
 package pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardPageController;
 
 /**
@@ -14,10 +14,10 @@ public class ConfigMainSMPage extends BaseWizardPageController<BoxPane> {
       "[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]:[0-9a-f][0-9a-f][0-9a-f]" +
           "[0-9a-f]";
 
-  @WTKX
+  @BXML
   private TextInput connStringInput;
 
-  @WTKX
+  @BXML
   private FlowPane connStringPane;
 
   @Override
@@ -29,7 +29,7 @@ public class ConfigMainSMPage extends BaseWizardPageController<BoxPane> {
   public void pageHiding() {
     final String connString = getConnectionString();
     if (!connString.matches(CONNECTION_STRING_PATTERN)) {
-      Form.Flag flag = new Form.Flag(MessageType.ERROR, resources.getString("wizards.resources.add.ocmg.invalidConnString"));
+      Form.Flag flag = new Form.Flag(MessageType.ERROR, resources.get("wizards.resources.add.ocmg.invalidConnString").toString());
       Form.setFlag(connStringPane, flag);
       throw new IllegalStateException("Invalid connection string");
     }

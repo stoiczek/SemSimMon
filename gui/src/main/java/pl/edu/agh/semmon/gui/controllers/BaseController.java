@@ -1,11 +1,12 @@
 package pl.edu.agh.semmon.gui.controllers;
 
 import org.apache.commons.lang.time.DateFormatUtils;
+import org.apache.pivot.beans.BXMLSerializer;
+import org.apache.pivot.json.JSON;
 import org.apache.pivot.serialization.SerializationException;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.Component;
-import org.apache.pivot.wtkx.WTKXSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -16,10 +17,8 @@ import pl.edu.agh.semmon.gui.util.UriUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.Date;
 
 /**
@@ -38,14 +37,15 @@ public abstract class BaseController<T extends Component> implements Controller<
   private static final int DEFAULT_ACTION_TARGET_STRIP_CHARS = "Pressed".length();
 
   protected static final String DATE_TIME_FORMAT_KEY = "general.dateTimeFormat";
+  protected static final String TIME_FORMAT_KEY = "general.timeFormat";
 
   private static final String RESOURCE_FILE = "i18n/Semmon";
 
   protected T component;
 
-  protected Resource wtkxContentResource;
+  protected Resource bxmlContentResource;
 
-  protected WTKXSerializer serializer;
+  protected BXMLSerializer serializer;
 
   private RelectionButtonPressListenerFactory listenerFactory;
 
@@ -57,12 +57,13 @@ public abstract class BaseController<T extends Component> implements Controller<
 
   @Override
   @PostConstruct
-  public void serializeContent() throws SerializationException, IOException, IllegalAccessException {
+  public void deserializeContent() throws SerializationException, IOException, IllegalAccessException {
     resources = new Resources(RESOURCE_FILE);
-    serializer = new WTKXSerializer(resources);
+    serializer = new BXMLSerializer();
+    serializer.setResources(resources);
     //noinspection unchecked
     preSerialize();
-    component = (T) serializer.readObject(wtkxContentResource.getURL());
+    component = (T) serializer.readObject(bxmlContentResource.getURL(), resources);
     Class clazz = getBindableClass();
     log.debug("Binding with class: {}", clazz.getName());
     serializer.bind(this, clazz);
@@ -107,14 +108,14 @@ public abstract class BaseController<T extends Component> implements Controller<
   protected abstract Class getBindableClass();
 
   protected void preSerialize() throws IOException {
-    
+
   }
 
   protected void postBinding() throws IOException {
   }
 
-  public void setWtkxContentResource(Resource wtkxContentResource) {
-    this.wtkxContentResource = wtkxContentResource;
+  public void setBxmlContentResource(Resource bxmlContentResource) {
+    this.bxmlContentResource = bxmlContentResource;
   }
 
   public void setListenerFactory(RelectionButtonPressListenerFactory listenerFactory) {
@@ -126,7 +127,13 @@ public abstract class BaseController<T extends Component> implements Controller<
   }
 
   protected String getFormattedDate(Date date) {
-    String timePattern = resources.getString(DATE_TIME_FORMAT_KEY);
+    Date now = new Date();
+    String timePattern;
+    if (now.getTime() - date.getTime() > 1000 * 60 * 60 * 24) {
+      timePattern = JSON.get(resources, DATE_TIME_FORMAT_KEY);
+    } else {
+      timePattern = JSON.get(resources, TIME_FORMAT_KEY);
+    }
     return DateFormatUtils.format(date, timePattern);
   }
 }

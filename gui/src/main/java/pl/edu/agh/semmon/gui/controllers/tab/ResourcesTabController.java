@@ -1,10 +1,11 @@
 package pl.edu.agh.semmon.gui.controllers.tab;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.Sequence;
+import org.apache.pivot.json.JSON;
 import org.apache.pivot.wtk.*;
 import org.apache.pivot.wtk.content.ButtonData;
 import org.apache.pivot.wtk.content.TreeNode;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants;
@@ -23,6 +24,7 @@ import pl.edu.agh.semmon.gui.util.TreeNodeContainer;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Controller responsible for handling actions related to resources tab.
@@ -47,46 +49,46 @@ public class ResourcesTabController extends BaseTabController implements Resourc
     return ResourcesTabController.class;
   }
 
-  @WTKX
+  @BXML
   private Menu.Item addJmxResourceButton;
 
-  @WTKX
+  @BXML
   private Menu.Item addOcmgResourceButton;
 
-  @WTKX
+  @BXML
   private PushButton addResourceButton;
 
-  @WTKX
+  @BXML
   private PushButton addMeasurementButton;
 
-  @WTKX
+  @BXML
   private PushButton pauseResumeButton;
 
-  @WTKX
+  @BXML
   private PushButton stopButton;
 
-  @WTKX
+  @BXML
   private PushButton refreshCapabilitiesButton;
 
-  @WTKX
+  @BXML
   private PushButton removeResourceButton;
 
-  @WTKX
+  @BXML
   private TreeView resourcesTree;
 
-  @WTKX
+  @BXML
   private Label noResourcesLabel;
 
-  @WTKX
+  @BXML
   private TablePane.Column treeColumn;
 
-  @WTKX
+  @BXML
   private Border treeBorder;
 
-  @WTKX
+  @BXML
   private TablePane resourceAttributes;
 
-  @WTKX
+  @BXML
   private TablePane resourceCapabilities;
 
   private TreeBranchContainer treeData = new TreeBranchContainer();
@@ -98,6 +100,8 @@ public class ResourcesTabController extends BaseTabController implements Resourc
   private Set<String> addedResources = new HashSet<String>();
 
   private Resource currentlySelectedResource;
+
+  private boolean capabilitiesRefreshing = false;
 
   @ButtonAction
   private void addJmxResourceButtonPressed() {
@@ -135,10 +139,10 @@ public class ResourcesTabController extends BaseTabController implements Resourc
       String buttonText;
       if (state == ResourceState.PAUSED) {
         resourcesService.resumeResource(currentlySelectedResource);
-        buttonText = resources.getString(PAUSE_BUTTON_KEY);
+        buttonText = JSON.get(resources, PAUSE_BUTTON_KEY);
       } else {
         resourcesService.pauseResource(currentlySelectedResource);
-        buttonText = resources.getString(RESUME_BUTTON_KEY);
+        buttonText = JSON.get(resources,RESUME_BUTTON_KEY);
       }
       ButtonData data = (ButtonData) pauseResumeButton.getButtonData();
       data.setText(buttonText);
@@ -157,9 +161,15 @@ public class ResourcesTabController extends BaseTabController implements Resourc
     resourcesService.removeResource(currentlySelectedResource.getUri());
   }
 
-  @ButtonAction
+  @ButtonAction(type = ButtonAction.Type.BACKGROUND)
   private void refreshCapabilitiesButtonPressed() throws MeasurementException {
     log.debug("Refreshing resource capability values");
+    synchronized (this) {
+      if (capabilitiesRefreshing) {
+        return;
+      }
+      capabilitiesRefreshing = true;
+    }
     Object node = resourcesTree.getSelectedNode();
     Resource resource;
     if (node instanceof TreeBranchContainer) {
@@ -181,6 +191,8 @@ public class ResourcesTabController extends BaseTabController implements Resourc
       capRows.add(row);
     }
     resourceCapabilities.repaint();
+    capabilitiesRefreshing = false;
+
   }
 
   @Override
@@ -387,8 +399,7 @@ private utilities
         capRows.add(row);
         j++;
       }
-    }
-    catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       log.warn("Got IAE while getting attribute names - given resource is synthetic :|", e);
     }
     resourceCapabilities.repaint();
@@ -446,6 +457,11 @@ Private classes
   private class ResourcesSelectionListener implements TreeViewSelectionListener {
 
     @Override
+    public void selectedNodeChanged(TreeView treeView, Object previousSelectedNode) {
+
+    }
+
+    @Override
     public void selectedPathAdded(TreeView treeView, Sequence.Tree.Path path) {
 
     }
@@ -482,10 +498,10 @@ Private classes
           pauseResumeButton.setEnabled(true);
           switch (state) {
             case PAUSED:
-              buttonData.setText(resources.getString(RESUME_BUTTON_KEY));
+              buttonData.setText(JSON.<String>get(resources,RESUME_BUTTON_KEY));
               break;
             case RUNNING:
-              buttonData.setText(resources.getString(PAUSE_BUTTON_KEY));
+              buttonData.setText(JSON.<String>get(resources,PAUSE_BUTTON_KEY));
               break;
             default:
               pauseResumeButton.setEnabled(false);

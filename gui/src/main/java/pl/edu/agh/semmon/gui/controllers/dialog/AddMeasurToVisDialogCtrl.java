@@ -1,8 +1,8 @@
 package pl.edu.agh.semmon.gui.controllers.dialog;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import pl.edu.agh.semmon.gui.controllers.action.ButtonAction;
 import pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationController;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
@@ -19,28 +19,28 @@ import java.util.List;
  */
 public class AddMeasurToVisDialogCtrl extends BaseDialogController {
 
-  @WTKX
+  @BXML
   private ListView measurementsList;
 
-  @WTKX
+  @BXML
   private TablePane measurementDetails;
 
-  @WTKX(id = "details.measurementResourceName")
+  @BXML(id = "details.measurementResourceName")
   private Label measurementResourceName;
 
-  @WTKX(id = "details.measurementCapabilityName")
+  @BXML(id = "details.measurementCapabilityName")
   private Label measurementCapabilityName;
 
-  @WTKX(id = "details.measurementStartDate")
+  @BXML(id = "details.measurementStartDate")
   private Label measurementStartDate;
 
-  @WTKX(id = "details.measurementId")
+  @BXML(id = "details.measurementId")
   private Label measurementId;
 
-  @WTKX
+  @BXML
   private PushButton okButton;
 
-  @WTKX
+  @BXML
   private PushButton cancelButton;
 
 

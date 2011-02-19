@@ -1,0 +1,31 @@
+<?xml version="1.0"  ?>
+<BoxPane
+    xmlns:bxml="http://pivot.apache.org/bxml"
+    xmlns:su="pl.edu.agh.semmon.gui.util"
+    xmlns="org.apache.pivot.wtk" preferredWidth="600" preferredHeight="350" orientation="vertical" styles="{fill:true}">
+
+  <Separator heading="%wizards.resources.add.jmx.hierarchy"/>
+  
+  <TablePane styles="{horizontalSpacing:5}">
+    <columns>
+      <TablePane.Column width="120"/>
+      <TablePane.Column width="200"/>
+    </columns>
+
+    <rows>
+      <TablePane.Row height="-1">
+        <Label text="%wizards.resources.add.jmx.selectApp"/>
+        <TextInput bxml:id="applicationTextInput"/>
+        <!--TODO add combo box-->
+
+      </TablePane.Row>
+      <TablePane.Row height="-1">
+        <Label text="%wizards.resources.add.jmx.selectCluster"/>
+        <TextInput bxml:id="clusterTextInput"/>
+        <!--TODO add combo box-->
+      </TablePane.Row>
+    </rows>
+  </TablePane>
+
+
+</BoxPane>

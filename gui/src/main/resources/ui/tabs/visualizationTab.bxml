@@ -1,0 +1,132 @@
+<BoxPane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
+         xmlns:bxml="http://pivot.apache.org/bxml"
+         xmlns:content="org.apache.pivot.charts.content"
+         xmlns:wtkContent="org.apache.pivot.wtk.content"
+         xmlns:charts="org.apache.pivot.charts"
+         xmlns:su="pl.edu.agh.semmon.gui.util"
+         TabPane.tabData=""
+         orientation="vertical" styles="{fill:true}">
+  <TablePane height="500">
+    <columns>
+      <TablePane.Column width="1*"/>
+      <TablePane.Column width="10"/>
+      <TablePane.Column bxml:id="optionsColumn" width="1"/>
+    </columns>
+    <rows>
+      <TablePane.Row bxml:id="mainRow">
+        <GridPane bxml:id="chartWrapper" columnCount="1">
+          <rows>
+
+          </rows>
+        </GridPane>
+        <BoxPane bxml:id="separator"
+                 styles="{verticalAlignment:'center',horizontalAlignment:'left'}"
+                 orientation="vertical">
+          <Label text="&lt;"/>
+          <Label text="&lt;"/>
+          <Label text="&lt;"/>
+          <Label text="&lt;"/>
+        </BoxPane>
+        <Form visible="false" bxml:id="optionsForm">
+          <sections>
+            <Form.Section heading="%tabs.visualizations.visualizationOptions">
+              <BoxPane Form.label="%tabs.visualizations.visLabel">
+                <TextInput bxml:id="labelTextInput"/>
+              </BoxPane>
+            </Form.Section>
+            <Form.Section heading="%tabs.visualizations.chartOptions">
+              <BoxPane Form.label="%tabs.visualizations.chartTitle">
+                <TextInput bxml:id="chartTitleTextInput"/>
+              </BoxPane>
+              <BoxPane Form.label="%tabs.visualizations.chartSubTitle">
+                <TextInput bxml:id="chartSubtitleTextInput"/>
+              </BoxPane>
+              <BoxPane Form.label="%tabs.visualizations.chartTypeLabel" orientation="vertical">
+                <bxml:define>
+                  <ButtonGroup bxml:id="chartTypeButtonGroup"/>
+                </bxml:define>
+
+                <RadioButton buttonGroup="$chartTypeButtonGroup" selected="true">
+                  <buttonData>
+                    <su:ButtonDataContainer text="%tabs.visualizations.chartType.line"
+                                            enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                            enumName="LINE_CHART"/>
+                  </buttonData>
+                </RadioButton>
+
+                <RadioButton buttonGroup="$chartTypeButtonGroup">
+
+                  <buttonData>
+                    <su:ButtonDataContainer text="%tabs.visualizations.chartType.pie"
+                                            enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                            enumName="PIE_CHART"/>
+                  </buttonData>
+                </RadioButton>
+                <RadioButton buttonGroup="$chartTypeButtonGroup">
+                  <buttonData>
+                    <su:ButtonDataContainer text="%tabs.visualizations.chartType.bar"
+                                            enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                            enumName="BAR_CHART"/>
+                  </buttonData>
+                </RadioButton>
+                <RadioButton buttonGroup="$chartTypeButtonGroup">
+                  <buttonData>
+                    <su:ButtonDataContainer text="%tabs.visualizations.chartType.spiderWeb"
+                                            enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                            enumName="SPIDER_WEB_CHART"/>
+                  </buttonData>
+                </RadioButton>
+                <!--<RadioButton buttonGroup="$chartTypeButtonGroup">-->
+                <!--<buttonData>-->
+                <!--<su:ButtonDataContainer text="%tabs.visualizations.chartType.highLow"-->
+                <!--enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"-->
+                <!--enumName="HIGH_LOW_CHART"/>-->
+                <!--</buttonData>-->
+                <!--</RadioButton>-->
+
+
+              </BoxPane>
+            </Form.Section>
+            <Form.Section heading="%tabs.visualizations.measurementOptions">
+              <Border Form.label="%tabs.visualizations.measurements" styles="{padding:2}">
+                <content>
+                  <ListView bxml:id="measurementsList" preferredWidth="180" preferredHeight="50"/>
+                </content>
+              </Border>
+              <PushButton bxml:id="addMeasurementPushButton">
+                <buttonData>
+                  <su:ButtonDataContainer text="%tabs.visualizations.addMeasurement"/>
+                </buttonData>
+              </PushButton>
+              <PushButton bxml:id="removeMeasurementPushButton">
+                <buttonData>
+                  <su:ButtonDataContainer text="%tabs.visualizations.removeMeasurement"/>
+                </buttonData>
+              </PushButton>
+            </Form.Section>
+            <Form.Section heading="%tabs.visualizations.actions">
+              <PushButton bxml:id="pauseVisualizationPushButton">
+                <buttonData>
+                  <su:ButtonDataContainer text="%tabs.visualizations.pauseVis"/>
+                </buttonData>
+              </PushButton>
+              <PushButton bxml:id="resumeVisualizationPushButton" visible="false">
+                <buttonData>
+                  <su:ButtonDataContainer text="%tabs.visualizations.resumeVis"/>
+                </buttonData>
+              </PushButton>
+              <PushButton bxml:id="removeVisualizationPushButton">
+                <buttonData>
+                  <su:ButtonDataContainer text="%tabs.visualizations.removeVis"/>
+                </buttonData>
+              </PushButton>
+            </Form.Section>
+          </sections>
+        </Form>
+
+
+      </TablePane.Row>
+    </rows>
+  </TablePane>
+
+</BoxPane>

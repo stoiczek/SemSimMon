@@ -1,18 +1,19 @@
 package pl.edu.agh.semmon.gui;
 
+import org.apache.pivot.beans.BXML;
+import org.apache.pivot.json.JSON;
 import org.apache.pivot.serialization.SerializationException;
+import org.apache.pivot.util.concurrent.TaskExecutionException;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.TabPane;
 import org.apache.pivot.wtk.Window;
-import org.apache.pivot.wtkx.WTKX;
-import org.apache.pivot.wtkx.WTKXSerializer;
+import org.apache.pivot.wtk.content.ButtonData;
+import org.apache.pivot.wtk.media.Image;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import pl.edu.agh.semmon.gui.controllers.BaseController;
 import pl.edu.agh.semmon.gui.controllers.tab.TabController;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 public class MainWindowController extends BaseController<Window> {
 
-  @WTKX
+  @BXML
   private TabPane mainTabPane;
 
   @Autowired(required = false)
@@ -44,7 +45,7 @@ public class MainWindowController extends BaseController<Window> {
 
   @Override
   protected void preSerialize() throws IOException {
-    for(Map.Entry<String,  Action> entry : actionMap.entrySet()) {
+    for (Map.Entry<String, Action> entry : actionMap.entrySet()) {
       Action.getNamedActions().put(entry.getKey(), entry.getValue());
     }
   }
@@ -53,10 +54,16 @@ public class MainWindowController extends BaseController<Window> {
   protected void postBinding() throws IOException {
     try {
       for (TabController controller : tabControllers) {
-        controller.serializeContent();
+        controller.deserializeContent();
         mainTabPane.getTabs().add(controller.getTabContent());
-        TabPane.setLabel(controller.getTabContent(), resources.getString(controller.getTabLabelKey()));
-        TabPane.setIcon(controller.getTabContent(), controller.getTabIcon().getURL());
+        try {
+          Image img = Image.load(controller.getTabIcon().getURL());
+          TabPane.setTabData(controller.getTabContent(),
+              new ButtonData(img,
+                  JSON.<String>get(resources, controller.getTabLabelKey())));
+        } catch (TaskExecutionException e) {
+          throw new IOException(e);
+        }
       }
       component.setVisible(true);
       component.open(display);
@@ -66,7 +73,7 @@ public class MainWindowController extends BaseController<Window> {
       throw new IOException(e);
     }
   }
-  
+
   public void setDisplay(Display display) {
     this.display = display;
   }

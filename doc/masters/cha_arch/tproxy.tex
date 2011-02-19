@@ -41,7 +41,8 @@ setting up and maintaining connection to JVM.
 \subsection{OCM-G Transport Proxy}
 
 OCM-G Transport Proxy component integrates SemSimMon with distributed monitoring system compliant with OMIS interface
-specification. This implementation will use OMIS java bindings developed under OCM-G project. Because this transport
-proxy implements similar functionality that JMX transport proxy, 
+specification. This implementation will use OMIS java bindings developed under OCM-G project. Design of this component
+is similar to JMX transport proxy - there will be one OcmgTransportProxy component, responsible for maintaining
+connections, associations and several probes and discovery agents.
 
 

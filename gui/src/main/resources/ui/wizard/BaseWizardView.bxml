@@ -1,0 +1,20 @@
+<Frame bxml:id="dialog" title="Add Resource Wizard"
+       xmlns:bxml="http://pivot.apache.org/bxml"
+       xmlns:su="pl.edu.agh.semmon.gui.util"
+       xmlns="org.apache.pivot.wtk">
+  <content>
+    <BoxPane orientation="vertical" styles="{fill:true}">
+      <FlowPane bxml:id="pageContainer"/>
+
+      <Separator/>
+
+      <FlowPane styles="{horizontalSpacing:10,alignment:'center'}">
+        <PushButton bxml:id="cancelButton" buttonData="Cancel"/>
+        <PushButton bxml:id="backButton" buttonData="Back" visible="false"/>
+        <PushButton bxml:id="nextButton" buttonData="Next >>"/>
+        <PushButton bxml:id="finishButton" buttonData="Finish" visible="false"/>
+      </FlowPane>
+    </BoxPane>
+
+  </content>
+</Frame>

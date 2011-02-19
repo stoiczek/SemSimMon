@@ -1,0 +1,137 @@
+<TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
+           xmlns:bxml="http://pivot.apache.org/bxml"
+           xmlns:content="org.apache.pivot.wtk.content"
+           xmlns:smUtil="pl.edu.agh.semmon.gui.util"
+           bxml:id="resourcesPane"
+           styles="{horizontalSpacing:4,showHorizontalGridLines:false, showVerticalGridLines:false}">
+  <columns>
+    <TablePane.Column bxml:id="treeColumn" width="150"/>
+    <TablePane.Column width="1*"/>
+  </columns>
+  <rows>
+    <TablePane.Row height="1*">
+      <Border bxml:id="treeBorder" styles="{padding:2}">
+        <content>
+          <ScrollPane horizontalScrollBarPolicy="fill_to_capacity" styles="{}">
+            <view>
+              <BoxPane bxml:id="resourcesTreePaneWrapper" orientation="vertical"
+                       styles="{fill:true,verticalAlignment:'bottom',horizontalAlignment:'center',verticalAlignment:'center'}">
+                <TreeView visible="false" bxml:id="resourcesTree"/>
+                <BoxPane bxml:id="labelWrapper" orientation="vertical"
+                         styles="{fill:true,verticalAlignment:'bottom',horizontalAlignment:'center',verticalAlignment:'center'}">
+
+                  <Label bxml:id="noResourcesLabel" text="%tabs.resources.emptyTree" width="140"
+                         styles="{wrapText:true,padding:{top:150,left:10,right:10,bottom:10}}"/>
+                </BoxPane>
+              </BoxPane>
+            </view>
+          </ScrollPane>
+        </content>
+      </Border>
+
+      <BoxPane orientation="vertical" styles="{fill:true,padding:5}">
+        <Expander bxml:id="resourceAttributesExpander" title="%tabs.resources.attributes">
+          <content>
+            <ScrollPane horizontalScrollBarPolicy="auto" verticalScrollBarPolicy="auto" styles="{}">
+              <view>
+
+                <TablePane bxml:id="resourceAttributes" styles="{padding:11}">
+                  <columns>
+                    <TablePane.Column width="240"/>
+                    <TablePane.Column width="1*"/>
+                  </columns>
+                  <rows>
+                  </rows>
+                </TablePane>
+              </view>
+            </ScrollPane>
+          </content>
+        </Expander>
+        <Expander bxml:id="resourceCapabilitiesExpander" title="%tabs.resources.capabilities">
+          <content>
+            <TablePane styles="{padding:10}">
+              <columns>
+                <TablePane.Column width="1*"/>
+                <TablePane.Column width="50"/>
+              </columns>
+              <rows>
+                <TablePane.Row>
+
+
+                  <TablePane bxml:id="resourceCapabilities">
+                    <columns>
+                      <TablePane.Column width="240"/>
+                      <TablePane.Column width="1*"/>
+                    </columns>
+                    <rows>
+                    </rows>
+                  </TablePane>
+                  <TablePane.Filler/>
+                </TablePane.Row>
+                <TablePane.Row>
+                  <TablePane.Filler/>
+                  <PushButton bxml:id="refreshCapabilitiesButton">
+                    <buttonData>
+                      <smUtil:ButtonDataContainer text="%tabs.resources.refreshCapabilities"/>
+                    </buttonData>
+                  </PushButton>
+
+                </TablePane.Row>
+              </rows>
+            </TablePane>
+          </content>
+        </Expander>
+      </BoxPane>
+    </TablePane.Row>
+    <TablePane.Row height="-1">
+      <FlowPane styles="{alignment:'center',padding:4}">
+        <MenuButton>
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.resources.add"/>
+          </buttonData>
+          <menu>
+            <Menu>
+              <sections>
+                <Menu.Section>
+                  <Menu.Item bxml:id="addJmxResourceButton" buttonData="%tabs.resources.addjmx"/>
+                  <Menu.Item bxml:id="addOcmgResourceButton" buttonData="%tabs.resources.addocmg"/>
+                </Menu.Section>
+              </sections>
+            </Menu>
+          </menu>
+        </MenuButton>
+
+
+      </FlowPane>
+      <FlowPane styles="{horizontalSpacing:8,alignment:'center',padding:4}">
+
+
+        <PushButton bxml:id="addMeasurementButton" enabled="false">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.resources.addmeasurement"/>
+          </buttonData>
+        </PushButton>
+        <PushButton bxml:id="pauseResumeButton" enabled="false">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.resources.pause"/>
+          </buttonData>
+        </PushButton>
+        <PushButton bxml:id="stopButton" enabled="false">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.resources.stop"/>
+          </buttonData>
+        </PushButton>
+        <PushButton bxml:id="removeResourceButton" enabled="false">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.resources.remove"/>
+
+          </buttonData>
+        </PushButton>
+
+
+      </FlowPane>
+    </TablePane.Row>
+  </rows>
+
+
+</TablePane>

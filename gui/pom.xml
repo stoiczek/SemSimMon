@@ -17,7 +17,7 @@
   </parent>
 
   <properties>
-    <pivot.version>1.5.2</pivot.version>
+    <pivot.version>2.0</pivot.version>
   </properties>
 
   <build>

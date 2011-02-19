@@ -1,9 +1,9 @@
 package pl.edu.agh.semmon.gui.controllers.tab;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKX;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.common.api.measurement.CapabilityValueListener;
@@ -34,34 +34,38 @@ public class MeasurementsTabController extends BaseTabController implements Meas
   private static final Logger log = LoggerFactory.getLogger(MeasurementsTabController.class);
 
 
-  @WTKX
+  @BXML
   private ListView measurementsList;
 
-  @WTKX
+  @BXML
   private PushButton removeMeasurementButton;
 
-  @WTKX
+  @BXML
   private PushButton pauseMeasurementButton;
 
-  @WTKX
+  @BXML
   private PushButton resumeMeasurementButton;
 
-  @WTKX
+  @BXML
   private TablePane measurementDetails;
 
-  @WTKX
-  private TablePane measurementValues;
+  @BXML
+  private TableView measurementValues;
 
-  @WTKX(id = "details.measurementResourceName")
+//  @BXML(id = "details.measurementResourceName")
+  @BXML
   private Label measurementResourceName;
 
-  @WTKX(id = "details.measurementCapabilityName")
+//  @BXML(id = "details.measurementCapabilityName")
+  @BXML
   private Label measurementCapabilityName;
 
-  @WTKX(id = "details.measurementStartDate")
+//  @BXML(id = "details.measurementStartDate")
+  @BXML
   private Label measurementStartDate;
 
-  @WTKX(id = "details.measurementId")
+//  @BXML(id = "details.measurementId")
+  @BXML
   private Label measurementId;
 
   private Map<String, ListItemDataContainer> measurementsMap = new HashMap();
@@ -69,6 +73,8 @@ public class MeasurementsTabController extends BaseTabController implements Meas
   private MeasurementService measurementService;
 
   private Measurement currentlySelectedMeasurement;
+
+  private boolean publishValues = false;
 
   @Override
   protected Class getBindableClass() {
@@ -82,13 +88,27 @@ public class MeasurementsTabController extends BaseTabController implements Meas
   }
 
   @ButtonAction
-  private void removeMeasurementButtonPressed() throws MeasurementException {
+  private synchronized void removeMeasurementButtonPressed() throws MeasurementException {
     ListItemDataContainer container = (ListItemDataContainer) measurementsList.getSelectedItem();
     if (container == null) {
       return;
     }
     Measurement measurement = (Measurement) container.getAdditionalContent();
     measurementService.removeMeasurement(measurement.getId());
+    publishValues = false;
+    measurementValues.getTableData().clear();
+    if (currentlySelectedMeasurement != null) {
+      currentlySelectedMeasurement.removeCapabilityValueListener(MeasurementsTabController.this);
+    }
+    pauseMeasurementButton.setVisible(true);
+    resumeMeasurementButton.setVisible(false);
+    measurementResourceName.setText("");
+    measurementCapabilityName.setText("");
+    measurementId.setText("");
+    measurementStartDate.setText("");
+    currentlySelectedMeasurement = null;
+
+
   }
 
   @ButtonAction
@@ -142,10 +162,13 @@ public class MeasurementsTabController extends BaseTabController implements Meas
   }
 
   @Override
-  public void newCapabilityValues(java.util.List<CapabilityValue> values) {
-    final TablePane.RowSequence valueRows = measurementValues.getRows();
-    displayMeasurementValues(valueRows, values);
-    measurementValues.repaint();
+  public synchronized void newCapabilityValues(java.util.List<CapabilityValue> values) {
+    if (!publishValues) {
+      return;
+    }
+    final List data = measurementValues.getTableData();
+        displayMeasurementValues(data, values);
+//    measurementValues.repaint();
   }
 
   public void setMeasurementService(MeasurementService measurementService) {
@@ -159,9 +182,25 @@ public class MeasurementsTabController extends BaseTabController implements Meas
     public void selectedRangesChanged(ListView listView, Sequence<Span> previousSelectedRanges) {
       // TODO copied and pasted to add measurement to visualization dialog - pull it up and reuse
 
+
       ListItemDataContainer container = (ListItemDataContainer) listView.getSelectedItem();
+      final List valueRows = measurementValues.getTableData();
+      valueRows.clear();
+      if (currentlySelectedMeasurement != null) {
+        currentlySelectedMeasurement.removeCapabilityValueListener(MeasurementsTabController.this);
+      }
+      if (container == null) {
+        pauseMeasurementButton.setVisible(true);
+        resumeMeasurementButton.setVisible(false);
+        measurementResourceName.setText("");
+        measurementCapabilityName.setText("");
+        measurementId.setText("");
+        measurementStartDate.setText("");
+        currentlySelectedMeasurement = null;
+        return;
+      }
       Measurement measurement = (Measurement) container.getAdditionalContent();
-      if(measurement.isActive()) {
+      if (measurement.isActive()) {
         pauseMeasurementButton.setVisible(true);
         resumeMeasurementButton.setVisible(false);
       } else {
@@ -172,14 +211,9 @@ public class MeasurementsTabController extends BaseTabController implements Meas
       measurementCapabilityName.setText(getCapabilityLabel(measurement.getCapabilityUri()));
       measurementId.setText(measurement.getId());
       measurementStartDate.setText(getFormattedDate(measurement.getCreationDate()));
-      if (currentlySelectedMeasurement != null) {
-        currentlySelectedMeasurement.removeCapabilityValueListener(MeasurementsTabController.this);
-      }
+
       currentlySelectedMeasurement = measurement;
-      final TablePane.RowSequence valueRows = measurementValues.getRows();
-      if (valueRows.getLength() > 1) {
-        valueRows.remove(1, valueRows.getLength() - 2);
-      }
+      publishValues = true;
       measurement.addCapabilityValueListener(MeasurementsTabController.this);
       java.util.List<CapabilityValue> values = measurement.getValues();
       Collections.sort(values, new Comparator<CapabilityValue>() {
@@ -193,12 +227,12 @@ public class MeasurementsTabController extends BaseTabController implements Meas
 
   }
 
-  private void displayMeasurementValues(TablePane.RowSequence valueRows, java.util.List<CapabilityValue> values) {
+  private void displayMeasurementValues(List data, java.util.List<CapabilityValue> values) {
     for (CapabilityValue value : values) {
-      TablePane.Row row = new TablePane.Row();
-      row.add(new Label(getFormattedDate(value.getGatherTimestamp())));
-      row.add(new Label(value.getNumericValue().toString()));
-      valueRows.add(row);
+      org.apache.pivot.collections.HashMap dataMap = new org.apache.pivot.collections.HashMap();
+      dataMap.put("timestamp", getFormattedDate(value.getGatherTimestamp()));
+      dataMap.put("value", value.getNumericValue().toString());
+      data.add(dataMap);
     }
   }
 }

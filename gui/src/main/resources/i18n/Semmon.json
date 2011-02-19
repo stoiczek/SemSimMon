@@ -25,7 +25,8 @@
     },
 
     "general" : {
-        "dateTimeFormat" : "HH:mm:ss dd/MM/yyyy"
+        "dateTimeFormat" : "HH:mm:ss dd/MM/yyyy",
+        "timeFormat" : "HH:mm:ss"
     },
     "tabs":{
         "resources":{
@@ -40,7 +41,7 @@
             "stop":"Stop",
             "remove":"Remove",
             "resume" : "Resume",
-            "emptyTree":"You don't have any resources currently.",
+            "emptyTree":"Empty resources tree",
             "refreshCapabilities" : "Refresh"
         },
         "measurements":{

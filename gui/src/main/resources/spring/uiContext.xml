@@ -17,7 +17,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
   <bean id="mainWindowController" class="pl.edu.agh.semmon.gui.MainWindowController">
-    <property name="wtkxContentResource" value="classpath:ui/main.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/main.bxml"/>
     <!--suppress SpringModelInspection -->
     <property name="display" ref="display"/>
     <property name="actionMap" ref="actionMap"/>
@@ -27,7 +27,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="resourcesTabController" class="pl.edu.agh.semmon.gui.controllers.tab.ResourcesTabController"
         parent="baseController">
-    <property name="wtkxContentResource" value="classpath:ui/tabs/resources.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/tabs/resources.bxml"/>
     <property name="tabIcon" value="classpath:ui/img/structure.png"/>
     <property name="tabLabelKey" value="tabs.resources.tabname"/>
     <property name="resourcesService" ref="resourcesService"/>
@@ -39,13 +39,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         parent="baseController">
     <property name="tabLabelKey" value="tabs.measurements.tabname"/>
     <property name="tabIcon" value="classpath:ui/img/metric.png"/>
-    <property name="wtkxContentResource" value="classpath:ui/tabs/measurements.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/tabs/measurements.bxml"/>
     <property name="measurementService" ref="measurementService"/>
   </bean>
 
   <bean id="visualizationsTabController"
         class="pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationsTabController">
-    <property name="wtkxContentResource" value="classpath:ui/tabs/visualizations.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/tabs/visualizations.bxml"/>
     <property name="tabLabelKey" value="tabs.visualizations.tabname"/>
     <property name="tabIcon" value="classpath:ui/img/visualisation.png"/>
   </bean>
@@ -60,7 +60,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="visualizationController" class="pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationController"
         scope="prototype" parent="baseController" lazy-init="true">
-    <property name="wtkxContentResource" value="classpath:ui/tabs/visualizationTab.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/tabs/visualizationTab.bxml"/>
     <property name="measurementService" ref="measurementService"/>
     <property name="uiFactory" ref="uiFactory"/>
   </bean>
@@ -74,21 +74,21 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         class="pl.edu.agh.semmon.gui.controllers.dialog.AddMeasurToVisDialogCtrl"
         scope="prototype"
         parent="baseDialogController" lazy-init="true">
-    <property name="wtkxContentResource" value="classpath:ui/dialogs/addMeasurementToVisualization.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/dialogs/addMeasurementToVisualization.bxml"/>
   </bean>
 
   <bean id="addMeasurementController" class="pl.edu.agh.semmon.gui.controllers.dialog.AddMeasurementDialogController"
         scope="prototype"
         parent="baseDialogController" lazy-init="true">
     <property name="measurementService" ref="measurementService"/>
-    <property name="wtkxContentResource" value="classpath:ui/dialogs/addMeasurement.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/dialogs/addMeasurement.bxml"/>
   </bean>
 
   <bean id="baseWizardController" class="pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardController"
         parent="baseDialogController" abstract="true">
     <property name="parentWindow" ref="window"/>
     <!--suppress SpringModelInspection -->
-    <property name="wtkxContentResource" value="classpath:ui/wizard/BaseWizardView.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/wizard/BaseWizardView.bxml"/>
   </bean>
 
   <bean id="addJmxResourceWizard"
@@ -109,7 +109,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="configMonitorPage" class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ConfigMonitorPage"
         scope="prototype" lazy-init="true" parent="baseController">
-    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/configMonitorView.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/configMonitorView.bxml"/>
     <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
     <property name="connectionTypeIcons">
       <util:map>
@@ -122,14 +122,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="configJmxNodesPage" class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.ConfigJmxNodes"
         scope="prototype" lazy-init="true" parent="baseController">
-    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXNodesView.wtkx"/>
-    <property name="nodeDefinitionResource" value="classpath:ui/wizard/resource/add/jmx/nodeDefinition.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXNodesView.bxml"/>
+    <property name="nodeDefinitionResource" value="classpath:ui/wizard/resource/add/jmx/nodeDefinition.bxml"/>
   </bean>
 
   <bean id="configJmxHierarchyPage"
         class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.ConfigHierarchyPage"
         scope="prototype" lazy-init="true" parent="baseController">
-    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXHierarchyView.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXHierarchyView.bxml"/>
   </bean>
 
   <bean id="addOcmgResourcesWizard"
@@ -151,14 +151,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <bean id="configMainSmPageController"
         class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.ConfigMainSMPage" parent="baseController"
         scope="prototype" lazy-init="true">
-    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/ocmg/configConnectionString.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/ocmg/configConnectionString.bxml"/>
 
   </bean>
 
   <bean id="selectAppsController"
         class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.SelectAppsPageController"
         parent="baseController" scope="prototype" lazy-init="true">
-    <property name="wtkxContentResource" value="classpath:ui/wizard/resource/add/ocmg/chooseApplications.wtkx"/>
+    <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/ocmg/chooseApplications.bxml"/>
   </bean>
 
   <util:map id="resourceIconsMap" key-type="java.lang.String" value-type="org.springframework.core.io.Resource">

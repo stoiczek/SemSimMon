@@ -1,8 +1,8 @@
 package pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.Checkbox;
-import org.apache.pivot.wtkx.WTKX;
 import pl.edu.agh.semmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardPageController;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class SelectAppsPageController extends BaseWizardPageController<BoxPane> {
 
-  @WTKX
+  @BXML
   private BoxPane applicationsWrapper;
 
   private List<Checkbox> applicationCheckboxes = new LinkedList<Checkbox>();

@@ -1,0 +1,26 @@
+<TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
+           xmlns:bxml="http://pivot.apache.org/bxml"
+           xmlns:content="org.apache.pivot.wtk.content" bxml:id="measurementDetails">
+  <columns>
+    <TablePane.Column width="125"/>
+    <TablePane.Column width="1*"/>
+  </columns>
+  <rows>
+    <TablePane.Row>
+      <Label text="%tabs.measurements.details.resource"/>
+      <Label bxml:id="measurementResourceName"/>
+    </TablePane.Row>
+    <TablePane.Row>
+      <Label text="%tabs.measurements.details.capability"/>
+      <Label bxml:id="measurementCapabilityName"/>
+    </TablePane.Row>
+    <TablePane.Row>
+      <Label text="%tabs.measurements.details.startDate"/>
+      <Label bxml:id="measurementStartDate"/>
+    </TablePane.Row>
+    <TablePane.Row>
+      <Label text="%tabs.measurements.details.id"/>
+      <Label bxml:id="measurementId"/>
+    </TablePane.Row>
+  </rows>
+</TablePane>

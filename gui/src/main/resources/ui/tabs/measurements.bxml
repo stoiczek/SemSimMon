@@ -1,0 +1,89 @@
+<TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
+           xmlns:bxml="http://pivot.apache.org/bxml"
+           xmlns:smUtil="pl.edu.agh.semmon.gui.util"
+           bxml:id="resourcesPane"
+           styles="{horizontalSpacing:4,showHorizontalGridLines:false, showVerticalGridLines:false}">
+  <columns>
+    <TablePane.Column width="200"/>
+    <TablePane.Column width="1*"/>
+  </columns>
+  <rows>
+    <TablePane.Row height="1*">
+      <Border styles="{padding:2}">
+        <content>
+          <!--TODO add scroll pane here-->
+          <BoxPane bxml:id="measurementsWrapper" orientation="vertical"
+                   styles="{verticalAlignment:'top',horizontalAlignment:'center',fill:true}">
+            <ListView bxml:id="measurementsList"/>
+          </BoxPane>
+        </content>
+      </Border>
+      <BoxPane orientation="vertical" styles="{fill:true}">
+        <Expander title="%tabs.measurements.details.sectionLabel">
+          <content>
+            <BoxPane styles="{padding:5}">
+              <bxml:include src="../common/measurementDetailsTable.bxml" bxml:id="details" inline="true"/>
+            </BoxPane>
+          </content>
+        </Expander>
+        <Expander title="%tabs.measurements.values.sectionLabel">
+          <content>
+            <BoxPane styles="{fill:true,padding:5}" orientation="vertical">
+              <ScrollPane horizontalScrollBarPolicy="never" verticalScrollBarPolicy="fill_to_capacity">
+                <view>
+                  <!--<Border >-->
+                  <!--<content>-->
+                  <!--<TablePane bxml:id="measurementValues"-->
+                  <!--styles="{showVerticalGridLines:true,showHorizontalGridLines:true,horizontalSpacing:1,verticalSpacing:1}">-->
+                  <!--<columns>-->
+                  <!--<TablePane.Column width="120"/>-->
+                  <!--<TablePane.Column width="100"/>-->
+                  <!--</columns>-->
+                  <!--<rows>-->
+                  <!--<TablePane.Row highlighted="true">-->
+                  <!--<Label text="%tabs.measurements.values.valueTimestamp" styles="{padding:{left:10}}"/>-->
+                  <!--<Label text="%tabs.measurements.values.value" styles="{padding:{left:10}}"/>-->
+                  <!--</TablePane.Row>-->
+                  <!--</rows>-->
+                  <!--</TablePane>-->
+                  <!--</content>-->
+                  <!--</Border>-->
+                  <TableView bxml:id="measurementValues" styles="{}">
+                    <columns>
+                      <TableView.Column name="timestamp" width="120"
+                                        headerData="%tabs.measurements.values.valueTimestamp"/>
+                      <TableView.Column name="value" width="100" headerData="%tabs.measurements.values.value"/>
+                      <!--<TableView.Column name="timestamp" width="120" headerData="Timestamp"/>-->
+                      <!--<TableView.Column name="value" width="100" headerData="Value"/>-->
+                    </columns>
+
+                  </TableView>
+                </view>
+              </ScrollPane>
+            </BoxPane>
+
+          </content>
+        </Expander>
+      </BoxPane>
+    </TablePane.Row>
+    <TablePane.Row height="-1">
+      <FlowPane styles="{horizontalSpacing:8,alignment:'center',padding:4}">
+        <PushButton bxml:id="pauseMeasurementButton">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.pause" icon=" ui/img/alarm-16.png"/>
+          </buttonData>
+        </PushButton>
+        <PushButton bxml:id="resumeMeasurementButton" visible="false">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.resume" icon=" ui/img/alarm-16.png"/>
+          </buttonData>
+        </PushButton>
+        <PushButton bxml:id="removeMeasurementButton">
+          <buttonData>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.remove" icon=" ui/img/alarm-16.png"/>
+          </buttonData>
+        </PushButton>
+      </FlowPane>
+    </TablePane.Row>
+  </rows>
+</TablePane>

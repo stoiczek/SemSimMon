@@ -1,8 +1,8 @@
 package pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtkx.WTKX;
 import pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardPageController;
 
 /**
@@ -13,10 +13,10 @@ import pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardPageController;
  */
 public class ConfigHierarchyPage extends BaseWizardPageController<BoxPane> {
 
-  @WTKX
+  @BXML
   private TextInput applicationTextInput;
 
-  @WTKX
+  @BXML
   private TextInput clusterTextInput;
 
   private String application;

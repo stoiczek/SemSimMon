@@ -1,0 +1,35 @@
+<?xml version="1.0"  ?>
+<Frame bxml:id="dialog" title="%wizards.measurement.add.frameTitle"
+       xmlns:bxml="http://pivot.apache.org/bxml"
+       xmlns:su="pl.edu.agh.semmon.gui.util"
+       xmlns="org.apache.pivot.wtk">
+  <content>
+    <BoxPane orientation="vertical" styles="{fill:true}">
+      <TablePane bxml:id="resourceAttributes" styles="{horizontalSpacing:5}">
+        <columns>
+          <TablePane.Column width="130"/>
+          <TablePane.Column width="250"/>
+        </columns>
+        <rows>
+          <TablePane.Row >
+            <Label text="%wizards.measurement.add.label"/>
+            <TextInput bxml:id="labelTextInput" />
+          </TablePane.Row>
+          <TablePane.Row >
+            <Label text="%wizards.measurement.add.chooseCapability"/>
+            <ListButton bxml:id="capabilityList"/>
+          </TablePane.Row>
+          <TablePane.Row>
+            <Label text="%wizards.measurement.add.refreshInterval"/>
+            <TextInput bxml:id="pollIntervalTextInput" text="2"/>
+          </TablePane.Row>
+        </rows>
+      </TablePane>
+      <Separator/>
+      <FlowPane styles="{horizontalSpacing:10,alignment:'center'}">
+        <PushButton bxml:id="cancelButton" buttonData="Cancel"/>
+        <PushButton bxml:id="okButton" buttonData="OK"/>
+      </FlowPane>
+    </BoxPane>
+  </content>
+</Frame>

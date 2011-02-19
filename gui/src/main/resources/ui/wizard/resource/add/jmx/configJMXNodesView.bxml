@@ -1,0 +1,14 @@
+<BoxPane bxml:id="dialog"
+         xmlns:bxml="http://pivot.apache.org/bxml"
+         xmlns:su="pl.edu.agh.semmon.gui.util"
+         xmlns="org.apache.pivot.wtk" orientation="vertical" preferredWidth="520" preferredHeight="300">
+  <Label text="%wizards.resources.add.jmx.configNodes"/>
+  <BoxPane bxml:id="nodesPane" orientation="vertical">
+    <FlowPane>
+      <Label text="%wizards.resources.add.jmx.nodeUri"/>
+      <TextInput bxml:id="firstNodeUriTextInput" preferredWidth="350"
+                 text="service:jmx:rmi:///jndi/rmi://localhost:7009/jmxrmi"/>
+    </FlowPane>
+  </BoxPane>
+  <PushButton bxml:id="addButton" buttonData="%wizards.resources.add.jmx.addNode"/>
+</BoxPane>
