@@ -6,7 +6,7 @@
 
   <Separator heading="%wizards.resources.add.jmx.hierarchy"/>
   
-  <TablePane styles="{horizontalSpacing:5}">
+  <TablePane styles="{horizontalSpacing:5,verticalSpacing:10}">
     <columns>
       <TablePane.Column width="120"/>
       <TablePane.Column width="200"/>

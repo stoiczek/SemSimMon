@@ -1,9 +1,12 @@
 <TabPane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
          xmlns:bxml="http://pivot.apache.org/bxml"
          xmlns:content="org.apache.pivot.wtk.content"
-         bxml:id="visualizationsTabPane">
+         bxml:id="visualizationsTabPane" closeable="true">
   <tabs>
-    <BoxPane TabPane.tabData="+" bxml:id="addVisualizationTab" >
+    <BoxPane bxml:id="addVisualizationTab">
+      <TabPane.tabData>
+        <content:ButtonData icon=" ui/img/visualisation_add.png"/>
+      </TabPane.tabData>
       <Label text="You shouldn't see this"/>
     </BoxPane>
   </tabs>

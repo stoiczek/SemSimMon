@@ -31,20 +31,20 @@
           <content>
             <TablePane>
               <columns>
-                <TablePane.Column width="240"/>
+                <TablePane.Column width="360"/>
                 <TablePane.Column width="1*"/>
               </columns>
               <rows>
                 <TablePane.Row height="360">
                   <Border>
                     <content>
-                      <ScrollPane >
+                      <ScrollPane>
 
                         <TableView bxml:id="measurementValues">
                           <columns>
-                            <TableView.Column name="timestamp" width="125"
+                            <TableView.Column name="timestamp" width="150"
                                               headerData="%tabs.measurements.values.valueTimestamp"/>
-                            <TableView.Column name="value" width="100" headerData="%tabs.measurements.values.value"/>
+                            <TableView.Column name="value" width="125" headerData="%tabs.measurements.values.value"/>
                           </columns>
 
 
@@ -57,7 +57,13 @@
 
                     </content>
                   </Border>
-                  <TablePane.Filler/>
+                  <BoxPane styles="{padding:10}">
+                    <PushButton bxml:id="copyButton">
+                      <buttonData>
+                        <smUtil:ButtonDataContainer text="%tabs.measurements.copy" icon=" ui/img/specifyList.png"/>
+                      </buttonData>
+                    </PushButton>
+                  </BoxPane>
                 </TablePane.Row>
 
               </rows>
@@ -71,17 +77,17 @@
       <FlowPane styles="{horizontalSpacing:8,alignment:'center',padding:4}">
         <PushButton bxml:id="pauseMeasurementButton">
           <buttonData>
-            <smUtil:ButtonDataContainer text="%tabs.measurements.pause" icon=" ui/img/alarm-16.png"/>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.pause" icon=" ui/img/pause.png"/>
           </buttonData>
         </PushButton>
         <PushButton bxml:id="resumeMeasurementButton" visible="false">
           <buttonData>
-            <smUtil:ButtonDataContainer text="%tabs.measurements.resume" icon=" ui/img/alarm-16.png"/>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.resume" icon=" ui/img/play.png"/>
           </buttonData>
         </PushButton>
         <PushButton bxml:id="removeMeasurementButton">
           <buttonData>
-            <smUtil:ButtonDataContainer text="%tabs.measurements.remove" icon=" ui/img/alarm-16.png"/>
+            <smUtil:ButtonDataContainer text="%tabs.measurements.remove" icon=" ui/img/remove.png"/>
           </buttonData>
         </PushButton>
       </FlowPane>

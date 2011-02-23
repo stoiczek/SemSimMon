@@ -91,6 +91,10 @@ public abstract class BaseController<T extends Component> implements Controller<
           field.setAccessible(true);
           method.setAccessible(true);
           Button button = (Button) field.get(this);
+          if(button == null) {
+            log.error("Button not found: " + field.getName());
+            continue;
+          }
           final ReflectionButtonPressListener listener = listenerFactory.createListener(this, method);
           if (buttonAction.type() == ButtonAction.Type.INSTANT) {
             listener.setExecutorService(null);

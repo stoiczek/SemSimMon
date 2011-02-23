@@ -166,44 +166,85 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.APPLICATION_URI"/>
       </key>
-      <value>classpath:ui/img/down.png</value>
+      <value>classpath:ui/img/global.png</value>
     </entry>
 
     <entry>
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLUSTER_URI"/>
       </key>
-      <value>classpath:ui/img/instance-info.png</value>
+      <value>classpath:ui/img/cluster.png</value>
     </entry>
     <entry>
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
       </key>
-      <value>classpath:ui/img/manage.png</value>
+      <value>classpath:ui/img/node.png</value>
     </entry>
     <entry>
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CPU_URI"/>
       </key>
-      <value>classpath:ui/img/metric.png</value>
+      <value>classpath:ui/img/cpu.gif</value>
     </entry>
     <entry>
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
       </key>
-      <value>classpath:ui/img/metric.png</value>
+      <value>classpath:ui/img/ram.png</value>
     </entry>
     <entry>
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
       </key>
-      <value>classpath:ui/img/metric.png</value>
+      <value>classpath:ui/img/ram.png</value>
     </entry>
     <entry>
       <key>
         <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PROCESS_URI"/>
       </key>
-      <value>classpath:ui/img/metric.png</value>
+      <value>classpath:ui/img/gears.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
+      </key>
+      <value>classpath:ui/img/thread.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
+      </key>
+      <value>classpath:ui/img/trash_16.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASS_LOADER_URI"/>
+      </key>
+      <value>classpath:ui/img/JavaClass.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NETWORK_INTERFACE_URI"/>
+      </key>
+      <value>classpath:ui/img/eth.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.HARD_DRIVE_URI"/>
+      </key>
+      <value>classpath:ui/img/hard_drive.png</value>
+    </entry>
+    <entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
+      </key>
+      <value>classpath:ui/img/jvm.gif</value>
+    </entry><entry>
+      <key>
+        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
+      </key>
+      <value>classpath:ui/img/schema_unix.png</value>
     </entry>
   </util:map>
 
@@ -239,6 +280,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <entry key="pauseAllMeasurements" value-ref="pauseAllMeasurementsAction"/>
     <entry key="resumeAllMeasurements" value-ref="resumeAllMeasurementsAction"/>
     <entry key="removeAllMeasurements" value-ref="removeAllMeasurementsAction"/>
+    <entry key="pauseAllVisualizations" value-ref="pauseAllVisualizationsAction"/>
+    <entry key="resumeAllVisualizations" value-ref="resumeAllVisualizationsAction"/>
+    <entry key="removeAllVisualizations" value-ref="removeAllVisualizationsAction"/>
 
   </util:map>
 
@@ -263,15 +307,36 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <property name="target" ref="measurementService"/>
     <property name="method" value="pauseAllMeasurements"/>
   </bean>
+
   <bean id="resumeAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="measurementService"/>
     <property name="method" value="resumeAllMeasurements"/>
   </bean>
+
+
   <bean id="removeAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="measurementService"/>
     <property name="method" value="removeAllMeasurements"/>
   </bean>
+
+  <bean id="removeAllVisualizationsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="visualizationsTabController"/>
+    <property name="method" value="removeAllVisualizations"/>
+  </bean>
+
+  <bean id="pauseAllVisualizationsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="visualizationsTabController"/>
+    <property name="method" value="pauseAllVisualizations"/>
+  </bean>
+  <bean id="resumeAllVisualizationsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+    <property name="enabled" value="true"/>
+    <property name="target" ref="visualizationsTabController"/>
+    <property name="method" value="resumeAllVisualizations"/>
+  </bean>
+
 
 </beans>

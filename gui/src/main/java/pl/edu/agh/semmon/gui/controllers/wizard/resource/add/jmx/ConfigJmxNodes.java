@@ -1,6 +1,7 @@
 package pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx;
 
 import org.apache.pivot.beans.BXML;
+import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.serialization.SerializationException;
 import org.apache.pivot.wtk.*;
 import org.springframework.core.io.Resource;
@@ -54,9 +55,11 @@ public class ConfigJmxNodes extends BaseWizardPageController {
 
   @ButtonAction
   private void addButtonPressed() throws IOException, SerializationException {
-    final FlowPane newNodePane = (FlowPane) serializer.readObject(FlowPane.class, nodeDefinitionResource.getURL().toString());
-    final PushButton removeButton = (PushButton) serializer.readObject(PushButton.class, REMOVE_BUTTON_ID);
-    final TextInput nodeServiceTextInput = (TextInput) serializer.readObject(TextInput.class, NODE_SERVICE_URI_ID);
+    BXMLSerializer localSerializer = new BXMLSerializer();
+
+    final FlowPane newNodePane = (FlowPane) localSerializer.readObject(nodeDefinitionResource.getURL(), resources);
+    final PushButton removeButton = (PushButton) localSerializer.getNamespace().get(REMOVE_BUTTON_ID);
+    final TextInput nodeServiceTextInput = (TextInput) localSerializer.getNamespace().get(NODE_SERVICE_URI_ID);
     nodeUrisTextInputs.add(nodeServiceTextInput);
     removeButton.setAction(new Action() {
       @Override

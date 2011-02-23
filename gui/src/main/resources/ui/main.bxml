@@ -81,12 +81,12 @@
                   <Menu>
                     <sections>
                       <Menu.Section>
-                        <Menu.Item>
+                        <Menu.Item action="pauseAllVisualizations">
                           <buttonData>
                             <content:MenuItemData text="%menu.visualizationsGroup.pauseAll"/>
                           </buttonData>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item action="resumeAllVisualizations">
                           <buttonData>
                             <content:MenuItemData text="%menu.visualizationsGroup.resumeAll"/>
                           </buttonData>
@@ -94,7 +94,7 @@
                       </Menu.Section>
                       <Menu.Section>
 
-                        <Menu.Item>
+                        <Menu.Item action="removeAllVisualizations">
                           <buttonData>
                             <content:MenuItemData text="%menu.visualizationsGroup.removeAll"/>
                           </buttonData>

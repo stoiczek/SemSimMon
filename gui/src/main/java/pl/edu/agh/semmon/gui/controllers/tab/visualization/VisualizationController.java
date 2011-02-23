@@ -73,9 +73,6 @@ public class VisualizationController extends BaseController<BoxPane> {
   private PushButton resumeVisualizationPushButton;
 
   @BXML
-  private PushButton removeVisualizationPushButton;
-
-  @BXML
   private ButtonGroup chartTypeButtonGroup;
 
   private VisualizationChart visualizationChart;
@@ -124,25 +121,38 @@ public class VisualizationController extends BaseController<BoxPane> {
   @ButtonAction
   private void removeMeasurementPushButtonPressed() {
     ListItemDataContainer container = (ListItemDataContainer) measurementsList.getSelectedItem();
+    if (container == null) {
+      return;
+    }
     Measurement measurement = (Measurement) container.getAdditionalContent();
     visualizationChart.removeMeasurement(measurement);
     final org.apache.pivot.collections.List data = measurementsList.getListData();
+    measurements.remove(measurement);
     data.remove(container);
+    component.repaint(true);
   }
 
   @ButtonAction
   private void pauseVisualizationPushButtonPressed() {
-    visualizationChart.pause();
-    pauseVisualizationPushButton.setVisible(false);
-    resumeVisualizationPushButton.setVisible(true);
+    pauseVisualization();
   }
 
   @ButtonAction
   private void resumeVisualizationPushButtonPressed() {
+    resumeVisualization();
+  }
+
+  public void resumeVisualization() {
     visualizationChart.resume();
     component.repaint();
     pauseVisualizationPushButton.setVisible(true);
     resumeVisualizationPushButton.setVisible(false);
+  }
+
+  public void pauseVisualization() {
+    visualizationChart.pause();
+    pauseVisualizationPushButton.setVisible(false);
+    resumeVisualizationPushButton.setVisible(true);
   }
 
   @Override
@@ -181,13 +191,6 @@ public class VisualizationController extends BaseController<BoxPane> {
       @Override
       public void textChanged(TextInput textInput) {
         visualizationChart.getChartComponent().setTitle(textInput.getText());
-        visualizationChart.getChartComponent().repaint();
-      }
-    });
-    chartSubtitleTextInput.getTextInputContentListeners().add(new TextInputContentListener.Adapter() {
-      @Override
-      public void textChanged(TextInput textInput) {
-        visualizationChart.updateChartSubTitle(textInput.getText());
         visualizationChart.getChartComponent().repaint();
       }
     });

@@ -4,6 +4,7 @@ import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.*;
+import org.jfree.chart.ClipPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.common.api.measurement.CapabilityValueListener;
@@ -16,6 +17,9 @@ import pl.edu.agh.semmon.gui.logic.metric.MeasurementsListener;
 import pl.edu.agh.semmon.gui.util.ListItemDataContainer;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -47,24 +51,23 @@ public class MeasurementsTabController extends BaseTabController implements Meas
   private PushButton resumeMeasurementButton;
 
   @BXML
+  private PushButton copyButton;
+
+  @BXML
   private TablePane measurementDetails;
 
   @BXML
   private TableView measurementValues;
 
-//  @BXML(id = "details.measurementResourceName")
   @BXML
   private Label measurementResourceName;
 
-//  @BXML(id = "details.measurementCapabilityName")
   @BXML
   private Label measurementCapabilityName;
 
-//  @BXML(id = "details.measurementStartDate")
   @BXML
   private Label measurementStartDate;
 
-//  @BXML(id = "details.measurementId")
   @BXML
   private Label measurementId;
 
@@ -109,6 +112,38 @@ public class MeasurementsTabController extends BaseTabController implements Meas
     currentlySelectedMeasurement = null;
 
 
+  }
+
+  @ButtonAction
+  private void copyButtonPressed() throws MeasurementException {
+    if(currentlySelectedMeasurement == null)
+    {
+      return;
+    }
+    Format formatter = new SimpleDateFormat("HH:mm:ss");
+    StringBuilder contentBuilder = new StringBuilder();
+    contentBuilder.append("Measured resource:\t").
+        append(currentlySelectedMeasurement.getResource().getUri()).
+        append(" (").
+        append(getCapabilityLabel(currentlySelectedMeasurement.getResource().getTypeUri())).
+        append(")\n").
+        append("Measured capability:\t").
+        append(getCapabilityLabel(currentlySelectedMeasurement.getCapabilityUri())).append('\n').
+        append("Start date:\t").
+        append( currentlySelectedMeasurement.getCreationDate()).append("\n\n").
+        append("Measurement values:\n").
+        append("Timestamp,Value\n");
+
+    for(CapabilityValue value : currentlySelectedMeasurement.getValues())
+    {
+      contentBuilder.append(formatter.format( value.getGatherTimestamp())).
+          append(',').
+          append(value.getNumericValue()).append("\n");
+    }
+
+    LocalManifest content = new LocalManifest();
+    content.putText(contentBuilder.toString());
+    Clipboard.setContent(content);
   }
 
   @ButtonAction
@@ -167,8 +202,7 @@ public class MeasurementsTabController extends BaseTabController implements Meas
       return;
     }
     final List data = measurementValues.getTableData();
-        displayMeasurementValues(data, values);
-    measurementValues.repaint();
+    displayMeasurementValues(data, values);
   }
 
   public void setMeasurementService(MeasurementService measurementService) {
@@ -180,9 +214,6 @@ public class MeasurementsTabController extends BaseTabController implements Meas
 
     @Override
     public void selectedRangesChanged(ListView listView, Sequence<Span> previousSelectedRanges) {
-      // TODO copied and pasted to add measurement to visualization dialog - pull it up and reuse
-
-
       ListItemDataContainer container = (ListItemDataContainer) listView.getSelectedItem();
       final List valueRows = measurementValues.getTableData();
       valueRows.clear();

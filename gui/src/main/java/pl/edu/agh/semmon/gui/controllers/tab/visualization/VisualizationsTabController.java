@@ -11,6 +11,8 @@ import pl.edu.agh.semmon.gui.UiFactory;
 import pl.edu.agh.semmon.gui.controllers.tab.BaseTabController;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controls visualizations.
@@ -27,6 +29,9 @@ public class VisualizationsTabController extends BaseTabController<TabPane> {
 
   @Autowired
   private UiFactory uiFactory;
+
+
+  private List<VisualizationController> controllers = new ArrayList<VisualizationController>();
 
   @Override
   protected Class getBindableClass() {
@@ -55,7 +60,7 @@ public class VisualizationsTabController extends BaseTabController<TabPane> {
     visualizationsTabPane.getTabPaneListeners().add(new TabPaneListener.Adapter() {
       @Override
       public void tabsRemoved(TabPane tabPane, int index, Sequence<Component> tabs) {
-        if (tabPane.getTabs().getLength() == 1) {
+        if (tabPane.getTabs().getLength() == 0) {
           addTab(0);
         } else {
           tabPane.setSelectedIndex(0);
@@ -65,22 +70,32 @@ public class VisualizationsTabController extends BaseTabController<TabPane> {
   }
 
   public void pauseAllVisualizations() {
-    
+    log.debug("Pausing all visualizations");
+    for (VisualizationController ctrl : controllers) {
+      ctrl.pauseVisualization();
+    }
   }
 
   public void resumeAllVisualizations() {
-
+    log.debug("Resuming all visualizations");
+    for (VisualizationController ctrl : controllers) {
+      ctrl.resumeVisualization();
+    }
   }
 
   public void removeAllVisualizations() {
-
+    log.debug("Removing all visualizations");
+    TabPane.TabSequence tabs = visualizationsTabPane.getTabs();
+    tabs.remove(0, tabs.getLength() - 1);
+    controllers.clear();
   }
 
   private void addTab(int selectedIndex) {
     VisualizationController controller = uiFactory.createVisualizationTab();
     visualizationsTabPane.getTabs().insert(controller.getComponent(), selectedIndex);
-    TabPane.setTabData(controller.getComponent(), "Test" + selectedIndex);
+    TabPane.setTabData(controller.getComponent(), "Visualization" + selectedIndex);
     visualizationsTabPane.setSelectedIndex(selectedIndex);
+    controllers.add(controller);
   }
 
 
