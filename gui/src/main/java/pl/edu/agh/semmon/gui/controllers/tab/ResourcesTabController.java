@@ -296,7 +296,7 @@ private utilities
     if (node.getChildren().isEmpty()) {
 
       TreeNodeContainer<Resource> treeNode = new TreeNodeContainer<Resource>();
-      treeNode.setParent(parent);
+      //treeNode.setParent(parent);
       treeNode.setContent(node.getResource());
       String label = getNodeLabel(node);
       if (label == null || label.isEmpty()) {
