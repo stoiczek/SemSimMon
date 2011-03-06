@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.common.exception.MeasurementException;
 import pl.edu.agh.semmon.common.vo.core.resource.Resource;
-import pl.edu.agh.semmon.gui.controllers.BaseController;
 import pl.edu.agh.semmon.gui.controllers.action.ButtonAction;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
 import pl.edu.agh.semmon.gui.logic.metric.MeasurementService;
@@ -60,7 +59,7 @@ public class AddMeasurementDialogController extends BaseDialogController {
     for(String capability : capabilities) {
       ListItemDataContainer container = new ListItemDataContainer();
       container.setAdditionalContent(capability);
-      container.setText(getCapabilityLabel(capability));
+      container.setText(getLabelForURI(capability));
       capabilitiesListItems.add(container);
     }
     capabilityList.setListData(capabilitiesListItems);

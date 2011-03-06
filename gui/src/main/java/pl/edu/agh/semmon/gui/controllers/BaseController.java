@@ -126,7 +126,7 @@ public abstract class BaseController<T extends Component> implements Controller<
     this.listenerFactory = listenerFactory;
   }
 
-  protected String getCapabilityLabel(String capName) {
+  protected String getLabelForURI(String capName) {
     return UriUtils.getCapabilityLabel(capName);
   }
 

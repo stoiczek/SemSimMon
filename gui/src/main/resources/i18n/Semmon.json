@@ -160,6 +160,74 @@
             }
 
         }
+    },
+    "rp" : {
+      "type" : "Resource Type",
+      "app" : {"name": "Application Name"},
+      "cluster" : {"id" : "Cluster Id"},
+      "node" : {"name" : "Node Name"},
+      "os" : {
+        "release" : "Release Name",
+        "version" : "Version",
+        "name" : "Name",
+        "arch" : "Architecture"
+      },
+      "process": {
+        "args" : "Input Arguments",
+        "globalId" : "Global Process Id",
+        "userId" : "User Id",
+        "groupId" : "Group Id",
+      },
+      "function" : {
+        "fileName" : "Source filename",
+        "functionName" : "Name",
+        "startAddr" : "Begin Address",
+        "endAddr" : "End Address"
+      },
+      "jvm" : {
+        "bootclasspath" : "Boot classpath",
+        "classpath" : "Classpath",
+        "inputargs" : "Input Arguments",
+        "libpath" : "Library Path",
+        "name" : "JVM Name",
+        "specname" : "Specification Name",
+        "specvendor" : "Specification Vendor",
+        "specversion" : "Specification Version",
+        "vmname" : "Implementation Name",
+        "vmvendor" : "Implementation Vendor",
+        "vmvendor" : "Implementation Vendor",
+        "vmversion" : "Implementation Version",
+        "starttime" : "Startup time"
+      },
+      "thread" : {
+        "id" : "Thread Id",
+        "name" : "Thread Name"
+      },
+      "gc" :{"name" : "Name"},
+      "hd" : {
+        "device" : "Device name",
+        "blocks" : "Amount of blocks",
+        "mount" : "Mount point"
+      },
+      "net" : {"ifacename" : "Interface name"},
+      "cpu" : {
+        "id" : "Id",
+        "vendorId" : "Vendor Id",
+        "family" : "Family",
+        "model" : "Model",
+        "modelName" : "Model Name",
+        "stepping" : "Stepping",
+        "clock" : "Clock",
+        "cache" : "Cache Size",
+        "flags" : "Flags",
+        "bogoMpis" : "Bogo MIPS"
+      },
+      "vm":{
+        "deviceName" : "Name",
+        "type" : "Type",
+        "size" : "Total size"
+      },
+      "pm" : {"size" : "Size"}
     }
 }
 

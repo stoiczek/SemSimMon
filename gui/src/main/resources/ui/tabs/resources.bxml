@@ -37,7 +37,7 @@
 
                 <TablePane bxml:id="resourceAttributes" styles="{padding:11}">
                   <columns>
-                    <TablePane.Column width="240"/>
+                    <TablePane.Column width="160"/>
                     <TablePane.Column width="1*"/>
                   </columns>
                   <rows>

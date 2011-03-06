@@ -5,6 +5,7 @@ import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.json.JSON;
 import org.apache.pivot.wtk.*;
 import org.apache.pivot.wtk.content.ButtonData;
+import org.apache.pivot.wtk.content.TreeBranch;
 import org.apache.pivot.wtk.content.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,6 @@ import pl.edu.agh.semmon.gui.util.TreeNodeContainer;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Controller responsible for handling actions related to resources tab.
@@ -38,6 +38,7 @@ public class ResourcesTabController extends BaseTabController implements Resourc
 
   private static final String RESUME_BUTTON_KEY = "tabs.resources.resume";
   private static final String PAUSE_BUTTON_KEY = "tabs.resources.pause";
+  private static final String RES_TYPE_KEY = "rp.type";
 
 
   private ResourcesService resourcesService;
@@ -142,7 +143,7 @@ public class ResourcesTabController extends BaseTabController implements Resourc
         buttonText = JSON.get(resources, PAUSE_BUTTON_KEY);
       } else {
         resourcesService.pauseResource(currentlySelectedResource);
-        buttonText = JSON.get(resources,RESUME_BUTTON_KEY);
+        buttonText = JSON.get(resources, RESUME_BUTTON_KEY);
       }
       ButtonData data = (ButtonData) pauseResumeButton.getButtonData();
       data.setText(buttonText);
@@ -170,29 +171,34 @@ public class ResourcesTabController extends BaseTabController implements Resourc
       }
       capabilitiesRefreshing = true;
     }
-    Object node = resourcesTree.getSelectedNode();
-    Resource resource;
-    if (node instanceof TreeBranchContainer) {
-      TreeBranchContainer container = (TreeBranchContainer) node;
-      resource = (Resource) container.getContent();
-    } else if (node instanceof TreeNodeContainer) {
-      resource = (Resource) ((TreeNodeContainer) node).getContent();
-    } else {
-      log.warn("Got invalid selected node object: " + node);
-      return;
-    }
-    final Map<String, String> values = measurementService.getAllCapabilities(resource);
-    final TablePane.RowSequence capRows = resourceCapabilities.getRows();
-    capRows.remove(0, capRows.getLength());
-    for (Map.Entry<String, String> entry : values.entrySet()) {
-      TablePane.Row row = new TablePane.Row();
-      row.add(new Label(getCapabilityLabel(entry.getKey())));
-      row.add(new Label(entry.getValue()));
-      capRows.add(row);
-    }
-    resourceCapabilities.repaint();
-    capabilitiesRefreshing = false;
+    try {
+      Object node = resourcesTree.getSelectedNode();
+      Resource resource;
+      if (node instanceof TreeBranchContainer) {
+        TreeBranchContainer container = (TreeBranchContainer) node;
+        resource = (Resource) container.getContent();
+      } else if (node instanceof TreeNodeContainer) {
+        resource = (Resource) ((TreeNodeContainer) node).getContent();
+      } else {
+        log.warn("Got invalid selected node object: " + node);
+        return;
+      }
 
+      final Map<String, String> values = measurementService.getAllCapabilities(resource);
+      final TablePane.RowSequence capRows = resourceCapabilities.getRows();
+      capRows.remove(0, capRows.getLength());
+      for (Map.Entry<String, String> entry : values.entrySet()) {
+        TablePane.Row row = new TablePane.Row();
+        row.add(new Label(getLabelForURI(entry.getKey())));
+        row.add(new Label(entry.getValue()));
+        capRows.add(row);
+      }
+      resourceCapabilities.repaint(true);
+    } catch (IllegalArgumentException e) {
+      log.warn("Got synthetic resource");
+    } finally {
+      capabilitiesRefreshing = false;
+    }
   }
 
   @Override
@@ -231,7 +237,12 @@ public class ResourcesTabController extends BaseTabController implements Resourc
         if (resource.getTypeUri().equals(KnowledgeConstants.APPLICATION_URI)) {
           addApplicationNode(node);
         } else {
-          Object parentObject = nodesMap.get(node.getParent().getResource().getUri());
+          String parentUri = node.getParent().getResource().getUri();
+          Object parentObject = nodesMap.get(parentUri);
+          if (parentObject == null) {
+            log.warn("Parent with URI: " + parentUri + " not found in registered nodes");
+            continue;
+          }
           TreeBranchContainer<Resource> parent;
           if (parentObject instanceof TreeBranchContainer) {
             //noinspection unchecked
@@ -279,12 +290,12 @@ private utilities
     @SuppressWarnings({"unchecked"})
     TreeNodeContainer<Resource> parentNode = (TreeNodeContainer<Resource>) parentObject;
     parent.setContent(parentNode.getContent());
-    parent.setParent(parentNode.getParent());
     parent.setText(parentNode.getText());
     parent.setIcon(parentNode.getIcon());
-    if (parent.getParent() != null) {
-      parent.getParent().remove(parentNode);
-      parent.getParent().add(parent);
+    TreeBranch grandpa = parentNode.getParent();
+    if (grandpa != null) {
+      grandpa.remove(parentNode);
+      grandpa.add(parent);
     }
     nodesMap.put(parent.getContent().getUri(), parent);
     return parent;
@@ -294,9 +305,7 @@ private utilities
   private void addResourceNode(TreeBranchContainer<Resource> parent, ResourcesTreeNode node) throws IOException {
     log.debug("Adding resource node");
     if (node.getChildren().isEmpty()) {
-
       TreeNodeContainer<Resource> treeNode = new TreeNodeContainer<Resource>();
-      //treeNode.setParent(parent);
       treeNode.setContent(node.getResource());
       String label = getNodeLabel(node);
       if (label == null || label.isEmpty()) {
@@ -311,7 +320,6 @@ private utilities
       nodesMap.put(node.getResource().getUri(), treeNode);
     } else {
       TreeBranchContainer<Resource> treeBranch = new TreeBranchContainer<Resource>();
-      treeBranch.setParent(parent);
       treeBranch.setContent(node.getResource());
       treeBranch.setText(getNodeLabel(node));
       parent.add(treeBranch);
@@ -321,6 +329,7 @@ private utilities
       }
     }
     log.debug("Resource node added");
+    resourcesTree.repaint();
   }
 
 
@@ -375,13 +384,20 @@ private utilities
     log.debug("Updating resource details of resource: {}", resource);
     final TablePane.RowSequence attrRows = resourceAttributes.getRows();
     attrRows.remove(0, attrRows.getLength());
+    {
+      TablePane.Row row = new TablePane.Row();
+      row.add(new Label(JSON.<String>get(resources, RES_TYPE_KEY)));
+      row.add(new Label(getLabelForURI(resource.getTypeUri())));
+      attrRows.add(row);
+
+    }
     int i = 0;
     for (Map.Entry<String, Object> entry : resource.getProperties().entrySet()) {
       if (!entry.getKey().startsWith(ResourcePropertyNames.RESOURCE_PROPERTY_PREFIX)) {
         continue;
       }
       TablePane.Row row = new TablePane.Row();
-      row.add(new Label(entry.getKey()));
+      row.add(new Label(JSON.<String>get(resources, entry.getKey())));
       row.add(new Label(entry.getValue().toString()));
       attrRows.add(row);
       i++;
@@ -394,13 +410,13 @@ private utilities
       List<String> capabilitieName = measurementService.getAllCapabilitiesNames(resource);
       for (String capName : capabilitieName) {
         TablePane.Row row = new TablePane.Row();
-        row.add(new Label(getCapabilityLabel(capName)));
+        row.add(new Label(getLabelForURI(capName)));
         row.add(new Label("NaN"));
         capRows.add(row);
         j++;
       }
     } catch (IllegalArgumentException e) {
-      log.warn("Got IAE while getting attribute names - given resource is synthetic :|", e);
+      log.warn("Got IAE while getting attribute names - given resource is synthetic.");
     }
     resourceCapabilities.repaint();
     log.debug("Details updated. Added {} attributes and {} capabilities.", new Object[]{i, j});
@@ -427,10 +443,10 @@ IoC setup
   }
 
   /*
-=================================================================================
-Private classes
-=================================================================================
-*/
+  =================================================================================
+  Private classes
+  =================================================================================
+  */
 
 
   private class TreeColumnResizingMouseListener implements ComponentMouseListener {
@@ -498,10 +514,10 @@ Private classes
           pauseResumeButton.setEnabled(true);
           switch (state) {
             case PAUSED:
-              buttonData.setText(JSON.<String>get(resources,RESUME_BUTTON_KEY));
+              buttonData.setText(JSON.<String>get(resources, RESUME_BUTTON_KEY));
               break;
             case RUNNING:
-              buttonData.setText(JSON.<String>get(resources,PAUSE_BUTTON_KEY));
+              buttonData.setText(JSON.<String>get(resources, PAUSE_BUTTON_KEY));
               break;
             default:
               pauseResumeButton.setEnabled(false);

@@ -4,7 +4,6 @@ import org.apache.pivot.beans.BXML;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.*;
-import org.jfree.chart.ClipPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.common.api.measurement.CapabilityValueListener;
@@ -17,7 +16,6 @@ import pl.edu.agh.semmon.gui.logic.metric.MeasurementsListener;
 import pl.edu.agh.semmon.gui.util.ListItemDataContainer;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -125,10 +123,10 @@ public class MeasurementsTabController extends BaseTabController implements Meas
     contentBuilder.append("Measured resource:\t").
         append(currentlySelectedMeasurement.getResource().getUri()).
         append(" (").
-        append(getCapabilityLabel(currentlySelectedMeasurement.getResource().getTypeUri())).
+        append(getLabelForURI(currentlySelectedMeasurement.getResource().getTypeUri())).
         append(")\n").
         append("Measured capability:\t").
-        append(getCapabilityLabel(currentlySelectedMeasurement.getCapabilityUri())).append('\n').
+        append(getLabelForURI(currentlySelectedMeasurement.getCapabilityUri())).append('\n').
         append("Start date:\t").
         append( currentlySelectedMeasurement.getCreationDate()).append("\n\n").
         append("Measurement values:\n").
@@ -239,7 +237,7 @@ public class MeasurementsTabController extends BaseTabController implements Meas
         resumeMeasurementButton.setVisible(true);
       }
       measurementResourceName.setText(measurement.getResourceUri());
-      measurementCapabilityName.setText(getCapabilityLabel(measurement.getCapabilityUri()));
+      measurementCapabilityName.setText(getLabelForURI(measurement.getCapabilityUri()));
       measurementId.setText(measurement.getId());
       measurementStartDate.setText(getFormattedDate(measurement.getCreationDate()));
 

@@ -12,7 +12,6 @@ public class TreeBranchContainer<T> extends TreeBranch {
 
   private T content;
 
-  private TreeBranchContainer<T> parent;
 
   public T getContent() {
     return content;
@@ -22,11 +21,4 @@ public class TreeBranchContainer<T> extends TreeBranch {
     this.content = content;
   }
 
-  public TreeBranchContainer<T> getParent() {
-    return parent;
-  }
-
-  public void setParent(TreeBranchContainer<T> parent) {
-    this.parent = parent;
-  }
 }

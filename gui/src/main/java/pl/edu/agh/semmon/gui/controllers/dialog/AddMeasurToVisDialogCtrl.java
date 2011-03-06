@@ -104,7 +104,7 @@ public class AddMeasurToVisDialogCtrl extends BaseDialogController {
       // TODO copied and pasted to add measurement to visualization dialog - pull it up and reuse
       Measurement measurement = getMeasurement();
       measurementResourceName.setText(measurement.getResourceUri());
-      measurementCapabilityName.setText(getCapabilityLabel(measurement.getCapabilityUri()));
+      measurementCapabilityName.setText(getLabelForURI(measurement.getCapabilityUri()));
       measurementId.setText(measurement.getId());
       measurementStartDate.setText(getFormattedDate(measurement.getCreationDate()));
     }

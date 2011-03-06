@@ -72,7 +72,7 @@ public final class ResourcePropertyNames {
     public static final String ARGUMENTS = RESOURCE_PROPERTY_PREFIX + "process.args";
     public static final String GLOBAL_ID = RESOURCE_PROPERTY_PREFIX + "process.globalId";
     public static final String USER_ID = RESOURCE_PROPERTY_PREFIX + "process.userId";
-    public static final String GROUP_ID = RESOURCE_PROPERTY_PREFIX + "process.groupdId";
+    public static final String GROUP_ID = RESOURCE_PROPERTY_PREFIX + "process.groupId";
 
     private Process() {
     }
