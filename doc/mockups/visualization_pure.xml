@@ -1,0 +1,48 @@
+<mockup version="1.0" skin="sketch" measuredW="731" measuredH="435" mockupW="671" mockupH="415">
+  <controls>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::Canvas" x="60" y="20" w="671" h="415" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::TabBar" x="66" y="26" w="659" h="401" measuredW="241" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>HEAP%20X%2C%20CPU%20X%2C+</text>
+      </controlProperties>
+    </control>
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::LineChart" x="75" y="59" w="626" h="361" measuredW="187" measuredH="175" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="85" controlTypeID="__group__" x="701" y="177" w="13" h="100" measuredW="13" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="13" h="50" measuredW="13" measuredH="50" zOrder="0" locked="false" isInGroup="85">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="-1" h="-1" measuredW="13" measuredH="25" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>%3C</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="0" y="25" w="-1" h="-1" measuredW="13" measuredH="25" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <text>%3C</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="__group__" x="0" y="50" w="13" h="50" measuredW="13" measuredH="50" zOrder="1" locked="false" isInGroup="85">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="-1" h="-1" measuredW="13" measuredH="25" zOrder="0" locked="false" isInGroup="1">
+              <controlProperties>
+                <text>%3C</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="0" y="25" w="-1" h="-1" measuredW="13" measuredH="25" zOrder="1" locked="false" isInGroup="1">
+              <controlProperties>
+                <text>%3C</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="86" controlTypeID="com.balsamiq.mockups::Label" x="347" y="69" w="-1" h="-1" measuredW="81" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Heap%20Usage</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
