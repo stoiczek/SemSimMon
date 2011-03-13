@@ -28,7 +28,13 @@ important.
 During designing user interface I've been trying to follow few general principles. First of all, I wanted used
 interface to be as transparent as possible. Users should focus on their tasks instead of application. Because of that,
 interface shouldn't be bloated with unnecessary options and steps that users need to achieve their goals should be as
-short as possible. Additionally, GUI 
+short as possible. Additionally, GUI must be coherent to free user from chaos of being spread across multiple windows,
+desktops and so on. 
+
+From business logic point of view, GUI component will extensively use MVC design pattern. Each form, window or more
+complex section need to have it's own View, responsible for presentation, Controller that collects user's events and
+updates view on user's actions or system events. Application will have shared model, which will be access point for
+underlaying components.
  
 
 
