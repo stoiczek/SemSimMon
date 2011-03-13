@@ -8,16 +8,6 @@
 \section{GUI component}
 \label{sec:arch_gui}
 
-Write about:
-- background on guis
-- overall info - what it is, its role, how important guis are in general - that its an entry point for user and if sth
-gets screwed here then it's affects usability 
-- describe main principles - ease of use, focus on visualizations 
-- dependencies,
-- MVC design pattern :|
-- Start analysis top down - mocks + their description
-- Name logic components that will interfere with mocks (controllers, services)
-
 Graphical user interfaces are most commonly used form of interaction with user in modern computing. Designing decent
 user interface is especially important due to aim of this work - creation of application allowing measuring and
 visualization of monitored processes. Although GUI component has rather limited role of giving user control over
@@ -90,12 +80,41 @@ pause, resume or remove measurement.
   \label{fig:mock_measurements}
 \end{figure}
 
+
+
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_vis_clean}
   \caption{GUI application visualizations pane, clean view}
   \label{fig:mock_vis_clean}
 \end{figure}
+
+Appropriate visualizations display is probably most difficult for user experience engineering. During designing this UI
+component I was inspiring myself from modest web browsers. The effects can be seen in Figure~\ref{fig:mock_vis_clean} -
+in proposed solution every visualization is being rendered on separate, horizontal tab. To add new visualization, user
+should just click last tab with appropriate icon. To remove visualization - user simply clicks cross icon on
+visualization tab - just as He or She would close tab in browser. This gives visualization chart as much place as
+application can give, and still allows user to easily control creation and disposal of visualization.
+
+The biggest problem with such a approach is where to place controls of visualization. User must be able to choose which
+measurements should be included in given visualization, as well as type of chart or other parameters. To address this
+need, management pane was designed. It's hidden by default and is being displayed to the user, on mouse over right
+edge of chart, marked with '<' signs. Layout of this pane is depicted in Figure~\ref{fig:mock_vis_options}. This
+options pane contains form, divided into severals sections:
+
+\begin{itemize}
+ \item Visualization Options - user can here configure label of whole visualization, the one on tab pane
+ \item Chart Options - allows setting chart's title (rendered on chart's graphics) and choose the chart type. User will
+be able to use line (XY scatter), pie, bar and  spider web chart types.
+ \item Measurements - gives control over which measurements should be included in given visualization. To add
+measurement into visualization, user should click Add button and from displayed dialog choose which measurements should
+be included. System doesn't give any constraints on measurements to be chosen, so it's up to the user to prepare
+meaningful visualization. User will be able to remove given measurement from chart, by simply selecting it from list
+and clicking Remove button.
+ \item Actions - allows user to pause, resume visualization. Additionally user can copy to clipboard image containing
+snapshot of visualization's chart.
+\end{itemize}
+
 
 \begin{figure}[ht]
   \centering
