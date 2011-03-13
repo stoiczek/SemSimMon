@@ -28,13 +28,15 @@ important.
 During designing user interface I've been trying to follow few general principles. First of all, I wanted used
 interface to be as transparent as possible. Users should focus on their tasks instead of application. Because of that,
 interface shouldn't be bloated with unnecessary options and steps that users need to achieve their goals should be as
-short as possible. Additionally, GUI must be coherent to free user from chaos of being spread across multiple windows,
-desktops and so on. 
+short as possible. Next equally important interface item are visualizations. Because visualizations are most important
+functionality of application, they need special concern. User should be able to view charts with results with out
+any interruptions blocking or any other UI components that might be disturbing. What is also important, GUI must be
+coherent to free user from chaos of being spread across multiple windows, desktops. 
 
-From business logic point of view, GUI component will extensively use MVC design pattern. Each form, window or more
-complex section need to have it's own View, responsible for presentation, Controller that collects user's events and
-updates view on user's actions or system events. Application will have shared model, which will be access point for
-underlaying components.
+From business logic point of view, GUI component will extensively use MVC design pattern\cite{gamma1995}. Each form,
+window or more complex section need to have it's own View, responsible for presentation, Controller that collects
+user's events and updates view on user's actions or system events. Application will have shared model, which will be
+access point for underlaying components.
  
 
 
@@ -52,28 +54,28 @@ underlaying components.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{mock_resources}
+  \includegraphics[width=0.7\textwidth]{mock_resources}
   \caption{GUI application resources pane}
   \label{fig:arch_overall}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{mock_measurements}
+  \includegraphics[width=0.7\textwidth]{mock_measurements}
   \caption{GUI application measurements pane}
   \label{fig:arch_overall}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{mock_vis_clean}
+  \includegraphics[width=0.7\textwidth]{mock_vis_clean}
   \caption{GUI application visualizations pane, clean view}
   \label{fig:arch_overall}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=1\textwidth]{mock_vis_options}
+  \includegraphics[width=0.7\textwidth]{mock_vis_options}
   \caption{GUI application visualizations pane, view with options pane}
   \label{fig:arch_overall}
 \end{figure}
