@@ -8,10 +8,38 @@
 \section{GUI component}
 \label{sec:arch_gui}
 
+Write about:
+- background on guis
+- overall info - what it is, its role, how important guis are in general - that its an entry point for user and if sth
+gets screwed here then it's affects usability 
+- describe main principles - ease of use, focus on visualizations 
+- dependencies,
+- MVC design pattern :|
+- Start analysis top down - mocks + their description
+- Name logic components that will interfere with mocks (controllers, services)
+
+Graphical user interfaces are most commonly used form of interaction with user in modern computing. Designing decent
+user interface is especially important due to aim of this work - creation of application allowing measuring and
+visualization of monitored processes. Although GUI component has rather limited role of giving user control over
+application and allow to view results of the work it's in fact most complex component. Additionally any shortcoming in
+GUI is relatively difficult to be hidden by user, and that makes UI/UX (User Interface/User Experience) engineering so
+important.
+
+During designing user interface I've been trying to follow few general principles. First of all, I wanted used
+interface to be as transparent as possible. Users should focus on their tasks instead of application. Because of that,
+interface shouldn't be bloated with unnecessary options and steps that users need to achieve their goals should be as
+short as possible. Additionally, GUI 
+ 
+
+
+\subsection{Architecture}
+
+\subsection{Interface Mockups}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_main}
-  \caption{Overall system decomposition}
+  \caption{GUI application main view mockup}
   \label{fig:arch_overall}
 \end{figure}
 
@@ -19,28 +47,28 @@
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\textwidth]{mock_resources}
-  \caption{Overall system decomposition}
+  \caption{GUI application resources pane}
   \label{fig:arch_overall}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\textwidth]{mock_measurements}
-  \caption{Overall system decomposition}
+  \caption{GUI application measurements pane}
   \label{fig:arch_overall}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\textwidth]{mock_vis_clean}
-  \caption{Overall system decomposition}
+  \caption{GUI application visualizations pane, clean view}
   \label{fig:arch_overall}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=1\textwidth]{mock_vis_options}
-  \caption{Overall system decomposition}
+  \caption{GUI application visualizations pane, view with options pane}
   \label{fig:arch_overall}
 \end{figure}
 
