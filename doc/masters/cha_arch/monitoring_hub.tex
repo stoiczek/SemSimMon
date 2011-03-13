@@ -28,7 +28,7 @@ interfaces.
 
 \subsection{Decomposition of Monitoring Hub}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{decomposition_mon_hub}
   \caption{Communication diagram - adding of new resource}
@@ -107,7 +107,7 @@ discover all children of resource being registered. After successful discovery, 
 being dispatched to all listeners either directly, when given Monitoring Hub is embedded into GUI, or using
 CoreRemoteServiceImpl to dispatch to all remote GUI components registered.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{comm_mh_add_res}
   \caption{Monitoring Hub Communication diagram - adding new resource}
@@ -130,7 +130,7 @@ requester. This identifier is then passed back to GUI, which will use it in any 
 measurement toto use itso this component can use it to reference incoming CapabilityValues and to be able to update or
 remove measurement.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.8\textwidth]{comm_mh_add_measurement}
   \caption{Monitoring Hub Communication diagram - adding new measurement}
@@ -146,7 +146,7 @@ listeners, either directly (to listeners registered at CoreMeasurementServiceImp
 remote listeners. What should be noticed here is that CoreRemoteServiceImpl notifies remote listeners in asynchronous
 and aggregated manner.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=1\textwidth]{comm_mh_new_cap_val}
   \caption{Monitoring Hub Communication diagram - new capability value notification}

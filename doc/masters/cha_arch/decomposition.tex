@@ -15,7 +15,7 @@ interfaces. This API is then shared between provider, which is component that re
 module that actually uses those functionalities to realize its own aims.
 Following subsection tries to depict those components and describe them roughly. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=1\textwidth]{arch_overall}
   \caption{Overall system decomposition}
@@ -103,7 +103,7 @@ by Monitoring Hub.
 
 \subsection{Most important data flows}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{comm_add_resource}
   \caption{Communication diagram - adding of new resource}
@@ -129,7 +129,7 @@ child resources. Discovered children are then returned to Monitoring Hub as reso
 registered by Hub and notification is being issued to listeners.
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{comm_add_measurement}
   \caption{Communication diagram - adding of new measurement}
@@ -150,7 +150,7 @@ example from Figure~\ref{fig:comm_add_measurement}). After successful verificati
 that will poll for capability values - measurement is successful created and started.
 
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{comm_new_cap_value}
   \caption{Communication diagram - new capability value}
@@ -186,7 +186,7 @@ of each object.
 \renewcommand*\arraystretch{1.2}
 
 
-\begin{table}[h] % ======================== CapabilityValue =====================================
+\begin{table}[ht] % ======================== CapabilityValue =====================================
 \begin{tabular}{| m{1,5cm} | m{2,5cm} | m{8,5cm} |}
    \hline 
    \cellcolor[gray]{0.9} Field Type & \cellcolor[gray]{0.9} Field Name & \cellcolor[gray]{0.9} Details \\
@@ -213,7 +213,7 @@ by GUI component to define measurement that should be created during createMeasu
 
 
 
-\begin{table}[h] % ======================== MeasurementDefinition =====================================
+\begin{table}[ht] % ======================== MeasurementDefinition =====================================
 \begin{tabular}{| m{1,5cm} | m{2,5cm} | m{8,5cm} |}
    \hline 
    \cellcolor[gray]{0.9} Field Type & \cellcolor[gray]{0.9} Field Name & \cellcolor[gray]{0.9} Details \\
@@ -232,7 +232,7 @@ Following tables:~\ref{tab:TO_Resource} and \ref{tab:TO_ResourceEvent} contains 
 management. Resource transfer object contains complete description of resource managed by system, additionally
 MonitoringHub uses ResourceEvent to notify all listeners (GUI mostly) about resource's life cycle events.  
 
-\begin{table}[h] % ======================== Resource =====================================
+\begin{table}[ht] % ======================== Resource =====================================
 \begin{tabular}{| m{1,5cm} | m{2,5cm} | m{8,5cm} | }
    \hline 
    \cellcolor[gray]{0.9} Field Type & \cellcolor[gray]{0.9} Field Name & \cellcolor[gray]{0.9} Details \\
@@ -248,7 +248,7 @@ MonitoringHub uses ResourceEvent to notify all listeners (GUI mostly) about reso
 
 
 
-\begin{table}[h] % ======================== ResourceEvent =====================================
+\begin{table}[ht] % ======================== ResourceEvent =====================================
 \begin{tabular}{| m{1,5cm} | m{2,5cm} | m{8,5cm} | }
    \hline 
    \cellcolor[gray]{0.9} Field Type & \cellcolor[gray]{0.9} Field Name & \cellcolor[gray]{0.9} Details \\

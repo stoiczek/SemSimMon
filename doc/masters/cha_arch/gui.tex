@@ -40,43 +40,70 @@ access point for underlaying components.
  
 
 
-\subsection{Architecture}
-
 \subsection{Interface Mockups}
 
-\begin{figure}[h]
+In this section, will try to describe mockups of most important views. The first mockup depicted in
+Figure~\ref{fig:mock_main} shows main application view. Left edge of application window contains vertical tab pane
+controller that will allow user to easily switch views covering 3 most important application contexts - resources,
+measurements and visualizations. Another benefit of such a approach is that application has loads of space for what
+user actually needs. The second most important component of main view is menu bar placed on top. It allows user
+to perform bulk operations (e.g. pause all measurements) regardless of view he or she is currently. 
+
+All subsequent mockups covers context specific views that will be rendered in main view's central pane.
+
+
+
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_main}
   \caption{GUI application main view mockup}
-  \label{fig:arch_overall}
+  \label{fig:mock_main}
 \end{figure}
 
+When users starts to work with application He or She must add resources to be measured first. That's why resources view
+is first, initial section shown to the user directly after page startup. Mockup of resources can bee seen in
+Figure~\ref{fig:mock_resources}. The view is divided into 2 high level logical parts - the left pane covers global
+resources context - users can browse measurement tree as well as add new resources into it. The right pane is specific
+to resource selected by user and contains accordion with two sections. The upper one shows resource's static
+attributes. The one below allow user to see snapshot of resource's dynamic state and check all of it's capabilities at
+given point of time. To refresh those values, Refresh button was provided. Additionally, below accordion there are
+several buttons allowing performing actions on given selected resource.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_resources}
   \caption{GUI application resources pane}
-  \label{fig:arch_overall}
+  \label{fig:mock_resources}
 \end{figure}
 
-\begin{figure}[h]
+Next figure, Figure~\ref{fig:mock_measurements} covers measurements context of application. All measurements created
+are listed on left side of this view. After selecting one accordion on right side shows details of selected
+measurement. The upper section contain table with general informations. The lower one shows all measurement values
+since the beginning. Additionally in this section user may copy the results into CSV format which can be easily
+imported to spreadsheet application for further analysis. Using controls under measurements list, user can
+pause, resume or remove measurement.
+
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_measurements}
   \caption{GUI application measurements pane}
-  \label{fig:arch_overall}
+  \label{fig:mock_measurements}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_vis_clean}
   \caption{GUI application visualizations pane, clean view}
-  \label{fig:arch_overall}
+  \label{fig:mock_vis_clean}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{mock_vis_options}
   \caption{GUI application visualizations pane, view with options pane}
-  \label{fig:arch_overall}
+  \label{fig:mock_vis_options}
 \end{figure}
 
+
+
+\subsection{Architecture}
