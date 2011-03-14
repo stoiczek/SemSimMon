@@ -6,6 +6,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.XYItemEntity;
+import org.jfree.chart.event.PlotChangeEvent;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.time.Second;
 import org.jfree.data.time.TimeSeries;
@@ -17,6 +19,7 @@ import pl.edu.agh.semmon.gui.charts.BaseSemmonChartView;
 import pl.edu.agh.semmon.gui.charts.BaseSemmonChartViewSkin;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +40,18 @@ public class TimeSeriesChartViewSkin extends BaseSemmonChartViewSkin {
   public TimeSeriesChartViewSkin() {
     data = new TimeSeriesCollection();
     chart = ChartFactory.createTimeSeriesChart("", "", "", data, true, true, false);
+    chart.setAntiAlias(true);
+    XYPlot plot = (XYPlot) chart.getPlot();
+    plot.setDomainGridlinesVisible(true);
+    plot.setRangeGridlinesVisible(true);
+    plot.setBackgroundPaint(new Color(123, 43, 65));
+    chart.plotChanged(new PlotChangeEvent(plot));
+//    chart.setBackgroundPaint();
+  }
+
+  @Override
+  public void paint(Graphics2D graphics2D) {
+
   }
 
   @Override
@@ -108,6 +123,6 @@ public class TimeSeriesChartViewSkin extends BaseSemmonChartViewSkin {
     BaseSemmonChartView chartView = (BaseSemmonChartView) getComponent();
     chart.getXYPlot().getDomainAxis().setLabel(chartView.getHorizontalAxisLabel());
     chart.getXYPlot().getRangeAxis().setLabel(chartView.getVerticalAxisLabel());
-    return super.createChart();
+    return chart;
   }
 }

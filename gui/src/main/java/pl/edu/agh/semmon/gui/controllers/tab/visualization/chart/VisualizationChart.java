@@ -4,6 +4,8 @@ import org.apache.pivot.charts.ChartView;
 import pl.edu.agh.semmon.common.api.measurement.CapabilityValueListener;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Interface for all visualization charts.
  *
@@ -49,4 +51,6 @@ public interface VisualizationChart extends CapabilityValueListener{
    * @return true if yes, false otherwise 
    */
   boolean requiresSameCapability();
+
+  BufferedImage getChartImage();
 }

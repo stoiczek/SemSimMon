@@ -1,10 +1,12 @@
 package pl.edu.agh.semmon.gui.charts;
 
 import biz.ixnay.pivot.charts.skin.jfree.JFreeChartViewSkin;
+import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.JFreeChart;
 import pl.edu.agh.semmon.common.api.measurement.CapabilityValueListener;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
 
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -39,9 +41,6 @@ public abstract class BaseSemmonChartViewSkin extends JFreeChartViewSkin impleme
     BaseSemmonChartView chartView = (BaseSemmonChartView) getComponent();
     String title = chartView.getTitle();
     chart.setTitle(title);
-//    chart.getC getXYPlot().getDomainAxis().setLabel(horizontalAxisLabel);
-//    chart.getXYPlot().getRangeAxis().setLabel(verticalAxisLabel);
-//    populateData(chartView);
     return chart;
   }
 
@@ -51,7 +50,14 @@ public abstract class BaseSemmonChartViewSkin extends JFreeChartViewSkin impleme
       addMeasurement(measurement);
     }
   }
-  
+
+  public BufferedImage getChartImage() {
+    int width = 800;
+    int height = 600;
+    return chart.createBufferedImage(width, height);
+  }
+
+
   public abstract void redrawChart();
 
   public abstract void addMeasurement(Measurement measurement);

@@ -6,6 +6,7 @@ import pl.edu.agh.semmon.gui.charts.BaseSemmonChartView;
 import pl.edu.agh.semmon.gui.controllers.BaseController;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,4 +72,11 @@ public abstract class BaseChartController<T extends BaseSemmonChartView> extends
   public boolean requiresSameCapability() {
     return false;
   }
+
+  @Override
+  public BufferedImage getChartImage() {
+    return chart.getChartImage();
+  }
+
+
 }

@@ -22,6 +22,7 @@
         <BoxPane bxml:id="separator"
                  styles="{verticalAlignment:'center',horizontalAlignment:'left'}"
                  orientation="vertical">
+
           <Label text="&lt;"/>
           <Label text="&lt;"/>
           <Label text="&lt;"/>
@@ -131,7 +132,7 @@
                         icon=" ui/img/play.png"/>
                   </buttonData>
                 </PushButton>
-                <PushButton bxml:id="copyButton">
+                <PushButton bxml:id="copyPushButton">
                   <buttonData>
                     <su:ButtonDataContainer text="%tabs.measurements.copy" icon=" ui/img/copy.png"/>
                   </buttonData>

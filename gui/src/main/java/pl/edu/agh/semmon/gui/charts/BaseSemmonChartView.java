@@ -8,6 +8,7 @@ import pl.edu.agh.semmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semmon.gui.logic.metric.Measurement;
 import pl.edu.agh.semmon.gui.util.UriUtils;
 
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -110,8 +111,12 @@ public abstract class BaseSemmonChartView extends ChartView implements Capabilit
     skin.updateSubChartTitle(newTitle);
   }
 
-  protected abstract Class<? extends BaseSemmonChartViewSkin> getSkinClass();
+  public BufferedImage getChartImage() {
+    return ((BaseSemmonChartViewSkin) getSkin()).getChartImage();
+  }
 
+
+  protected abstract Class<? extends BaseSemmonChartViewSkin> getSkinClass();
 
 
 }

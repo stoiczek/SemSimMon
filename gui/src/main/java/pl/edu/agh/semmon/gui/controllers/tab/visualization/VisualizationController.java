@@ -2,6 +2,7 @@ package pl.edu.agh.semmon.gui.controllers.tab.visualization;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.wtk.*;
+import org.apache.pivot.wtk.media.Picture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semmon.gui.UiFactory;
@@ -15,6 +16,7 @@ import pl.edu.agh.semmon.gui.logic.metric.MeasurementService;
 import pl.edu.agh.semmon.gui.util.ButtonDataContainer;
 import pl.edu.agh.semmon.gui.util.ListItemDataContainer;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -74,6 +76,10 @@ public class VisualizationController extends BaseController<BoxPane> {
 
   @BXML
   private ButtonGroup chartTypeButtonGroup;
+
+  @BXML
+  private PushButton copyPushButton;
+
 
   private VisualizationChart visualizationChart;
 
@@ -140,6 +146,17 @@ public class VisualizationController extends BaseController<BoxPane> {
   @ButtonAction
   private void resumeVisualizationPushButtonPressed() {
     resumeVisualization();
+  }
+
+
+  @ButtonAction
+  private void copyPushButtonPressed() {
+    log.debug("Copying chart image to clipboard");
+    BufferedImage chartImg = visualizationChart.getChartImage();
+    LocalManifest manifest = new LocalManifest();
+    manifest.putImage(new Picture(chartImg));
+    Clipboard.setContent(manifest);
+    log.debug("Image placed in clipboard");
   }
 
   public void resumeVisualization() {
