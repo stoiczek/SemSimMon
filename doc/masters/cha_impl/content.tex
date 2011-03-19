@@ -30,10 +30,20 @@ who would like to work with project. SemSimMon uses Apache Maven\footnote{\url{h
 manager. Maven recently became the de facto standard in building Java based projects. Features like dependencies
 management, build configuration instead of scripting actions needed to build project and extensive usage of plug-in
 architecture. Project configuration uses maven's aggregation mechanism to ease dependencies and configuration
-management. Project structure contains following components:
+management. Project structure contains following maven modules:
+
  
 \begin{itemize}
- \item 
+ \item pl.edu.agh.semsimmon:semsimmon - root module
+ \item pl.edu.agh.semsimmon:gui - GUI component
+ \item pl.edu.agh.semsimmon:mon-hub - Monitoring Hub component
+ \item pl.edu.agh.semsimmon:mon-hub-app - Monitoring Hub Application component 
+ \item pl.edu.agh.semsimmon:commons - component containing Transfer Objects and interfaces shared among all other
+components
+ \item pl.edu.agh.semsimmon:knowledge - Knowledge component
+ \item pl.edu.agh.semsimmon:transports - parent module for all transport components
+ \item pl.edu.agh.semsimmon.transports:jmx - JMX Transport component
+ \item pl.edu.agh.semsimmon.transports:ocmg - OCM-G Transport component
 \end{itemize}
 
 
@@ -61,10 +71,14 @@ mock objects, which are essential in Test Driven Development.
 
 \subsection{GUI dependencies}
 
-
+The most important framework used by GUI is Apache Pivot\footnote{\url{http://pivot.apache.org/}}. As authors say,
+Apache Pivot is an open-source platform for building installable Internet applications (IIAs). It is quite new Apache
+project, which brings completely new approach to GUI building in Java. The biggest feature of Pivot is totally
+decoupled interface description from programming language. The framework uses XML markup from bxml files to build
+interfaces. Example of such a file, can be found in:
 
 
 \section{Most important interfaces}
-%---------------------------------------------------------------------------
+
 
 
