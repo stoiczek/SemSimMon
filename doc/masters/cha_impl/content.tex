@@ -25,6 +25,15 @@ requirements is to be able to monitor processes running on JVM, using JMX protoc
 requirement - interactions with OMIS compliant tools, can be easily achieved using Java bindings for OCM-G
 platform\footnote{\url{http://grid.cyfronet.pl/ocmg/japi.html}}.  
 
+Although building mechanism isn't directly part of implementation, understanding this process is crucial for someone
+who would like to work with project. SemSimMon uses Apache Maven\footnote{\url{http://maven.apache.org/}} as build
+manager. Maven recently became the de facto standard in building Java based projects. Features like dependencies
+management, build configuration instead of scripting actions needed to build project and extensive usage of plug-in
+architecture. Project configuration uses maven's aggregation mechanism to ease dependencies and configuration
+management. Project structure contains following components:
+ 
+
+
 Using Java as main implementation technology has another significant implication - wide usage and uncounted amount of
 open source libraries that can shorten development time. Rest of this section focuses solely on describing libraries
 that were used during implementation of SemSimMon.
