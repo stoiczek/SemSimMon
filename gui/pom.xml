@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <name>SemMon - GUI</name>
+  <name>SemSimMon - GUI</name>
 
   <artifactId>gui</artifactId>
-  <groupId>pl.edu.agh.semmon</groupId>
+  <groupId>pl.edu.agh.semsimmon</groupId>
   <version>0.1-SNAPSHOT</version>
 
   <parent>
-    <artifactId>semmon</artifactId>
-    <groupId>pl.edu.agh.semmon</groupId>
+    <artifactId>semsimmon</artifactId>
+    <groupId>pl.edu.agh.semsimmon</groupId>
     <version>0.1-SNAPSHOT</version>
   </parent>
 
@@ -124,34 +124,34 @@
 
     <!--SemMon modules-->
     <dependency>
-      <groupId>pl.edu.agh.semmon</groupId>
+      <groupId>pl.edu.agh.semsimmon</groupId>
       <artifactId>commons</artifactId>
       <version>${project.version}</version>
 
     </dependency>
 
     <dependency>
-      <groupId>pl.edu.agh.semmon</groupId>
-      <artifactId>core</artifactId>
+      <groupId>pl.edu.agh.semsimmon</groupId>
+      <artifactId>mon-hub</artifactId>
       <version>${project.version}</version>
     </dependency>
 
 
     <dependency>
-      <groupId>pl.edu.agh.semmon</groupId>
+      <groupId>pl.edu.agh.semsimmon</groupId>
       <artifactId>knowledge</artifactId>
       <version>${project.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>pl.edu.agh.semmon.transports</groupId>
+      <groupId>pl.edu.agh.semsimmon.transports</groupId>
       <artifactId>jmx</artifactId>
       <version>${project.version}</version>
 
     </dependency>
 
     <dependency>
-      <groupId>pl.edu.agh.semmon.transports</groupId>
+      <groupId>pl.edu.agh.semsimmon.transports</groupId>
       <artifactId>ocmg</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -165,7 +165,7 @@
     <!--Core app Main, for deployments-->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>core-app</artifactId>
+      <artifactId>mon-hub-app</artifactId>
       <version>${project.version}</version>
       <type>tar.gz</type>
       <!-- Make sure this isn't included on any classpath-->

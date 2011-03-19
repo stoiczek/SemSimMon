@@ -3,16 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <groupId>pl.edu.agh.semmon</groupId>
-  <artifactId>core-app</artifactId>
+  <groupId>pl.edu.agh.semsimmon</groupId>
+  <artifactId>mon-hub-app</artifactId>
   <version>0.1-SNAPSHOT</version>
   <modelVersion>4.0.0</modelVersion>
-  <name>SemMon - Core application</name>
+  <name>SemSimMon - Core application</name>
 
 
   <parent>
-    <artifactId>semmon</artifactId>
-    <groupId>pl.edu.agh.semmon</groupId>
+    <artifactId>semsimmon</artifactId>
+    <groupId>pl.edu.agh.semsimmon</groupId>
     <version>0.1-SNAPSHOT</version>
   </parent>
 
@@ -66,6 +66,32 @@
   </build>
 
   <dependencies>
+
+    <!--SemMon modules-->
+    <dependency>
+      <groupId>pl.edu.agh.semsimmon</groupId>
+      <artifactId>mon-hub</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>pl.edu.agh.semsimmon</groupId>
+      <artifactId>knowledge</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>pl.edu.agh.semsimmon.transports</groupId>
+      <artifactId>jmx</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>pl.edu.agh.semsimmon.transports</groupId>
+      <artifactId>ocmg</artifactId>
+      <version>${project.version}</version>
+    </dependency>
     <!-- Spring framework -->
 
     <dependency>
@@ -80,31 +106,6 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!--SemMon modules-->
-    <dependency>
-      <groupId>pl.edu.agh.semmon</groupId>
-      <artifactId>core</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>pl.edu.agh.semmon</groupId>
-      <artifactId>knowledge</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>pl.edu.agh.semmon.transports</groupId>
-      <artifactId>jmx</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>pl.edu.agh.semmon.transports</groupId>
-      <artifactId>ocmg</artifactId>
-      <version>${project.version}</version>
-    </dependency>
 
   </dependencies>
 

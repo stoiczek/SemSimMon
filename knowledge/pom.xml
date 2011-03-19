@@ -2,21 +2,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>pl.edu.agh.semmon</groupId>
+    <groupId>pl.edu.agh.semsimmon</groupId>
     <artifactId>knowledge</artifactId>
-    <name>SemMon - Knowledge</name>
+    <name>SemSimMon - Knowledge</name>
     <version>0.1-SNAPSHOT</version>
 
     <parent>
-        <groupId>pl.edu.agh.semmon</groupId>
-        <artifactId>semmon</artifactId>
+        <groupId>pl.edu.agh.semsimmon</groupId>
+        <artifactId>semsimmon</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
 
         <dependency>
-            <groupId>pl.edu.agh.semmon</groupId>
+            <groupId>pl.edu.agh.semsimmon</groupId>
             <artifactId>commons</artifactId>
             <version>${project.version}</version>
         </dependency>

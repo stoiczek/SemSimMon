@@ -3,15 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>pl.edu.agh.semmon</groupId>
-  <artifactId>semmon</artifactId>
+  <groupId>pl.edu.agh.semsimmon</groupId>
+  <artifactId>semsimmon</artifactId>
   <version>0.1-SNAPSHOT</version>
 
   <packaging>pom</packaging>
 
-  <name>SemMon - Base</name>
+  <name>SemSimMon - Base</name>
 
-  <url>https://gforge.cyfronet.pl/projects/semmon/</url>
 
 
   <modules>

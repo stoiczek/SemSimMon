@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>pl.edu.agh.semmon</groupId>
-  <artifactId>core</artifactId>
-  <name>SemMon - Core</name>
+  <groupId>pl.edu.agh.semsimmon</groupId>
+  <artifactId>mon-hub</artifactId>
+  <name>SemSimMon - Core</name>
   <version>0.1-SNAPSHOT</version>
 
   <parent>
