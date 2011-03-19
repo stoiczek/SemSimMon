@@ -9,15 +9,47 @@
 \label{cha:implementation}
 
 Within this chapter dear may find rough implementation details of SemSimMon application. I don't intent to cover
-source code in detail, instead I'd like to describe most important interfaces, technologies that were employed during 
-implementation and will try to bring some light on source code structure. The main goal I want to achieve with it is to 
-lower the learning curve, needed to continue working on the project by other developers.
+source code in detail, instead I'd like to describe most important interfaces, technologies  that were
+employed during implementation and will try to bring some light on source code structure. The main goal I want to
+achieve with it is to lower the learning curve, needed to continue working on the project by other developers.
 
 %---------------------------------------------------------------------------
 
 \section{Implementation technologies}
 
-As a whole SemSimMon was written using Java programming language. 
+Each an every component of SemSimMon system was implemented using Java programming language. Decision to use this
+particular technology is quite obvious, after even rough analysis of requirements that system must met. Java is
+actually the most mature, cross platform programming language, so during development there is no need to worry about
+platform specific issues, as it's part of Java Virtual Machine vendor responsibility. Additionally, as one of major
+requirements is to be able to monitor processes running on JVM, using JMX protocol. The second communication
+requirement - interactions with OMIS compliant tools, can be easily achieved using Java bindings for OCM-G
+platform\footnote{\url{http://grid.cyfronet.pl/ocmg/japi.html}}.  
+
+Using Java as main implementation technology has another significant implication - wide usage and uncounted amount of
+open source libraries that can shorten development time. Rest of this section focuses solely on describing libraries
+that were used during implementation of SemSimMon.
+
+
+
+\subsection{Common dependencies}
+
+There are two areas of implementation that are shared among all components, namely logging and testing. As a logging
+framework, SemSimMon uses combined slf4j\footnote{\url{http://www.slf4j.org}} and
+log4j\footnote{\url{http://logging.apache.org/log4j}} libraries. Apache Log4j is probably most widely used logging
+framework for Java and is known for it's low performance impact and extensive configuration options. slf4j stands for
+Simple Logging Facade for Java, it's main purpose is to simplify logging interface even more, and decouple code from
+actual logging framework. This is quite important, as logging invocations tends to spread over code, which makes any
+change in logging facility quite a challenging task. With slf4j changing logging framework requires only change in
+configuration code.
+
+As a testing framework, SemSimMon uses 2 libraries: TestNG\footnote{\url{http://testng.org/doc/index.html}} and
+mockito\footnote{\url{http://mockito.org/}}. TestNG provides test runners and means to implement test cases. On the
+other hand, mockito is excellent library for implementing unit tests - it provides facility for creating easy to use
+mock objects, which are essential in Test Driven Development.
+
+\subsection{GUI dependencies}
+
+
 
 
 \section{Most important interfaces}

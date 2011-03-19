@@ -229,7 +229,7 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- For Springs dynamic subclassing -->
+    <!-- For Spring's dynamic subclassing -->
     <dependency>
       <groupId>cglib</groupId>
       <artifactId>cglib</artifactId>
