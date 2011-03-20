@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+cp}{<?xml version="1.0" encoding="UTF-8"?>}
+\PY{n+nt}{<beans}
+  \PY{n+nt}{<bean} \PY{n+na}{id=}\PY{l+s}{"sampleController"} 
+        \PY{n+na}{class=}\PY{l+s}{"pl.edu.agh.semsimmon.gui.controllers.SampleController"}
+        \PY{n+na}{parent=}\PY{l+s}{"baseController"}\PY{n+nt}{>}
+    \PY{n+nt}{<property} \PY{n+na}{name=}\PY{l+s}{"bxmlContentResource"} \PY{n+na}{value=}\PY{l+s}{"classpath:ui/sample.bxml"}\PY{n+nt}{/>}
+    \PY{n+nt}{<property} \PY{n+na}{name=}\PY{l+s}{"listenerFactory"} \PY{n+na}{ref=}\PY{l+s}{"buttonPressListenerFactory"}\PY{n+nt}{/>}
+    \PY{c}{<!--}\PY{c}{ Dependencies to model should go here}\PY{c}{-->}
+  \PY{n+nt}{</bean>}
+\PY{n+nt}{</beans>}
+\end{Verbatim}

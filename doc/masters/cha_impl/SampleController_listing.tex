@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PY{k+kn}{package} \PY{n}{pl}\PY{o}{.}\PY{n+na}{edu}\PY{o}{.}\PY{n+na}{agh}\PY{o}{.}\PY{n+na}{semsimmon}\PY{o}{.}\PY{n+na}{gui}\PY{o}{.}\PY{n+na}{controllers}\PY{o}{;}
+
+\PY{k+kn}{import} \PY{n+nn}{org.apache.pivot.beans.BXML}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{org.apache.pivot.wtk.BoxPane}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{org.apache.pivot.wtk.Label}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{org.apache.pivot.wtk.PushButton}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{org.slf4j.Logger}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{org.slf4j.LoggerFactory}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{pl.edu.agh.semsimmon.gui.controllers.action.ButtonAction}\PY{o}{;}
+
+\PY{k+kd}{public} \PY{k+kd}{class} \PY{n+nc}{SampleController} \PY{k+kd}{extends} \PY{n+nc}{BaseController}\PY{o}{<}\PY{n+nc}{BoxPane}\PY{o}{>} \PY{o}{\PYZob{}}
+
+  \PY{k+kd}{public} \PY{k+kd}{static} \PY{k+kd}{final} \PY{n}{Logger} \PY{n}{log} \PY{o}{=} \PY{n}{LoggerFactory}\PY{o}{.}\PY{n+na}{getLogger}\PY{o}{(}\PY{n}{SampleController}\PY{o}{.}\PY{n+na}{class}\PY{o}{)}\PY{o}{;}
+
+  \PY{n+nd}{@BXML}
+  \PY{k+kd}{private} \PY{n}{PushButton} \PY{n}{generateButton}\PY{o}{;}
+
+  \PY{n+nd}{@BXML}
+  \PY{k+kd}{private} \PY{n}{Label} \PY{n}{label}\PY{o}{;}
+
+  \PY{k+kd}{private} \PY{k+kt}{int} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}\PY{o}{;}
+
+  \PY{n+nd}{@ButtonAction}\PY{o}{(}\PY{n}{type} \PY{o}{=} \PY{n}{ButtonAction}\PY{o}{.}\PY{n+na}{Type}\PY{o}{.}\PY{n+na}{INSTANT}\PY{o}{)}
+  \PY{k+kd}{private} \PY{k+kt}{void} \PY{n+nf}{cancelButtonPressed}\PY{o}{(}\PY{o}{)} \PY{o}{\PYZob{}}
+    \PY{n}{label}\PY{o}{.}\PY{n+na}{setText}\PY{o}{(}\PY{l+s}{"Sample content "} \PY{o}{+} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{o}{)}\PY{o}{;}
+  \PY{o}{\PYZcb{}}
+
+  \PY{n+nd}{@ButtonAction}\PY{o}{(}\PY{n}{target} \PY{o}{=} \PY{l+s}{"cancelButton"}\PY{o}{,} \PY{n}{type} \PY{o}{=} \PY{n}{ButtonAction}\PY{o}{.}\PY{n+na}{Type}\PY{o}{.}\PY{n+na}{BACKGROUND}\PY{o}{)}
+  \PY{k+kd}{private} \PY{k+kt}{void} \PY{n+nf}{backgroundTaskOfGenerateButton}\PY{o}{(}\PY{o}{)} \PY{k+kd}{throws}
+\PY{n}{InterruptedException} \PY{o}{\PYZob{}}
+    \PY{n}{log}\PY{o}{.}\PY{n+na}{debug}\PY{o}{(}\PY{l+s}{"Starting background task"}\PY{o}{)}\PY{o}{;}
+    \PY{n}{Thread}\PY{o}{.}\PY{n+na}{sleep}\PY{o}{(}\PY{l+m+mi}{5000}\PY{o}{)}\PY{o}{;}
+    \PY{n}{log}\PY{o}{.}\PY{n+na}{debug}\PY{o}{(}\PY{l+s}{"Background task done"}\PY{o}{)}\PY{o}{;}
+  \PY{o}{\PYZcb{}}
+
+  \PY{n+nd}{@Override}
+  \PY{k+kd}{protected} \PY{n}{Class} \PY{n+nf}{getBindableClass}\PY{o}{(}\PY{o}{)} \PY{o}{\PYZob{}}
+    \PY{k}{return} \PY{n}{SampleController}\PY{o}{.}\PY{n+na}{class}\PY{o}{;}
+  \PY{o}{\PYZcb{}}
+\PY{o}{\PYZcb{}}
+\end{Verbatim}
