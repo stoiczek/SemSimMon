@@ -338,5 +338,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <property name="method" value="resumeAllVisualizations"/>
   </bean>
 
+  <bean id="sampleController" class="pl.edu.agh.semmon.gui.controllers.SampleController" parent="baseController">
+    <property name="bxmlContentResource" value="classpath:ui/sample.bxml"/>
+    <property name="listenerFactory" ref="buttonPressListenerFactory"/>
+    <!-- Dependencies to model should go here-->
+  </bean>
+
 
 </beans>

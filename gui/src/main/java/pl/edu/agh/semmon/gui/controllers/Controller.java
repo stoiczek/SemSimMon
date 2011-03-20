@@ -13,6 +13,8 @@ import java.io.IOException;
  *         Created at 18:50 05-06-2010
  */
 public interface Controller<T extends Component> {
+
+
   @PostConstruct
   void initialize() throws SerializationException, IOException, IllegalAccessException;
 }

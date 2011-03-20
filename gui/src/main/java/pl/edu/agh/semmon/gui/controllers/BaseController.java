@@ -54,7 +54,7 @@ public abstract class BaseController<T extends Component> implements Controller<
   /**
    * Serializer used to parse bxmlContentResource into component.
    */
-  protected BXMLSerializer serializer;
+  protected BXMLSerializer deserializer;
 
 
   /**
@@ -82,14 +82,14 @@ public abstract class BaseController<T extends Component> implements Controller<
   @PostConstruct
   public void initialize() throws SerializationException, IOException, IllegalAccessException {
     resources = new Resources(RESOURCE_FILE);
-    serializer = new BXMLSerializer();
-    serializer.setResources(resources);
-    preSerialize();
+    deserializer = new BXMLSerializer();
+    deserializer.setResources(resources);
+    preDeserialize();
     //noinspection unchecked
-    component = (T) serializer.readObject(bxmlContentResource.getURL(), resources);
+    component = (T) deserializer.readObject(bxmlContentResource.getURL(), resources);
     Class clazz = getBindableClass();
     log.debug("Binding with class: {}", clazz.getName());
-    serializer.bind(this, clazz);
+    deserializer.bind(this, clazz);
     bindActions(clazz);
     postBinding();
   }
@@ -149,7 +149,7 @@ public abstract class BaseController<T extends Component> implements Controller<
    *
    * @throws IOException on any error
    */
-  protected void preSerialize() throws IOException {
+  protected void preDeserialize() throws IOException {
 
   }
 

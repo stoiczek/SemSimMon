@@ -44,7 +44,7 @@ public class MainWindowController extends BaseController<Window> {
   }
 
   @Override
-  protected void preSerialize() throws IOException {
+  protected void preDeserialize() throws IOException {
     for (Map.Entry<String, Action> entry : actionMap.entrySet()) {
       Action.getNamedActions().put(entry.getKey(), entry.getValue());
     }
