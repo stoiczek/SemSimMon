@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
  * @author tkozak
  *         Created at 18:26 10-07-2010
  */
-public interface RelectionButtonPressListenerFactory {
+public interface ReflectionButtonPressListenerFactory {
 
   ReflectionButtonPressListener createListener(Object target, Method method);
 
