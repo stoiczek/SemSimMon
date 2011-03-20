@@ -19,12 +19,32 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface ButtonAction {
 
+  /**
+   * Type of action. This can be used to define whether action should be performed on EDT or in background thread.
+   */
   public enum Type {
-    INSTANT, BACKGROUND
+
+    /**
+     * Action will be performed on EDT thread.
+     */
+    INSTANT,
+
+    /**
+     * Action will be performed on background thread.
+     */
+    BACKGROUND
   }
 
+  /**
+   * Returns string defining target button. If value isn't specified, id of button will be guessed from method name.
+   * @return target button id.
+   */
   public String target() default "";
 
+  /**
+   * Returns type of action - background or foreground (EDT).
+   * @return
+   */
   public Type type() default Type.BACKGROUND;
 
 }

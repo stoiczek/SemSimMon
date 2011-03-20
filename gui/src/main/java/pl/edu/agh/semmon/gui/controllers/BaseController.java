@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import pl.edu.agh.semmon.gui.controllers.action.ButtonAction;
 import pl.edu.agh.semmon.gui.controllers.action.ReflectionButtonPressListener;
-import pl.edu.agh.semmon.gui.controllers.action.RelectionButtonPressListenerFactory;
+import pl.edu.agh.semmon.gui.controllers.action.ReflectionButtonPressListenerFactory;
 import pl.edu.agh.semmon.gui.util.UriUtils;
 
 import javax.annotation.PostConstruct;
@@ -39,30 +39,53 @@ public abstract class BaseController<T extends Component> implements Controller<
   protected static final String DATE_TIME_FORMAT_KEY = "general.dateTimeFormat";
   protected static final String TIME_FORMAT_KEY = "general.timeFormat";
 
-  private static final String RESOURCE_FILE = "i18n/Semmon";
+  private static final String RESOURCE_FILE = "i18n/SemSimMon";
 
+  /**
+   * View in MVC - pivot UI component that this controller manages.
+   */
   protected T component;
 
+  /**
+   * BXML resource that was used to create component controlled by this controller
+   */
   protected Resource bxmlContentResource;
 
+  /**
+   * Serializer used to parse bxmlContentResource into component.
+   */
   protected BXMLSerializer serializer;
 
-  private RelectionButtonPressListenerFactory listenerFactory;
 
+  /**
+   * i18n resources.
+   */
   protected Resources resources;
+
+  /**
+   * Events processor.
+   */
+  private ReflectionButtonPressListenerFactory listenerFactory;
+
 
   public T getComponent() {
     return component;
   }
 
+  /**
+   * Performs initialization of this controller.
+   * @throws SerializationException
+   * @throws IOException
+   * @throws IllegalAccessException
+   */
   @Override
   @PostConstruct
-  public void deserializeContent() throws SerializationException, IOException, IllegalAccessException {
+  public void initialize() throws SerializationException, IOException, IllegalAccessException {
     resources = new Resources(RESOURCE_FILE);
     serializer = new BXMLSerializer();
     serializer.setResources(resources);
-    //noinspection unchecked
     preSerialize();
+    //noinspection unchecked
     component = (T) serializer.readObject(bxmlContentResource.getURL(), resources);
     Class clazz = getBindableClass();
     log.debug("Binding with class: {}", clazz.getName());
@@ -71,6 +94,11 @@ public abstract class BaseController<T extends Component> implements Controller<
     postBinding();
   }
 
+  /**
+   * Binds all actions of PushButton, controlled by @ButtonAction annotation.
+   * @param clazz
+   * @throws IllegalAccessException
+   */
   private void bindActions(Class clazz) throws IllegalAccessException {
     for (final Method method : clazz.getDeclaredMethods()) {
       ButtonAction buttonAction = method.getAnnotation(ButtonAction.class);
@@ -91,7 +119,7 @@ public abstract class BaseController<T extends Component> implements Controller<
           field.setAccessible(true);
           method.setAccessible(true);
           Button button = (Button) field.get(this);
-          if(button == null) {
+          if (button == null) {
             log.error("Button not found: " + field.getName());
             continue;
           }
@@ -105,16 +133,32 @@ public abstract class BaseController<T extends Component> implements Controller<
           break;
         }
       }
-
     }
   }
 
+  /**
+   * Returns class that will be used to perform binding. This one needs to be implemented by each child class.
+   *
+   * @return class that will be used to perform binding
+   */
   protected abstract Class getBindableClass();
 
+  /**
+   * Called after instantiation, and setting up of spring dependencies, but before binding. All spring resources are
+   * available, but none of UI widgets.
+   *
+   * @throws IOException on any error
+   */
   protected void preSerialize() throws IOException {
 
   }
 
+  /**
+   * Called after serialization - from now on, controller instance is fully initialized. Override this method, if there
+   * is need to additionally initialize UI widgets
+   *
+   * @throws IOException on any error
+   */
   protected void postBinding() throws IOException {
   }
 
@@ -122,7 +166,7 @@ public abstract class BaseController<T extends Component> implements Controller<
     this.bxmlContentResource = bxmlContentResource;
   }
 
-  public void setListenerFactory(RelectionButtonPressListenerFactory listenerFactory) {
+  public void setListenerFactory(ReflectionButtonPressListenerFactory listenerFactory) {
     this.listenerFactory = listenerFactory;
   }
 

@@ -54,7 +54,7 @@ public class MainWindowController extends BaseController<Window> {
   protected void postBinding() throws IOException {
     try {
       for (TabController controller : tabControllers) {
-        controller.deserializeContent();
+        controller.initialize();
         mainTabPane.getTabs().add(controller.getTabContent());
         try {
           Image img = Image.load(controller.getTabIcon().getURL());

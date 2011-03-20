@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
  * @author tkozak
  *         Created at 18:27 10-07-2010
  */
-public abstract class ReflectionButtonPressListenerFactoryImpl implements RelectionButtonPressListenerFactory {
+public abstract class ReflectionButtonPressListenerFactoryImpl implements ReflectionButtonPressListenerFactory {
 
 
   @Override
