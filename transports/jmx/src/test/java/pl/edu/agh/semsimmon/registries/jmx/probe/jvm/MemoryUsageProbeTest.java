@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semsimmon.registries.jmx.probe.MemoryUsageProbe;
 import pl.edu.agh.semsimmon.registries.jmx.probe.ProbeTestUtils;
 
 import javax.management.MBeanServer;

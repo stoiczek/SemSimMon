@@ -204,7 +204,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </entry>
   </util:map>
 
-  <bean id="nodeMemoryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.memory.MemoryProbe"/>
+  <bean id="nodeMemoryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.MemoryProbe"/>
 
   <!--===============================================================================================-->
   <!--                          OS Probes                                                           -->
@@ -261,7 +261,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
       </key>
     </entry>
   </util:map>
-  <bean id="gcCollectionProbes" class="pl.edu.agh.semsimmon.registries.jmx.probe.gc.CollectionsProbe"/>
+  <bean id="gcCollectionProbes" class="pl.edu.agh.semsimmon.registries.jmx.probe.CollectionsProbe"/>
 
   <!--===============================================================================================-->
   <!--                          Thread Probes                                                           -->
@@ -396,7 +396,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </util:map>
 
 
-  <bean id="jvmMemoryUsageProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.jvm.MemoryUsageProbe"/>
+  <bean id="jvmMemoryUsageProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.MemoryUsageProbe"/>
 
   <bean id="jvmQueryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQueryCapabilityProbe">
     <property name="queries" ref="jvmQueries"/>

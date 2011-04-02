@@ -1,4 +1,4 @@
-package pl.edu.agh.semsimmon.registries.jmx.probe.memory;
+package pl.edu.agh.semsimmon.registries.jmx.probe;
 
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
