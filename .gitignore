@@ -28,3 +28,5 @@ masters.pdf
 logs
 
 *.bak
+
+/doc/masters/masters.synctex.gz

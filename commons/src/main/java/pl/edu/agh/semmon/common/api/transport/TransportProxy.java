@@ -20,7 +20,7 @@ public interface TransportProxy {
    *
    * @param resource       resource to get capability value of.
    * @param capabilityType type of capability
-   * @return current capabilitie's value.
+   * @return current value of given resource capability.
    * @throws TransportException on value reading error.
    */
   CapabilityValue getCapabilityValue(Resource resource, String capabilityType)
@@ -101,24 +101,24 @@ public interface TransportProxy {
 
   /**
    *
-   * @param resource
-   * @throws TransportException
+   * Stops given resource. After calling stop, given resource is terminated and won't be available for application
+   * @param resource resource to be stopped
+   * @throws TransportException on any error
    */
   void stopResource(Resource resource) throws TransportException;
 
   /**
-   *
-   * @param resource
-   * @throws TransportException
+   * Pauses given resource.
+   * @param resource resource to be paused.
+   * @throws TransportException on any error
    */
   void pauseResource(Resource resource) throws TransportException;
 
   /**
-   * 
-   * @param resource
+   * Resumes given, already paused resource.
+   * @param resource resource to be resumed
    * @throws TransportException
    */
   void resumeResource(Resource resource) throws TransportException;
-
 
 }
