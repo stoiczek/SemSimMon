@@ -261,7 +261,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
       </key>
     </entry>
   </util:map>
-  <bean id="gcCollectionProbes" class="pl.edu.agh.semsimmon.registries.jmx.probe.CollectionsProbe"/>
+  <bean id="gcCollectionProbes" class="pl.edu.agh.semsimmon.registries.jmx.probe.GarbageCollectionsProbe"/>
 
   <!--===============================================================================================-->
   <!--                          Thread Probes                                                           -->
@@ -396,7 +396,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </util:map>
 
 
-  <bean id="jvmMemoryUsageProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.MemoryUsageProbe"/>
+  <bean id="jvmMemoryUsageProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.HeapProbe"/>
 
   <bean id="jvmQueryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQueryCapabilityProbe">
     <property name="queries" ref="jvmQueries"/>

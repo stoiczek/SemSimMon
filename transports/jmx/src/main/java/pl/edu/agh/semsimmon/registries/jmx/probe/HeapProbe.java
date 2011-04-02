@@ -17,7 +17,7 @@ import java.lang.management.MemoryUsage;
  * @author tkozak
  *         Created at 21:22 19-07-2010
  */
-public class MemoryUsageProbe implements CapabilityProbe {
+public class HeapProbe implements CapabilityProbe {
 
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, String capabilityUri, MBeanServerConnection connection) throws IOException {

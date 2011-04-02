@@ -5,7 +5,7 @@ import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
-import pl.edu.agh.semsimmon.registries.jmx.probe.CollectionsProbe;
+import pl.edu.agh.semsimmon.registries.jmx.probe.GarbageCollectionsProbe;
 
 import javax.management.MBeanServer;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class CollectionsProbeTest {
 
   @Test
   public void doTest() throws IOException {
-    CollectionsProbe probe = new CollectionsProbe();
+    GarbageCollectionsProbe probe = new GarbageCollectionsProbe();
     GarbageCollectorMXBean gcBean = ManagementFactory.getGarbageCollectorMXBeans().get(0);
     String gcName = gcBean.getName();
     Resource mockGcResource = new Resource("semsimmon://localhost/app1/clu1/node1/jvm1/" + gcName,

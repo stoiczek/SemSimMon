@@ -17,7 +17,7 @@ import java.lang.management.ManagementFactory;
  * @author tkozak
  *         Created at 17:12 25-07-2010
  */
-public class CollectionsProbe implements CapabilityProbe {
+public class GarbageCollectionsProbe implements CapabilityProbe {
 
   private static final String NAME_KEY = ",name=";
 

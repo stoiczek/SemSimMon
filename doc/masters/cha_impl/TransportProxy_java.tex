@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{package} \PY{n}{pl}\PY{o}{.}\PY{n+na}{edu}\PY{o}{.}\PY{n+na}{agh}\PY{o}{.}\PY{n+na}{semsimmon}\PY{o}{.}\PY{n+na}{common}\PY{o}{.}\PY{n+na}{api}\PY{o}{.}\PY{n+na}{transport}\PY{o}{;}
+
+\PY{k+kn}{import} \PY{n+nn}{pl.edu.agh.semsimmon.common.api.resource.IResourceDiscoveryListener}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{pl.edu.agh.semsimmon.common.vo.core.resource.Resource}\PY{o}{;}
+
+\PY{k+kn}{import} \PY{n+nn}{java.util.List}\PY{o}{;}
+\PY{k+kn}{import} \PY{n+nn}{java.util.Map}\PY{o}{;}
+
+\PY{k+kd}{public} \PY{k+kd}{interface} \PY{n+nc}{TransportProxy} \PY{o}{\PYZob{}}
+
+  \PY{n}{CapabilityValue} \PY{n+nf}{getCapabilityValue}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{,} \PY{n}{String} \PY{n}{capabilityType}\PY{o}{)}
+      \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{n}{Map}\PY{o}{<}\PY{n}{String}\PY{o}{,} \PY{n}{CapabilityValue}\PY{o}{>} \PY{n}{getCapabilityValues}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{,} 
+												   \PY{n}{List}\PY{o}{<}\PY{n}{String}\PY{o}{>} \PY{n}{capabilityUris}\PY{o}{)}
+      \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{boolean} \PY{n+nf}{hasCapability}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{,} \PY{n}{String} \PY{n}{capabilityType}\PY{o}{)}
+      \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{addResourceDiscoveryListener}\PY{o}{(}\PY{n}{IResourceDiscoveryListener} \PY{n}{listener}\PY{o}{)}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{removeTransportProxyListener}\PY{o}{(}\PY{n}{IResourceDiscoveryListener} \PY{n}{listener}\PY{o}{)}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{registerResource}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{)} \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{unregisterResource}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{)} \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{boolean} \PY{n+nf}{isResourceSupported}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{)}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{discoverChildren}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{,} \PY{n}{List}\PY{o}{<}\PY{n}{String}\PY{o}{>} \PY{n}{types}\PY{o}{)} \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{n}{List}\PY{o}{<}\PY{n}{Resource}\PY{o}{>} \PY{n}{discoverDirectChildren}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{,} \PY{n}{String} \PY{n}{type}\PY{o}{)} 
+	  \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{stopResource}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{)} \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{pauseResource}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{)} \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+  \PY{k+kt}{void} \PY{n+nf}{resumeResource}\PY{o}{(}\PY{n}{Resource} \PY{n}{resource}\PY{o}{)} \PY{k+kd}{throws} \PY{n}{TransportException}\PY{o}{;}
+
+\PY{o}{\PYZcb{}}
+\end{Verbatim}

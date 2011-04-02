@@ -1,3 +1,68 @@
+\pagebreak
 \section{Transport Proxy Implementation}
+\subsection{TransportProxy interface}
+Although Transport Proxies are components where most of actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which contents can be seen in Figure~\ref{fig:transport_proxy}.
 
-Although Transport Proxies are components where actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which contents can be seen in Figure~\ref{fig:tproxy_iface}
+\begin{figure}[ht]
+  \centering
+  \input{cha_impl/TransportProxy_java}
+  \caption{Listing of TransportProxy.java}
+  \label{fig:transport_proxy}
+\end{figure} 
+
+Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduce, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one must create new class that inherits from BaseTransportProxy and implement only methods that aren\rq{}t implemented in this parent.
+
+\subsection{JMX Transport Proxy Implementation}
+
+JMX Transport Proxy is build around two concepts: discovery agent and capability probe. Implementation consist following discovery agent classes:
+\begin{itemize} 
+  \item{\bf{GCDiscoveryAgent}} - discovers garbage collectors within single running JVM instance boundaries
+  \item{\bf{ThreadsDiscoveryAgent}} - discovers all threads running in single JVM
+  \item{\bf{CPUDiscoveryAgent}} - discovers CPUs on given computing node
+  \item{\bf{JvmDiscoveryAgent}} - discovers specific JVM running on node
+  \item{\bf{OsDiscoveryAgent}} - discovers operating system that runs on given node
+  \item{\bf{GenericDiscoveryAgent}} - used to \lq{}discover\rq{} components that exists but any of their properties can be extracted
+\end{itemize} 
+
+Additionally, JMX Transpor proxy uses following probes to fetch capability values: 
+\begin{itemize} 
+  \item{\bf{GarbageCollectionsProbe}} - gets values of Garbage Collector related capabilities (CollectionCountCapability and CollectionTimeCapability)
+  \item{\bf{MemoryProbe}} - gathers values memory related capabilities: total, free and used. It is used in conjunction with both physical and virtual memory resources
+  \item{\bf{HeapProbe}} - measures heap usage  
+  \item{\bf{ThreadTimingProbe}} - monitors threads timings: ThreadCPUTimeCapability and ThreadUserTimeCapability capabilities
+  \item{\bf{ThreadSynchronizationDetailsProbe}} - monitors capabilities related to threads synchronization: ThreadBlockedCountCapability, ThreadBlockedTimeCapability, ThreadWaitedCountCapability and ThreadWaitedTimeCapability
+  \item{\bf{JmxQueryCapabilityProbe}} - generic probe that can measure capabilities using JMX query given by initialization parameter
+\end{itemize} 
+
+\subsection{OCM-G Transport Proxy Implementation}
+
+OCM-G Transport Proxy implementation uses similar approach to JMX one. In this case, are also employed two concepts - probes (works in same way as in JMX Transport Proxy) and resource agents. OCM-G proxy consists of resource agents instead of discovery agents, because OCM-G have means to actually manage resources that are monitored by this system, and those means are used in SemSimMon. Thus, resource agents have two purposes - discovery resources and manage them.
+
+There are following resource agents implemented:
+
+\begin{itemize} 
+  \item{\bf{AppsResourceAgent}} - manages applications monitored by given MainSM
+  \item{\bf{ClustersResourceAgent}} - manages clusters within given application
+  \item{\bf{NodeResourceAgent}} - manages nodes within given cluster
+  \item{\bf{ProcessFunctionsResourceAgent}} - manages function resources
+  \item{\bf{ThreadResourceAgent}} - manages threads
+  \item{\bf{CpuResourceAgent}} - manages processors
+  \item{\bf{NetIfaceResourceAgent}} - manages network interfaces
+  \item{\bf{OSResourceAgent}} - manages operating systems
+  \item{\bf{PhysicalMemoryRA}} - manages physical memory
+  \item{\bf{ProcessResourceAgent}} - manages processes
+  \item{\bf{StorageResourceAgent}} - manages storage devices
+  \item{\bf{VirtualMemoryRA}} - manages virtual memory
+  \item{\bf{BasicHardwareResourceAgent}} - it\rq{}s type of generic hardware resource agent that can simply discover hardware devices that can\rq{}t be distinguished
+\end{itemize} 
+  
+OCM-G Transport Proxy uses following probes:
+
+\begin{itemize} 
+  \item{\bf{LoadAvgProbe}} - monitors node\rq{}s load average 
+  \item{\bf{ThreadsCP}} - monitors capability probes related to threads
+  \item{\bf{TotalCpuTimeCapabilityProbe}} - measures CPU total time
+  \item{\bf{FunctionProbe}} - monitors capabilities related to functions (TotalCallsTimeCapability and TotalCallsCountCapability)
+\end{itemize} 
+
+
