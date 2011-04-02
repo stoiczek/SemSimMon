@@ -48,7 +48,6 @@ public class KnowledgeImpl implements IKnowledge {
     return retVal;
   }
 
-  @Override
   public List<String> getUsedCapabilities(String metricURI) {
     return selectObjectsForPropertyOfSubject(metricURI, KnowledgeConstants.USES_CAP_PROPERTY_URI);
   }
@@ -58,7 +57,6 @@ public class KnowledgeImpl implements IKnowledge {
     return selectObjectsForPropertyOfSubject(type, KnowledgeConstants.HAS_RESOURCE_PROPERTY_URI);
   }
 
-  @Override
   public String getClassNameForCustomMetric(String uri) {
     // there should be only one class ... in case there are more - we take
     // the first one ;)
@@ -66,19 +64,16 @@ public class KnowledgeImpl implements IKnowledge {
     return clazz.get(0);
   }
 
-  @Override
   public boolean isCustomMetric(String uri) {
     List<String> classes = selectObjectsForPropertyOfSubject(uri, KnowledgeConstants.HAS_CUSTOM_CLASS_PROPERTY_URI);
     return classes.size() > 0;
   }
 
-  @Override
   public List<String> getAllAvailableMetrics() {
     // TODO Auto-generated method stub
     return null;
   }
 
-  @Override
   public List<String> getMetricsForResourceType(String type) {
     Set<String> capabilities = new HashSet<String>();
 
@@ -87,7 +82,6 @@ public class KnowledgeImpl implements IKnowledge {
     return getMetricsUsingCapabilitiesForResourceType(type, capabilities);
   }
 
-  @Override
   public List<String> getMetricsSuggestedToStart(String metricURI,
                                                  String resourceURI) {
     throw new RuntimeException("Method unimplemented!");
@@ -114,7 +108,6 @@ public class KnowledgeImpl implements IKnowledge {
     return retVal;
   }
 
-  @Override
   public List<String> getMetricsUsingCapabilityForResourceType(
       String resourceType, String capabilityURI) {
 

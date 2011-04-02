@@ -1,16 +1,4 @@
-\pagebreak
 \section{Transport Proxy Implementation}
-\subsection{TransportProxy interface}
-Although Transport Proxies are components where most of actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which contents can be seen in Figure~\ref{fig:transport_proxy}.
-
-\begin{figure}[ht]
-  \centering
-  \input{cha_impl/TransportProxy_java}
-  \caption{Listing of TransportProxy.java}
-  \label{fig:transport_proxy}
-\end{figure} 
-
-Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduce, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one must create new class that inherits from BaseTransportProxy and implement only methods that aren\rq{}t implemented in this parent.
 
 \subsection{JMX Transport Proxy Implementation}
 
@@ -65,4 +53,14 @@ OCM-G Transport Proxy uses following probes:
   \item{\bf{FunctionProbe}} - monitors capabilities related to functions (TotalCallsTimeCapability and TotalCallsCountCapability)
 \end{itemize} 
 
+\subsection{TransportProxy interface}
+Although Transport Proxies are components where most of actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which contents can be seen in Figure~\ref{fig:transport_proxy}.
 
+\begin{figure}[ht]
+  \centering
+  \input{cha_impl/TransportProxy_java}
+  \caption{Listing of TransportProxy.java}
+  \label{fig:transport_proxy}
+\end{figure} 
+
+Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduce, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one must create new class that inherits from BaseTransportProxy and implement only methods that aren\rq{}t implemented in this parent.

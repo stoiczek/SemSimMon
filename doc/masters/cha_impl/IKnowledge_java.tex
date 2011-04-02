@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\},numbers=left,firstnumber=1,stepnumber=1]
+\PY{k+kn}{package} \PY{n}{pl}\PY{o}{.}\PY{n+na}{edu}\PY{o}{.}\PY{n+na}{agh}\PY{o}{.}\PY{n+na}{semsimmon}\PY{o}{.}\PY{n+na}{common}\PY{o}{.}\PY{n+na}{api}\PY{o}{.}\PY{n+na}{knowledge}\PY{o}{;}
+
+\PY{k+kn}{import} \PY{n+nn}{java.util.List}\PY{o}{;}
+
+\PY{k+kd}{public} \PY{k+kd}{interface} \PY{n+nc}{IKnowledge} \PY{o}{\PYZob{}}
+
+  \PY{n}{String} \PY{n+nf}{getOntologyURI}\PY{o}{(}\PY{o}{)}\PY{o}{;}
+
+  \PY{n}{List}\PY{o}{<}\PY{n}{String}\PY{o}{>} \PY{n}{getChildrenResourceTypes}\PY{o}{(}\PY{n}{String} \PY{n}{type}\PY{o}{)}\PY{o}{;}
+
+  \PY{n}{List}\PY{o}{<}\PY{n}{String}\PY{o}{>} \PY{n}{getCapabilitiesOfResourceType}\PY{o}{(}\PY{n}{String} \PY{n}{type}\PY{o}{)}\PY{o}{;}
+
+\PY{o}{\PYZcb{}}
+\end{Verbatim}
