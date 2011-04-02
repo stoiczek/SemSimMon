@@ -8,7 +8,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
        default-init-method="init">
 
 
-  <bean id="ocmgTransportProxy" class="pl.edu.agh.semmon.registries.ocmg.OcmgTransportProxyImpl">
+  <bean id="ocmgTransportProxy" class="pl.edu.agh.semsimmon.registries.ocmg.OcmgTransportProxyImpl">
     <property name="resourceAgents" ref="ocmgDiscoveryAgents"/>
     <property name="probes" ref="ocmgProbes"/>
   </bean>
@@ -22,7 +22,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
   <util:map id="ocmgDiscoveryAgents" key-type="java.lang.String"
-            value-type="pl.edu.agh.semmon.registries.ocmg.resource.ResourceAgent">
+            value-type="pl.edu.agh.semsimmon.registries.ocmg.resource.ResourceAgent">
     <entry key-ref="applicationUri" value-ref="ocmgAppsDiscoveryAgent"/>
     <entry key-ref="clusterUri" value-ref="ocmgClustersDiscoveryAgent"/>
     <entry key-ref="nodeUri" value-ref="ocmgNodesDiscoveryAgent"/>
@@ -43,29 +43,29 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <!--===============================================================================================-->
 
 
-  <bean id="ocmgAppsDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.AppsResourceAgent"/>
-  <bean id="ocmgClustersDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.ClustersResourceAgent"/>
-  <bean id="ocmgNodesDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.NodeResourceAgent"/>
+  <bean id="ocmgAppsDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.AppsResourceAgent"/>
+  <bean id="ocmgClustersDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.ClustersResourceAgent"/>
+  <bean id="ocmgNodesDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.NodeResourceAgent"/>
   <bean id="ocmgFunctionsDiscoveryAgent"
-        class="pl.edu.agh.semmon.registries.ocmg.resource.ProcessFunctionsResourceAgent">
+        class="pl.edu.agh.semsimmon.registries.ocmg.resource.ProcessFunctionsResourceAgent">
     <property name="metersContainer" ref="metersContainer"/>
   </bean>
-  <bean id="ocmgThreadsDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.ThreadResourceAgent"/>
-  <bean id="ocmgOsDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.node.OSResourceAgent"/>
-  <bean id="ocmgProcessDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.node.ProcessResourceAgent"/>
+  <bean id="ocmgThreadsDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.ThreadResourceAgent"/>
+  <bean id="ocmgOsDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.OSResourceAgent"/>
+  <bean id="ocmgProcessDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.ProcessResourceAgent"/>
 
 
-  <bean id="ocmgCpuDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.node.CpuResourceAgent"/>
+  <bean id="ocmgCpuDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.CpuResourceAgent"/>
 
   <bean id="ocmgNetIfaceDiscoveryAgent"
-        class="pl.edu.agh.semmon.registries.ocmg.resource.node.NetIfaceResourceAgent"/>
+        class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.NetIfaceResourceAgent"/>
 
-  <bean id="ocmgStorageDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.node.StorageResourceAgent"/>
+  <bean id="ocmgStorageDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.StorageResourceAgent"/>
 
-  <bean id="ocmgVirtualMemoryDiscoveryAgent" class="pl.edu.agh.semmon.registries.ocmg.resource.node.VirtualMemoryRA"/>
+  <bean id="ocmgVirtualMemoryDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.VirtualMemoryRA"/>
 
   <bean id="ocmgPhysicalMemoryDiscoveryAgent"
-        class="pl.edu.agh.semmon.registries.ocmg.resource.node.PhysicalMemoryRA"/>
+        class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.PhysicalMemoryRA"/>
 
 
   <!--===============================================================================================-->
@@ -82,21 +82,21 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </util:map>
 
   <util:map id="ocmgNodeProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semmon.registries.ocmg.probe.CapabilityProbe">
+            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="load1MinCapabilityUri" value-ref="ocmgNodeLoad1minProbe"/>
     <entry key-ref="load5MinCapabilityUri" value-ref="ocmgNodeLoad5minProbe"/>
     <entry key-ref="load15MinCapabilityUri" value-ref="ocmgNodeLoad15minProbe"/>
   </util:map>
 
   <util:map id="ocmgProcesProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semmon.registries.ocmg.probe.CapabilityProbe">
+            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="totalCpuTimeCapabilityUri" value-ref="ocmgProcessCpuTimeProbe"/>
     <entry key-ref="liveThreadsCapabilityUri" value-ref="ocmgLiveThreadsProbe"/>
     <entry key-ref="startedThreadsCapabilityUri" value-ref="ocmgAllThreadsProbe"/>
   </util:map>
 
   <util:map id="ocmgFunctionProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semmon.registries.ocmg.probe.CapabilityProbe">
+            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="callCountCapabilityUri" value-ref="ocmgFunctionCallCountProbe"/>
     <entry key-ref="callTimeCapabilityUri" value-ref="ocmgFunctionCallTimeProbe"/>
   </util:map>
@@ -106,37 +106,37 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <!--===============================================================================================-->
 
   <!-- Node -->
-  <bean id="ocmgNodeLoad1minProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.node.LoadAvgProbe">
+  <bean id="ocmgNodeLoad1minProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.node.LoadAvgProbe">
     <property name="type" value="_1MIN"/>
   </bean>
-  <bean id="ocmgNodeLoad5minProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.node.LoadAvgProbe">
+  <bean id="ocmgNodeLoad5minProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.node.LoadAvgProbe">
     <property name="type" value="_5MIN"/>
   </bean>
-  <bean id="ocmgNodeLoad15minProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.node.LoadAvgProbe">
+  <bean id="ocmgNodeLoad15minProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.node.LoadAvgProbe">
     <property name="type" value="_15MIN"/>
   </bean>
 
 
   <!-- Process -->
   <bean id="ocmgProcessCpuTimeProbe"
-        class="pl.edu.agh.semmon.registries.ocmg.probe.process.TotalCpuTimeCapabilityProbe"/>
+        class="pl.edu.agh.semsimmon.registries.ocmg.probe.process.TotalCpuTimeCapabilityProbe"/>
 
-  <bean id="ocmgLiveThreadsProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.process.ThreadsCP">
+  <bean id="ocmgLiveThreadsProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.process.ThreadsCP">
     <property name="type" value="ACTIVE"/>
   </bean>
 
-  <bean id="ocmgAllThreadsProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.process.ThreadsCP">
+  <bean id="ocmgAllThreadsProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.process.ThreadsCP">
     <property name="type" value="TOTAL"/>
   </bean>
 
   <!-- Function -->
 
-  <bean id="ocmgFunctionCallTimeProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.FunctionProbe">
+  <bean id="ocmgFunctionCallTimeProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.FunctionProbe">
     <property name="type" value="TIME"/>
     <property name="libCallMetersContainer" ref="metersContainer"/>
   </bean>
 
-  <bean id="ocmgFunctionCallCountProbe" class="pl.edu.agh.semmon.registries.ocmg.probe.FunctionProbe">
+  <bean id="ocmgFunctionCallCountProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.FunctionProbe">
     <property name="type" value="COUNT"/>
     <property name="libCallMetersContainer" ref="metersContainer"/>
   </bean>
@@ -148,6 +148,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <!--===============================================================================================-->
 
 
-  <bean id="metersContainer" class="pl.edu.agh.semmon.registries.ocmg.LibCallMetersContainer"/>
+  <bean id="metersContainer" class="pl.edu.agh.semsimmon.registries.ocmg.LibCallMetersContainer"/>
 
 </beans>

@@ -36,7 +36,7 @@
             <manifest>
               <!-- writes libs to manifest, same dir -->
               <addClasspath>true</addClasspath>
-              <mainClass>pl.edu.agh.semmon.caj.Main</mainClass>
+              <mainClass>pl.edu.agh.semsimmon.caj.Main</mainClass>
               <!-- sets proper main class for manifest -->
             </manifest>
           </archive>

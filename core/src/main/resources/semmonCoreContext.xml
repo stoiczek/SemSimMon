@@ -12,7 +12,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <context:annotation-config/>
 
 
-  <bean id="coreServiceFacade" class="pl.edu.agh.semmon.core.impl.CoreServiceFacadeImpl">
+  <bean id="coreServiceFacade" class="pl.edu.agh.semsimmon.core.impl.CoreServiceFacadeImpl">
     <property name="coreResourcesService" ref="coreResourcesService"/>
     <property name="measurementService" ref="coreMeasurementService"/>
     <property name="coreRemoteService" ref="coreRemoteService"/>
@@ -21,16 +21,16 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <!-- Instances manager -->
   <bean id="coreResourcesService"
-        class="pl.edu.agh.semmon.core.resource.CoreResourcesServiceImpl">
+        class="pl.edu.agh.semsimmon.core.resource.CoreResourcesServiceImpl">
     <property name="knowledge" ref="knowledgeBean"/>
     <property name="transportProxiesManager" ref="transportProxiesManager"/>
     <property name="coreRemoteService" ref="coreRemoteService"/>
     <property name="coreMeasurementService" ref="coreMeasurementService"/>
   </bean>
 
-  <bean id="coreRemoteService" class="pl.edu.agh.semmon.core.remote.CoreRemoteServiceImpl"/>
+  <bean id="coreRemoteService" class="pl.edu.agh.semsimmon.core.remote.CoreRemoteServiceImpl"/>
 
-  <bean id="transportProxiesManager" class="pl.edu.agh.semmon.core.transport.TransportProxiesManagerImpl">
+  <bean id="transportProxiesManager" class="pl.edu.agh.semsimmon.core.transport.TransportProxiesManagerImpl">
     <property name="transportProxies">
       <util:list id="transportProxies">
         <ref bean="jmxTransportProxy"/>
@@ -39,24 +39,24 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </property>
   </bean>
 
-  <bean id="coreMeasurementService" class="pl.edu.agh.semmon.core.measurement.CoreMeasurementServiceImpl">
+  <bean id="coreMeasurementService" class="pl.edu.agh.semsimmon.core.measurement.CoreMeasurementServiceImpl">
     <property name="transportProxiesManager" ref="transportProxiesManager"/>
     <property name="coreRemoteService" ref="coreRemoteService"/>
     <property name="pollManager" ref="capabilityValuePollManager"/>
     <property name="coreResourcesService" ref="coreResourcesService"/>
   </bean>
 
-  <bean id="capabilityValuePollManager" class="pl.edu.agh.semmon.core.measurement.CapabilityValuePollManagerQuartzImpl">
+  <bean id="capabilityValuePollManager" class="pl.edu.agh.semsimmon.core.measurement.CapabilityValuePollManagerQuartzImpl">
     <property name="coreMeasurementService" ref="coreMeasurementService"/>
   </bean>
 
   <!-- Knowledge Core Bean -->
-  <bean id="knowledgeBean" class="pl.edu.agh.semmon.knowledge.impl.KnowledgeImpl">
+  <bean id="knowledgeBean" class="pl.edu.agh.semsimmon.knowledge.impl.KnowledgeImpl">
     <property name="ontModelProvider" ref="ontModelProvider"/>
   </bean>
 
   <!-- Ontology model provider-->
-  <bean id="ontModelProvider" class="pl.edu.agh.semmon.knowledge.ontology.OntModelProviderImpl"
+  <bean id="ontModelProvider" class="pl.edu.agh.semsimmon.knowledge.ontology.OntModelProviderImpl"
         init-method="init">
     <property name="defaultOntology" value="semmon_2.owl"/>
   </bean>

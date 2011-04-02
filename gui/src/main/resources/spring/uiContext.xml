@@ -11,12 +11,12 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <context:annotation-config/>
 
-  <bean id="baseController" class="pl.edu.agh.semmon.gui.controllers.BaseController" abstract="true">
+  <bean id="baseController" class="pl.edu.agh.semsimmon.gui.controllers.BaseController" abstract="true">
     <property name="listenerFactory" ref="buttonPressListenerFactory"/>
   </bean>
 
 
-  <bean id="mainWindowController" class="pl.edu.agh.semmon.gui.MainWindowController">
+  <bean id="mainWindowController" class="pl.edu.agh.semsimmon.gui.MainWindowController">
     <property name="bxmlContentResource" value="classpath:ui/main.bxml"/>
     <!--suppress SpringModelInspection -->
     <property name="display" ref="display"/>
@@ -25,7 +25,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="window" factory-bean="mainWindowController" factory-method="getWindow" scope="prototype"/>
 
-  <bean id="resourcesTabController" class="pl.edu.agh.semmon.gui.controllers.tab.ResourcesTabController"
+  <bean id="resourcesTabController" class="pl.edu.agh.semsimmon.gui.controllers.tab.ResourcesTabController"
         parent="baseController">
     <property name="bxmlContentResource" value="classpath:ui/tabs/resources.bxml"/>
     <property name="tabIcon" value="classpath:ui/img/structure.png"/>
@@ -35,7 +35,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <property name="measurementService" ref="measurementService"/>
   </bean>
 
-  <bean id="measurementsTabController" class="pl.edu.agh.semmon.gui.controllers.tab.MeasurementsTabController"
+  <bean id="measurementsTabController" class="pl.edu.agh.semsimmon.gui.controllers.tab.MeasurementsTabController"
         parent="baseController">
     <property name="tabLabelKey" value="tabs.measurements.tabname"/>
     <property name="tabIcon" value="classpath:ui/img/metric.png"/>
@@ -44,13 +44,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </bean>
 
   <bean id="visualizationsTabController"
-        class="pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationsTabController">
+        class="pl.edu.agh.semsimmon.gui.controllers.tab.visualization.VisualizationsTabController">
     <property name="bxmlContentResource" value="classpath:ui/tabs/visualizations.bxml"/>
     <property name="tabLabelKey" value="tabs.visualizations.tabname"/>
     <property name="tabIcon" value="classpath:ui/img/visualisation.png"/>
   </bean>
 
-  <bean id="uiFactory" class="pl.edu.agh.semmon.gui.UiFactory">
+  <bean id="uiFactory" class="pl.edu.agh.semsimmon.gui.UiFactory">
     <lookup-method name="createAddJmxResourceDialog" bean="addJmxResourceWizard"/>
     <lookup-method name="createAddMeasurementControllerInternal" bean="addMeasurementController"/>
     <lookup-method name="createVisualizationTab" bean="visualizationController"/>
@@ -58,33 +58,33 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <lookup-method name="createAddOcmgResourceDialog" bean="addOcmgResourcesWizard"/>
   </bean>
 
-  <bean id="visualizationController" class="pl.edu.agh.semmon.gui.controllers.tab.visualization.VisualizationController"
+  <bean id="visualizationController" class="pl.edu.agh.semsimmon.gui.controllers.tab.visualization.VisualizationController"
         scope="prototype" parent="baseController" lazy-init="true">
     <property name="bxmlContentResource" value="classpath:ui/tabs/visualizationTab.bxml"/>
     <property name="measurementService" ref="measurementService"/>
     <property name="uiFactory" ref="uiFactory"/>
   </bean>
 
-  <bean id="baseDialogController" abstract="true" class="pl.edu.agh.semmon.gui.controllers.dialog.BaseDialogController"
+  <bean id="baseDialogController" abstract="true" class="pl.edu.agh.semsimmon.gui.controllers.dialog.BaseDialogController"
         parent="baseController">
     <property name="parentWindow" ref="window"/>
   </bean>
 
   <bean id="addMeasurementToVisualizationDialogCtrl"
-        class="pl.edu.agh.semmon.gui.controllers.dialog.AddMeasurToVisDialogCtrl"
+        class="pl.edu.agh.semsimmon.gui.controllers.dialog.AddMeasurToVisDialogCtrl"
         scope="prototype"
         parent="baseDialogController" lazy-init="true">
     <property name="bxmlContentResource" value="classpath:ui/dialogs/addMeasurementToVisualization.bxml"/>
   </bean>
 
-  <bean id="addMeasurementController" class="pl.edu.agh.semmon.gui.controllers.dialog.AddMeasurementDialogController"
+  <bean id="addMeasurementController" class="pl.edu.agh.semsimmon.gui.controllers.dialog.AddMeasurementDialogController"
         scope="prototype"
         parent="baseDialogController" lazy-init="true">
     <property name="measurementService" ref="measurementService"/>
     <property name="bxmlContentResource" value="classpath:ui/dialogs/addMeasurement.bxml"/>
   </bean>
 
-  <bean id="baseWizardController" class="pl.edu.agh.semmon.gui.controllers.wizard.BaseWizardController"
+  <bean id="baseWizardController" class="pl.edu.agh.semsimmon.gui.controllers.wizard.BaseWizardController"
         parent="baseDialogController" abstract="true">
     <property name="parentWindow" ref="window"/>
     <!--suppress SpringModelInspection -->
@@ -92,7 +92,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </bean>
 
   <bean id="addJmxResourceWizard"
-        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.AddJMXResourceWizardController"
+        class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.AddJMXResourceWizardController"
         parent="baseWizardController" scope="prototype" lazy-init="true">
     <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
     <property name="resourcesService" ref="resourcesService"/>
@@ -107,7 +107,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </property>
   </bean>
 
-  <bean id="configMonitorPage" class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ConfigMonitorPage"
+  <bean id="configMonitorPage" class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.ConfigMonitorPage"
         scope="prototype" lazy-init="true" parent="baseController">
     <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/configMonitorView.bxml"/>
     <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
@@ -120,20 +120,20 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </property>
   </bean>
 
-  <bean id="configJmxNodesPage" class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.ConfigJmxNodes"
+  <bean id="configJmxNodesPage" class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.ConfigJmxNodes"
         scope="prototype" lazy-init="true" parent="baseController">
     <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXNodesView.bxml"/>
     <property name="nodeDefinitionResource" value="classpath:ui/wizard/resource/add/jmx/nodeDefinition.bxml"/>
   </bean>
 
   <bean id="configJmxHierarchyPage"
-        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.ConfigHierarchyPage"
+        class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.ConfigHierarchyPage"
         scope="prototype" lazy-init="true" parent="baseController">
     <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/jmx/configJMXHierarchyView.bxml"/>
   </bean>
 
   <bean id="addOcmgResourcesWizard"
-        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.AddOcmgResourceWizardController"
+        class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.ocmg.AddOcmgResourceWizardController"
         parent="baseWizardController" scope="prototype" lazy-init="true">
     <property name="pages">
       <util:list>
@@ -149,14 +149,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </bean>
 
   <bean id="configMainSmPageController"
-        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.ConfigMainSMPage" parent="baseController"
+        class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.ocmg.ConfigMainSMPage" parent="baseController"
         scope="prototype" lazy-init="true">
     <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/ocmg/configConnectionString.bxml"/>
 
   </bean>
 
   <bean id="selectAppsController"
-        class="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.ocmg.SelectAppsPageController"
+        class="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.ocmg.SelectAppsPageController"
         parent="baseController" scope="prototype" lazy-init="true">
     <property name="bxmlContentResource" value="classpath:ui/wizard/resource/add/ocmg/chooseApplications.bxml"/>
   </bean>
@@ -164,103 +164,103 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <util:map id="resourceIconsMap" key-type="java.lang.String" value-type="org.springframework.core.io.Resource">
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.APPLICATION_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.APPLICATION_URI"/>
       </key>
       <value>classpath:ui/img/global.png</value>
     </entry>
 
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLUSTER_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CLUSTER_URI"/>
       </key>
       <value>classpath:ui/img/cluster.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
       </key>
       <value>classpath:ui/img/node.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CPU_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CPU_URI"/>
       </key>
       <value>classpath:ui/img/cpu.gif</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
       </key>
       <value>classpath:ui/img/ram.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
       </key>
       <value>classpath:ui/img/ram.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.PROCESS_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.PROCESS_URI"/>
       </key>
       <value>classpath:ui/img/gears.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
       </key>
       <value>classpath:ui/img/thread.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
       </key>
       <value>classpath:ui/img/trash_16.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.CLASS_LOADER_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CLASS_LOADER_URI"/>
       </key>
       <value>classpath:ui/img/JavaClass.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.NETWORK_INTERFACE_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.NETWORK_INTERFACE_URI"/>
       </key>
       <value>classpath:ui/img/eth.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.HARD_DRIVE_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.HARD_DRIVE_URI"/>
       </key>
       <value>classpath:ui/img/hard_drive.png</value>
     </entry>
     <entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
       </key>
       <value>classpath:ui/img/jvm.gif</value>
     </entry><entry>
       <key>
-        <util:constant static-field="pl.edu.agh.semmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
       </key>
       <value>classpath:ui/img/schema_unix.png</value>
     </entry>
   </util:map>
 
   <bean id="buttonPressListenerFactory"
-        class="pl.edu.agh.semmon.gui.controllers.action.ReflectionButtonPressListenerFactoryImpl">
+        class="pl.edu.agh.semsimmon.gui.controllers.action.ReflectionButtonPressListenerFactoryImpl">
     <lookup-method name="createEmptyListener" bean="buttonPressListener"/>
 
   </bean>
 
-  <bean id="buttonPressListener" class="pl.edu.agh.semmon.gui.controllers.action.ReflectionButtonPressListener"
+  <bean id="buttonPressListener" class="pl.edu.agh.semsimmon.gui.controllers.action.ReflectionButtonPressListener"
         scope="prototype">
     <property name="executorService" ref="actionExecutorService"/>
     <property name="exceptionHandler" ref="promptExceptionHandler"/>
   </bean>
 
-  <bean id="promptExceptionHandler" class="pl.edu.agh.semmon.gui.controllers.action.PopupExceptionHandler">
+  <bean id="promptExceptionHandler" class="pl.edu.agh.semsimmon.gui.controllers.action.PopupExceptionHandler">
     <!--<property name="parentWindow" ref="window"/>-->
   </bean>
 
@@ -286,63 +286,55 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   </util:map>
 
-  <bean id="closeAction" class="pl.edu.agh.semmon.gui.action.CloseAction">
+  <bean id="closeAction" class="pl.edu.agh.semsimmon.gui.action.CloseAction">
     <property name="enabled" value="true"/>
   </bean>
 
-  <bean id="addOcmgResourceAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="addOcmgResourceAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="resourcesService"/>
     <property name="method" value="showAddOcmgResourceWizard"/>
   </bean>
 
-  <bean id="addJmxResourceAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="addJmxResourceAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="resourcesService"/>
     <property name="method" value="showAddJmxResourceWizard"/>
   </bean>
 
-  <bean id="pauseAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="pauseAllMeasurementsAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="measurementService"/>
     <property name="method" value="pauseAllMeasurements"/>
   </bean>
 
-  <bean id="resumeAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="resumeAllMeasurementsAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="measurementService"/>
     <property name="method" value="resumeAllMeasurements"/>
   </bean>
 
 
-  <bean id="removeAllMeasurementsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="removeAllMeasurementsAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="measurementService"/>
     <property name="method" value="removeAllMeasurements"/>
   </bean>
 
-  <bean id="removeAllVisualizationsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="removeAllVisualizationsAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="visualizationsTabController"/>
     <property name="method" value="removeAllVisualizations"/>
   </bean>
 
-  <bean id="pauseAllVisualizationsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="pauseAllVisualizationsAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="visualizationsTabController"/>
     <property name="method" value="pauseAllVisualizations"/>
   </bean>
-  <bean id="resumeAllVisualizationsAction" class="pl.edu.agh.semmon.gui.action.ReflectionAction">
+  <bean id="resumeAllVisualizationsAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
     <property name="enabled" value="true"/>
     <property name="target" ref="visualizationsTabController"/>
     <property name="method" value="resumeAllVisualizations"/>
   </bean>
-
-  <bean id="sampleController" class="pl.edu.agh.semmon.gui.controllers.SampleController" parent="baseController">
-    <property name="bxmlContentResource" value="classpath:ui/sample.bxml"/>
-    <property name="listenerFactory" ref="buttonPressListenerFactory"/>
-    <!-- Dependencies to model should go here-->
-  </bean>
-
-
 </beans>

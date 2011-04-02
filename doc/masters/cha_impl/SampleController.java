@@ -1,4 +1,4 @@
-package pl.edu.agh.semmon.gui.controllers;
+package pl.edu.agh.semsimmon.gui.controllers;
 
 
 import org.apache.pivot.beans.BXML;
@@ -7,7 +7,7 @@ import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.PushButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.edu.agh.semmon.gui.controllers.action.ButtonAction;
+import pl.edu.agh.semsimmon.gui.controllers.action.ButtonAction;
 
 public class SampleController extends BaseController<BoxPane> {
 

@@ -8,8 +8,8 @@
   <version>0.1-SNAPSHOT</version>
 
   <parent>
-    <artifactId>semmon</artifactId>
-    <groupId>pl.edu.agh.semmon</groupId>
+    <groupId>pl.edu.agh.semsimmon</groupId>
+    <artifactId>semsimmon</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
 
@@ -17,7 +17,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>pl.edu.agh.semmon</groupId>
+      <groupId>pl.edu.agh.semsimmon</groupId>
       <artifactId>commons</artifactId>
       <version>${project.version}</version>
     </dependency>

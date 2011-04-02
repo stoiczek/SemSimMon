@@ -69,7 +69,7 @@
             <manifest>
               <!-- writes libs to manifest, same dir -->
               <addClasspath>true</addClasspath>
-              <mainClass>pl.edu.agh.semmon.gui.Main</mainClass>
+              <mainClass>pl.edu.agh.semsimmon.gui.Main</mainClass>
               <!-- sets proper main class for manifest -->
             </manifest>
           </archive>

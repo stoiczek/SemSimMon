@@ -4,7 +4,7 @@
 
   <test name="OCMG transport proxy test">
     <classes>
-      <class name="pl.edu.agh.semmon.gui.logic.resource.ResourceServiceTest"/>
+      <class name="pl.edu.agh.semsimmon.gui.logic.resource.ResourceServiceTest"/>
     </classes>
   </test>
 

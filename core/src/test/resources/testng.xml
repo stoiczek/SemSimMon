@@ -4,9 +4,9 @@
 
   <test name="Main test">
     <classes>
-      <class name="pl.edu.agh.semmon.core.measurement.CoreMeasurementServiceTest"/>
-      <class name="pl.edu.agh.semmon.core.measurement.CapabilityValuePollMangerTest"/>
-      <class name="pl.edu.agh.semmon.core.measurement.PollJobTest"/>
+      <class name="pl.edu.agh.semsimmon.core.measurement.CoreMeasurementServiceTest"/>
+      <class name="pl.edu.agh.semsimmon.core.measurement.CapabilityValuePollMangerTest"/>
+      <class name="pl.edu.agh.semsimmon.core.measurement.PollJobTest"/>
     </classes>
   </test>
 

@@ -1,7 +1,7 @@
 <TablePane xmlns="org.apache.pivot.wtk" xmlns:effects="org.apache.pivot.wtk.effects"
            xmlns:bxml="http://pivot.apache.org/bxml"
            xmlns:content="org.apache.pivot.wtk.content"
-           xmlns:smUtil="pl.edu.agh.semmon.gui.util"
+           xmlns:smUtil="pl.edu.agh.semsimmon.gui.util"
            bxml:id="resourcesPane"
            styles="{horizontalSpacing:4,showHorizontalGridLines:false, showVerticalGridLines:false}">
   <columns>

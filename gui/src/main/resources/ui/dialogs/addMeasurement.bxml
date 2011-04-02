@@ -1,7 +1,7 @@
 <?xml version="1.0"  ?>
 <Frame bxml:id="dialog" title="%wizards.measurement.add.frameTitle"
        xmlns:bxml="http://pivot.apache.org/bxml"
-       xmlns:su="pl.edu.agh.semmon.gui.util"
+       xmlns:su="pl.edu.agh.semsimmon.gui.util"
        xmlns="org.apache.pivot.wtk">
   <content>
     <BoxPane orientation="vertical" styles="{fill:true}">

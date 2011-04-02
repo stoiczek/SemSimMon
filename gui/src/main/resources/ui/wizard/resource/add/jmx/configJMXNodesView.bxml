@@ -1,6 +1,6 @@
 <BoxPane bxml:id="dialog"
          xmlns:bxml="http://pivot.apache.org/bxml"
-         xmlns:su="pl.edu.agh.semmon.gui.util"
+         xmlns:su="pl.edu.agh.semsimmon.gui.util"
          xmlns="org.apache.pivot.wtk" orientation="vertical" preferredWidth="520" preferredHeight="300">
   <Label text="%wizards.resources.add.jmx.configNodes"/>
   <BoxPane bxml:id="nodesPane" orientation="vertical">

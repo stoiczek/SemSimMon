@@ -3,7 +3,7 @@
          xmlns:content="org.apache.pivot.charts.content"
          xmlns:wtkContent="org.apache.pivot.wtk.content"
          xmlns:charts="org.apache.pivot.charts"
-         xmlns:su="pl.edu.agh.semmon.gui.util"
+         xmlns:su="pl.edu.agh.semsimmon.gui.util"
          TabPane.tabData=""
          orientation="vertical" styles="{fill:true}">
   <TablePane height="500">
@@ -54,7 +54,7 @@
                       <RadioButton buttonGroup="$chartTypeButtonGroup" selected="true">
                         <buttonData>
                           <su:ButtonDataContainer text="%tabs.visualizations.chartType.line"
-                                                  enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                                  enumClass="pl.edu.agh.semsimmon.gui.controllers.tab.visualization.chart.ChartType"
                                                   enumName="LINE_CHART"/>
                         </buttonData>
                       </RadioButton>
@@ -63,21 +63,21 @@
 
                         <buttonData>
                           <su:ButtonDataContainer text="%tabs.visualizations.chartType.pie"
-                                                  enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                                  enumClass="pl.edu.agh.semsimmon.gui.controllers.tab.visualization.chart.ChartType"
                                                   enumName="PIE_CHART"/>
                         </buttonData>
                       </RadioButton>
                       <RadioButton buttonGroup="$chartTypeButtonGroup">
                         <buttonData>
                           <su:ButtonDataContainer text="%tabs.visualizations.chartType.bar"
-                                                  enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                                  enumClass="pl.edu.agh.semsimmon.gui.controllers.tab.visualization.chart.ChartType"
                                                   enumName="BAR_CHART"/>
                         </buttonData>
                       </RadioButton>
                       <RadioButton buttonGroup="$chartTypeButtonGroup">
                         <buttonData>
                           <su:ButtonDataContainer text="%tabs.visualizations.chartType.spiderWeb"
-                                                  enumClass="pl.edu.agh.semmon.gui.controllers.tab.visualization.chart.ChartType"
+                                                  enumClass="pl.edu.agh.semsimmon.gui.controllers.tab.visualization.chart.ChartType"
                                                   enumName="SPIDER_WEB_CHART"/>
                         </buttonData>
                       </RadioButton>

@@ -11,7 +11,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <context:annotation-config/>
 
-  <bean id="resourcesService" class="pl.edu.agh.semmon.gui.logic.resource.ResourcesServiceImpl">
+  <bean id="resourcesService" class="pl.edu.agh.semsimmon.gui.logic.resource.ResourcesServiceImpl">
     <property name="uiFactory" ref="uiFactory"/>
     <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
     <property name="resourcesListeners">
@@ -21,7 +21,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </property>
   </bean>
 
-  <bean id="measurementService" class="pl.edu.agh.semmon.gui.logic.metric.MeasurementServiceImpl">
+  <bean id="measurementService" class="pl.edu.agh.semsimmon.gui.logic.metric.MeasurementServiceImpl">
     <property name="coreConnectionsManager" ref="coreConnectionsManager"/>
     <property name="measurementsListeners">
       <util:list>
@@ -31,7 +31,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </bean>
 
 
-  <bean id="coreConnectionsManager" class="pl.edu.agh.semmon.gui.logic.connection.CoreConnectionsManagerImpl">
+  <bean id="coreConnectionsManager" class="pl.edu.agh.semsimmon.gui.logic.connection.CoreConnectionsManagerImpl">
     <property name="embeddedCoreConnection" ref="embeddedCoreConnection"/>
     <property name="resourceListeners">
       <util:list>
@@ -45,7 +45,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     </property>
   </bean>
 
-  <bean id="embeddedCoreConnection" class="pl.edu.agh.semmon.gui.logic.connection.EmbeddedCoreConnection">
+  <bean id="embeddedCoreConnection" class="pl.edu.agh.semsimmon.gui.logic.connection.EmbeddedCoreConnection">
     <property name="coreServiceFacade" ref="coreServiceFacade"/>
   </bean>
 

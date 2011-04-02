@@ -1,7 +1,7 @@
 <?xml version="1.0"  ?>
 <BoxPane
     xmlns:bxml="http://pivot.apache.org/bxml"
-    xmlns:su="pl.edu.agh.semmon.gui.util"
+    xmlns:su="pl.edu.agh.semsimmon.gui.util"
     xmlns="org.apache.pivot.wtk" preferredWidth="600" preferredHeight="350" orientation="vertical" styles="{fill:true}">
 
   <!--First part: choose connection type-->
@@ -14,14 +14,14 @@
     <RadioButton buttonGroup="$connectionTypeButtonGroup" selected="true">
       <buttonData>
         <su:ButtonDataContainer text="%wizards.resources.add.jmx.useExistingMonitor"
-                                enumClass="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType"
+                                enumClass="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType"
                                 enumName="USE_EXISTING"/>
       </buttonData>
     </RadioButton>
     <RadioButton buttonGroup="$connectionTypeButtonGroup" selected="false">
       <buttonData>
         <su:ButtonDataContainer text="%wizards.resources.add.jmx.startNewMonitor"
-                                enumClass="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType"
+                                enumClass="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType"
                                 enumName="START_NEW_MONITOR"/>
       </buttonData>
     </RadioButton>
@@ -29,7 +29,7 @@
     <RadioButton buttonGroup="$connectionTypeButtonGroup" selected="false">
       <buttonData>
         <su:ButtonDataContainer text="%wizards.resources.add.jmx.externalMonitor"
-                                enumClass="pl.edu.agh.semmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType"
+                                enumClass="pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType"
                                 enumName="USE_EXTERNAL"/>
       </buttonData>
     </RadioButton>
