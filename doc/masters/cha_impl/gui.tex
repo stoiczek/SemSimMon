@@ -2,10 +2,10 @@
 
 \subsection{Frameworks}
 
-The most important framework used by GUI is Apache Pivot\footnote{\url{http://pivot.apache.org/}}. As authors say,
-Apache Pivot is an open-source platform for building installable Internet applications (IIAs). It is quite new Apache
-project, which brings completely new approach to GUI building in Java. The biggest feature of Pivot is totally
-decoupled interface description from programming language. The framework uses XML markup from bxml files to build
+The most important framework used by GUI is Apache Pivot\footnote{\url{http://pivot.apache.org/}}. As authors say:
+\lq\lq{}Apache Pivot is an open-source platform for building installable Internet applications (IIAs)\rq\rq{}. It is quite new Apache
+project, which brings completely new approach to GUI building in Java. The biggest feature of Pivot is ability to totally
+decouple interface description from programming language. The framework uses XML markup in from of BXML files to build
 interfaces. Example of such a file, can be found in Figure~\ref{fig:bxml_example}
  
 \begin{figure}[ht]
@@ -24,16 +24,10 @@ interfaces. Example of such a file, can be found in Figure~\ref{fig:bxml_example
   \label{fig:bxml_example}
 \end{figure}
 
-Another great feature of Pivot is data binding. Pivot provides own collections which triggers updates of UI state, on
-change of collection content. Additionally, it provides means to bind UI items with controller class members. Those
-features simplify realization of MVC design pattern a lot. All views in GUI component are implemented using BXML and are
-binded to controllers. What is also worth to mention, Pivot allows to easily internationalize application, and
-SemSimMon uses it's i18n features - all texts in labels and other UI widgets are internationalized. The default,
-English localization has been provided.
+Another great mechanism of Pivot is data binding. Pivot provides own collections which triggers updates of UI state, on
+change of it\rq{}s content and vice versa - updating state of view components is automatically applied to underlaying data structure. Additionally, it provides means to bind UI items with controller class members. Those features simplifies realization of MVC design pattern a lot. All views in GUI component are implemented using BXML and are binded to controllers. What is also worth to mention, Pivot allows to easily internationalize application, and SemSimMon uses it's i18n features - all texts in labels and other UI widgets are internationalized. The default, English localization has been provided.
 
-Second most important framework in use by GUI is well known Spring
-Framework\footnote{\url{http://www.springsource.org}}. Spring is used to integrate all components of this module,
-to associate controllers with views and with model. For that purpose spring Inversion of Control Container is
+Second most important framework in use by GUI is well known Spring Framework\footnote{\url{http://www.springsource.org}}. Spring is used to integrate all components of this module, to associate controllers with views and with model. For that purpose Inversion of Control Container is
 employed\footnote{\url{http://static.springsource.org/spring/docs/3.0.x/reference/beans.html}}
 
 \subsection{Controller infrastructure}
@@ -43,13 +37,13 @@ SemSimMon that needs to be understood in order to work with GUI module.
 
 All controllers inherits from common super class, namely BaseController. This class contains pivot component (view)
 that given controller manages, resource (bxml file) that must be used to read and instantiate view and i18n resources. 
-It's responsibility is to create component from resource, bind all widgets and button actions. Additionally,
-BaseController defines two abstract methods, that can be used for fine tune configuration: \textbf{preDeserialize} and
-\textbf{postBinding}. preDeserialize callback is called just after spring initializes controller, all dependencies are
-configured, and before BasicController tries to deserialize view. It can be used to initialize resources
-needed by deserializer or edit in some way resource that will be used for parsing components. On the other hand,
-postBinding is called by BasicController directly after reading view. It can be used to initialize UI components,
-populate some data etc.
+It's responsibility is to create view component from resource, and bind all widgets and button actions. Additionally,
+BaseController defines two abstract methods, that can be used for fine tune of configuration: \textbf{preDeserialize} and
+\textbf{postBinding}. preDeserialize callback is called after spring initializes controller, all dependencies are
+configured, and just before BasicController tries to deserialize view. It can be used to initialize resources
+needed by deserializer or edit in some other way resource that will be used for parsing components. On the other hand,
+postBinding is called by BasicController directly after deserialization of view component is done. It can be used to initialize UI components,
+populate some static data etc.
 
 Binding button's action needs to be describe a bit more as it's quite crucial mechanism in GUI. It was created in
 assumption that most actions in GUI applications are triggered user clicking on button (class PushButton in Apache
