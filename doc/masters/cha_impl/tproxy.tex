@@ -9,7 +9,7 @@ JMX Transport Proxy is build around two concepts: discovery agent and capability
   \item{\bf{CPUDiscoveryAgent}} - discovers CPUs on given computing node
   \item{\bf{JvmDiscoveryAgent}} - discovers specific JVM running on node
   \item{\bf{OsDiscoveryAgent}} - discovers operating system that runs on given node
-  \item{\bf{GenericDiscoveryAgent}} - used to \lq{}discover\rq{} components that exists but any of their properties can be extracted
+  \item{\bf{GenericDiscoveryAgent}} - can \lq{}discover\rq{} components that exists but any of their properties can be extracted
 \end{itemize} 
 
 Additionally, JMX Transpor proxy uses following probes to fetch capability values: 
@@ -54,7 +54,7 @@ OCM-G Transport Proxy uses following probes:
 \end{itemize} 
 
 \subsection{TransportProxy interface}
-Although Transport Proxies are components where most of actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which contents can be seen in Figure~\ref{fig:transport_proxy}.
+Although Transport Proxies are components where most of actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which can be seen in Figure~\ref{fig:transport_proxy}.
 
 \begin{figure}[ht]
   \centering
@@ -63,4 +63,4 @@ Although Transport Proxies are components where most of actual magic occurs, it\
   \label{fig:transport_proxy}
 \end{figure} 
 
-Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduce, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one must create new class that inherits from BaseTransportProxy and implement only methods that aren\rq{}t implemented in this parent.
+Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduced, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one must create new class that inherits from BaseTransportProxy and implement only abstract methods that defined there.

@@ -27,34 +27,34 @@ interfaces. Example of such a file, can be found in Figure~\ref{fig:bxml_example
 Another great mechanism of Pivot is data binding. Pivot provides own collections which triggers updates of UI state, on
 change of it\rq{}s content and vice versa - updating state of view components is automatically applied to underlaying data structure. Additionally, it provides means to bind UI items with controller class members. Those features simplifies realization of MVC design pattern a lot. All views in GUI component are implemented using BXML and are binded to controllers. What is also worth to mention, Pivot allows to easily internationalize application, and SemSimMon uses it's i18n features - all texts in labels and other UI widgets are internationalized. The default, English localization has been provided.
 
-Second most important framework in use by GUI is well known Spring Framework\footnote{\url{http://www.springsource.org}}. Spring is used to integrate all components of this module, to associate controllers with views and with model. For that purpose Inversion of Control Container is
+Second most important framework that GUI use is well known Spring Framework\footnote{\url{http://www.springsource.org}}. Spring is used to integrate all components of this module, to associate controllers with views and with model. For that purpose Inversion of Control Container is
 employed\footnote{\url{http://static.springsource.org/spring/docs/3.0.x/reference/beans.html}}
 
 \subsection{Controller infrastructure}
 
-Controllers are most important components in MVC, and thus needs special attention. There are few core mechanisms in
+Controllers are most important in MVC, and thus need special attention. There are few core mechanisms in
 SemSimMon that needs to be understood in order to work with GUI module. 
 
 All controllers inherits from common super class, namely BaseController. This class contains pivot component (view)
-that given controller manages, resource (bxml file) that must be used to read and instantiate view and i18n resources. 
-It's responsibility is to create view component from resource, and bind all widgets and button actions. Additionally,
-BaseController defines two abstract methods, that can be used for fine tune of configuration: \textbf{preDeserialize} and
+that is managed by given controller, resource (reference to bxml file) that must be used to read and instantiate view and i18n resources. 
+BaseController is responsible for creating view component from resource, and bind all widgets and button actions. Additionally,
+it defines two abstract methods, that can be used for fine tune of configuration: \textbf{preDeserialize} and
 \textbf{postBinding}. preDeserialize callback is called after spring initializes controller, all dependencies are
 configured, and just before BasicController tries to deserialize view. It can be used to initialize resources
 needed by deserializer or edit in some other way resource that will be used for parsing components. On the other hand,
 postBinding is called by BasicController directly after deserialization of view component is done. It can be used to initialize UI components,
 populate some static data etc.
 
-Binding button's action needs to be describe a bit more as it's quite crucial mechanism in GUI. It was created in
-assumption that most actions in GUI applications are triggered user clicking on button (class PushButton in Apache
-Pivot). To reduce boilerplate code that needs to be written to handle single action, I've designed ButtonAction
+Binding button actions needs to be described in a bit more detail, as it is crucial mechanism in GUI module. It was created with
+assumption that most actions in GUI applications are triggered by user clicking on button (class PushButton in Apache
+Pivot). To reduce boilerplate code that needs to be written to handle single action, I have designed ButtonAction
 mechanism. It's composed of: BasicController that binds actions to methods, @ButtonAction annotation that can be used
 to mark method which should be called on button click, and finally class ReflectionButtonPressListener, which is
 responsible for processing given method. Using this mechanism, to handle action request made by user, developer needs
 to do three things: define push button with appropriate id in view, define class member of type PushButton and same
 name as id defined in view and finally declare method in controller and mark it using @ButtonAction. 
 
-The best way how MVC in SemSimMon works would be by example. Let us assume, that we need basic view composed of one
+The best way to show how MVC works in SemSimMon, would be by example. Let us assume, that we need basic view composed of one
 panel with single label and button. On button click, label gets filed with random content. First thing that needs to be
 done, is to define view using BXML. This sample view, can be found in Figure~\ref{fig:sample_view}.
 
@@ -74,9 +74,9 @@ done, is to define view using BXML. This sample view, can be found in Figure~\re
   \label{fig:sample_view}
 \end{figure}
 
-This view consist only 3 items: box pane, with vertical orientation, and inside of it: label and push button. What
+This view consist only three items: box pane, with vertical orientation, and inside of it: label and push button. What
 should be additionally noticed is that texts of label and button are internationalized. In pivot, i18n keys are stored
-in json files. Figure~\ref{fig:i18n} 
+in json files. Figure~\ref{fig:i18n} covers content of example json file that is valid Pivot i18n resource. 
 
 \begin{figure}[ht]
   \centering
@@ -123,7 +123,5 @@ Figure~\ref{fig:sample_spring}.
   \caption{Listing of sample spring configuration}
   \label{fig:sample_spring}
 \end{figure}
-
-
 
  
