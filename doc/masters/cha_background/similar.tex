@@ -11,8 +11,22 @@
 %---------------------------------------------------------------------------
 \subsection{perfSonar}
 
-Sth about perfSonar from\cite{perfSonar1,perfSonar2,perfSonar3}
+perfSonar (\cite{perfSonar1,perfSonar2,perfSonar3}) is an infrastructure for network performance monitoring. It aims in easing solve end-to-end performance problems on paths that crosses several networks. It is composed of a set of services delivering performance measurements in federated environment. This approach allows to classify project as a middle were service, used by performance measuring tools and diagnostic or visualization applications. The layer created by perfSonar aims to make and exchange performance measurements between networks, using well-defined protocols.  Architecture of perfSONAR is service oriented, which means that the set of elementary functions have been isolated and can be provided by several, independent entities (\emph{services}).
 
+Work done on perSONAR is made around three contexts. First, there is a consortium of organizations who build network of performance middleware that is interoperable across multiple networks and useful for variate network analysis. The second context is a protocol. It is build on assumption of fixed, well defined roles (service types) and defines communication between components implementing each role. Such a approach allows interoperability. What is also worth mentioning, is that the protocol is based on SOAP XML messages format and follows Network Measurement Working Group\footnote{\url{http://nmwg.internet2.edu}} schema.  The third context is set of implemented software packages that provides defined services.
+
+
+The framework has already defined several types of services. This includes:
+
+\begin{itemize}
+\item{ {\bf Measurement Point Service}, acts as a service provider. Standard doesn\rq{}t define whether it gathers measurement values dynamically, by querying measured components or retrieves static, archived data. It defines only it\rq{}s role as a source of measurement values. }
+\item{ {\bf Measurement Archive Service}, is responsible for archivization. It can use any storage facility underneath (Round Robin Database or any RDBMS). Additionally it can publish received information. }
+\item{ {\bf Lookup Service}, enables services to discover other services. It acts as service directory, where service can advertise themselves and requestors are able to find any service needed}
+\item{ {\bf Authentication Service}, helps domains which would like to restrict access to given service capabilities for some groups of users. It is responsible for both authorization (who is given user) and authentication - it acts as so called attribute authority (decides which attribute can be disclosed to a resource)}
+\item{ {\bf Transformation Service}, is generic service type that allows creation of data conversion pipelines. It is able to perform any function upon data taken from producer and returns transformed data to consumer}
+\item{ {\bf Topology Service}, provides the framework informations about network topology, which allows for example visualization of network maps. Additionally it gives information on geolocation, like GPS coordinates.}
+\item{ {\bf Resource Protector Service} - it is used to arbitrate the consumption of limited, shared resources (like network bandwidth).}
+\end{itemize}
 
 %---------------------------------------------------------------------------
 \subsection{DIPAS}
