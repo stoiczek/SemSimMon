@@ -17,7 +17,7 @@ GMA stands for Grid Monitoring Architecture~\cite{GMA1,GMA2}. It was originally 
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.5\textwidth]{gma}
+  \includegraphics[width=0.6\textwidth]{gma}
   \caption{GMA Components}
   \label{fig:gma}
 \end{figure}
@@ -31,11 +31,14 @@ OMIS, On-Line Monitoring Interface Specification is another example of affords a
 
 The main purpose of this work is to define an interface that will allow communication between development tools (e.g. debuggers, performance analyzers or load balancers) and parallel programs running in distributed environments. The researches had three main goals to achieve, namely to define interface that will be extensive and complete to allow it\rq{}s usage in present tools, to allow extendability and usage in tools not known yet and to allow high adaptability to current and future programming paradigms (shared memory, remote procedure call or client/server).
 
-To achieve those goals, authors introduced two sub-interfaces - one for communication between tool and program (monitor/program-interface) and between toll and monitors (tool/monitor-interface) with additional extension points. Illustration of this model can be found in Figure~\ref{fig:omis}. Additionally, OMIS supports only request/response communication model.
+To achieve those goals, authors introduced two sub-interfaces - one for communication between tool and program (monitor/program-interface) and between toll and monitors (tool/monitor-interface) with additional extension points. Illustration of this model can be found in Figure~\ref{fig:omis}. 
+
+OMIS standard defines two kinds of monitoring request - unconditional and conditional ones. Unconditional services specify a set of actions to be performed immediately. It can be described as query monitoring mode, where result is obtained instantly and unconditionally. Requests of this type are composed just of one and more information or manipulation services. It creates of request/response communication model. In the second mode, requests contains event service and a set of actions. With this mode, request tells monitoring system to execute actions substantially. It creates of subscribe/notify communication model.
+
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.7\textwidth]{omis}
+  \includegraphics[width=0.6\textwidth]{omis}
   \caption{OMIS System Model}
   \label{fig:omis}
 \end{figure}

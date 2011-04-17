@@ -29,13 +29,34 @@ About SCALEA: \cite{SCALEA1,SCALEA2, SCALEA3}
 
 As part of work on OMIS (See section~\ref{ssec:omis}) several tools that are compliant with this interface where introduced. This tool set includes: OCM\footnote{\url{http://www.lrr.in.tum.de/Par/tools/Projects/OCM.html}}, OCM-G\footnote{\url{http://grid.cyfronet.pl/ocmg}}, J-OCM\footnote{\url{http://jocm.icsr.agh.edu.pl/sub/main}} and G-PM\footnote{\url{http://gpm.icsr.agh.edu.pl}}.
 
-OCM (\cite{RWspdt98, RW:ppam99b}) - OMIS Compliant Monitoring System is the first tool in whole set. Work on this project started at 1997. The main goal of this project was to create a reference implementation of an OMIS compliant monitoring system. Initially it supported PVM (versions 3.3 and 3.4) and MPI-1.
+OCM (\cite{RWspdt98, RW:ppam99b}) - OMIS Compliant Monitoring System is the first tool in whole set. Work on this project started in 1997. The main goal of this project was to create a reference implementation of an OMIS compliant monitoring system. Initially it supported PVM (versions 3.3 and 3.4) and MPI-1. 
 
-Sth about with \cite{OCM_1,OCM_2,OCM_3} Reference to: 
+As a next step in platform evolution, OCM-G, which states for Grid-enabled OMIS-Compliant Monitoring system (\cite{axgrid03b}) was introduced. This project focuses on using OMIS interface with grid environments.  In spite of working with well known MPI parallel programming library, it was designed to work with Globus Toolkit and is fully compliant with EGEE environment including gLite 3.x\footnote{\url{http://glite.cern.ch/}} and LCG 2.7. 
+
+The last addition to set OMIS-compliant tools is J-OCMG - Java oriented monitoring infrastructure (\cite{jocm}). It adds ability of monitoring JVM-based applications. It extended standard OMIS interface with a set of new, Java-specific services, like garbage collection, threads execution, class loading or method invocation. Currently project implementation focuses on monitoring Java Web Services and component oriented applications.
+
+General architecture shared among all mentioned above systems can be found in Figure~\ref{fig:ocmg}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{ocm_arch}
+  \caption{Common OMIS-compliant tools architecture diagram}
+  \label{fig:ocmg}
+\end{figure}
+ 
+ 
+ 
 %---------------------------------------------------------------------------
 \subsection{R-GMA}
 
-Sth about R-GMA, from \cite{RGMA1,RGMA2,RGMA3}. \ref{ssec:gma}
+R-GMA: Relational Grid Monitoring Architecture~(\cite{RGMA1,RGMA2,RGMA3}) is implementation of GMA, described in section~\ref{ssec:gma}. Although it implements GMA interface, it adds two exceptions to the standard. First, anyone supplying or obtaining information from R-GMA does not need to know about the Registry component, as it\rq{}s responsibility is processed by Consumer and Producer components \lq\lq{}behind the scenes\rq\rq{}. The second exception is that information and monitoring system appears like one large relational database and can be queried as such. The second exception is source of R (Relational) in project name.
+
+All systems using R-GMA shared information in a virtual database, with data organized into table, and managed using standard SQL constructs (like INSERT INTO... or SELECT * FROM). Regarding internal database structure, there is no central repository that actually holds the data for each table. Virtual database just consists of a list of table definitions (\emph{schema}), a list of data providers (\emph{registry}) and a set of rules for deciding which data providers needs to be used while preparing result for given query. These rules are fixed and encoded into a internal component called \emph{mediator}.
+
+The system provides several ways to access the database. There are provided API, with bindings available in Java, C/C++ and Python. Additionally users can work with database using web interface or command line utility.
+
+
+
 
 %---------------------------------------------------------------------------
 \subsection{Gridscape}
