@@ -10,7 +10,44 @@
 %---------------------------------------------------------------------------
 
 
+\subsection{K-WfGrid}
+\label{ssec:kwfgrid}
+
+K-WfGrid which is abbreviation for Knowledge-based Workflow System for Grid Applications (\cite{KWfGrid1, flow-cgw04, wct-kwf-book-07}) is both middleware solution that aims in setting up infrastructure for the future Grid environment and consortium of institutions interested in development of this solution. To solve problems caused by dynamic and complex nature of Grid environments, the consortium adopts approaches envisioned by Semantic Web, agent technologies and Grid communities. As an outcome, K-Wf Grid system assists users in creation of Grid workflows using rule-based expert system.
+The system adopts ontological descriptions of the environment and applications. 
+
+Implemented system, is capable of
+\begin{itemize}
+  \item{semi automatic composition of application workflow}
+  \item{execution of composed workflow}
+  \item{monitoring performance of execution}
+  \item{analyses resulting monitoring information}
+  \item{captures the knowledge contained in this information and tries to {\bf reuse} it in order to construct more efficient future workflows}
+\end{itemize}
+
+The main workflow composition functionality is defined as a transformation of a user request document into a solution workflow document in the same notation format. The input document must be written using fixed notation (\emph{GWorkflowDL}) and it may contain some parts of workflow already specified. Parts that are still undefined (called \emph{Unsatisfied Dependency}) contains specification of data that is required at a certain stage of workflow processing - the generate the the whole workflow, system must find suitable providers of those data. Providers, in form of one or more Grid services are looked up in ontological registry. The workflow is considered to be done, when all unsatisfied dependencies are resolved.
+
 %---------------------------------------------------------------------------
+
+\subsection{OMIS}
+\label{ssec:omis}
+OMIS, On-Line Monitoring Interface Specification is another example of affords aiming at standardization and interoperability between grid monitoring tools. Work on this project was started in 1995, and continued up to 2003. As an outcome of this work, interface specification in three versions was created: OMIS 1.0\cite{OMIS1}, 2.0\cite{OMIS2} and 2.1.
+
+The main purpose of this work is to define an interface that will allow communication between development tools (e.g. debuggers, performance analyzers or load balancers) and parallel programs running in distributed environments. The researches had three main goals to achieve, namely to define interface that will be extensive and complete to allow it\rq{}s usage in present tools, to allow extendability and usage in tools not known yet and to allow high adaptability to current and future programming paradigms (shared memory, remote procedure call or client/server).
+
+To achieve those goals, authors introduced two sub-interfaces - one for communication between tool and program (monitor/program-interface) and between toll and monitors (tool/monitor-interface) with additional extension points. Illustration of this model can be found in Figure~\ref{fig:omis}. 
+
+OMIS standard defines two kinds of monitoring request - unconditional and conditional ones. Unconditional services specify a set of actions to be performed immediately. It can be described as query monitoring mode, where result is obtained instantly and unconditionally. Requests of this type are composed just of one and more information or manipulation services. It creates of request/response communication model. In the second mode, requests contains event service and a set of actions. With this mode, request tells monitoring system to execute actions substantially. It creates of subscribe/notify communication model.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.6\textwidth]{omis}
+  \caption{OMIS System Model}
+  \label{fig:omis}
+\end{figure}
+  
+
+
 \subsection{GMA}
 \label{ssec:gma}
 GMA stands for Grid Monitoring Architecture~\cite{GMA1,GMA2}. It was originally introduced by Global Grid Forum in 2002. Need to create shared interface for monitoring grid resources emerged when several groups of researchers started working on systems facilitating grid monitoring and decided that those tools should be interoperable. System consists of three high level types of components of GMA which can be found in Figure~\ref{fig:gma}.
@@ -24,23 +61,3 @@ GMA stands for Grid Monitoring Architecture~\cite{GMA1,GMA2}. It was originally 
 
 GMA compatible systems should operate on data that are timestamped performance events. Such an events are typed collections of structured. Data flow is always in one direction - from a producer to consumer. On the other hand, directory service acts as mediator between them and it\rq{}s work is done directly after successful connection establishment. GMA supports two data exchange models - publish/subscribe (similar to CORBA Event Service) and query/response. What should also be noticed, communication may be initiated by both component types - either by producer or subscriber.
 
-
-\subsection{OMIS}
-\label{ssec:omis}
-OMIS, On-Line Monitoring Interface Specification is another example of affords aiming at standardization and interoperability between grid monitoring tools. Work on this project was started in 1995, and continued up to 2003. As an outcome of this work, interface specification in three versions was created: OMIS 1.0\cite{OMIS1}, 2.0\cite{OMIS2} and 2.1.
-
-The main purpose of this work is to define an interface that will allow communication between development tools (e.g. debuggers, performance analyzers or load balancers) and parallel programs running in distributed environments. The researches had three main goals to achieve, namely to define interface that will be extensive and complete to allow it\rq{}s usage in present tools, to allow extendability and usage in tools not known yet and to allow high adaptability to current and future programming paradigms (shared memory, remote procedure call or client/server).
-
-To achieve those goals, authors introduced two sub-interfaces - one for communication between tool and program (monitor/program-interface) and between toll and monitors (tool/monitor-interface) with additional extension points. Illustration of this model can be found in Figure~\ref{fig:omis}. 
-
-OMIS standard defines two kinds of monitoring request - unconditional and conditional ones. Unconditional services specify a set of actions to be performed immediately. It can be described as query monitoring mode, where result is obtained instantly and unconditionally. Requests of this type are composed just of one and more information or manipulation services. It creates of request/response communication model. In the second mode, requests contains event service and a set of actions. With this mode, request tells monitoring system to execute actions substantially. It creates of subscribe/notify communication model.
-
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.6\textwidth]{omis}
-  \caption{OMIS System Model}
-  \label{fig:omis}
-\end{figure}
-  
-      
