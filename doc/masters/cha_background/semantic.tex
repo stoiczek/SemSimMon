@@ -47,12 +47,36 @@ In order to make this a bit clearer, let us consider following example. Let us a
   \label{fig:sample_rdf}
 \end{figure}
 
-Pure RDF is just a concept, as it\rq{}s name states - framework. In order to actually use this concept, form of data serialization was introduced. RDFS, which stands for RDF Schema\cite{rdfRef:2004}. Most popular form of RDF serialization is using XML (application/rdf+xml mime type). Figure~\ref{fig:whatever} depicts our example using this notation.
+Pure RDF is just a concept, as it\rq{}s name states - framework. In order to actually use this concept, form of data serialization was introduced. RDFS, which stands for RDF Schema\cite{rdfRef:2004}. Most popular form of RDF serialization is using XML (application/rdf+xml mime type). Figure~\ref{fig:sample_rdf_xml} depicts our example using this notation.
+
+\begin{figure}[ht]
+  \centering
+  \input{cha_background/rdf_example}
+  \caption{RDF XML notation of example statement.}
+  \label{fig:sample_rdf_xml}
+\end{figure}
 
 
 \subsection{OWL}
 
-Blah blah\cite{owlRef:2009, owlPrimer:2009}
+RDF is extremely powerful language due to it\rq{}s general form. Although this feature allows one to describe nearly everything using this technology, it also makes it difficult to use such a description in real life application. To bypass those issues, OWL, which stands for Web Ontology Language was introduced. OWL is a stronger language with greater machine interoperability then RDF. Additionally, it comes with larger vocabulary and stronger syntax then RDF.
 
-\subsection{SPARQL}
-Blah blah\cite{rdf-sparql-query:2008}
+OWL as a web standard was originally published in 2004, and with reviews and updates, most recent version of standard (called OWL 2.0) was released in 2009\cite{owlRef:2009, owlPrimer:2009}.
+
+OWL comes with following profiles, namely:
+
+\begin{itemize}
+\item{ {\bf OWL Lite}}
+\item{ {\bf OWL DL}}
+\item{ {\bf OWL Full}}
+\item{ {\bf OWL EL} (Defined by 2.0 specification)}
+\item{ {\bf OWL QL} (Defined by 2.0 specification)}
+\item{ {\bf OWL RE} (Defined by 2.0 specification)}
+\end{itemize}
+
+Lite, DL and Full profiles were introduced in 2004 version of specification. Each of those sublanguages is a syntactic extension of its simpler predecessor - every legal OWL Lite ontology is legal OWL DL ontology and every legal OWL DL ontology is also legal OWL Full ontology. Those relations are asymmetric and their inverse doesn\rq{}t hold. 
+
+OWL Lite was initially designed to create relatively simple tools and allow quick migration from system employing thesauri and other taxonomies. It supports classification hierarchy and simple constraints, e.g. while it supports cardinality, it only permits values of 0 or 1. In practice most of the constructs available in OWL DL can be created using complex combination of OWL Lite features, thus development of tools is almost as difficult as those using OWL DL. OWL DL was named that way due to its correspondence with field of researched that that form the formal foundation of OWL - Description Logic. It was designed to provide maximum expressiveness while retaining computational completeness, decidability and the availability of practical reasoning algorithms. OWL Full is base on a different semantics from OWL Lite or DL and was designed to preserve some compatibility with RDF Schema. 
+
+Profiles introduced by 2.0 spec aims in offering important advantages in particular application scenarios. Each is defined as a syntactic restriction of the OWL 2 Structural Specification and is more restrictive than OWL DL. Restrictions defined in OWL 2 EL allows definition of polynomial time algorithms for all the standard reasoning tasks. It should be used primarily by applications where very large ontologies are employed, and where expressive power can be traded for performance guarantees. OWL 2 QL enables conjunctive queries to be answered in LogSpace (can be solved using a logarithmic amount of memory) using standard relational database technology. This profiles targets application where relatively lightweight ontologies are used to organize large numbers of individuals and where it is useful or necessary to access  the data directly via relational queries (e.g.  SQL). The last subset, OWL 2 RL allows implementation of polynomial time reasoning algorithms using rule-extended database technologies that operates directly on RDF triples. It is mostly suitable for applications where relatively lightweight ontologies are used to organize large numbers of individuals and where it is useful or necessary to operate directly on data in the form of RDF triples.
+
