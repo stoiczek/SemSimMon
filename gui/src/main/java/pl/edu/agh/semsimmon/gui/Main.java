@@ -12,6 +12,9 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * @author tkozak
  *         Created at 57:09 02-06-2010
@@ -74,7 +77,10 @@ public class Main implements Application {
     ctx.start();
   }
 
-  public static void main(String[] args) {
-    DesktopApplicationContext.main(Main.class, args);
+  public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InterruptedException {
+    if (args[0].equals("-test"))
+      TestApp.main(args);
+    else
+      DesktopApplicationContext.main(Main.class, args);
   }
 }

@@ -1,7 +1,8 @@
-package pl.edu.agh.semsimmon.gui.logic;
+package pl.edu.agh.semsimmon.gui;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -44,12 +45,18 @@ public class TestApp {
       }
     };
 
+    List<Thread> threads = new LinkedList<Thread>();
     while (true) {
+      log.debug("Starting loop...");
       for(int i=0;i<5;i++) {
-        new Thread(performAction).start();
+        Thread thread = new Thread(performAction);
+        thread.start();
+        threads.add(thread);
         Thread.sleep(1000);
       }
-      Thread.sleep(25000 + RND.nextInt(10000));
+      for(Thread thread : threads) {
+        thread.join();
+      }
     }
   }
 
@@ -77,10 +84,9 @@ public class TestApp {
 
   private static void cpuUsage() throws InterruptedException, IOException, NoSuchAlgorithmException {
     int step = 20;
+    Random rnd = new Random(System.currentTimeMillis());
     byte data[] = new byte[100 * 1024];
-    FileInputStream fileIo = new FileInputStream("/dev/random");
-    fileIo.read(data);
-    fileIo.close();
+    rnd.nextBytes(data);
     long endTime = System.currentTimeMillis() + RND.nextInt(5000) + 5000;
     log.debug("Starting cpu consumption");
     MessageDigest messageDigest = MessageDigest.getInstance("MD5");

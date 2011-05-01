@@ -4,28 +4,23 @@
 %---------------------------------------------------------------------------
 
 
-\section{Sytem Deployment}
-\label{sec:ch5_deployment}
+\section{System Deployment}
+\label{sec:deployments}
 
-\subsection{Simple deployment}
-\label{subsec:simple_depl}
-
-Below is diagram of simplest deployment of application - one gui, using monitoring hub embedded in gui + 2 transport
-proxies.
+The simplest possible deployment of SemSimMon if depicted in Figure\ref{fig:fib:depl_simple}. As we can see, in this scenario all monitoring components are running on a single machine. User has started monitored application (either single Java app, or even MainSM) either on on his/hers PC or some other remote host (those 2 cases are equal from SemSimMon point of view), then used Monitoring Hub built-in to the Gui component. Transport proxies communicate with monitored applications using localhost or real network interface, and all communication between Monitoring Hub and GUI is done in memory.
 
 \begin{figure}[h]
    \centering
-   \includegraphics[width=0.9\textwidth]{simplest_deployment}
+   \includegraphics[width=0.6\textwidth]{simplest_deployment}
    \caption{Simplest deployment diagram}
+   \label{fib:depl_simple}
  \end{figure}
-
-\subsection{Distributed deployment}
-\label{subsec:distributed_depl}
-
-Below is diagram of more sophisticated deployment of application - gui, external monitoring hub + 2 transport proxies.
+ 
+In contrary to previous scenario, Figure~\ref{fig:depl_complex} depicts most complex deployment model. In this case, user has started GUI using own PC, but Monitoring Hub (one or more) runs in separate JVM (either in same, local PC or any other remote host). Connection between those components is established RMI over TCP/IP. Additionally the Monitoring Hub communicates with one or more (again, optionally remote) applications of interest. This deployment is used, when user launches Gui application, monitored applications and chooses to use remote Monitoring Hub while adding resources. This deployment allows most flexible measurements and allows to use system to measure big scale applications.
 
 \begin{figure}[h]
    \centering
-   \includegraphics[width=0.9\textwidth]{distributed_deployment}
+   \includegraphics[width=1\textwidth]{distributed_deployment}
    \caption{Distributed deployment diagram}
+   \label{fig:depl_complex}
  \end{figure}
