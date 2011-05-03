@@ -6,3 +6,56 @@
 
 \section{Achivements}
 \label{sec:ch8_achivments}
+
+Analysis of achieved results should always be performed in context of system requirements, defined in Section~\ref{sec:SystemRequirements}. This section describes functional, and non functional requirements which both should be considered here. 
+
+Analysis of functional requirements realization is relatively straightforward, as they are defined strictly. 
+Following points covers each defined functional requirement with the degree of implementation:
+
+\begin{itemize}
+ \item {\bf Connect to already running JVM process using JMX extension.} 
+
+This item is fully implemented, user can connect and monitor JVM instance, using JMX Transport Proxy. From UI perspective, user can perform this task, by adding new JVM resource using Add resource wizard.
+
+ \item {\bf Aggregate monitored JVM processes into applications and clusters.}
+
+As a part of Add new JVM resource wizard, user can select application and logical cluster to which monitored JVM should be assigned.
+
+ \item {\bf Connect to already running OCM-G MainSM monitor.}
+
+Similar to managing JVM processes, user can manage OCM-G monitored applications using OCMG Transport Proxy. User can perform this task, by adding new OCM-G resource, using appropriate wizard.
+
+ \item {\bf Extract and list resources of given resource.}
+
+This requirement is fully implemented - extraction of resource is automatically performed on resource addition.
+
+ \item {\bf Control measuring capabilities of given resource.}
+
+This feature is fully implemented - user can add new measurement of resources in resources context view. In the measurements context view, user can perform rest of measurement management operations - view, pause, resume and remove measurements.
+
+ \item {\bf List values of given resource's capabilities at current point of time.}
+
+This feature is implemented in resources view - user there can select resource from tree on left, and then refresh capabilities in accordion on the right.
+
+\item {\bf List properties of given resource.}
+
+This feature is also implemented in resources view, after selecting resource, user can also view its static properties.
+
+ \item {\bf List all capability values from given, started measurement.}
+
+This requirement is implemented. User can view all historical measurement values using measurements context view, after selecting measurement of interest from list on left.
+
+ \item {\bf Visualize measurement results.}
+
+What is pretty obvious - visualizations requirement is fully implemented. System provides the user with ability to render measurement values, using bar, line, pie and spider web charts.
+
+\end{itemize}
+
+Nonfunctional requirements which were defined in Section~\ref{subsec:NonFunctionalRequirements} aren\rq{}t defined so clearly as functional ones, thus it\rq{}s more difficult to analyze achievements in this context.  
+
+Regarding reliability, scalability usability and quality of documentation it is almost impossible to tell whether those requirements are met, as there aren\rq{}t any clear metrics of those concepts. Although it\rq{}s really hard to tell whether given system is really stable or scalable, tests performed and casual work with application during development proved that those requirements are mostly met. Application doesn\rq{}t crash at all, most bugs are fixed and every potential error is handled. Regarding scalability, application behaves appropriate up to medium scale (single cluster). 
+
+Usability requirement is most fuzzy one, because it is extremely relative whether given interface is user friendly or not. The only fact that can be stated clearly is that application interface employs most popular concepts that makes modern GUI applications usable. Quality of documentation is also very subjective, but this Thesis covers every aspect of design and implementation and aims in shortening learning curve, needed to start working with project.
+
+Interoperability requirement, was met completely - application was tested on all targeted platforms - Linux, Microsoft\textregistered~Windows\textregistered and Mac OS X\textregistered. The same applies to driven by open source requirement - all libraries that SimSemMon depends on are released under terms of GPL or LGPL license and are freely available to any developer of open source applications.
+
