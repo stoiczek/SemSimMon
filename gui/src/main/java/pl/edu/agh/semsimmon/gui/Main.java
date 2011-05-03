@@ -78,7 +78,7 @@ public class Main implements Application {
   }
 
   public static void main(String[] args) throws IOException, NoSuchAlgorithmException, InterruptedException {
-    if (args[0].equals("-test"))
+    if (args.length > 0 && args[0].equals("-test"))
       TestApp.main(args);
     else
       DesktopApplicationContext.main(Main.class, args);
