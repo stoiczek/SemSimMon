@@ -7,3 +7,24 @@
 \section{Future work}
 \label{sec:ch8_future_work}
  
+Although implementation of project claims to be completed, there is also field for future improvements. Suggestions on new features that could potentially improve application functionality as well as some issues that still requires some revision can be found in list below:
+
+\begin{itemize}
+ \item {\bf Add option to use SSH tunnel in connection between GUI and Monitoring Hub Application}
+ 
+ This will work as an option when starting new Monitoring Hub. It will allow bypassing every firewall configuration - as long as user has ability to connect to target host using the SSH, He or She will be able to use the application. Additionally, it will increase security a bit.
+ 
+\item {\bf Add ability to monitor long running tasks or 24/7 systems }  
+
+In current release, system was designed focusing mostly on on-line monitoring, thus for example, GUI must be connected to Monitoring Hub Application all the time. It would be great feature to be able to start remote monitoring hub, configure all resources and measurements and then detach GUI and let the monitoring hub to do it\rq{}s job. After a while or on scheduled basis, user should be able to attach to given monitoring hub and review all measurement results.
+
+\item {\bf Application state persistence }  
+
+Another feature increasing usability would be to allow user to save current state of work. It would increase usability a lot, if user could save connections to JMX nodes and use this configuration to easily restart working with system. 
+
+ \item {\bf Improve the way application uses Semantic Web framework} 
+     
+Current implementation supports OWL only partially - it uses ontology to manage relationships between monitored resources, measurements but internal storage of resources is done in plain Java.
+     
+   
+\end{itemize}
