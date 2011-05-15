@@ -12,18 +12,44 @@
 \section{Motivation}
 \label{ch1:Motivation}
 
+Developers nowadays must face working with vast variety of environments. Applications can operate on lightweight, mobile platforms, standalone desktop computers, clusters of interconnected computers creating homogeneous computational environment, up to most complex deployments, that uses heterogeneous configuration composed of clusters mentioned previously. Although it is rather hard to imagine application  that evolves from the one being processed on mobile devices, to one that runs on cluster, or grid, but server application designed to work as standalone application will need such an evolution process much more likely. Such a use case forces the developer to stand against scalability issues.
+
+Even development of stand alone application is not straightforward at all, but when we need to increase processing power that application should employ in order to realize its use cases and make application to operate in distributed manner, the complexity increases even more. Distributed environments add another dimensions to application performance optimizations - communication cost between computing nodes.
+
+After increasing scale further more, and deploying application on grid environments the complexity increases enormously. Such an highly distributed platform, adds another dimensions of problems - issues related to heterogeneous nature of grids, reduced reliability, need to potentially share resources with other applications, and finally potential problems with work scheduling.
+
+Often it is also required to increase complexity even more, by dividing application into components that are created using different technologies, even including different programming language. For example - it doesn\rq{}t make sense to implement HTML-based web application front end using C++ or CPU-intensive entropy coding in Javascript. Such an approach increases performance, but also complexity, as developers need to know many technologies and also, such an approach introduces another optimization factor - need to implement efficient interaction between components different in nature.
 
 
-% @TODO think about motivation.
+
+
+
+X 1. Scale
+X 1.5 Applications must evolve and 
+X 2. Biggest scale - distributed environments
+
+3. Variety of languages, technologies that are avail currently
+4. Mixing of those techs - how beneficial it can be -> to solve parts of a problems using means that fits to the problem the best
+5. How important performance analysis is, and something about possibilities that devs might use to measure
+6. How difficult it is to measure heterogeneous envs, due to different types of resources, which have common semantics
+7. How semantic web can help to build usasble tool that can work with different techonolgies/resources, as long as they share same semantics
+8. That there are vast amount of tools, but how difficult they are
+9. That it would be great to have tool that can a lot, but still be easy to use and can evolve to do even more.
+9.5 and how great it would be to have a tool that can work with all those scales (closing bracket)
+10. Done.
+ 
 
 % Write about:
-% - scale - current devs have tools which allows them to create stuff for hardware scaling from mobile phone/ J2SE up
-% to distributed clusters
-% - work on any soft has optimizations stage which is sehr important
+% - scale - current devs have tools which allows them to create stuff for hardware scaling from mobile phone/ J2SE up to distributed clusters
+
+% - heterogeneous implementation platforms, how good they are
+% - work on any soft which has optimizations stage which is sehr important
 % - how important measurements are
 % - sth about distributed envirionments - they usage
 % - how difficult it is to write sth on such an envs
-% - mixing of languages - how funky it is to write something using multiple langs to suit it best to one's needs
+% - mixing of languages - how funky it is to write something using multiple langs to suit it best to one's needs, and even more, how difficult it is to maintain/debug/analyze such an application. But on the other hand, how beneficial it can be
+% - how complex in architecture, and usability recent tools are
+% - semantic web as a mean to describe resources despite their different origin
 
 
 %---------------------------------------------------------------------------
@@ -31,20 +57,11 @@
 \section{Objectives}
 \label{ch1:Objectives}
 
-Main objective of this thesis is to design, implement and document system, that can be used to easily monitor
-applications with wide range of scale. From single process applications running on one PC machine, through those
-working on medium scaled clusters, up to highly distributed solutions, that use multiple computing nodes and grid
-environment. Created solution should be easy to use by variety of users - students, lecturers, software engineers or
-scientists. This last objective was the source of project's code name - SemSimMon, Semantic Simple Monitor. 
+Main objective of this thesis is to design, implement and document system, that can be used to easily monitor applications with wide range of scale. From single process applications running on one PC machine, through those working on medium scaled clusters, up to highly distributed solutions, that use multiple computing nodes and grid environment. Created solution should be easy to use by variety of users - students, lecturers, software engineers or scientists. This last objective was the source of project's code name - SemSimMon, Semantic Simple Monitor. 
 
-To extend application's life time, it should be released as open source project, and meet all criteria for such a
-software: open standards, open protocols, open source dependencies. Additionally, what is probably most important,
-development process should come in pair with extensive documentation, to shorten learning curve for new or additional
-developers.
+To extend application's life time, it should be released as open source project, and meet all criteria for such a software: open standards, open protocols, open source dependencies. Additionally, what is probably most important, development process should come in pair with extensive documentation, to shorten learning curve for new or additional developers.
 
-Another aspect of having widely used application is portability - user should be able to work with application on
-majority of currently available platforms, which includes all flavors of *nixs (Unix, Linux, Mac OS X\textregistered)
-and Microsoft\textregistered~Windows\textregistered. 
+Another aspect of having widely used application is portability - user should be able to work with application on majority of currently available platforms, which includes all flavors of *nixs (Unix, Linux, Mac OS X\textregistered) and Microsoft\textregistered~Windows\textregistered. 
 
 
 \section{Document structure}
@@ -56,22 +73,14 @@ Chapter~\ref{cha:background} contains detailed description of problem domain. Co
 of software
 with similar purpose. One may find there results of initial analysis that made rest of this work possible.
 
-Chapters ~\ref{cha:requirements}~to~\ref{cha:deployment} focuses solely on development process of created application.
-All steps of application's initial life cycle have been described - starting from gathering requirements of potential
-users and formalizing them into use cases (chapter~\ref{cha:requirements}). As next step, chapter~\ref{cha:sys_arch}
-I'd like to take reader through design stage. This chapter contains system analysis, top to bottom. - from
-highest point of view (high level functional decomposition), down to deep insight into way each high level component
-should work. 
+Chapters ~\ref{cha:requirements}~to~\ref{cha:deployment} focuses solely on development process of created application. All steps of application's initial life cycle have been described - starting from gathering requirements of potential users and formalizing them into use cases (chapter~\ref{cha:requirements}). As next step, chapter~\ref{cha:sys_arch} I'd like to take reader through design stage. This chapter contains system analysis, top to bottom. - from highest point of view (high level functional decomposition), down to deep insight into way each high level component should work. 
 
-Implementation process was described in Chapter~\ref{cha:implementation}), where we can find detailed description of
-developing tools used and short overview on system from programming point of view.
+Implementation process was described in Chapter~\ref{cha:implementation}), where we can find detailed description of developing tools used and short overview on system from programming point of view.
 
 Description of initial application's life cycle steps ends on Chapter~\ref{cha:deployment}, covering tests and
 deployment of ready solution.
 
-Additionally, in last chapter (Chapter~\ref{cha:summary}), author tries to summarize achieved results. Within this
-part of thesis dear reader may find also short description of ideas on next steps that could be taken to let application
-evolve.
+Additionally, in last chapter (Chapter~\ref{cha:summary}), author tries to summarize achieved results. Within this part of thesis dear reader may find also short description of ideas on next steps that could be taken to let application evolve.
 
 
 
