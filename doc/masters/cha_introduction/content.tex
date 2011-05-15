@@ -18,40 +18,30 @@ Even development of stand alone application is not straightforward at all, but w
 
 After increasing scale further more, and deploying application on grid environments the complexity increases enormously. Such an highly distributed platform, adds another dimensions of problems - issues related to heterogeneous nature of grids, reduced reliability, need to potentially share resources with other applications, and finally potential problems with work scheduling.
 
-Often it is also required to increase complexity even more, by dividing application into components that are created using different technologies, even including different programming language. For example - it doesn\rq{}t make sense to implement HTML-based web application front end using C++ or CPU-intensive entropy coding in Javascript. Such an approach increases performance, but also complexity, as developers need to know many technologies and also, such an approach introduces another optimization factor - need to implement efficient interaction between components different in nature.
+Often it is also required to increase complexity even more, by dividing application into components that are created using different technologies, even including different programming language. For example - it doesn\rq{}t make sense to implement HTML-based application front end using C++ or CPU-intensive entropy coding in Javascript. Such an approach increases performance, but also complexity, as developers need to know many technologies and also, such an approach introduces another optimization factor - need to implement efficient interaction between components different in nature.
 
+In order to create efficient software, sooner or later developers needs take performance into account. In order to evaluate application behavior performance measurement applications should be employed. Due to  complexity of distributed systems performance measurements of them is even more important. Such a tool when used to monitor distributed application should aid developer in finding processing bottlenecks, resources consumption imbalance, to find most optimal communication to computation rate, etc. 
 
+As it seems quite logical, complexity of performance measurement and applications responsible for it increases with increased scale and complexity of source application. Because of that creation of monitoring application that can operate with heterogeneous grid environments, and different implementation language is really challenging. This process is non trivial in almost every area - defining use cases, designing data model that can be used to logically represent variety of types, up to implementation, especially when paying attention to proper user experience engineering.
 
+Although there are numerous works on the subject but it is still difficult to find the one that will match all those requirements in a satisfactory manner. Either those applications focus on one particular technology or are overcomplex from user point of view. 
 
+%X 1. Scale
 
-X 1. Scale
-X 1.5 Applications must evolve and 
-X 2. Biggest scale - distributed environments
+%X 1.5 Applications must evolve and 
+%X 2. Biggest scale - distributed environments
 
-3. Variety of languages, technologies that are avail currently
-4. Mixing of those techs - how beneficial it can be -> to solve parts of a problems using means that fits to the problem the best
-5. How important performance analysis is, and something about possibilities that devs might use to measure
-6. How difficult it is to measure heterogeneous envs, due to different types of resources, which have common semantics
-7. How semantic web can help to build usasble tool that can work with different techonolgies/resources, as long as they share same semantics
-8. That there are vast amount of tools, but how difficult they are
-9. That it would be great to have tool that can a lot, but still be easy to use and can evolve to do even more.
-9.5 and how great it would be to have a tool that can work with all those scales (closing bracket)
-10. Done.
+%X 3. Variety of languages, technologies that are avail currently
+%X 4. Mixing of those techs - how beneficial it can be -> to solve parts of a problems using means that fits to the problem the best
+
+%5. How important performance analysis is, and something about possibilities that devs might use to measure
+%6. How difficult it is to measure heterogeneous envs, due to different types of resources, which have common semantics
+%7. How semantic web can help to build usasble tool that can work with different techonolgies/resources, as long as they share same semantics
+%8. That there are vast amount of tools, but how difficult they are
+%9. That it would be great to have tool that can a lot, but still be easy to use and can evolve to do even more.
+%9.5 and how great it would be to have a tool that can work with all those scales (closing bracket)
+%10. Done.
  
-
-% Write about:
-% - scale - current devs have tools which allows them to create stuff for hardware scaling from mobile phone/ J2SE up to distributed clusters
-
-% - heterogeneous implementation platforms, how good they are
-% - work on any soft which has optimizations stage which is sehr important
-% - how important measurements are
-% - sth about distributed envirionments - they usage
-% - how difficult it is to write sth on such an envs
-% - mixing of languages - how funky it is to write something using multiple langs to suit it best to one's needs, and even more, how difficult it is to maintain/debug/analyze such an application. But on the other hand, how beneficial it can be
-% - how complex in architecture, and usability recent tools are
-% - semantic web as a mean to describe resources despite their different origin
-
-
 %---------------------------------------------------------------------------
 
 \section{Objectives}
