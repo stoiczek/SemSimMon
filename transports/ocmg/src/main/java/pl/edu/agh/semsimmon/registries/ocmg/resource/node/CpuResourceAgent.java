@@ -5,6 +5,7 @@ import org.balticgrid.ocmg.base.MonitorException;
 import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semsimmon.registries.ocmg.util.OcmgUtils;
 
 import java.util.*;
 
@@ -18,9 +19,10 @@ import static pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames.CPU
  */
 public class CpuResourceAgent extends BaseNodesChildrenRA {
 
-  private static final String EXTRACT_DATA_CMD_PATTERN = ":node_get_file_listing([#],\"/proc/cpuinfo\",0,0)";
 
   private static final Map<String, String> PROPERTY_TO_KEY_MAPPING;
+
+  private static final String CPU_INFO_FILE = "/proc/cpuinfo";
 
   static {
     Map<String, String> prop2KeyMappingTemp = new HashMap<String, String>();
@@ -42,7 +44,7 @@ public class CpuResourceAgent extends BaseNodesChildrenRA {
 
   @Override
   protected List<Resource> doDiscover(NodeTree nodeTree, Resource nodeResource, String type) throws ConnectionException, MonitorException {
-    String result = executeQuery(nodeTree, EXTRACT_DATA_CMD_PATTERN);
+    String result = OcmgUtils.getFileContent(nodeTree, CPU_INFO_FILE);
     List<Resource> cpus = new LinkedList<Resource>();
     List<Map<String, String>> cpusDetails = getCpusDetails(result);
     for (Map<String, String> cpuDetails : cpusDetails) {
@@ -55,8 +57,8 @@ public class CpuResourceAgent extends BaseNodesChildrenRA {
   private Resource parseCpu(Resource nodeResource, Map<String, String> cpuDetails) {
     final String cpuId = cpuDetails.get("processor");
     final Resource cpuRes = wrapResource(nodeResource, KnowledgeConstants.CPU_URI, "CPU_" + cpuId);
-    for(Map.Entry<String,String> entry : PROPERTY_TO_KEY_MAPPING.entrySet()) {
-      cpuRes.setProperty(entry.getValue(), cpuDetails.get(entry.getKey()));  
+    for (Map.Entry<String, String> entry : PROPERTY_TO_KEY_MAPPING.entrySet()) {
+      cpuRes.setProperty(entry.getValue(), cpuDetails.get(entry.getKey()));
     }
     return cpuRes;
   }
@@ -71,7 +73,7 @@ public class CpuResourceAgent extends BaseNodesChildrenRA {
         details.add(currentCPU);
       }
       String[] splited = line.split(":");
-      if(splited.length != 2) {
+      if (splited.length != 2) {
         continue;
       }
       currentCPU.put(splited[0].trim(), splited[1].trim());

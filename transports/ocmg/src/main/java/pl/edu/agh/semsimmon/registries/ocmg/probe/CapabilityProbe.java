@@ -15,11 +15,13 @@ public interface CapabilityProbe {
   /**
    * Acquires and returns capability value of given resource.
    *
+   *
    * @param resource    resource to get capability value of.
    * @param application application that can be used to extract given capability value
+   * @param capabilityType
    * @return resource's capability value
    */
-  CapabilityValue getCapabilityValue(Resource resource, Application application) throws OcmgException;
+  CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException;
 
 
 }

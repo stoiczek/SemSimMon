@@ -19,7 +19,7 @@ import static pl.edu.agh.semsimmon.registries.ocmg.AppHierarchyParsingUtils.find
 public class TotalCpuTimeCapabilityProbe implements CapabilityProbe {
 
   @Override
-  public CapabilityValue getCapabilityValue(Resource resource, Application application) throws OcmgException {
+  public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
     if (!resource.getTypeUri().equals(KnowledgeConstants.PROCESS_URI)) {
       throw new IllegalArgumentException("Invalid uri type");
     }

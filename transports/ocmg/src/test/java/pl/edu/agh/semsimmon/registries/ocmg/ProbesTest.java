@@ -63,7 +63,7 @@ public class ProbesTest extends OcmgRequringTest {
   private void testLoadAvg(LoadAvgProbe.Type type) throws OcmgException {
     LoadAvgProbe loadAvgProbe = new LoadAvgProbe();
     loadAvgProbe.setType(type);
-    CapabilityValue value = loadAvgProbe.getCapabilityValue(nodeResource, app);
+    CapabilityValue value = loadAvgProbe.getCapabilityValue(nodeResource, app, "");
     assertNotNull(value);
     assertEquals(value.getValueType(), CapabilityValue.ValueType.NUMERIC);
   }

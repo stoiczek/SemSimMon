@@ -386,12 +386,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
             static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CLASSES_LOADED_CAP"/>
       </key>
     </entry>
-    <entry value-ref="jvmQueryProbe">
-      <key>
-        <util:constant
-            static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.UPTIME_CAP"/>
-      </key>
-    </entry>
+    <entry key-ref="uptimeCapabilityUri" value-ref="jvmQueryProbe"/>
 
   </util:map>
 

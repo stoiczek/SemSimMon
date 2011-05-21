@@ -136,11 +136,11 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
     transportProxy.setProbes(probes);
     Resource properResource = new Resource("ocmg://test.com:58947/test_app", resourceType,
         Collections.<String, Object>emptyMap());
-    when(probe.getCapabilityValue(eq(properResource), any(Application.class))).thenReturn(new CapabilityValue(10));
+    when(probe.getCapabilityValue(eq(properResource), any(Application.class), "")).thenReturn(new CapabilityValue(10));
     CapabilityValue retValue = transportProxy.getCapabilityValue(properResource, capabilityType);
     assertEquals(retValue.getValueType(), CapabilityValue.ValueType.NUMERIC);
     assertEquals(retValue.getNumericValue().intValue(), 10);
-    verify(probe).getCapabilityValue(eq(properResource), any(Application.class));
+    verify(probe).getCapabilityValue(eq(properResource), any(Application.class), "");
   }
 
 

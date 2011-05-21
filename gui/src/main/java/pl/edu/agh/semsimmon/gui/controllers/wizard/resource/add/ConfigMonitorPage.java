@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import pl.edu.agh.semsimmon.gui.controllers.wizard.BaseWizardPageController;
+import pl.edu.agh.semsimmon.gui.controllers.wizard.VetoException;
 import pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.jmx.JmxConnectionType;
 import pl.edu.agh.semsimmon.gui.logic.connection.ConnectionType;
 import pl.edu.agh.semsimmon.gui.logic.connection.CoreConnection;
@@ -107,7 +108,7 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
       }
       log.debug("Core initialized.");
     } catch (IOException e) {
-      throw new RuntimeException("Error connecting to given core", e);
+      throw new VetoException("Error connecting to given core", e);
     }
   }
 

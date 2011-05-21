@@ -149,7 +149,7 @@ public abstract class BaseWizardController extends BaseDialogController {
       pageContainer.add(currentPage.getComponent());
       pageSwitched(oldPage, currentPage);
       currentPageNo = newPageNo;
-    } catch (Exception e) {
+    } catch (VetoException e) {
       log.warn("Page vetoed change by throwing an exception.", e);
       return false;
     }

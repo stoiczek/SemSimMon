@@ -5,6 +5,8 @@ import org.balticgrid.ocmg.base.MonitorException;
 import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semsimmon.registries.ocmg.OcmgConstants;
+import pl.edu.agh.semsimmon.registries.ocmg.util.OcmgUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,11 +21,9 @@ import static pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames.Vir
  */
 public class VirtualMemoryRA extends BaseNodesChildrenRA {
 
-  private static final String GET_SWAPS_QUERY = ":node_get_file_listing([#],\"/proc/swaps\",0,0)";
-
   @Override
   protected List<Resource> doDiscover(NodeTree nodeTree, Resource nodeResource, String type) throws ConnectionException, MonitorException {
-    String result = executeQuery(nodeTree, GET_SWAPS_QUERY);
+    String result = OcmgUtils.getFileContent(nodeTree, OcmgConstants.SWAPS_INFO_FILE);
     String[] lines = result.split("\n");
 
     List<Resource> swaps = new LinkedList<Resource>();

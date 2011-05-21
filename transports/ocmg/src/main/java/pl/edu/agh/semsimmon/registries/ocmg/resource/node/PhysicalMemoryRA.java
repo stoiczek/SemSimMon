@@ -6,6 +6,8 @@ import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semsimmon.registries.ocmg.OcmgConstants;
+import pl.edu.agh.semsimmon.registries.ocmg.util.OcmgUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,11 +18,9 @@ import java.util.List;
  */
 public class PhysicalMemoryRA extends BaseNodesChildrenRA {
 
-  public static final String GET_MEMORY_DETAILS_QUERY = ":node_get_file_listing([#],\"/proc/meminfo\",0,0)";
-
   @Override
   protected List<Resource> doDiscover(NodeTree nodeTree, Resource nodeResource, String type) throws ConnectionException, MonitorException {
-    String result = executeQuery(nodeTree, GET_MEMORY_DETAILS_QUERY);
+    String result = OcmgUtils.getFileContent(nodeTree, OcmgConstants.MEMORY_DETAILS_FILE);
     String[] lines = result.split("\n");
     String memorySize = lines[0].split(":")[1].trim();
     final Resource physicalMemResource =

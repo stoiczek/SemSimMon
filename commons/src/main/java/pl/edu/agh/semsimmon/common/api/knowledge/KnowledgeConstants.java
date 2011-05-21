@@ -141,6 +141,7 @@ public interface KnowledgeConstants {
   static final String FREE_MEM_CAP = ONTOLOGY_URI + "#FreeMemoryCapability";
   static final String TOTAL_MEM_CAP = ONTOLOGY_URI + "#TotalMemoryCapability";
   static final String USED_MEM_CAP = ONTOLOGY_URI + "#UsedMemoryCapability";
+  static final String CACHED_MEM_CAP = ONTOLOGY_URI + "#CachedMemoryCapability";
 
   static final String LOAD_1MIN_CAP = ONTOLOGY_URI + "#Load1minCapability";
   static final String LOAD_5MIN_CAP = ONTOLOGY_URI + "#Load5minCapability";

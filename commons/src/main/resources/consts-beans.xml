@@ -39,6 +39,9 @@
 
   <!-- Capabilities -->
 
+  <util:constant id="uptimeCapabilityUri"
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.UPTIME_CAP"/>
+
   <util:constant id="freeMemoryCapabilityUri"
                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.FREE_MEM_CAP"/>
 
@@ -47,6 +50,9 @@
 
   <util:constant id="usedMemoryCapabilityUri"
                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.USED_MEM_CAP"/>
+
+  <util:constant id="cachedMemoryCapabilityUri"
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CACHED_MEM_CAP"/>
 
   <util:constant id="load1MinCapabilityUri"
                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.LOAD_1MIN_CAP"/>

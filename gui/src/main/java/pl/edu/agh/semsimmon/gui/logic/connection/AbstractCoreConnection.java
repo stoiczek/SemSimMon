@@ -38,7 +38,7 @@ public class AbstractCoreConnection implements CoreConnection, ResourceEventsLis
   protected String label;
 
   /**
-   * Type of this connection.
+   * MemoryProbeType of this connection.
    */
   final protected ConnectionType connectionType;
 

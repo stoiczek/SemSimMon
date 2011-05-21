@@ -4,6 +4,8 @@ import org.balticgrid.ocmg.base.ConnectionException;
 import org.balticgrid.ocmg.base.MonitorException;
 import org.balticgrid.ocmg.objects.Application;
 import org.balticgrid.ocmg.objects.Process;
+import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
+import org.balticgrid.ocmg.objects.apphierarchy.SiteTree;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 
@@ -52,5 +54,23 @@ public class AppHierarchyParsingUtils {
 
   public static org.balticgrid.ocmg.objects.Process findProcess(Resource processResource, Application application) throws OcmgException {
     return getProcessById(application, (Integer) processResource.getProperty(ResourcePropertyNames.Process.GLOBAL_ID));
+  }
+
+  public static NodeTree findNodeTree(Application application, String site, String node) throws ConnectionException, MonitorException, OcmgException {
+    NodeTree resourceNodeTree = null;
+    for (SiteTree siteTree : application.getHierarchy().getSiteTree()) {
+      if (siteTree.getSite().getCacheName().equals(site)) {
+        for (NodeTree nodeTree : siteTree.getNodeTree()) {
+          if (nodeTree.getNode().getCacheName().equals(node)) {
+            resourceNodeTree = nodeTree;
+          }
+        }
+      }
+    }
+
+    if (resourceNodeTree == null) {
+      throw new OcmgException("Could find given parent resource");
+    }
+    return resourceNodeTree;
   }
 }

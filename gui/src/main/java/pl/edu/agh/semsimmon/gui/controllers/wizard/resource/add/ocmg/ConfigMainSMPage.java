@@ -3,6 +3,7 @@ package pl.edu.agh.semsimmon.gui.controllers.wizard.resource.add.ocmg;
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.wtk.*;
 import pl.edu.agh.semsimmon.gui.controllers.wizard.BaseWizardPageController;
+import pl.edu.agh.semsimmon.gui.controllers.wizard.VetoException;
 
 /**
  * @author tkozak
@@ -27,11 +28,11 @@ public class ConfigMainSMPage extends BaseWizardPageController<BoxPane> {
 
   @Override
   public void pageHiding() {
-    final String connString = getConnectionString();
+    final String connString = getConnectionString().trim().toLowerCase();
     if (!connString.matches(CONNECTION_STRING_PATTERN)) {
       Form.Flag flag = new Form.Flag(MessageType.ERROR, resources.get("wizards.resources.add.ocmg.invalidConnString").toString());
       Form.setFlag(connStringPane, flag);
-      throw new IllegalStateException("Invalid connection string");
+      throw new VetoException("Invalid connection string");
     }
   }
 

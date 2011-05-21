@@ -31,24 +31,6 @@ public abstract class AbstractResourceAgent implements ResourceAgent {
   }
 
 
-  protected NodeTree findNodeTree(Application application, String site, String node) throws ConnectionException, MonitorException, OcmgException {
-    NodeTree resourceNodeTree = null;
-    for (SiteTree siteTree : application.getHierarchy().getSiteTree()) {
-      if (siteTree.getSite().getCacheName().equals(site)) {
-        for (NodeTree nodeTree : siteTree.getNodeTree()) {
-          if (nodeTree.getNode().getCacheName().equals(node)) {
-            resourceNodeTree = nodeTree;
-          }
-        }
-      }
-    }
-
-    if (resourceNodeTree == null) {
-      throw new OcmgException("Could find given parent resource");
-    }
-    return resourceNodeTree;
-  }
-
   @Override
   public void pause(Application app, Resource resource) throws IllegalArgumentException, OcmgException {
     throw new IllegalArgumentException("Given resource isn't pauseable");

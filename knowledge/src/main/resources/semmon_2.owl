@@ -19,7 +19,18 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <owl:Ontology rdf:about=""/>
+    <owl:Ontology rdf:about="http://www.icsr.agh.edu.pl/semmon_2.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
     
 
 
@@ -36,76 +47,76 @@
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#capabilityIsUsedBy -->
 
-    <owl:ObjectProperty rdf:about="#capabilityIsUsedBy">
-        <rdfs:range rdf:resource="#CMetric"/>
-        <rdfs:domain rdf:resource="#CResourceCapability"/>
-        <owl:inverseOf rdf:resource="#usesCapability"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;capabilityIsUsedBy">
+        <rdfs:range rdf:resource="&semmon_2;CMetric"/>
+        <rdfs:domain rdf:resource="&semmon_2;CResourceCapability"/>
+        <owl:inverseOf rdf:resource="&semmon_2;usesCapability"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasHardware -->
 
-    <owl:ObjectProperty rdf:about="#hasHardware">
-        <rdfs:range rdf:resource="#CHardwareResource"/>
-        <rdfs:domain rdf:resource="#CNode"/>
-        <rdfs:subPropertyOf rdf:resource="#hasResource"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;hasHardware">
+        <rdfs:range rdf:resource="&semmon_2;CHardwareResource"/>
+        <rdfs:domain rdf:resource="&semmon_2;CNode"/>
+        <rdfs:subPropertyOf rdf:resource="&semmon_2;hasResource"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasNode -->
 
-    <owl:ObjectProperty rdf:about="#hasNode">
-        <rdfs:domain rdf:resource="#CCluster"/>
-        <rdfs:range rdf:resource="#CNode"/>
-        <rdfs:subPropertyOf rdf:resource="#hasResource"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;hasNode">
+        <rdfs:domain rdf:resource="&semmon_2;CCluster"/>
+        <rdfs:range rdf:resource="&semmon_2;CNode"/>
+        <rdfs:subPropertyOf rdf:resource="&semmon_2;hasResource"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasResource -->
 
-    <owl:ObjectProperty rdf:about="#hasResource">
+    <owl:ObjectProperty rdf:about="&semmon_2;hasResource">
         <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
-        <rdfs:domain rdf:resource="#CResource"/>
-        <rdfs:range rdf:resource="#CResource"/>
+        <rdfs:range rdf:resource="&semmon_2;CResource"/>
+        <rdfs:domain rdf:resource="&semmon_2;CResource"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasResourceCapability -->
 
-    <owl:ObjectProperty rdf:about="#hasResourceCapability">
-        <rdfs:domain rdf:resource="#CResource"/>
-        <rdfs:range rdf:resource="#CResourceCapability"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;hasResourceCapability">
+        <rdfs:domain rdf:resource="&semmon_2;CResource"/>
+        <rdfs:range rdf:resource="&semmon_2;CResourceCapability"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasSoftware -->
 
-    <owl:ObjectProperty rdf:about="#hasSoftware">
-        <rdfs:domain rdf:resource="#CNode"/>
-        <rdfs:range rdf:resource="#CSoftwareResource"/>
-        <rdfs:subPropertyOf rdf:resource="#hasResource"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;hasSoftware">
+        <rdfs:domain rdf:resource="&semmon_2;CNode"/>
+        <rdfs:range rdf:resource="&semmon_2;CSoftwareResource"/>
+        <rdfs:subPropertyOf rdf:resource="&semmon_2;hasResource"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasSoftwareComponent -->
 
-    <owl:ObjectProperty rdf:about="#hasSoftwareComponent">
-        <rdfs:subPropertyOf rdf:resource="#hasResource"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;hasSoftwareComponent">
+        <rdfs:subPropertyOf rdf:resource="&semmon_2;hasResource"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#usesCapability -->
 
-    <owl:ObjectProperty rdf:about="#usesCapability">
-        <rdfs:domain rdf:resource="#CMetric"/>
-        <rdfs:range rdf:resource="#CResourceCapability"/>
+    <owl:ObjectProperty rdf:about="&semmon_2;usesCapability">
+        <rdfs:domain rdf:resource="&semmon_2;CMetric"/>
+        <rdfs:range rdf:resource="&semmon_2;CResourceCapability"/>
     </owl:ObjectProperty>
     
 
@@ -123,8 +134,8 @@
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasAlarmThreshold -->
 
-    <owl:DatatypeProperty rdf:about="#hasAlarmThreshold">
-        <rdfs:domain rdf:resource="#CMetric"/>
+    <owl:DatatypeProperty rdf:about="&semmon_2;hasAlarmThreshold">
+        <rdfs:domain rdf:resource="&semmon_2;CMetric"/>
         <rdfs:range rdf:resource="&xsd;double"/>
     </owl:DatatypeProperty>
     
@@ -132,8 +143,8 @@
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#hasCustomClass -->
 
-    <owl:DatatypeProperty rdf:about="#hasCustomClass">
-        <rdfs:domain rdf:resource="#CMetric"/>
+    <owl:DatatypeProperty rdf:about="&semmon_2;hasCustomClass">
+        <rdfs:domain rdf:resource="&semmon_2;CMetric"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -152,374 +163,374 @@
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CAction -->
 
-    <owl:Class rdf:about="#CAction"/>
+    <owl:Class rdf:about="&semmon_2;CAction"/>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CAlarm -->
 
-    <owl:Class rdf:about="#CAlarm"/>
+    <owl:Class rdf:about="&semmon_2;CAlarm"/>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CApplication -->
 
-    <owl:Class rdf:about="#CApplication">
-        <rdfs:subClassOf rdf:resource="#CResource"/>
+    <owl:Class rdf:about="&semmon_2;CApplication">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CCPU -->
 
-    <owl:Class rdf:about="#CCPU">
-        <rdfs:subClassOf rdf:resource="#CHardwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CCPU">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CCPUCapability -->
 
-    <owl:Class rdf:about="#CCPUCapability">
-        <rdfs:subClassOf rdf:resource="#CHardwareCapability"/>
+    <owl:Class rdf:about="&semmon_2;CCPUCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CClass -->
 
-    <owl:Class rdf:about="#CClass">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CClass">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CClassLoader -->
 
-    <owl:Class rdf:about="#CClassLoader">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CClassLoader">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CCluster -->
 
-    <owl:Class rdf:about="#CCluster">
-        <rdfs:subClassOf rdf:resource="#CResource"/>
+    <owl:Class rdf:about="&semmon_2;CCluster">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CFunction -->
 
-    <owl:Class rdf:about="#CFunction">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CFunction">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CGarbageCollector -->
 
-    <owl:Class rdf:about="#CGarbageCollector">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CGarbageCollector">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CHardDisk -->
 
-    <owl:Class rdf:about="#CHardDisk">
-        <rdfs:subClassOf rdf:resource="#CStorage"/>
+    <owl:Class rdf:about="&semmon_2;CHardDisk">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CStorage"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CHardDiskCapability -->
 
-    <owl:Class rdf:about="#CHardDiskCapability">
-        <rdfs:subClassOf rdf:resource="#CHardwareCapability"/>
+    <owl:Class rdf:about="&semmon_2;CHardDiskCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CHardwareCapability -->
 
-    <owl:Class rdf:about="#CHardwareCapability">
-        <rdfs:subClassOf rdf:resource="#CResourceCapability"/>
+    <owl:Class rdf:about="&semmon_2;CHardwareCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResourceCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CHardwareMetric -->
 
-    <owl:Class rdf:about="#CHardwareMetric">
-        <rdfs:subClassOf rdf:resource="#CMetric"/>
+    <owl:Class rdf:about="&semmon_2;CHardwareMetric">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CMetric"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CHardwareResource -->
 
-    <owl:Class rdf:about="#CHardwareResource">
-        <rdfs:subClassOf rdf:resource="#CResource"/>
+    <owl:Class rdf:about="&semmon_2;CHardwareResource">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CJVMMetric -->
 
-    <owl:Class rdf:about="#CJVMMetric">
-        <rdfs:subClassOf rdf:resource="#CSoftwareMetric"/>
+    <owl:Class rdf:about="&semmon_2;CJVMMetric">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareMetric"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CMemory -->
 
-    <owl:Class rdf:about="#CMemory">
-        <rdfs:subClassOf rdf:resource="#CHardwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CMemory">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CMemoryCapability -->
 
-    <owl:Class rdf:about="#CMemoryCapability">
-        <rdfs:subClassOf rdf:resource="#CHardwareCapability"/>
+    <owl:Class rdf:about="&semmon_2;CMemoryCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CMethod -->
 
-    <owl:Class rdf:about="#CMethod">
-        <rdfs:subClassOf rdf:resource="#CFunction"/>
+    <owl:Class rdf:about="&semmon_2;CMethod">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CFunction"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CMetric -->
 
-    <owl:Class rdf:about="#CMetric"/>
+    <owl:Class rdf:about="&semmon_2;CMetric"/>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CMigrationAction -->
 
-    <owl:Class rdf:about="#CMigrationAction">
-        <rdfs:subClassOf rdf:resource="#CAction"/>
+    <owl:Class rdf:about="&semmon_2;CMigrationAction">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CAction"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CNetworkInterface -->
 
-    <owl:Class rdf:about="#CNetworkInterface">
-        <rdfs:subClassOf rdf:resource="#CHardwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CNetworkInterface">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CNode -->
 
-    <owl:Class rdf:about="#CNode">
-        <rdfs:subClassOf rdf:resource="#CResource"/>
+    <owl:Class rdf:about="&semmon_2;CNode">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CNodeCapability -->
 
-    <owl:Class rdf:about="#CNodeCapability">
-        <rdfs:subClassOf rdf:resource="#CResourceCapability"/>
+    <owl:Class rdf:about="&semmon_2;CNodeCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResourceCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CNodeMetric -->
 
-    <owl:Class rdf:about="#CNodeMetric">
-        <rdfs:subClassOf rdf:resource="#CMetric"/>
+    <owl:Class rdf:about="&semmon_2;CNodeMetric">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CMetric"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CObject -->
 
-    <owl:Class rdf:about="#CObject">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CObject">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#COperatingSystem -->
 
-    <owl:Class rdf:about="#COperatingSystem">
-        <rdfs:subClassOf rdf:resource="#CSoftwareResource"/>
+    <owl:Class rdf:about="&semmon_2;COperatingSystem">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#COperatingSystemCapability -->
 
-    <owl:Class rdf:about="#COperatingSystemCapability">
-        <rdfs:subClassOf rdf:resource="#CSoftwareCapability"/>
+    <owl:Class rdf:about="&semmon_2;COperatingSystemCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CPhysicalMemory -->
 
-    <owl:Class rdf:about="#CPhysicalMemory">
-        <rdfs:subClassOf rdf:resource="#CMemory"/>
+    <owl:Class rdf:about="&semmon_2;CPhysicalMemory">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CMemory"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CProActiveActiveObject -->
 
-    <owl:Class rdf:about="#CProActiveActiveObject">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CProActiveActiveObject">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CProActiveNode -->
 
-    <owl:Class rdf:about="#CProActiveNode">
-        <rdfs:subClassOf rdf:resource="#CSoftwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CProActiveNode">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CProcess -->
 
-    <owl:Class rdf:about="#CProcess">
-        <rdfs:subClassOf rdf:resource="#CSoftwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CProcess">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CProcessCapability -->
 
-    <owl:Class rdf:about="#CProcessCapability">
-        <rdfs:subClassOf rdf:resource="#CSoftwareCapability"/>
+    <owl:Class rdf:about="&semmon_2;CProcessCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CResource -->
 
-    <owl:Class rdf:about="#CResource"/>
+    <owl:Class rdf:about="&semmon_2;CResource"/>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CResourceCapability -->
 
-    <owl:Class rdf:about="#CResourceCapability"/>
+    <owl:Class rdf:about="&semmon_2;CResourceCapability"/>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CSoftwareCapability -->
 
-    <owl:Class rdf:about="#CSoftwareCapability">
-        <rdfs:subClassOf rdf:resource="#CResourceCapability"/>
+    <owl:Class rdf:about="&semmon_2;CSoftwareCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResourceCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CSoftwareComponent -->
 
-    <owl:Class rdf:about="#CSoftwareComponent">
-        <rdfs:subClassOf rdf:resource="#CSoftwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CSoftwareComponent">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CSoftwareComponentCapability -->
 
-    <owl:Class rdf:about="#CSoftwareComponentCapability">
-        <rdfs:subClassOf rdf:resource="#CSoftwareCapability"/>
+    <owl:Class rdf:about="&semmon_2;CSoftwareComponentCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CSoftwareComponentMetric -->
 
-    <owl:Class rdf:about="#CSoftwareComponentMetric">
-        <rdfs:subClassOf rdf:resource="#CSoftwareMetric"/>
+    <owl:Class rdf:about="&semmon_2;CSoftwareComponentMetric">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareMetric"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CSoftwareMetric -->
 
-    <owl:Class rdf:about="#CSoftwareMetric">
-        <rdfs:subClassOf rdf:resource="#CMetric"/>
+    <owl:Class rdf:about="&semmon_2;CSoftwareMetric">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CMetric"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CSoftwareResource -->
 
-    <owl:Class rdf:about="#CSoftwareResource">
-        <rdfs:subClassOf rdf:resource="#CResource"/>
+    <owl:Class rdf:about="&semmon_2;CSoftwareResource">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CStorage -->
 
-    <owl:Class rdf:about="#CStorage">
-        <rdfs:subClassOf rdf:resource="#CHardwareResource"/>
+    <owl:Class rdf:about="&semmon_2;CStorage">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CHardwareResource"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CThread -->
 
-    <owl:Class rdf:about="#CThread">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponent"/>
+    <owl:Class rdf:about="&semmon_2;CThread">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponent"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CThreadCapability -->
 
-    <owl:Class rdf:about="#CThreadCapability">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponentCapability"/>
+    <owl:Class rdf:about="&semmon_2;CThreadCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponentCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CThreadMetric -->
 
-    <owl:Class rdf:about="#CThreadMetric">
-        <rdfs:subClassOf rdf:resource="#CSoftwareComponentMetric"/>
+    <owl:Class rdf:about="&semmon_2;CThreadMetric">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CSoftwareComponentMetric"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CVirtualMachine -->
 
-    <owl:Class rdf:about="#CVirtualMachine">
-        <rdfs:subClassOf rdf:resource="#CProcess"/>
+    <owl:Class rdf:about="&semmon_2;CVirtualMachine">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CProcess"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CVirtualMachineCapability -->
 
-    <owl:Class rdf:about="#CVirtualMachineCapability">
-        <rdfs:subClassOf rdf:resource="#CProcessCapability"/>
+    <owl:Class rdf:about="&semmon_2;CVirtualMachineCapability">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CProcessCapability"/>
     </owl:Class>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CVirtualMemory -->
 
-    <owl:Class rdf:about="#CVirtualMemory">
-        <rdfs:subClassOf rdf:resource="#CMemory"/>
+    <owl:Class rdf:about="&semmon_2;CVirtualMemory">
+        <rdfs:subClassOf rdf:resource="&semmon_2;CMemory"/>
     </owl:Class>
     
 
@@ -543,435 +554,490 @@
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Application -->
 
-    <CApplication rdf:about="#Application">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <hasResource rdf:resource="#Cluster"/>
-        <hasNode rdf:resource="#Node"/>
-    </CApplication>
+    <owl:Thing rdf:about="&semmon_2;Application">
+        <rdf:type rdf:resource="&semmon_2;CApplication"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResource rdf:resource="&semmon_2;Cluster"/>
+        <hasNode rdf:resource="&semmon_2;Node"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CPU -->
 
-    <CCPU rdf:about="#CPU">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CCPU>
+    <owl:Thing rdf:about="&semmon_2;CPU">
+        <rdf:type rdf:resource="&semmon_2;CCPU"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CachedMemoryCapability -->
+
+    <owl:NamedIndividual rdf:about="&semmon_2;CachedMemoryCapability">
+        <rdf:type rdf:resource="&semmon_2;CMemoryCapability"/>
+    </owl:NamedIndividual>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Class -->
 
-    <owl:Thing rdf:about="#Class">
-        <rdf:type rdf:resource="#CClass"/>
-        <hasSoftwareComponent rdf:resource="#Method"/>
-        <hasSoftwareComponent rdf:resource="#Object"/>
+    <owl:Thing rdf:about="&semmon_2;Class">
+        <rdf:type rdf:resource="&semmon_2;CClass"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasSoftwareComponent rdf:resource="&semmon_2;Method"/>
+        <hasSoftwareComponent rdf:resource="&semmon_2;Object"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ClassLoader -->
 
-    <owl:Thing rdf:about="#ClassLoader">
-        <rdf:type rdf:resource="#CClassLoader"/>
+    <owl:Thing rdf:about="&semmon_2;ClassLoader">
+        <rdf:type rdf:resource="&semmon_2;CClassLoader"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Cluster -->
 
-    <owl:Thing rdf:about="#Cluster">
-        <rdf:type rdf:resource="#CCluster"/>
-        <hasNode rdf:resource="#Node"/>
+    <owl:Thing rdf:about="&semmon_2;Cluster">
+        <rdf:type rdf:resource="&semmon_2;CCluster"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasNode rdf:resource="&semmon_2;Node"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CollectionCountCapability -->
 
-    <CJVMMetric rdf:about="#CollectionCountCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CJVMMetric>
+    <owl:Thing rdf:about="&semmon_2;CollectionCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CJVMMetric"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CollectionTimeCapability -->
 
-    <CJVMMetric rdf:about="#CollectionTimeCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CJVMMetric>
+    <owl:Thing rdf:about="&semmon_2;CollectionTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CJVMMetric"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#CurrentLoadedClassesCapability -->
 
-    <CVirtualMachineCapability rdf:about="#CurrentLoadedClassesCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CVirtualMachineCapability>
+    <owl:Thing rdf:about="&semmon_2;CurrentLoadedClassesCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#FreeMemoryCapability -->
 
-    <owl:Thing rdf:about="#FreeMemoryCapability">
-        <rdf:type rdf:resource="#CMemoryCapability"/>
+    <owl:Thing rdf:about="&semmon_2;FreeMemoryCapability">
+        <rdf:type rdf:resource="&semmon_2;CMemoryCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Function -->
 
-    <owl:Thing rdf:about="#Function">
-        <rdf:type rdf:resource="#CFunction"/>
+    <owl:Thing rdf:about="&semmon_2;Function">
+        <rdf:type rdf:resource="&semmon_2;CFunction"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#GarbageCollector -->
 
-    <owl:Thing rdf:about="#GarbageCollector">
-        <rdf:type rdf:resource="#CGarbageCollector"/>
-        <hasResourceCapability rdf:resource="#CollectionCountCapability"/>
-        <hasResourceCapability rdf:resource="#CollectionTimeCapability"/>
+    <owl:Thing rdf:about="&semmon_2;GarbageCollector">
+        <rdf:type rdf:resource="&semmon_2;CGarbageCollector"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResourceCapability rdf:resource="&semmon_2;CollectionCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;CollectionTimeCapability"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#HardDrive -->
 
-    <CHardDisk rdf:about="#HardDrive">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CHardDisk>
+    <owl:Thing rdf:about="&semmon_2;HardDrive">
+        <rdf:type rdf:resource="&semmon_2;CHardDisk"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#HeapUsageCapability -->
 
-    <owl:Thing rdf:about="#HeapUsageCapability">
-        <rdf:type rdf:resource="#CVirtualMachineCapability"/>
+    <owl:Thing rdf:about="&semmon_2;HeapUsageCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#JVM -->
 
-    <CVirtualMachine rdf:about="#JVM">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <hasSoftware rdf:resource="#ClassLoader"/>
-        <hasSoftware rdf:resource="#GarbageCollector"/>
-        <hasResourceCapability rdf:resource="#HeapUsageCapability"/>
-        <hasResourceCapability rdf:resource="#LiveThreadsCountCapability"/>
-        <hasResourceCapability rdf:resource="#LoadedClassesCapability"/>
-        <hasResourceCapability rdf:resource="#NonHeapUsageCapability"/>
-        <hasResourceCapability rdf:resource="#OpenFileDescriptorCountCapability"/>
-        <hasSoftwareComponent rdf:resource="#Thread"/>
-        <hasResourceCapability rdf:resource="#TotalCPUTimeCapability"/>
-        <hasResourceCapability rdf:resource="#TotalCompilationTimeCapability"/>
-        <hasResourceCapability rdf:resource="#TotalLoadedClassesCapability"/>
-        <hasResourceCapability rdf:resource="#TotalStartedThreadsCountCapability"/>
-        <hasResourceCapability rdf:resource="#TotalUnloadedClassesCapability"/>
-        <hasResourceCapability rdf:resource="#UptimeCapability"/>
-    </CVirtualMachine>
+    <owl:Thing rdf:about="&semmon_2;JVM">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachine"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasSoftware rdf:resource="&semmon_2;ClassLoader"/>
+        <hasSoftware rdf:resource="&semmon_2;GarbageCollector"/>
+        <hasResourceCapability rdf:resource="&semmon_2;HeapUsageCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;LiveThreadsCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;LoadedClassesCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;NonHeapUsageCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;OpenFileDescriptorCountCapability"/>
+        <hasSoftwareComponent rdf:resource="&semmon_2;Thread"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalCPUTimeCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalCompilationTimeCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalLoadedClassesCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalStartedThreadsCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalUnloadedClassesCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;UptimeCapability"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#JVMThreadCPUTimeMetric -->
 
-    <owl:Thing rdf:about="#JVMThreadCPUTimeMetric">
-        <rdf:type rdf:resource="#CThreadMetric"/>
-        <usesCapability rdf:resource="#ThreadCPUTimeCapability"/>
+    <owl:Thing rdf:about="&semmon_2;JVMThreadCPUTimeMetric">
+        <rdf:type rdf:resource="&semmon_2;CThreadMetric"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <usesCapability rdf:resource="&semmon_2;ThreadCPUTimeCapability"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#JVMThreadCountMetric -->
 
-    <CJVMMetric rdf:about="#JVMThreadCountMetric">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CJVMMetric>
+    <owl:Thing rdf:about="&semmon_2;JVMThreadCountMetric">
+        <rdf:type rdf:resource="&semmon_2;CJVMMetric"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#LiveThreadsCountCapability -->
 
-    <CProcessCapability rdf:about="#LiveThreadsCountCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CProcessCapability>
+    <owl:Thing rdf:about="&semmon_2;LiveThreadsCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CProcessCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Load15minCapability -->
 
-    <owl:Thing rdf:about="#Load15minCapability">
-        <rdf:type rdf:resource="#COperatingSystemCapability"/>
+    <owl:Thing rdf:about="&semmon_2;Load15minCapability">
+        <rdf:type rdf:resource="&semmon_2;COperatingSystemCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Load1minCapability -->
 
-    <owl:Thing rdf:about="#Load1minCapability">
-        <rdf:type rdf:resource="#COperatingSystemCapability"/>
+    <owl:Thing rdf:about="&semmon_2;Load1minCapability">
+        <rdf:type rdf:resource="&semmon_2;COperatingSystemCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Load5minCapability -->
 
-    <owl:Thing rdf:about="#Load5minCapability">
-        <rdf:type rdf:resource="#COperatingSystemCapability"/>
+    <owl:Thing rdf:about="&semmon_2;Load5minCapability">
+        <rdf:type rdf:resource="&semmon_2;COperatingSystemCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#LoadedClassesCapability -->
 
-    <CVirtualMachineCapability rdf:about="#LoadedClassesCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CVirtualMachineCapability>
+    <owl:Thing rdf:about="&semmon_2;LoadedClassesCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Method -->
 
-    <CMethod rdf:about="#Method">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CMethod>
+    <owl:Thing rdf:about="&semmon_2;Method">
+        <rdf:type rdf:resource="&semmon_2;CMethod"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#NetworkInterface -->
 
-    <CNetworkInterface rdf:about="#NetworkInterface">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CNetworkInterface>
+    <owl:Thing rdf:about="&semmon_2;NetworkInterface">
+        <rdf:type rdf:resource="&semmon_2;CNetworkInterface"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Node -->
 
-    <CNode rdf:about="#Node">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <hasHardware rdf:resource="#CPU"/>
-        <hasHardware rdf:resource="#HardDrive"/>
-        <hasSoftware rdf:resource="#JVM"/>
-        <hasResourceCapability rdf:resource="#Load15minCapability"/>
-        <hasResourceCapability rdf:resource="#Load1minCapability"/>
-        <hasResourceCapability rdf:resource="#Load5minCapability"/>
-        <hasHardware rdf:resource="#NetworkInterface"/>
-        <hasSoftware rdf:resource="#OperatingSystem"/>
-        <hasHardware rdf:resource="#PhysicalMemory"/>
-        <hasSoftware rdf:resource="#Process"/>
-        <hasResourceCapability rdf:resource="#UptimeCapability"/>
-        <hasHardware rdf:resource="#VirtualMemory"/>
-    </CNode>
+    <owl:Thing rdf:about="&semmon_2;Node">
+        <rdf:type rdf:resource="&semmon_2;CNode"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasHardware rdf:resource="&semmon_2;CPU"/>
+        <hasHardware rdf:resource="&semmon_2;HardDrive"/>
+        <hasSoftware rdf:resource="&semmon_2;JVM"/>
+        <hasResourceCapability rdf:resource="&semmon_2;Load15minCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;Load1minCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;Load5minCapability"/>
+        <hasHardware rdf:resource="&semmon_2;NetworkInterface"/>
+        <hasSoftware rdf:resource="&semmon_2;OperatingSystem"/>
+        <hasHardware rdf:resource="&semmon_2;PhysicalMemory"/>
+        <hasSoftware rdf:resource="&semmon_2;Process"/>
+        <hasResourceCapability rdf:resource="&semmon_2;UptimeCapability"/>
+        <hasHardware rdf:resource="&semmon_2;VirtualMemory"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#NonHeapUsageCapability -->
 
-    <CVirtualMachineCapability rdf:about="#NonHeapUsageCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CVirtualMachineCapability>
+    <owl:Thing rdf:about="&semmon_2;NonHeapUsageCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Object -->
 
-    <owl:Thing rdf:about="#Object">
-        <rdf:type rdf:resource="#CObject"/>
+    <owl:Thing rdf:about="&semmon_2;Object">
+        <rdf:type rdf:resource="&semmon_2;CObject"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#OpenFileDescriptorCountCapability -->
 
-    <owl:Thing rdf:about="#OpenFileDescriptorCountCapability">
-        <rdf:type rdf:resource="#CProcessCapability"/>
+    <owl:Thing rdf:about="&semmon_2;OpenFileDescriptorCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CProcessCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#OperatingSystem -->
 
-    <owl:Thing rdf:about="#OperatingSystem">
-        <rdf:type rdf:resource="#COperatingSystem"/>
+    <owl:Thing rdf:about="&semmon_2;OperatingSystem">
+        <rdf:type rdf:resource="&semmon_2;COperatingSystem"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#PermMemoryUsageCapability -->
 
-    <owl:Thing rdf:about="#PermMemoryUsageCapability">
-        <rdf:type rdf:resource="#CVirtualMachineCapability"/>
+    <owl:Thing rdf:about="&semmon_2;PermMemoryUsageCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#PhysicalMemory -->
 
-    <CPhysicalMemory rdf:about="#PhysicalMemory">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <hasResourceCapability rdf:resource="#FreeMemoryCapability"/>
-        <hasResourceCapability rdf:resource="#TotalMemoryCapability"/>
-        <hasResourceCapability rdf:resource="#UsedMemoryCapability"/>
-    </CPhysicalMemory>
+    <owl:Thing rdf:about="&semmon_2;PhysicalMemory">
+        <rdf:type rdf:resource="&semmon_2;CPhysicalMemory"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResourceCapability rdf:resource="&semmon_2;FreeMemoryCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalMemoryCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;UsedMemoryCapability"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Process -->
 
-    <CProcess rdf:about="#Process">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <hasSoftwareComponent rdf:resource="#Class"/>
-        <hasSoftwareComponent rdf:resource="#Function"/>
-        <hasResourceCapability rdf:resource="#LiveThreadsCountCapability"/>
-        <hasResourceCapability rdf:resource="#OpenFileDescriptorCountCapability"/>
-        <hasSoftwareComponent rdf:resource="#Thread"/>
-        <hasResourceCapability rdf:resource="#ThreadBlockedCountCapability"/>
-        <hasResourceCapability rdf:resource="#TotalCPUTimeCapability"/>
-        <hasResourceCapability rdf:resource="#TotalStartedThreadsCountCapability"/>
-        <hasResourceCapability rdf:resource="#UptimeCapability"/>
-    </CProcess>
+    <owl:Thing rdf:about="&semmon_2;Process">
+        <rdf:type rdf:resource="&semmon_2;CProcess"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasSoftwareComponent rdf:resource="&semmon_2;Class"/>
+        <hasSoftwareComponent rdf:resource="&semmon_2;Function"/>
+        <hasResourceCapability rdf:resource="&semmon_2;LiveThreadsCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;OpenFileDescriptorCountCapability"/>
+        <hasSoftwareComponent rdf:resource="&semmon_2;Thread"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadBlockedCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalCPUTimeCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalStartedThreadsCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;UptimeCapability"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#Thread -->
 
-    <CThread rdf:about="#Thread">
-        <rdf:type rdf:resource="&owl;Thing"/>
-        <hasResourceCapability rdf:resource="#ThreadBlockedCountCapability"/>
-        <hasResourceCapability rdf:resource="#ThreadBlockedTimeCapability"/>
-        <hasResourceCapability rdf:resource="#ThreadCPUTimeCapability"/>
-        <hasResourceCapability rdf:resource="#ThreadUserTimeCapability"/>
-        <hasResourceCapability rdf:resource="#ThreadWaitedCountCapability"/>
-        <hasResourceCapability rdf:resource="#ThreadWaitedTimeCapability"/>
-    </CThread>
+    <owl:Thing rdf:about="&semmon_2;Thread">
+        <rdf:type rdf:resource="&semmon_2;CThread"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadBlockedCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadBlockedTimeCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadCPUTimeCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadUserTimeCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadWaitedCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;ThreadWaitedTimeCapability"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ThreadBlockedCountCapability -->
 
-    <owl:Thing rdf:about="#ThreadBlockedCountCapability">
-        <rdf:type rdf:resource="#CThreadCapability"/>
+    <owl:Thing rdf:about="&semmon_2;ThreadBlockedCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CThreadCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ThreadBlockedTimeCapability -->
 
-    <CThreadCapability rdf:about="#ThreadBlockedTimeCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CThreadCapability>
+    <owl:Thing rdf:about="&semmon_2;ThreadBlockedTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CThreadCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ThreadCPUTimeCapability -->
 
-    <owl:Thing rdf:about="#ThreadCPUTimeCapability">
-        <rdf:type rdf:resource="#CThreadCapability"/>
+    <owl:Thing rdf:about="&semmon_2;ThreadCPUTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CThreadCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ThreadUserTimeCapability -->
 
-    <CThreadCapability rdf:about="#ThreadUserTimeCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CThreadCapability>
+    <owl:Thing rdf:about="&semmon_2;ThreadUserTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CThreadCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ThreadWaitedCountCapability -->
 
-    <owl:Thing rdf:about="#ThreadWaitedCountCapability">
-        <rdf:type rdf:resource="#CThreadCapability"/>
+    <owl:Thing rdf:about="&semmon_2;ThreadWaitedCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CThreadCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#ThreadWaitedTimeCapability -->
 
-    <owl:Thing rdf:about="#ThreadWaitedTimeCapability">
-        <rdf:type rdf:resource="#CThreadCapability"/>
+    <owl:Thing rdf:about="&semmon_2;ThreadWaitedTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CThreadCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalCPUTimeCapability -->
 
-    <CProcessCapability rdf:about="#TotalCPUTimeCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CProcessCapability>
+    <owl:Thing rdf:about="&semmon_2;TotalCPUTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CProcessCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalCompilationTimeCapability -->
 
-    <owl:Thing rdf:about="#TotalCompilationTimeCapability">
-        <rdf:type rdf:resource="#CVirtualMachineCapability"/>
+    <owl:Thing rdf:about="&semmon_2;TotalCompilationTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalLoadedClassesCapability -->
 
-    <CVirtualMachineCapability rdf:about="#TotalLoadedClassesCapability">
-        <rdf:type rdf:resource="&owl;Thing"/>
-    </CVirtualMachineCapability>
+    <owl:Thing rdf:about="&semmon_2;TotalLoadedClassesCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalMemoryCapability -->
 
-    <owl:Thing rdf:about="#TotalMemoryCapability">
-        <rdf:type rdf:resource="#CMemoryCapability"/>
+    <owl:Thing rdf:about="&semmon_2;TotalMemoryCapability">
+        <rdf:type rdf:resource="&semmon_2;CMemoryCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalStartedThreadsCountCapability -->
 
-    <owl:Thing rdf:about="#TotalStartedThreadsCountCapability">
-        <rdf:type rdf:resource="#CProcessCapability"/>
+    <owl:Thing rdf:about="&semmon_2;TotalStartedThreadsCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CProcessCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalUnloadedClassesCapability -->
 
-    <owl:Thing rdf:about="#TotalUnloadedClassesCapability">
-        <rdf:type rdf:resource="#CVirtualMachineCapability"/>
+    <owl:Thing rdf:about="&semmon_2;TotalUnloadedClassesCapability">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMachineCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#UptimeCapability -->
 
-    <owl:Thing rdf:about="#UptimeCapability">
-        <rdf:type rdf:resource="#CSoftwareCapability"/>
+    <owl:Thing rdf:about="&semmon_2;UptimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CSoftwareCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#UsedMemoryCapability -->
 
-    <owl:Thing rdf:about="#UsedMemoryCapability">
-        <rdf:type rdf:resource="#CMemoryCapability"/>
+    <owl:Thing rdf:about="&semmon_2;UsedMemoryCapability">
+        <rdf:type rdf:resource="&semmon_2;CMemoryCapability"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
     
 
 
     <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#VirtualMemory -->
 
-    <owl:Thing rdf:about="#VirtualMemory">
-        <rdf:type rdf:resource="#CVirtualMemory"/>
-        <hasResourceCapability rdf:resource="#FreeMemoryCapability"/>
-        <hasResourceCapability rdf:resource="#TotalMemoryCapability"/>
-        <hasResourceCapability rdf:resource="#UsedMemoryCapability"/>
+    <owl:Thing rdf:about="&semmon_2;VirtualMemory">
+        <rdf:type rdf:resource="&semmon_2;CVirtualMemory"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResourceCapability rdf:resource="&semmon_2;FreeMemoryCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalMemoryCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;UsedMemoryCapability"/>
     </owl:Thing>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.3.22702) http://owlapi.sourceforge.net -->
 

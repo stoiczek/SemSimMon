@@ -27,7 +27,7 @@ public class ThreadsCP implements CapabilityProbe {
   private ThreadsCapabilityProbeType type;
 
   @Override
-  public CapabilityValue getCapabilityValue(Resource resource, Application application) throws OcmgException {
+  public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
     if (!resource.getTypeUri().equals(KnowledgeConstants.PROCESS_URI)) {
       throw new IllegalArgumentException("Invalid uri type");
     }

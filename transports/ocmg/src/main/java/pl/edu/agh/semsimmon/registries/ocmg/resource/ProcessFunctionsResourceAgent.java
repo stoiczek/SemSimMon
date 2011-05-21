@@ -41,14 +41,14 @@ public class ProcessFunctionsResourceAgent extends AbstractResourceAgent {
       }
       final List<org.balticgrid.ocmg.objects.Thread> threadList = process.getThreads();
       for (Function function : functions) {
-        if(!function.getFunctionName().matches(".*send.*|.*recv.*|.*gather.*|.*scatter.*|.*barrier.*|.*bcast.*")) {
+        if(!function.getFunctionName().toLowerCase().matches(".*send.*|.*recv.*|.*gather.*|.*scatter.*|.*barrier.*|.*bcast.*")) {
           continue;
         }
         log.debug("Processing function: {}" , function.getFunctionName());
         final String functionId = function.getFileName() + ":" + function.getFunctionName();
 
 //        LibCallMeter callMeter = new LibCallMeter(application.getMonitor(), null, function.getFunctionName(),
-//            null, null, LibCallMeter.Type.TYPE_COUNT_TIME);
+//            null, null, LibCallMeter.MemoryProbeType.TYPE_COUNT_TIME);
         final Resource resource = wrapResource(parent, type, functionId);
 //        metersContainer.addMeter(resource.getUri(), callMeter);
         resource.setProperty(ResourcePropertyNames.Function.FILE_NAME, function.getFileName());

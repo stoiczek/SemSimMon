@@ -62,7 +62,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="ocmgStorageDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.StorageResourceAgent"/>
 
-  <bean id="ocmgVirtualMemoryDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.VirtualMemoryRA"/>
+  <bean id="ocmgVirtualMemoryDiscoveryAgent"
+        class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.VirtualMemoryRA"/>
 
   <bean id="ocmgPhysicalMemoryDiscoveryAgent"
         class="pl.edu.agh.semsimmon.registries.ocmg.resource.node.PhysicalMemoryRA"/>
@@ -78,7 +79,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <util:map id="ocmgProbes" key-type="java.lang.String" value-type="java.util.HashMap">
     <entry key-ref="nodeUri" value-ref="ocmgNodeProbes"/>
     <entry key-ref="processUri" value-ref="ocmgProcesProbes"/>
-    <entry key-ref="functionUri" value-ref="ocmgFunctionProbes" />
+    <entry key-ref="functionUri" value-ref="ocmgFunctionProbes"/>
+    <entry key-ref="virtualMemUri" value-ref="virtualMemProbes"/>
+    <entry key-ref="physicalMemoryUri" value-ref="physicalMemProbes"/>
   </util:map>
 
   <util:map id="ocmgNodeProbes" key-type="java.lang.String"
@@ -86,6 +89,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <entry key-ref="load1MinCapabilityUri" value-ref="ocmgNodeLoad1minProbe"/>
     <entry key-ref="load5MinCapabilityUri" value-ref="ocmgNodeLoad5minProbe"/>
     <entry key-ref="load15MinCapabilityUri" value-ref="ocmgNodeLoad15minProbe"/>
+    <entry key-ref="uptimeCapabilityUri" value-ref="uptimeProbe"/>
   </util:map>
 
   <util:map id="ocmgProcesProbes" key-type="java.lang.String"
@@ -99,6 +103,23 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
             value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="callCountCapabilityUri" value-ref="ocmgFunctionCallCountProbe"/>
     <entry key-ref="callTimeCapabilityUri" value-ref="ocmgFunctionCallTimeProbe"/>
+  </util:map>
+
+  <util:map id="virtualMemProbes" key-type="java.lang.String"
+            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
+    <entry key-ref="freeMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
+    <entry key-ref="usedMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
+    <entry key-ref="totalMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
+    <entry key-ref="cachedMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
+  </util:map>
+
+  <util:map id="physicalMemProbes" key-type="java.lang.String"
+            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
+    <entry key-ref="freeMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
+    <entry key-ref="usedMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
+    <entry key-ref="totalMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
+    <entry key-ref="cachedMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
+
   </util:map>
 
   <!--===============================================================================================-->
@@ -115,6 +136,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <bean id="ocmgNodeLoad15minProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.node.LoadAvgProbe">
     <property name="type" value="_15MIN"/>
   </bean>
+
+  <bean id="uptimeProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.node.UptimeProbe"/>
 
 
   <!-- Process -->
@@ -140,6 +163,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <property name="type" value="COUNT"/>
     <property name="libCallMetersContainer" ref="metersContainer"/>
   </bean>
+
+  <!-- Memory-->
+
+
+  <bean id="phyMemoryProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.mem.PhyMemoryProbe"/>
+  <bean id="virtualMemoryProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.mem.VirtualMemoryProbe"/>
+
 
   <!--===============================================================================================-->
   <!--===============================================================================================-->

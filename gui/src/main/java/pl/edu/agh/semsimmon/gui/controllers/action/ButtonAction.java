@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
 public @interface ButtonAction {
 
   /**
-   * Type of action. This can be used to define whether action should be performed on EDT or in background thread.
+   * MemoryProbeType of action. This can be used to define whether action should be performed on EDT or in background thread.
    */
   public enum Type {
 

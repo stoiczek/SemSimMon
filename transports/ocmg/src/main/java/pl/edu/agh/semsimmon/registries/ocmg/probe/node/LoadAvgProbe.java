@@ -28,7 +28,7 @@ public class LoadAvgProbe implements CapabilityProbe {
   private Type type;
 
   @Override
-  public CapabilityValue getCapabilityValue(Resource resource, Application application) throws OcmgException {
+  public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
     final Connection connection = application.getConnection();
     final String[] uriParts = getUriParts(resource);
     final String node = uriParts[uriParts.length - 1];

@@ -67,7 +67,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
     final CapabilityProbe probe = probes.get(resource.getTypeUri()).get(capabilityType);
     final Application app = getApplication(resource);
     try {
-      return probe.getCapabilityValue(resource, app);
+      return probe.getCapabilityValue(resource, app, capabilityType);
     } catch (OcmgException e) {
       throw new TransportException(e);
     }

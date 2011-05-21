@@ -25,7 +25,7 @@ public class FunctionProbe implements CapabilityProbe {
   private ProbeType type;
 
   @Override
-  public CapabilityValue getCapabilityValue(Resource resource, Application application) throws OcmgException {
+  public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
     LibCallMeter libCallMeter = libCallMetersContainer.getMeter(resource.getUri());
     if(libCallMeter == null) {
       return new CapabilityValue(Double.NaN);
