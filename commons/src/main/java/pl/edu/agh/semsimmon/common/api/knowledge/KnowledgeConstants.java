@@ -149,7 +149,7 @@ public interface KnowledgeConstants {
 
 
   static final String LIVE_THREADS_CAP = ONTOLOGY_URI + "#LiveThreadsCountCapability";
-  static final String STARTED_THREADS_CAP = ONTOLOGY_URI + "#TotalStartedThreadsCapability";
+  static final String STARTED_THREADS_CAP = ONTOLOGY_URI + "#TotalStartedThreadsCountCapability";
   static final String OPEN_FILE_DESCRIPTOR_CAP = ONTOLOGY_URI + "#OpenFileDescriptorCountCapability";
   static final String TOTAL_CPU_TIME_CAP = ONTOLOGY_URI + "#TotalCPUTimeCapability";
 

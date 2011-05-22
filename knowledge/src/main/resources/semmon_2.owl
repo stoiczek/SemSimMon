@@ -651,6 +651,8 @@
     <owl:Thing rdf:about="&semmon_2;Function">
         <rdf:type rdf:resource="&semmon_2;CFunction"/>
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalCallCountCapability"/>
+        <hasResourceCapability rdf:resource="&semmon_2;TotalCallTimeCapability"/>
     </owl:Thing>
     
 
@@ -860,6 +862,7 @@
     <owl:Thing rdf:about="&semmon_2;PhysicalMemory">
         <rdf:type rdf:resource="&semmon_2;CPhysicalMemory"/>
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <hasResourceCapability rdf:resource="&semmon_2;CachedMemoryCapability"/>
         <hasResourceCapability rdf:resource="&semmon_2;FreeMemoryCapability"/>
         <hasResourceCapability rdf:resource="&semmon_2;TotalMemoryCapability"/>
         <hasResourceCapability rdf:resource="&semmon_2;UsedMemoryCapability"/>
@@ -960,6 +963,22 @@
         <rdf:type rdf:resource="&semmon_2;CProcessCapability"/>
         <rdf:type rdf:resource="&owl;NamedIndividual"/>
     </owl:Thing>
+    
+
+
+    <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalCallCountCapability -->
+
+    <owl:NamedIndividual rdf:about="&semmon_2;TotalCallCountCapability">
+        <rdf:type rdf:resource="&semmon_2;CSoftwareComponentCapability"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.icsr.agh.edu.pl/semmon_2.owl#TotalCallTimeCapability -->
+
+    <owl:NamedIndividual rdf:about="&semmon_2;TotalCallTimeCapability">
+        <rdf:type rdf:resource="&semmon_2;CSoftwareComponentCapability"/>
+    </owl:NamedIndividual>
     
 
 

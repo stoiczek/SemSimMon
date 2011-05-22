@@ -4,6 +4,7 @@ import org.balticgrid.ocmg.base.*;
 import org.balticgrid.ocmg.mainsm.OCMGMainSMTool;
 import org.balticgrid.ocmg.objects.Application;
 import org.balticgrid.ocmg.objects.Monitor;
+import org.balticgrid.ocmg.objects.Policy;
 import org.balticgrid.ocmg.wrappers.ApplicationWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,7 +90,14 @@ public class OcmgConnection {
       }
       log.debug("Connection created, checking if given application is valid");
       monitor = new Monitor(connection);
-//      monitor.getPolicy().setTraceThreadStatus(true);
+
+//      This one, crashes MainSM
+//==============================================================================
+      Policy policy = new Policy();
+      policy.setTraceThreadStatus(true);
+      policy.setTraceValue(true);
+      org.balticgrid.ocmg.objects.Thread.setPolicy(policy);
+
       log.debug("OcmgConnection initialized");
       connected = true;
     } catch (ConnectionException e) {
@@ -97,8 +105,7 @@ public class OcmgConnection {
       StringWriter writer = new StringWriter(512);
       e.printStackTrace(new PrintWriter(writer));
       throw new OcmgException("Got communication exception: " + e.getMessage() + "\n" + writer.toString());
-    }
-    catch (UnknownHostException e) {
+    } catch (UnknownHostException e) {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     }
   }
@@ -131,10 +138,20 @@ public class OcmgConnection {
   }
 
   public void disconnect() throws OcmgException {
-    if (connected) {
-      connection.close();
-      connected = false;
+    if (!connected) {
+      return;
     }
+    for(ApplicationCacheEntry entry : applicationCache.values()) {
+      try {
+        entry.application.detach();
+      } catch (ConnectionException e) {
+        log.error("Exception detaching", e);
+      } catch (MonitorException e) {
+        log.error("Exception detaching", e);
+      }
+    }
+    connection.close();
+    connected = false;
   }
 
   public Application attachToApplication(Resource resource) throws OcmgException {

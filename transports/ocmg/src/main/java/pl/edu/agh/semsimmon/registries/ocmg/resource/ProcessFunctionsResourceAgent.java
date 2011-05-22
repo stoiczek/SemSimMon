@@ -2,7 +2,9 @@ package pl.edu.agh.semsimmon.registries.ocmg.resource;
 
 import org.balticgrid.ocmg.base.ConnectionException;
 import org.balticgrid.ocmg.base.MonitorException;
+import org.balticgrid.ocmg.meters.LibCallMeter;
 import org.balticgrid.ocmg.objects.Application;
+import org.balticgrid.ocmg.objects.context.InvalidParameterException;
 import org.balticgrid.ocmg.wrappers.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,10 +49,10 @@ public class ProcessFunctionsResourceAgent extends AbstractResourceAgent {
         log.debug("Processing function: {}" , function.getFunctionName());
         final String functionId = function.getFileName() + ":" + function.getFunctionName();
 
-//        LibCallMeter callMeter = new LibCallMeter(application.getMonitor(), null, function.getFunctionName(),
-//            null, null, LibCallMeter.MemoryProbeType.TYPE_COUNT_TIME);
+        LibCallMeter callMeter = new LibCallMeter(application.getMonitor(), null, function.getFunctionName(),
+            null, null, LibCallMeter.Type.TYPE_COUNT_TIME);
         final Resource resource = wrapResource(parent, type, functionId);
-//        metersContainer.addMeter(resource.getUri(), callMeter);
+        metersContainer.addMeter(resource.getUri(), callMeter);
         resource.setProperty(ResourcePropertyNames.Function.FILE_NAME, function.getFileName());
         resource.setProperty(ResourcePropertyNames.Function.FUNCTION_NAME, function.getFunctionName());
         resource.setProperty(ResourcePropertyNames.Function.START_ADDRESS, function.getStartAddress());
@@ -62,8 +64,8 @@ public class ProcessFunctionsResourceAgent extends AbstractResourceAgent {
       throw new OcmgException("Error connecting OCMG");
     } catch (MonitorException e) {
       throw new OcmgException("Error communicationg OCMG");
-//    } catch (InvalidParameterException e) {
-//      throw new OcmgException("Error Creating LibCallMeter", e);
+    } catch (InvalidParameterException e) {
+      throw new OcmgException("Error Creating LibCallMeter", e);
     }
   }
 

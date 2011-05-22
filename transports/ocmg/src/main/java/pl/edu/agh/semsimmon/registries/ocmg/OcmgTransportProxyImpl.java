@@ -12,6 +12,7 @@ import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe;
 import pl.edu.agh.semsimmon.registries.ocmg.resource.ResourceAgent;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 
 /**
@@ -264,6 +265,16 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
     return applicationCache.get(applicationUri);
   }
 
+  @PostConstruct
+  public void cleanup() {
+    for(OcmgConnection conn : activeConnections.values()) {
+      try {
+        conn.disconnect();
+      } catch (OcmgException e) {
+        log.error("Error disconnecting", e);
+      }
+    }
+  }
 
   public void setProbes(Map<String, Map<String, CapabilityProbe>> probes) {
     this.probes = probes;

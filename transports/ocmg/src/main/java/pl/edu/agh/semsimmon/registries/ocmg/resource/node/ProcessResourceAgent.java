@@ -6,6 +6,7 @@ import org.balticgrid.ocmg.objects.Application;
 import org.balticgrid.ocmg.objects.Process;
 import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
 import org.balticgrid.ocmg.wrappers.ProcessStaticInfo;
+import org.balticgrid.ocmg.wrappers.ProcessWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
@@ -36,7 +37,6 @@ public class ProcessResourceAgent extends BaseNodesChildrenRA {
       process.attach();
       final Resource resource = wrapResource(nodeResource, type, process.getCacheName());
       final ProcessStaticInfo staticInfo = process.getStaticInfo();
-
       resource.setProperty(ResourcePropertyNames.Process.ARGUMENTS, staticInfo.getArguments());
       resource.setProperty(ResourcePropertyNames.Process.GLOBAL_ID, staticInfo.getGlobalId());
       resource.setProperty(ResourcePropertyNames.Process.USER_ID, staticInfo.getUserId());

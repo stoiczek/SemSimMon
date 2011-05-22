@@ -74,7 +74,7 @@
   <util:constant id="threadBlockedCountCapabilityUri"
                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.THREAD_BLOCKED_COUNT_CAP"/>
 
-  <util:constant id="threadBlocketTimeCapabilityUri"
+  <util:constant id="threadBlockedTimeCapabilityUri"
                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.THREAD_BLOCKED_TIME_CAP"/>
 
   <util:constant id="totalCpuTimeCapabilityUri"

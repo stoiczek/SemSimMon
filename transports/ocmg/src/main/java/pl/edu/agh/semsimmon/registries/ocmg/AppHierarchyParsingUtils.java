@@ -2,8 +2,9 @@ package pl.edu.agh.semsimmon.registries.ocmg;
 
 import org.balticgrid.ocmg.base.ConnectionException;
 import org.balticgrid.ocmg.base.MonitorException;
-import org.balticgrid.ocmg.objects.Application;
+import org.balticgrid.ocmg.objects.*;
 import org.balticgrid.ocmg.objects.Process;
+import org.balticgrid.ocmg.objects.Thread;
 import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
 import org.balticgrid.ocmg.objects.apphierarchy.SiteTree;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
@@ -34,7 +35,9 @@ public class AppHierarchyParsingUtils {
       processes = app.getProcessList();
 
       Process resourceProcess = null;
+
       for (Process process : processes) {
+
         if (process.getStaticInfo().getGlobalId() == processGlobalId) {
           resourceProcess = process;
           break;
@@ -54,6 +57,38 @@ public class AppHierarchyParsingUtils {
 
   public static org.balticgrid.ocmg.objects.Process findProcess(Resource processResource, Application application) throws OcmgException {
     return getProcessById(application, (Integer) processResource.getProperty(ResourcePropertyNames.Process.GLOBAL_ID));
+  }
+
+  public static org.balticgrid.ocmg.objects.Thread findThread(int processGlobalId, String token, Application app) throws OcmgException {
+    List<Process> processes = null;
+        try {
+          processes = app.getProcessList();
+
+          Process resourceProcess = null;
+
+          for (Process process : processes) {
+
+            if (process.getStaticInfo().getGlobalId() == processGlobalId) {
+              resourceProcess = process;
+              break;
+            }
+          }
+          if (resourceProcess == null) {
+            throw new IllegalArgumentException("Invalid resource - couldn't find corresponding process");
+          }
+          Thread foundThread = null;
+          for(Thread thread : resourceProcess.getThreads()) {
+            if(thread.getToken().getValue().equals(token)) {
+              foundThread = thread;
+            }
+          }
+          return foundThread;
+        } catch (ConnectionException e) {
+          throw new OcmgException(e);
+        } catch (MonitorException e) {
+          throw new OcmgException(e);
+        }
+
   }
 
   public static NodeTree findNodeTree(Application application, String site, String node) throws ConnectionException, MonitorException, OcmgException {
