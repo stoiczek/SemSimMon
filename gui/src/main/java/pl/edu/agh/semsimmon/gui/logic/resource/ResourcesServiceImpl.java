@@ -6,6 +6,7 @@ import pl.edu.agh.semsimmon.common.api.CoreServiceFacade;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.ResourceEvent;
 import pl.edu.agh.semsimmon.common.api.resource.ResourceEventsListener;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.consts.JmxRegistryConsts;
 import pl.edu.agh.semsimmon.common.consts.OcmgRegistryConsts;
 import pl.edu.agh.semsimmon.common.exception.ResourceAlreadyRegisteredException;
@@ -89,6 +90,7 @@ public class ResourcesServiceImpl implements ResourcesService, ResourceEventsLis
       return appUri;
     }
     final Resource applicationResource = new Resource(appUri, KnowledgeConstants.APPLICATION_URI, new HashMap<String, Object>());
+    applicationResource.setProperty(ResourcePropertyNames.RESOURCE_REMOVABLE, true);
     final ResourcesTreeNode appTreeRoot = addApplicationResource(applicationResource);
     fireResourceAddedEvent(Arrays.asList(appTreeRoot));
     log.debug("Application added");
@@ -122,6 +124,7 @@ public class ResourcesServiceImpl implements ResourcesService, ResourceEventsLis
     log.debug("Adding syntethic cluster {} to application: {}", new Object[]{clusterLabel, appId});
     final String clusterUri = appId + "/" + clusterLabel;
     final Resource clusterResource = new Resource(clusterUri, KnowledgeConstants.CLUSTER_URI, new HashMap<String, Object>());
+    clusterResource.setProperty(ResourcePropertyNames.RESOURCE_REMOVABLE, true);
     final ResourcesTreeNode resourceNode = applications.get(appId).addResource(appId, clusterResource);
     fireResourceAddedEvent(Arrays.asList(resourceNode));
     log.debug("Cluster added");
@@ -153,13 +156,9 @@ public class ResourcesServiceImpl implements ResourcesService, ResourceEventsLis
     final String appUri = getApplicationUri(uri);
     final ResourcesTree appTree = applications.get(appUri);
     Resource resource = appTree.getResourceTreeNode(uri).getResource();
-    // TODO handle also JMX clusters and nodes
-    if (resource.getTypeUri().equals(KnowledgeConstants.APPLICATION_URI)) {
-      applications.remove(appUri);
-      fireResourceRemovedEvent(uri);
-    } else {
-      throw new IllegalArgumentException("Invalid resource uri");
-    }
+    CoreConnection connectionOfResource = coreConnectionsManager.getConnectionOfResource(resource);
+    connectionOfResource.getCoreServiceFacade().unregisterResource(uri);
+
     log.debug("Resource removed");
   }
 

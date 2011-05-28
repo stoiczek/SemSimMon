@@ -31,7 +31,7 @@ public class JmxQueryCapabilityProbe implements CapabilityProbe {
     try {
       result = connection.getAttribute(ObjectName.getInstance(query.getObjectName()), query.getAttributeName());
     } catch (Exception e) {
-      throw new IOException(e);
+      result = Double.NaN;
     }
     CapabilityValue value;
     if (result instanceof Long) {

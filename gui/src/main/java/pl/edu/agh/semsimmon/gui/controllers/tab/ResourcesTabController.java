@@ -98,8 +98,6 @@ public class ResourcesTabController extends BaseTabController implements Resourc
 
   private Map<String, org.springframework.core.io.Resource> iconsMap;
 
-  private Set<String> addedResources = new HashSet<String>();
-
   private Resource currentlySelectedResource;
 
   private boolean capabilitiesRefreshing = false;
@@ -157,7 +155,7 @@ public class ResourcesTabController extends BaseTabController implements Resourc
   }
 
   @ButtonAction
-  private void removeButtonPressed() {
+  private void removeResourceButtonPressed() {
     log.debug("Remove resource button pressed");
     resourcesService.removeResource(currentlySelectedResource.getUri());
   }
@@ -229,10 +227,6 @@ public class ResourcesTabController extends BaseTabController implements Resourc
       try {
         final Resource resource = node.getResource();
         final String resourceUri = resource.getUri();
-        if (addedResources.contains(resourceUri)) {
-          continue;
-        }
-        addedResources.add(resourceUri);
         log.debug("Adding resource {}", resourceUri);
         if (resource.getTypeUri().equals(KnowledgeConstants.APPLICATION_URI)) {
           addApplicationNode(node);
@@ -359,10 +353,15 @@ private utilities
   private void removeNode(TreeNode node) {
     if (node instanceof TreeBranchContainer) {
       TreeBranchContainer branch = (TreeBranchContainer) node;
+      List<TreeNode> children = new LinkedList<TreeNode>();
       for (TreeNode child : branch) {
+        children.add(child);
+      }
+      for (TreeNode child : children) {
         removeNode(child);
       }
     }
+
     String uri = "";
     if (node instanceof TreeBranchContainer) {
       TreeBranchContainer<Resource> branchContainer = (TreeBranchContainer<Resource>) node;
@@ -377,6 +376,7 @@ private utilities
         nodeContainer.getParent().remove(nodeContainer);
       }
     }
+    treeData.remove(node);
     nodesMap.remove(uri);
   }
 
@@ -530,7 +530,12 @@ IoC setup
           stopButton.setEnabled(false);
         }
       }
-      removeResourceButton.setEnabled(true);
+      if (resource.hasProperty(ResourcePropertyNames.RESOURCE_REMOVABLE) &&
+          (Boolean) resource.getProperty(ResourcePropertyNames.RESOURCE_REMOVABLE)) {
+        removeResourceButton.setEnabled(true);
+      } else {
+        removeResourceButton.setEnabled(false);
+      }
       addMeasurementButton.setEnabled(true);
     }
 

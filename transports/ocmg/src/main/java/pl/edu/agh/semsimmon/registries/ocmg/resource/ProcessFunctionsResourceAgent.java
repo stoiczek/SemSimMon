@@ -29,6 +29,8 @@ public class ProcessFunctionsResourceAgent extends AbstractResourceAgent {
 
   private static final Logger log = LoggerFactory.getLogger(ProcessFunctionsResourceAgent.class);
 
+  private static final String FUNCTION_PATTERN = "mpi.{0,4}(send|recv|gather|scatter|barrier|bcast)";
+
   private LibCallMetersContainer metersContainer;
 
   @Override
@@ -43,7 +45,7 @@ public class ProcessFunctionsResourceAgent extends AbstractResourceAgent {
       }
       final List<org.balticgrid.ocmg.objects.Thread> threadList = process.getThreads();
       for (Function function : functions) {
-        if(!function.getFunctionName().toLowerCase().matches(".*send.*|.*recv.*|.*gather.*|.*scatter.*|.*barrier.*|.*bcast.*")) {
+        if(!function.getFunctionName().toLowerCase().matches(FUNCTION_PATTERN)) {
           continue;
         }
         log.debug("Processing function: {}" , function.getFunctionName());

@@ -2,11 +2,13 @@ package pl.edu.agh.semsimmon.registries.jmx;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.IResourceDiscoveryEvent;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.api.transport.AbstractTransportProxy;
-import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.api.transport.TransportException;
 import pl.edu.agh.semsimmon.common.consts.JmxRegistryConsts;
+import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.common.vo.core.resource.ResourceDiscoveryEvent;
 import pl.edu.agh.semsimmon.registries.jmx.discovery.DiscoveryAgent;
@@ -58,7 +60,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
       return probe.getCapabilityValue(resource, capabilityType, connections.get(
           resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY)));
     } catch (IOException e) {
-      if(e instanceof ConnectException) {
+      if (e instanceof ConnectException) {
         log.warn("Process has died");
         ResourceDiscoveryEvent resourceRemovedEvent = new ResourceDiscoveryEvent(Arrays.asList(resource),
             IResourceDiscoveryEvent.EventType.RESOURCES_REMOVED);
@@ -83,8 +85,18 @@ public class JmxTransportProxy extends AbstractTransportProxy {
   }
 
   @Override
-  public void unregisterResource(Resource resource) throws TransportException {
-
+  public boolean unregisterResource(Resource resource) throws TransportException {
+    if (!isResourceSupported(resource)) {
+      throw new TransportException("Cannot unregister resource that isn't supported by this proxy");
+    }
+    if (resource.getTypeUri().equals(KnowledgeConstants.NODE_URI)) {
+      String transportURI = (String) resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY);
+      connections.remove(transportURI);
+      // don't need to drop children
+      return true;
+    }
+    //  need to drop children
+    return false;
   }
 
   @Override
@@ -107,6 +119,10 @@ public class JmxTransportProxy extends AbstractTransportProxy {
       } catch (Exception e) {
         throw new TransportException(e);
       }
+    }
+    // Hack to allow removal of JMX node resources
+    if (resource.getTypeUri().compareTo(KnowledgeConstants.NODE_URI) == 0) {
+      resource.setProperty(ResourcePropertyNames.RESOURCE_REMOVABLE, true);
     }
   }
 
@@ -152,8 +168,8 @@ public class JmxTransportProxy extends AbstractTransportProxy {
 
   @Override
   public List<Resource> discoverDirectChildren(Resource resource, String type) throws TransportException {
-    if(!isResourceSupported(resource)) {
-     throw new TransportException("Given resource is not usupported by this proxy. Check first!");
+    if (!isResourceSupported(resource)) {
+      throw new TransportException("Given resource is not usupported by this proxy. Check first!");
     }
     registerResource(resource);
     final String transportUri = (String) resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY);

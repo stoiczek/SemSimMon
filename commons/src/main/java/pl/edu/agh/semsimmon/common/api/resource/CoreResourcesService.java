@@ -53,7 +53,7 @@ public interface CoreResourcesService {
   /**
    * @param uri
    */
-  void deregisterResource(String uri);
+  void unregisterResource(String uri);
 
   /**
    * @param uri

@@ -28,6 +28,7 @@ public class AppsResourceAgent extends AbstractResourceAgent {
       final Resource application = wrapResource(parent, KnowledgeConstants.APPLICATION_URI, appName);
       application.setProperty(ResourcePropertyNames.Application.NAME, appName);
       applications.add(application);
+      application.setProperty(ResourcePropertyNames.RESOURCE_REMOVABLE, true);
     }
     return applications;
   }

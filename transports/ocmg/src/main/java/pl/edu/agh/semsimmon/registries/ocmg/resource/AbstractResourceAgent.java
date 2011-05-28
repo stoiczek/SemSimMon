@@ -19,10 +19,11 @@ import java.util.Map;
  */
 public abstract class AbstractResourceAgent implements ResourceAgent {
 
+
   protected Resource wrapResource(Resource parent, String type, String resourceName) {
     final Map<String, Object> childParams = new HashMap<String, Object>();
     for (Map.Entry<String, Object> entry : parent.getProperties().entrySet()) {
-      if (!entry.getKey().startsWith(ResourcePropertyNames.RESOURCE_PROPERTY_PREFIX)) {
+      if (entry.getKey().startsWith(ResourcePropertyNames.PROPAGABLE_RESOURCE_NAME_PRFX)) {
         childParams.put(entry.getKey(), entry.getValue());
       }
     }

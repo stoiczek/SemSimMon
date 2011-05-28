@@ -1,5 +1,7 @@
 package pl.edu.agh.semsimmon.common.consts;
 
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
+
 /**
  * TODO description
  *
@@ -11,7 +13,7 @@ public class OcmgRegistryConsts {
   /**
    * Name of connection type property.
    */
-  public final static String CONNECTION_TYPE = "connection.type";
+  public final static String CONNECTION_TYPE = ResourcePropertyNames.PROPAGABLE_RESOURCE_NAME_PRFX + ".connection.type";
 
 
   /**
@@ -24,6 +26,6 @@ public class OcmgRegistryConsts {
    */
   public final static String CONNECTION_TYPE_SOCKET = "mci";
 
-  public static final String MAIN_SM_CONNECTION_STRING = "connectionString";
+  public static final String MAIN_SM_CONNECTION_STRING = ResourcePropertyNames.PROPAGABLE_RESOURCE_NAME_PRFX + ".connectionString";
 
 }

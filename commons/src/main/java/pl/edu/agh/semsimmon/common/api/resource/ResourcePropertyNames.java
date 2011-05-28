@@ -7,11 +7,32 @@ package pl.edu.agh.semsimmon.common.api.resource;
  */
 public final class ResourcePropertyNames {
 
+  public static final String PROPAGABLE_RESOURCE_NAME_PRFX = "propagable";
+
+  /**
+   *
+   */
   public static final String RESOURCE_PROPERTY_PREFIX = "rp.";
 
+  /**
+   *
+   */
   public static final String RESOURCE_PAUSEABLE_PN = "pauseable";
+
+  /**
+   *
+   */
   public static final String RESOURCE_STOPPABLE_PN = "stoppable";
-  public static final String RESOURCE_STATE = RESOURCE_PROPERTY_PREFIX + "state";
+
+  /**
+   *
+   */
+  public static final String RESOURCE_STATE =  "state";
+
+  /**
+   *
+   */
+  public static final String RESOURCE_REMOVABLE = "removable";
 
 
   private ResourcePropertyNames() {

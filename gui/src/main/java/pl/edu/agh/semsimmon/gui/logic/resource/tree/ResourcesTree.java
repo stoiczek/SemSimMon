@@ -65,6 +65,10 @@ public class ResourcesTree {
     checkNodeRegistered(uri);
     final ResourcesTreeNode toRemove = nodes.get(uri);
     final ResourcesTreeNode parent = toRemove.getParent();
+    if(parent == null) {
+      log.warn("Won't remove resource, as parent was already removed");
+      return;
+    }
     parent.getChildren().remove(toRemove);
     removeRecursively(toRemove);
   }

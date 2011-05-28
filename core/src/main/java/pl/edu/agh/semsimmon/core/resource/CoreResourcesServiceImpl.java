@@ -93,7 +93,7 @@ public class CoreResourcesServiceImpl implements CoreResourcesService, IResource
       }
       resourcesTree.put(uri, null);
       resourceProxy.discoverChildren(resource, types);
-      log.debug("Jmx Node registered");
+      log.debug("Resource registered");
     } catch (TransportException e) {
       log.error("Got Transport exception during node registration", e);
     }
@@ -123,7 +123,7 @@ public class CoreResourcesServiceImpl implements CoreResourcesService, IResource
    * {@inheritDoc}
    */
   @Override
-  public void deregisterResource(String uri) {
+  public void unregisterResource(String uri) {
     if (!resources.containsKey(uri)) {
       return;
     }
@@ -131,7 +131,8 @@ public class CoreResourcesServiceImpl implements CoreResourcesService, IResource
     final TransportProxy proxy = transportProxiesManager.findProxyForResource(resource);
     try {
       if (proxy.isResourceSupported(resource)) {
-        proxy.unregisterResource(resource);
+        final boolean branchPruned = proxy.unregisterResource(resource);
+        removeChildResources(uri, branchPruned);
       }
     } catch (TransportException e) {
       log.error("Got error whilie unregistering resource: " + resource, e);
@@ -334,7 +335,6 @@ public class CoreResourcesServiceImpl implements CoreResourcesService, IResource
           for (Resource resource : event.getResources()) {
             addChildResource(event.getParentResource(), resource);
           }
-          fireResourceAddedEvent(event.getResources());
         } catch (ResourceNotRegisteredException e) {
           log.error("Event contains parent URI which is not registered!", e);
         }
@@ -358,6 +358,20 @@ public class CoreResourcesServiceImpl implements CoreResourcesService, IResource
       fireResourcesRemovedEvent(resourcesWithChildren);
     } catch (MeasurementException e) {
       throw new ResourcesException(e);
+    }
+  }
+
+  private void removeChildResources(String uri, boolean branchPruned) {
+    if (resourcesTree.containsKey(uri) && resourcesTree.get(uri) != null) {
+
+
+      for (String child : resourcesTree.get(uri)) {
+        if (branchPruned) {
+          removeChildResources(child, branchPruned);
+        } else {
+          unregisterResource(uri);
+        }
+      }
     }
   }
 

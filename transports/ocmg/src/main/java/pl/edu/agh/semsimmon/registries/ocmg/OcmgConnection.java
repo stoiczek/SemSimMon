@@ -91,8 +91,6 @@ public class OcmgConnection {
       log.debug("Connection created, checking if given application is valid");
       monitor = new Monitor(connection);
 
-//      This one, crashes MainSM
-//==============================================================================
       Policy policy = new Policy();
       policy.setTraceThreadStatus(true);
       policy.setTraceValue(true);
@@ -106,7 +104,9 @@ public class OcmgConnection {
       e.printStackTrace(new PrintWriter(writer));
       throw new OcmgException("Got communication exception: " + e.getMessage() + "\n" + writer.toString());
     } catch (UnknownHostException e) {
-      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+      throw new OcmgException("");
+    } catch (NullPointerException e) {
+      throw new OcmgException("");
     }
   }
 

@@ -118,8 +118,8 @@ public class CoreServiceFacadeImpl implements CoreServiceFacade {
    * {@inheritDoc}
    */
   @Override
-  public void deregisterResource(String uri) {
-    coreResourcesService.deregisterResource(uri);
+  public void unregisterResource(String uri) {
+    coreResourcesService.unregisterResource(uri);
   }
 
   /**

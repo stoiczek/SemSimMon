@@ -172,8 +172,8 @@ public interface KnowledgeConstants {
   static final String TOTAL_COMPILATION_TIME_CAP = ONTOLOGY_URI + "#TotalCompilationTimeCapability";
 
 
-  static final String TOTAL_CALL_TIMES = ONTOLOGY_URI + "#TotalCallsTimeCapability";
-  static final String TOTAL_CALLS_COUNT = ONTOLOGY_URI + "#TotalCallsCountCapability";
+  static final String TOTAL_CALL_TIMES = ONTOLOGY_URI + "#TotalCallTimeCapability";
+  static final String TOTAL_CALLS_COUNT = ONTOLOGY_URI + "#TotalCallCountCapability";
 
 
 

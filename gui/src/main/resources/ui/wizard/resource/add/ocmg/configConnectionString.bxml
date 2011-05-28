@@ -8,7 +8,7 @@
     <sections>
       <Form.Section heading="%wizards.resources.add.ocmg.configConnString">
         <FlowPane bxml:id="connStringPane" Form.label="%wizards.resources.add.ocmg.connStringLabel">
-          <TextInput bxml:id="connStringInput" prompt="username@example.com:22"/>
+          <TextInput bxml:id="connStringInput" />
         </FlowPane>
       </Form.Section>
     </sections>

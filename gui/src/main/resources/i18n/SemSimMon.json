@@ -112,7 +112,7 @@
                     "useExistingMonitor" :"Use already configured monitor",
                     "externalMonitor" : "Attach to external monitor",
                     "sshConn" : "Connection details for SSH access:",
-                    "sshConnStatus" : "Connection staus:",
+                    "sshConnStatus" : "Connection staus:z",
                     "uploadStatus" : "Upload staus:",
                     "userAndHost" : "User name nad host:",
                     "passwd" : "Password:",
@@ -128,7 +128,7 @@
                 "ocmg":{
                     "wizardTitle" : "Add OCM-G resources",
                     "configConnString" :"Configure MainSM connection String",
-                    "connStringLabel" : "Connection String:",
+                    "connStringLabel" : "Connection String",
                     "selectApps" : "Choose applications:",
                     "invalidConnString" : "Invalid connection string"
                 },

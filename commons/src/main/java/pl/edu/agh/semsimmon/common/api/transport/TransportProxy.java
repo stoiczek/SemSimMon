@@ -73,10 +73,13 @@ public interface TransportProxy {
   void registerResource(Resource resource) throws TransportException;
 
   /**
-   * @param resource
+   *
+   * @param resource resource to unregister (remove)
+   * @returns true if whole branch was pruned and child resources don't have to be explicitly removed,
+   *          false otherwise (child resources needs to be explicitly removed)
    * @throws TransportException
    */
-  void unregisterResource(Resource resource) throws TransportException;
+  boolean unregisterResource(Resource resource) throws TransportException;
 
   /**
    * @param resource

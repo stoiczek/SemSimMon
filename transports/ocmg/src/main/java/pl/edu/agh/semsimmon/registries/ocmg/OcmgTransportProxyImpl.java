@@ -4,6 +4,7 @@ import org.balticgrid.ocmg.objects.Application;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.api.transport.AbstractTransportProxy;
 import pl.edu.agh.semsimmon.common.api.transport.TransportException;
 import pl.edu.agh.semsimmon.common.consts.OcmgRegistryConsts;
@@ -97,7 +98,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
   @Override
   public void registerResource(Resource resource) throws TransportException {
     if (!isResourceSupported(resource)) {
-      throw new IllegalArgumentException("Given resource cannot be registered with this Transport proxy");
+      throw new IllegalArgumentException("Given resource cannot be registered with this Transport Proxy");
     }
     final String connectionString = resource.getProperty(OcmgRegistryConsts.MAIN_SM_CONNECTION_STRING).toString();
     try {
@@ -112,8 +113,9 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
         Application application = connection.attachToApplication(resource);
         applicationCache.put(resource.getUri(), application);
       }
-      Application application = getApplication(resource);
-
+      if(resource.getTypeUri().compareTo(KnowledgeConstants.APPLICATION_URI) == 0) {
+        resource.setProperty(ResourcePropertyNames.RESOURCE_REMOVABLE, true);
+      }
     } catch (OcmgException e) {
       throw new TransportException(e);
     }
@@ -124,22 +126,23 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
    * @{inheritDoc }
    */
   @Override
-  public void unregisterResource(Resource resource) throws TransportException {
+  public boolean unregisterResource(Resource resource) throws TransportException {
     if (!isResourceSupported(resource)) {
       throw new TransportException("Given resource cannot be registered with this Transport proxy");
     }
     if (!applicationCache.containsKey(resource.getUri())) {
       throw new TransportException("Given resource haven't been registered with this Transport proxy");
     }
-    applicationCache.remove(resource.getUri());
-    final String connectionString = getConnectionPart(resource.getUri());
+    final String connectionString = resource.getProperty(OcmgRegistryConsts.MAIN_SM_CONNECTION_STRING).toString();
     final OcmgConnection conn = activeConnections.get(connectionString);
+    applicationCache.remove(resource.getUri());
     try {
       conn.detachFromApplication(resource);
     } catch (OcmgException e) {
       throw new TransportException(e);
     }
     fireResourceRemovedEvent(resource);
+    return true;
   }
 
 
