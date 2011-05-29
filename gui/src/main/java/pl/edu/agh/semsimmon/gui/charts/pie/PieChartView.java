@@ -1,7 +1,7 @@
 package pl.edu.agh.semsimmon.gui.charts.pie;
 
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartView;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartViewSkin;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartView;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartViewSkin;
 
 /**
  * TODO description
@@ -9,10 +9,10 @@ import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartViewSkin;
  * @author tkozak
  *         Created at 20:07 14-09-2010
  */
-public class PieChartView extends BaseSemmonChartView {
+public class PieChartView extends BaseSemSimMonChartView {
 
   @Override
-  protected Class<? extends BaseSemmonChartViewSkin> getSkinClass() {
+  protected Class<? extends BaseSemSimMonChartViewSkin> getSkinClass() {
     return PieChartViewSkin.class;
   }
 }

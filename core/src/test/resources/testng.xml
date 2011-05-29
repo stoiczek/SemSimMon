@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Semmon core test suite" verbose="1">
+<suite name="SemSimMon core test suite" verbose="1">
 
   <test name="Main test">
     <classes>

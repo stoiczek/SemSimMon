@@ -26,4 +26,4 @@ The mon-hub-app.tar.gz package is used internally by GUI to automatically deploy
 
 The bash version of script, takes to parameters as an input - the first one is action, and can be either \lq{}start\rq{} or \lq{}stop\rq{}. Start will just launch this component in a background, stop will terminate background process started previously. Additionally, when starting hub, one must define which interface will be used to listen for GUI connections. It can be given either as a IP address or interface\rq{}s DNS alias.  
 
-Because Windows doesn\rq{}t support starting background tasks in one cmd.exe, the startup script on this platform takes just one parameter - listening interface. Values are same as on bash version.         
+Because Windows doesn\rq{}t support starting background tasks in one cmd.exe, the startup script on this platform takes just one parameter - listening interface. Proper values are same as on bash version - either IP  address or DNS name.

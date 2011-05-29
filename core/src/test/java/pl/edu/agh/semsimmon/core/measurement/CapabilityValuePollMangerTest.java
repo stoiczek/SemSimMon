@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.quartz.*;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.edu.agh.semsimmon.common.exception.MeasurementException;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
@@ -37,7 +36,7 @@ public class CapabilityValuePollMangerTest {
 
   @InjectMocks
   private CapabilityValuePollManagerQuartzImpl pollManager;
-  private static final String SEMMON_MEASUREMENT_POLLING = "semsimmon.measurement.polling";
+  private static final String SEMSIMMON_MEASUREMENT_POLLING = "semsimmon.measurement.polling";
 
   @BeforeMethod
   void setupMocks() {
@@ -63,14 +62,14 @@ public class CapabilityValuePollMangerTest {
     def.setId(oldDef.getId());
     final String jobName = "POLL_" + def.getId();
 
-    JobDetail oldJobDetail = new JobDetail(jobName, SEMMON_MEASUREMENT_POLLING, PollJob.class);
+    JobDetail oldJobDetail = new JobDetail(jobName, SEMSIMMON_MEASUREMENT_POLLING, PollJob.class);
     oldJobDetail.setJobDataMap(new JobDataMap(Collections.singletonMap(PollJob.LISTENER_ATTR_NAME, oldListener)));
     when(scheduler.getJobDetail(Matchers.<String>any(), Matchers.<String>any())).thenReturn(oldJobDetail);
 
     pollManager.updatePollJob(def);
 
-    verify(scheduler).getJobDetail(jobName, SEMMON_MEASUREMENT_POLLING);
-    verify(scheduler).deleteJob(jobName, SEMMON_MEASUREMENT_POLLING);
+    verify(scheduler).getJobDetail(jobName, SEMSIMMON_MEASUREMENT_POLLING);
+    verify(scheduler).deleteJob(jobName, SEMSIMMON_MEASUREMENT_POLLING);
     verify(scheduler).scheduleJob(argThat(createJobDetailsMatcher(def, oldListener)), argThat(createTriggerMatcher(def)));
   }
 
@@ -78,7 +77,7 @@ public class CapabilityValuePollMangerTest {
   public void cancelJobTest() throws MeasurementException, SchedulerException {
     MeasurementDefinition def = MocksFactory.createMockMeasurementDefinition();
     pollManager.cancelPollJob(def);
-    verify(scheduler).deleteJob("POLL_" + def.getId(), SEMMON_MEASUREMENT_POLLING);
+    verify(scheduler).deleteJob("POLL_" + def.getId(), SEMSIMMON_MEASUREMENT_POLLING);
 
   }
 
@@ -102,7 +101,7 @@ public class CapabilityValuePollMangerTest {
         if (!trigger.getName().equals("POLL_" + def.getId())) {
           return false;
         }
-        if (!trigger.getGroup().equals(SEMMON_MEASUREMENT_POLLING)) {
+        if (!trigger.getGroup().equals(SEMSIMMON_MEASUREMENT_POLLING)) {
           return false;
         }
         return true;

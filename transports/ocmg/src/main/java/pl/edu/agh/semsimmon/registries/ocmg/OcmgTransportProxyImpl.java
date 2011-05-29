@@ -28,7 +28,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
   /**
    * Prefix of URI containing
    */
-  public static final String SEMMON_URI_SCHEME = "semsimmon";
+  public static final String SEMSIMMON_URI_SCHEME = "semsimmon";
 
   /**
    *
@@ -251,13 +251,13 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
   }
 
   private String getConnectionPart(String uri) {
-    uri = uri.substring(SEMMON_URI_SCHEME.length() + 3);
+    uri = uri.substring(SEMSIMMON_URI_SCHEME.length() + 3);
     return uri.split("/")[0];
   }
 
   private Application getApplication(Resource resource) {
     String resourceUri = resource.getUri();
-    int firstSlash = resourceUri.indexOf("/", SEMMON_URI_SCHEME.length() + 3);
+    int firstSlash = resourceUri.indexOf("/", SEMSIMMON_URI_SCHEME.length() + 3);
     int secondSlash = resourceUri.indexOf("/", firstSlash + 1);
     String applicationUri;
     if (secondSlash == -1 || secondSlash == resourceUri.length()) {

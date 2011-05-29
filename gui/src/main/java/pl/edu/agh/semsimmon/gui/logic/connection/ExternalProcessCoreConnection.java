@@ -50,29 +50,29 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   /**
    * Name od directory with core installed
    */
-  private static final String SEMMON_CORE_DIR_NAME = ".semsimmon_mon_hub";
+  private static final String SEMSIMMON_CORE_DIR_NAME = ".semsimmon_mon_hub";
 
   private static final String SUCCESS_PATTERN = ".*SUCCESS.*";
 
   /**
    * Directory where core should be installed
    */
-  private static final String SEMMON_CORE_PARENT_DIR = "~";
+  private static final String SEMSIMMON_CORE_PARENT_DIR = "~";
 
   /**
    * Path to installed core (in thery absolut path, but uses '~' )
    */
-  private static final String SEMMON_CORE_LOCATION = SEMMON_CORE_PARENT_DIR + "/" + SEMMON_CORE_DIR_NAME;
+  private static final String SEMSIMMON_CORE_LOCATION = SEMSIMMON_CORE_PARENT_DIR + "/" + SEMSIMMON_CORE_DIR_NAME;
 
   /**
    * Name of script used for starting
    */
-  private static final String SEMMON_CORE_SCRIPT_NAME = "monhub-app.sh";
+  private static final String SEMSIMMON_CORE_SCRIPT_NAME = "monhub-app.sh";
 
   /**
    * Absolute path to core control script.
    */
-  private static final String SEMMON_CORE_SCRIPT_LOCATION = SEMMON_CORE_LOCATION + "/" + SEMMON_CORE_SCRIPT_NAME;
+  private static final String SEMSIMMON_CORE_SCRIPT_LOCATION = SEMSIMMON_CORE_LOCATION + "/" + SEMSIMMON_CORE_SCRIPT_NAME;
 
   /**
    * Jsch controls.
@@ -167,7 +167,7 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   public void stopCore() throws IOException {
     log.debug("Stopping remote core instance");
     disconnect();
-    executeCmd(SEMMON_CORE_SCRIPT_LOCATION + " stop");
+    executeCmd(SEMSIMMON_CORE_SCRIPT_LOCATION + " stop");
     shell.disconnect();
     session.disconnect();
   }
@@ -200,7 +200,7 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
 
   private void doStartCore(String host) throws IOException {
     appendExternalFeedbackLog("startingCoreProcess");
-    String cmd = SEMMON_CORE_SCRIPT_LOCATION + " start " + host;
+    String cmd = SEMSIMMON_CORE_SCRIPT_LOCATION + " start " + host;
     List<String> result = executeCmd(cmd);
     if (result.isEmpty()) {
       throw new IOException("Error starting external core process.");
@@ -243,12 +243,12 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   private boolean isCoreInstalled() throws IOException {
     log.debug("Checking whether core is installed on remote machine");
     appendExternalFeedbackLog("checkingCoreInstalled");
-    String cmd = "ls -a " + SEMMON_CORE_PARENT_DIR + " | grep " + SEMMON_CORE_DIR_NAME;
+    String cmd = "ls -a " + SEMSIMMON_CORE_PARENT_DIR + " | grep " + SEMSIMMON_CORE_DIR_NAME;
     List<String> lines = executeCmd(cmd);
     log.debug("Output: {}", lines);
     boolean containsCoreDir = false;
     for (String line : lines) {
-      if (line.contains(SEMMON_CORE_DIR_NAME)) {
+      if (line.contains(SEMSIMMON_CORE_DIR_NAME)) {
         containsCoreDir = true;
         break;
       }
@@ -256,10 +256,10 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
     if (!containsCoreDir) {
       return false;
     }
-    cmd = "ls " + SEMMON_CORE_LOCATION;
+    cmd = "ls " + SEMSIMMON_CORE_LOCATION;
     lines = executeCmd(cmd);
     for (String line : lines) {
-      if (line.contains(SEMMON_CORE_SCRIPT_NAME)) {
+      if (line.contains(SEMSIMMON_CORE_SCRIPT_NAME)) {
         return true;
       }
     }
@@ -272,14 +272,14 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
     appendExternalFeedbackLog("uploading");
     ChannelSftp sftp = (ChannelSftp) session.openChannel("sftp");
     sftp.connect();
-    log.debug("Creating dir: {}", SEMMON_CORE_LOCATION);
-    executeCmd("mkdir -p " + SEMMON_CORE_LOCATION);
+    log.debug("Creating dir: {}", SEMSIMMON_CORE_LOCATION);
+    executeCmd("mkdir -p " + SEMSIMMON_CORE_LOCATION);
 
     final File monHubBundleFile = new File("resources" + File.separator + CORE_RESOURCE);
     final long bytes = monHubBundleFile.length();
     final InputStream coreResourceInputStream = new FileInputStream(monHubBundleFile);
     log.debug("Uploading data - {} bytes", bytes);
-    sftp.cd(SEMMON_CORE_DIR_NAME);
+    sftp.cd(SEMSIMMON_CORE_DIR_NAME);
     final String packageFile = "core.tar.gz";
     appendExternalFeedbackLog("uploadingData", Long.toString(bytes));
     if (feedbackSink != null) {
@@ -292,11 +292,11 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
     appendExternalFeedbackLog("uploadDone", Long.toString(uploadTime));
     appendExternalFeedbackLog("untaring");
 
-    List<String> result = executeCmd("tar -x -f " + SEMMON_CORE_LOCATION + "/" +
-        packageFile + " -C " + SEMMON_CORE_LOCATION);
+    List<String> result = executeCmd("tar -x -f " + SEMSIMMON_CORE_LOCATION + "/" +
+        packageFile + " -C " + SEMSIMMON_CORE_LOCATION);
     log.debug("Adding execute rights to startup script");
     log.debug("Result: {}", result);
-    result = executeCmd("chmod u+x " + SEMMON_CORE_SCRIPT_LOCATION);
+    result = executeCmd("chmod u+x " + SEMSIMMON_CORE_SCRIPT_LOCATION);
     log.debug("Result: {}", result);
     log.debug("Core uploaded");
     appendExternalFeedbackLog("uploadDoneTotal");

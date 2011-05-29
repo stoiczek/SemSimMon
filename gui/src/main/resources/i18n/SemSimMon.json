@@ -144,7 +144,7 @@
                     "uploadDone" : "Finished upload in {0} seconds",
                     "untaring" : "Extracting package",
                     "uploadDoneTotal" : "Core successfully uploaded",
-                    "startingCoreProcess" : "Starting semmon-core process",
+                    "startingCoreProcess" : "Starting Monitoring Hub process",
                     "coreStarted" : "Successfully started new core instance",
                     "coreConnecting" : "Trying to connect to core service. Attempt {0}." ,
                     "coreConnectingError" : "Cannot connect to core service. Either core could fail to start or network issue occured (firewall)"

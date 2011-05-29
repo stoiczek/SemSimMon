@@ -21,7 +21,7 @@ public class Main {
 //    }
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
         new String[]{"jmxtransport-context.xml",
-            "semmonCoreContext.xml",
+            "semsimmonCoreContext.xml",
             "ocmgtransport-context.xml",
             "consts-beans.xml",
             "remotingContext.xml"});
@@ -43,7 +43,7 @@ public class Main {
     }
 //    System.out.println("Stopping Application context");
 //    ctx.stop();
-//    System.out.println("Semmon Core ends");
+//    System.out.println("SemSimmon Core ends");
 //    System.exit(0);
   }
 

@@ -23,7 +23,7 @@ import java.util.Map;
  * @author tkozak
  *         Created at 17:35 19-09-2010
  */
-public class CategoryDatasetChartViewSkin extends BaseSemmonChartViewSkin {
+public class CategoryDatasetChartViewSkin extends BaseSemSimMonChartViewSkin {
 
   private static final Logger log = LoggerFactory.getLogger(CategoryDatasetChartViewSkin.class);
 

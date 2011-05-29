@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
  * @author tkozak
  *         Created at 12:05 14-08-2010
  */
-public class BaseSemmonUnitTest {
+public class BaseSemSimMonUnitTest {
 
   @BeforeTest
   public void setupMocks() {

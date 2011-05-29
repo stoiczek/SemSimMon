@@ -5,10 +5,9 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.PieSectionEntity;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartView;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartViewSkin;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartView;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartViewSkin;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
 
 import java.util.HashMap;
@@ -21,7 +20,7 @@ import java.util.Map;
  * @author tkozak
  *         Created at 20:08 14-09-2010
  */
-public class PieChartViewSkin extends BaseSemmonChartViewSkin {
+public class PieChartViewSkin extends BaseSemSimMonChartViewSkin {
 
   DefaultPieDataset set = new DefaultPieDataset();
 
@@ -34,7 +33,7 @@ public class PieChartViewSkin extends BaseSemmonChartViewSkin {
   @Override
   public void redrawChart() {
     set.clear();
-    populateData((BaseSemmonChartView) getComponent());
+    populateData((BaseSemSimMonChartView) getComponent());
   }
 
   @Override

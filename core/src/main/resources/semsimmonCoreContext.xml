@@ -58,7 +58,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <!-- Ontology model provider-->
   <bean id="ontModelProvider" class="pl.edu.agh.semsimmon.knowledge.ontology.OntModelProviderImpl"
         init-method="init">
-    <property name="defaultOntology" value="semmon_2.owl"/>
+    <property name="defaultOntology" value="semsimmon.owl"/>
   </bean>
 
 

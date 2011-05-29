@@ -122,7 +122,7 @@
 
   <dependencies>
 
-    <!--SemMon modules-->
+    <!--SemSimMon modules-->
     <dependency>
       <groupId>pl.edu.agh.semsimmon</groupId>
       <artifactId>commons</artifactId>

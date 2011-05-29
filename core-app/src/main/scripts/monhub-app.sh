@@ -26,7 +26,7 @@ function start {
 
 
 function stop {
-  echo  "Stopping semmon core service"
+  echo  "Stopping Monitoring Hub"
   kill `cat $PID_FILE`
 }
 

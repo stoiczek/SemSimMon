@@ -10,7 +10,7 @@
   <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
     <property name="beans">
       <map>
-        <entry key="pl.edu.agh.semmon:type=CoreServiceFacade" value-ref="coreServiceFacade"/>
+        <entry key="pl.edu.agh.semsimmon:type=CoreServiceFacade" value-ref="coreServiceFacade"/>
         <!--<entry key="pl.edu.agh.semsimmonmon:type=Knowledge" value-ref="knowledgeBean"/>-->
       </map>
     </property>

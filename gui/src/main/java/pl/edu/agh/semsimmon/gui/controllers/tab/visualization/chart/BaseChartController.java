@@ -2,7 +2,7 @@ package pl.edu.agh.semsimmon.gui.controllers.tab.visualization.chart;
 
 import org.apache.pivot.charts.ChartView;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartView;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartView;
 import pl.edu.agh.semsimmon.gui.controllers.BaseController;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author tkozak
  *         Created at 14:46 15-08-2010
  */
-public abstract class BaseChartController<T extends BaseSemmonChartView> extends BaseController<T>
+public abstract class BaseChartController<T extends BaseSemSimMonChartView> extends BaseController<T>
     implements VisualizationChart {
 
   protected T chart;

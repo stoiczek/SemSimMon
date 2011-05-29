@@ -1,7 +1,6 @@
 package pl.edu.agh.semsimmon.gui.charts;
 
 import biz.ixnay.pivot.charts.skin.jfree.JFreeChartViewSkin;
-import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.JFreeChart;
 import pl.edu.agh.semsimmon.common.api.measurement.CapabilityValueListener;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
@@ -18,7 +17,7 @@ import java.util.List;
  * @author tkozak
  *         Created at 12:42 21-08-2010
  */
-public abstract class BaseSemmonChartViewSkin extends JFreeChartViewSkin implements CapabilityValueListener {
+public abstract class BaseSemSimMonChartViewSkin extends JFreeChartViewSkin implements CapabilityValueListener {
 
   protected JFreeChart chart;
 
@@ -38,13 +37,13 @@ public abstract class BaseSemmonChartViewSkin extends JFreeChartViewSkin impleme
 
   @Override
   protected JFreeChart createChart() {
-    BaseSemmonChartView chartView = (BaseSemmonChartView) getComponent();
+    BaseSemSimMonChartView chartView = (BaseSemSimMonChartView) getComponent();
     String title = chartView.getTitle();
     chart.setTitle(title);
     return chart;
   }
 
-  protected void populateData(BaseSemmonChartView chartView) {
+  protected void populateData(BaseSemSimMonChartView chartView) {
     Collection<Measurement> measurements = chartView.getMeasurements();
     for (Measurement measurement : measurements) {
       addMeasurement(measurement);

@@ -1,7 +1,7 @@
 package pl.edu.agh.semsimmon.gui.controllers.tab.visualization.chart;
 
 /**
- * Enum containing all chart types supported by Semmon's gui.
+ * Enum containing all chart types supported by SemSimMon's gui.
  *
  * @author tkozak
  *         Created at 13:37 15-08-2010

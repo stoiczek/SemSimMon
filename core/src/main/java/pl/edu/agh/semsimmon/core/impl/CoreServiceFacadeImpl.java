@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The Core element of SemMon.
+ * The Core element of SemSimMon.
  *
  * @author koperek
  */

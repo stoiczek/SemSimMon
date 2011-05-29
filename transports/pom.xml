@@ -6,7 +6,7 @@
   <packaging>pom</packaging>
   <version>0.1-SNAPSHOT</version>
   <name>SemSimMon - Transports</name>
-  <url>https://gforge.cyfronet.pl/projects/semmon/</url>
+  <url>https://gforge.cyfronet.pl/projects/semsimon/</url>
 
 
   <parent>

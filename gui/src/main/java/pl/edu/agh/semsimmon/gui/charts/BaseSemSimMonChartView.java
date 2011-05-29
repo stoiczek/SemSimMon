@@ -21,17 +21,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author tkozak
  *         Created at 12:37 21-08-2010
  */
-public abstract class BaseSemmonChartView extends ChartView implements CapabilityValueListener {
+public abstract class BaseSemSimMonChartView extends ChartView implements CapabilityValueListener {
 
-  private static final Logger log = LoggerFactory.getLogger(BaseSemmonChartView.class);
+  private static final Logger log = LoggerFactory.getLogger(BaseSemSimMonChartView.class);
 
   protected Map<String, Measurement> measurements = new HashMap<String, Measurement>();
 
   private AtomicBoolean paused = new AtomicBoolean(false);
 
 
-  protected BaseSemmonChartView() {
-    Class<? extends BaseSemmonChartViewSkin> skinClass = getSkinClass();
+  protected BaseSemSimMonChartView() {
+    Class<? extends BaseSemSimMonChartViewSkin> skinClass = getSkinClass();
     try {
       setSkin(skinClass.newInstance());
     } catch (InstantiationException e) {
@@ -41,7 +41,7 @@ public abstract class BaseSemmonChartView extends ChartView implements Capabilit
     }
   }
 
-  protected BaseSemmonChartView(List<Measurement> measurementsList) throws InstantiationException, IllegalAccessException {
+  protected BaseSemSimMonChartView(List<Measurement> measurementsList) throws InstantiationException, IllegalAccessException {
     this();
     for (Measurement meas : measurementsList) {
       measurements.put(meas.getId(), meas);
@@ -56,14 +56,14 @@ public abstract class BaseSemmonChartView extends ChartView implements Capabilit
     setVerticalAxisLabel(UriUtils.getCapabilityLabel(capName));
     measurements.put(measurement.getId(), measurement);
     measurement.addCapabilityValueListener(this);
-    BaseSemmonChartViewSkin skin = (BaseSemmonChartViewSkin) getSkin();
+    BaseSemSimMonChartViewSkin skin = (BaseSemSimMonChartViewSkin) getSkin();
     skin.addMeasurement(measurement);
   }
 
   public void removeMeasurement(Measurement measurement) {
     measurement.removeCapabilityValueListener(this);
     measurements.remove(measurement.getId());
-    ((BaseSemmonChartViewSkin) getSkin()).removeMeasurement(measurement);
+    ((BaseSemSimMonChartViewSkin) getSkin()).removeMeasurement(measurement);
   }
 
 
@@ -81,7 +81,7 @@ public abstract class BaseSemmonChartView extends ChartView implements Capabilit
     if (paused.get()) {
       return;
     }
-    BaseSemmonChartViewSkin skin = (BaseSemmonChartViewSkin) getSkin();
+    BaseSemSimMonChartViewSkin skin = (BaseSemSimMonChartViewSkin) getSkin();
     skin.newCapabilityValues(values);
     skin.repaintComponent();
   }
@@ -95,28 +95,28 @@ public abstract class BaseSemmonChartView extends ChartView implements Capabilit
   }
 
   public void resume() {
-    BaseSemmonChartViewSkin skin = (BaseSemmonChartViewSkin) getSkin();
+    BaseSemSimMonChartViewSkin skin = (BaseSemSimMonChartViewSkin) getSkin();
     skin.redrawChart();
     skin.repaintComponent();
     paused.set(false);
   }
 
   public void updateChartTitle(String newTitle) {
-    BaseSemmonChartViewSkin skin = (BaseSemmonChartViewSkin) getSkin();
+    BaseSemSimMonChartViewSkin skin = (BaseSemSimMonChartViewSkin) getSkin();
     skin.updateChartTitle(newTitle);
   }
 
   public void updateSubChartTitle(String newTitle) {
-    BaseSemmonChartViewSkin skin = (BaseSemmonChartViewSkin) getSkin();
+    BaseSemSimMonChartViewSkin skin = (BaseSemSimMonChartViewSkin) getSkin();
     skin.updateSubChartTitle(newTitle);
   }
 
   public BufferedImage getChartImage() {
-    return ((BaseSemmonChartViewSkin) getSkin()).getChartImage();
+    return ((BaseSemSimMonChartViewSkin) getSkin()).getChartImage();
   }
 
 
-  protected abstract Class<? extends BaseSemmonChartViewSkin> getSkinClass();
+  protected abstract Class<? extends BaseSemSimMonChartViewSkin> getSkinClass();
 
 
 }

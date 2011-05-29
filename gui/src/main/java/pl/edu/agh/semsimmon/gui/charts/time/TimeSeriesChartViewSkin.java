@@ -15,8 +15,8 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartView;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartViewSkin;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartView;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartViewSkin;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
 
 import java.awt.*;
@@ -29,7 +29,7 @@ import java.util.Map;
  * @author tkozak
  *         Created at 12:26 21-08-2010
  */
-public class TimeSeriesChartViewSkin extends BaseSemmonChartViewSkin {
+public class TimeSeriesChartViewSkin extends BaseSemSimMonChartViewSkin {
 
   private static final Logger log = LoggerFactory.getLogger(TimeSeriesChartViewSkin.class);
 
@@ -92,7 +92,7 @@ public class TimeSeriesChartViewSkin extends BaseSemmonChartViewSkin {
   }
 
   @Override
-  protected void populateData(BaseSemmonChartView chartView) {
+  protected void populateData(BaseSemSimMonChartView chartView) {
     data.removeAllSeries();
     super.populateData(chartView);
   }
@@ -116,7 +116,7 @@ public class TimeSeriesChartViewSkin extends BaseSemmonChartViewSkin {
 
   @Override
   protected JFreeChart createChart() {
-    BaseSemmonChartView chartView = (BaseSemmonChartView) getComponent();
+    BaseSemSimMonChartView chartView = (BaseSemSimMonChartView) getComponent();
     chart.getXYPlot().getDomainAxis().setLabel(chartView.getHorizontalAxisLabel());
     chart.getXYPlot().getRangeAxis().setLabel(chartView.getVerticalAxisLabel());
     return chart;

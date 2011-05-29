@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="modelProvider" class="pl.edu.agh.semsimmon.knowledge.ontology.OntModelProviderImpl">
-    <property name="defaultOntology" value="classpath:semmon_2.owl"/>
+    <property name="defaultOntology" value="classpath:semsimmon.owl"/>
   </bean>
 
   <bean id="knowledge" class="pl.edu.agh.semsimmon.knowledge.impl.KnowledgeImpl">

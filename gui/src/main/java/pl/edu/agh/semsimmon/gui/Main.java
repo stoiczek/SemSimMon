@@ -34,7 +34,7 @@ public class Main implements Application {
       "spring/logicContext.xml",
       "spring/uiContext.xml",
       "jmxtransport-context.xml",
-      "semmonCoreContext.xml",
+      "semsimmonCoreContext.xml",
       "ocmgtransport-context.xml",
       "consts-beans.xml"
   };

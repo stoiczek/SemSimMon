@@ -3,14 +3,14 @@ package pl.edu.agh.semsimmon.common.api.knowledge;
 /**
  * @author tkozak
  *         Created at 56:20 21-05-2010
- *         Interface contains common constants related to SemMon ontology - e.g. ontology URI, some resource's URIs.
+ *         Interface contains common constants related to SemSimMon ontology - e.g. ontology URI, some resource's URIs.
  */
 public interface KnowledgeConstants {
 
   /**
    *
    */
-  static final String ONTOLOGY_URI = "http://www.icsr.agh.edu.pl/semmon_2.owl";
+  static final String ONTOLOGY_URI = "http://www.icsr.agh.edu.pl/semsimmon.owl";
 
   /**
    *

@@ -1,9 +1,8 @@
 package pl.edu.agh.semsimmon.gui.charts.time;
 
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartView;
-import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartViewSkin;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartView;
+import pl.edu.agh.semsimmon.gui.charts.BaseSemSimMonChartViewSkin;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
-import pl.edu.agh.semsimmon.gui.util.UriUtils;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @author tkozak
  *         Created at 12:26 21-08-2010
  */
-public class TimeSeriesChartView extends BaseSemmonChartView {
+public class TimeSeriesChartView extends BaseSemSimMonChartView {
 
   public TimeSeriesChartView() {
     setHorizontalAxisLabel("Time");
@@ -25,7 +24,7 @@ public class TimeSeriesChartView extends BaseSemmonChartView {
   }
 
   @Override
-  protected Class<? extends BaseSemmonChartViewSkin> getSkinClass() {
+  protected Class<? extends BaseSemSimMonChartViewSkin> getSkinClass() {
     return TimeSeriesChartViewSkin.class;
   }
 }
