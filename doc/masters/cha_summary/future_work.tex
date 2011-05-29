@@ -29,5 +29,13 @@ Current implementation supports OWL only partially - it uses ontology to manage 
 \item {\bf Java instrumentation}
 
 Adding ability to instrument Java code will increase usability of system in context of monitoring JVM a lot. At this stage of development, user can found only that there is a problem with his or hers application. To allow tracking of an actual source of the problem, user must be able to instrument code.      
-      
+     
+\item {\bf Better connections management}
+
+Currently, application provides the user only basic management of external connections to monitoring hubs. User can add new connection while adding resource, but there is no view for checking all active connections and explicitly connect or disconnect from given monitoring hub. At this stage, I think that connections management is a bit too transparent for the end user, thus might be confusing. It will require changes only in GUI subsystem. This item overlaps a bit with adding ability to monitor long running tasks.
+
+\item{\bf Better functions/methods management}
+
+There should be view that will allow user to register functions of interest. Especially after realizing Java instrumentation. User should be able to define which parts of code should be monitored, to measure invocation count and total time. Currently, system monitors only some default MPI* functions and this configuration is defined in OCMG Transport Proxy component.
+
 \end{itemize}
