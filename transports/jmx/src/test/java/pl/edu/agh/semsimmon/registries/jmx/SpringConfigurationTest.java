@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pl.edu.agh.semsimmon.common.api.resource.IResourceDiscoveryEvent;
-import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.api.resource.IResourceDiscoveryListener;
 import pl.edu.agh.semsimmon.common.api.transport.TransportException;
 import pl.edu.agh.semsimmon.common.consts.JmxRegistryConsts;
+import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 
 import javax.management.MBeanServer;
@@ -34,7 +34,7 @@ import static pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.*;
  *         Created at 13:07 31-07-2010
  */
 
-@ContextConfiguration(locations = {"classpath:jmxtransport-context.xml"})
+@ContextConfiguration(locations = {"classpath:jmxtransport-context.xml", "classpath:consts-beans.xml"})
 public class SpringConfigurationTest extends AbstractTestNGSpringContextTests {
 
   private final String SERVICE_URI = "service:jmx:rmi://localhost:9994/jndi/rmi://localhost:4099/connector";
@@ -48,7 +48,7 @@ public class SpringConfigurationTest extends AbstractTestNGSpringContextTests {
 
   private Map<String, Resource> resourceSamples = new HashMap<String, Resource>();
 
-  @BeforeSuite
+  @BeforeClass(dependsOnMethods = "springTestContextPrepareTestInstance")
   public void setupRmiJmxService() throws IOException {
     rmiRegistry = LocateRegistry.createRegistry(4099);
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();

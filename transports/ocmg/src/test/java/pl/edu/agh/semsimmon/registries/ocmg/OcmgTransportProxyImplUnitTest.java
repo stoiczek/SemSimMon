@@ -8,12 +8,11 @@ import org.testng.annotations.Test;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.IResourceDiscoveryEvent;
 import pl.edu.agh.semsimmon.common.api.resource.IResourceDiscoveryListener;
-import pl.edu.agh.semsimmon.common.consts.OcmgRegistryConsts;
-import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.api.transport.TransportException;
+import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
-import pl.edu.agh.semsimmon.registries.ocmg.resource.ResourceAgent;
 import pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe;
+import pl.edu.agh.semsimmon.registries.ocmg.resource.ResourceAgent;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,56 +38,10 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
   }
 
   @Test
-  public void isURISupportedTest() {
-    final String[] validUris = new String[]{"ocmg://192.145.123.21:1234/some_app_123",
-        "ocmg://some.host.com:1234/r8374893ur",
-        "ocmg://8.8.8.8:1234/r8374893ur",
-        "ocmg://[3ffe:1900:4545:3:200:f8ff:fe21:67cf]:4354/43534543"
-    };
-    final String[] invalidUris = new String[]{
-        "http://www.gazeta.pl",
-        "345643erdfvrgbhtgf",
-        "jmx:rmi://myhost:8084/jndi/rmi://myhost:8083/server",
-        "ocmg://8.8.8.8/r8374893ur",
-        "ocmg://8.8.8.8:1234",
-        "ocmg://8.8.8.8:1234",
-        "ocmg://3ffe:1900:4545:3:200:f8ff:fe21:67cf:4354/43534543"
-    };
-
-
-    for (String uri : validUris) {
-      Resource resource = new Resource(uri, KnowledgeConstants.APPLICATION_URI, Collections.<String, Object>emptyMap());
-      resource.setProperty(OcmgRegistryConsts.CONNECTION_TYPE, OcmgRegistryConsts.CONNECTION_TYPE_GLOBUS);
-      assertTrue(transportProxy.isResourceSupported(resource), "Valid URI hasn't passed: " + uri);
-    }
-    for (String uri : invalidUris) {
-      Resource resource = new Resource(uri, KnowledgeConstants.APPLICATION_URI, Collections.<String, Object>emptyMap());
-      resource.setProperty(OcmgRegistryConsts.CONNECTION_TYPE, OcmgRegistryConsts.CONNECTION_TYPE_GLOBUS);
-      assertFalse(transportProxy.isResourceSupported(resource), "Invalid uri passed: " + uri);
-    }
-    Resource resource = new Resource(validUris[0], KnowledgeConstants.APPLICATION_URI, Collections.<String, Object>emptyMap());
-    assertFalse(transportProxy.isResourceSupported(resource), "Property not set, shouldn't pass");
-
-    resource = new Resource(validUris[0], KnowledgeConstants.APPLICATION_URI, Collections.<String, Object>emptyMap());
-    resource.setProperty(OcmgRegistryConsts.CONNECTION_TYPE, "shit");
-    assertFalse(transportProxy.isResourceSupported(resource), "Property set sadly badly, shouldn't pass");
-
-    resource = new Resource(validUris[0], KnowledgeConstants.APPLICATION_URI, Collections.<String, Object>emptyMap());
-    resource.setProperty(OcmgRegistryConsts.CONNECTION_TYPE, OcmgRegistryConsts.CONNECTION_TYPE_GLOBUS);
-    assertTrue(transportProxy.isResourceSupported(resource), "Property set properly, should pass");
-
-    resource = new Resource(validUris[0], KnowledgeConstants.APPLICATION_URI, Collections.<String, Object>emptyMap());
-    resource.setProperty(OcmgRegistryConsts.CONNECTION_TYPE, OcmgRegistryConsts.CONNECTION_TYPE_SOCKET);
-    assertTrue(transportProxy.isResourceSupported(resource), "Property set properly, should pass");
-
-    resource = new Resource(validUris[0], "", Collections.<String, Object>emptyMap());
-    resource.setProperty(OcmgRegistryConsts.CONNECTION_TYPE, OcmgRegistryConsts.CONNECTION_TYPE_SOCKET);
-    assertFalse(transportProxy.isResourceSupported(resource), "Invalid type, shouldn't pass");
-  }
-
-
-  @Test
   public void registerResourceTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     Resource resource = createTestResource();
     transportProxy.registerResource(resource);
   }
@@ -96,12 +49,18 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
 
   @Test(dependsOnMethods = "registerResourceTest")
   public void unregisterResourceTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     Resource resource = createTestResource();
     transportProxy.unregisterResource(resource);
   }
 
   @Test
   public void hasCapabilityTest() throws TransportException {
+     if(!isOsSupported()) {
+      return;
+    }
     Map<String, Map<String, CapabilityProbe>> probes = new HashMap<String, Map<String, CapabilityProbe>>();
     CapabilityProbe probe = mock(CapabilityProbe.class);
     String resourceType = KnowledgeConstants.ONTOLOGY_URI + "#TestResource";
@@ -125,11 +84,11 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
 
   @Test
   public void getCapabilityValueTest() throws TransportException, OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     Map<String, Map<String, CapabilityProbe>> probes = new HashMap<String, Map<String, CapabilityProbe>>();
-
-
     CapabilityProbe probe = mock(CapabilityProbe.class);
-
     String resourceType = KnowledgeConstants.ONTOLOGY_URI + "#TestResource";
     String capabilityType = KnowledgeConstants.ONTOLOGY_URI + "#TestCapability";
     probes.put(resourceType, Collections.singletonMap(capabilityType, probe));
@@ -146,6 +105,9 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
 
   @Test(dependsOnMethods = "registerResourceTest")
   public void discoverChildrenTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     ResourceAgent agent = mock(ResourceAgent.class);
     IResourceDiscoveryListener listener = mock(IResourceDiscoveryListener.class);
     final Resource testParent = createTestResource();

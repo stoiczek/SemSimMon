@@ -4,9 +4,9 @@
 
   <test name="OCMG transport proxy test">
     <classes>
-      <class name="pl.edu.agh.semsimmon.registries.ocmg.OcmgTransportProxyImplUnitTest"/>
-      <class name="pl.edu.agh.semsimmon.registries.ocmg.OcmgConnectionTest"/>
-      <class name="pl.edu.agh.semsimmon.registries.ocmg.DiscoveryAgentsTest"/>
+      <!--<class name="pl.edu.agh.semsimmon.registries.ocmg.OcmgTransportProxyImplUnitTest"/>-->
+      <!--<class name="pl.edu.agh.semsimmon.registries.ocmg.OcmgConnectionTest"/>-->
+      <!--<class name="pl.edu.agh.semsimmon.registries.ocmg.DiscoveryAgentsTest"/>-->
     </classes>
   </test>
 

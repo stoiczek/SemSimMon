@@ -32,6 +32,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @BeforeClass
   public void setupOcmgConnection() throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     Resource rootResource = createTestResource();
     testAppResource = new Resource(rootResource.getUri() + "/" + TEST_APP_NAME, KnowledgeConstants.APPLICATION_URI, rootResource.getProperties());
     testAppResource.setProperty(ResourcePropertyNames.Application.NAME, TEST_APP_NAME);
@@ -43,12 +46,18 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @AfterClass
   public void disposeOcmgConnection() throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     ocmgConnection.disconnect();
   }
 
 
   @Test
   public void clustersDiscoveringAgentTest() throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     ResourceAgent agent = new ClustersResourceAgent();
     List<Resource> sites = agent.discoverChildResources(app, testAppResource, KnowledgeConstants.CLUSTER_URI);
     ocmgConnection.detachFromApplication(testAppResource);
@@ -58,6 +67,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void nodeDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -71,6 +83,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void processesDiscoveryAgentTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -94,6 +109,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void threadDiscoveryAgentTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -114,6 +132,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void functionDiscoveryAgentTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
 //    Application app = ocmgConnection.attachToApplication(testAppResource);
 //    final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
 //    site.attach();
@@ -147,6 +168,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void OsDiscoveryAgentTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -166,6 +190,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void CpuDiscoveryAgentTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -184,6 +211,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void storageDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -205,6 +235,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void netIfacesDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -224,6 +257,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void cpusDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -251,6 +287,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void vmsDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -272,6 +311,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void pmsDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Site site = app.getHierarchy().getSiteTree().get(0).getSite();
     site.attach();
     String siteID = site.getCacheName();
@@ -291,6 +333,9 @@ public class DiscoveryAgentsTest extends OcmgRequringTest {
 
   @Test
   public void applicationsDiscoveryTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     final Resource res = createTestResource();
     AppsResourceAgent appsDiscoveryAgent = new AppsResourceAgent();
     List<Resource> applications = appsDiscoveryAgent.discoverChildResources(null, res, KnowledgeConstants.APPLICATION_URI);

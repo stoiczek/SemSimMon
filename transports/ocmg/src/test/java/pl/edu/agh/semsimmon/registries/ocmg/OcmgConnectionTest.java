@@ -15,6 +15,9 @@ public class OcmgConnectionTest extends OcmgRequringTest {
 
   @Test
   public void connectionTest() throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     Resource resource = createTestResource();
     connection = new OcmgConnection(resource);
     connection.connect();
@@ -22,6 +25,9 @@ public class OcmgConnectionTest extends OcmgRequringTest {
 
   @Test(dependsOnMethods = "connectionTest")
   public void disconnectionTest() throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     connection.disconnect();
   }
 

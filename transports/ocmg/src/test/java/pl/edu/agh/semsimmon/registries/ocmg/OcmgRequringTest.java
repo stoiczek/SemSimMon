@@ -38,6 +38,9 @@ public class OcmgRequringTest extends AbstractTestNGSpringContextTests {
 
   @BeforeTest
   public synchronized void startOcmg() throws IOException, InterruptedException {
+    if(!isOsSupported()) {
+      return;
+    }
     if (ocmgPort > 0) {
       return;
     }
@@ -121,6 +124,9 @@ public class OcmgRequringTest extends AbstractTestNGSpringContextTests {
 
   @AfterTest
   public synchronized void stopOcmg() {
+    if(!isOsSupported()) {
+      return;
+    }
     if (ocmgPort < 0) {
       return;
     }
@@ -139,4 +145,9 @@ public class OcmgRequringTest extends AbstractTestNGSpringContextTests {
     Resource resource = new Resource(uri, "", propertiesMap);
     return resource;
   }
+
+  boolean isOsSupported() {
+    return System.getProperty("os.name").contains("Linux");
+  }
+
 }

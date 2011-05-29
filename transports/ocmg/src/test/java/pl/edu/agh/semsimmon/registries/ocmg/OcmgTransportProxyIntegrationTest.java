@@ -35,6 +35,9 @@ public class OcmgTransportProxyIntegrationTest extends OcmgRequringTest {
 
   @BeforeClass
   public void setupListener() {
+    if(!isOsSupported()) {
+      return;
+    }
     proxy.addResourceDiscoveryListener(new IResourceDiscoveryListener() {
       @Override
       public void processEvent(IResourceDiscoveryEvent event) {
@@ -56,6 +59,9 @@ public class OcmgTransportProxyIntegrationTest extends OcmgRequringTest {
 
   @Test
   public void discoveryAppsTest() throws Exception {
+    if(!isOsSupported()) {
+      return;
+    }
     final Resource rootResource = createTestResource();
     List<Resource> apps = proxy.discoverDirectChildren(rootResource, APPLICATION_URI);
     assertEquals(apps.size(), 1);
@@ -65,16 +71,23 @@ public class OcmgTransportProxyIntegrationTest extends OcmgRequringTest {
 
   @Test(dependsOnMethods = "discoveryAppsTest")
   public void clustersDiscoveryTest() throws Exception {
+    if(!isOsSupported()) {
+      return;
+    }
     doDiscoveryTest(APPLICATION_URI, CLUSTER_URI);
   }
 
   @Test(dependsOnMethods = "clustersDiscoveryTest")
   public void nodesDiscoveryTest() throws Exception {
+    if(!isOsSupported()) {
+      return;
+    }
     doDiscoveryTest(CLUSTER_URI, NODE_URI);
   }
 
   @Test(dependsOnMethods = "nodesDiscoveryTest")
   public void osDiscoveryTest() throws Exception {
+
     doDiscoveryTest(NODE_URI, OS_URI);
   }
 
@@ -121,6 +134,9 @@ public class OcmgTransportProxyIntegrationTest extends OcmgRequringTest {
 
 
   private void doDiscoveryTest(String parentUri, String childUri) throws TransportException {
+    if(!isOsSupported()) {
+      return;
+    }
     final Resource app = resourceSamples.get(parentUri);
     proxy.discoverChildren(app, Arrays.asList(childUri));
     assertTrue(resourceSamples.containsKey(childUri));

@@ -12,9 +12,10 @@ import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.probe.node.LoadAvgProbe;
 
-import static org.testng.Assert.*;
-
 import java.util.Collections;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 /**
  * TODO description
@@ -34,6 +35,9 @@ public class ProbesTest extends OcmgRequringTest {
 
   @BeforeClass
   public void setupOcmgConnection() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     Resource rootResource = createTestResource();
     testAppResource = new Resource(rootResource.getUri() + "/" + TEST_APP_NAME, KnowledgeConstants.APPLICATION_URI, rootResource.getProperties());
     testAppResource.setProperty(ResourcePropertyNames.Application.NAME, TEST_APP_NAME);
@@ -52,15 +56,24 @@ public class ProbesTest extends OcmgRequringTest {
 
   @AfterClass
   public void tearDownOcmgApp() throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     ocmgConnection.detachFromApplication(testAppResource);
   }
 
   @Test
   public void nodeLoad1MinTest() throws Exception {
+    if (!isOsSupported()) {
+      return;
+    }
     testLoadAvg(LoadAvgProbe.Type._1MIN);
   }
 
   private void testLoadAvg(LoadAvgProbe.Type type) throws OcmgException {
+    if (!isOsSupported()) {
+      return;
+    }
     LoadAvgProbe loadAvgProbe = new LoadAvgProbe();
     loadAvgProbe.setType(type);
     CapabilityValue value = loadAvgProbe.getCapabilityValue(nodeResource, app, "");
