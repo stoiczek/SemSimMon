@@ -62,7 +62,9 @@ public class ResourcesTree {
    * @param uri
    */
   public void removeResource(String uri) {
-    checkNodeRegistered(uri);
+    if(!nodeRegistered(uri)) {
+      return;
+    }
     final ResourcesTreeNode toRemove = nodes.get(uri);
     final ResourcesTreeNode parent = toRemove.getParent();
     if(parent == null) {

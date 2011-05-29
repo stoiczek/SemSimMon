@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1306059865128" name="http://www.icsr.agh.edu.pl/ontologies/monitoring/metric" uri="metric-v4.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306059865128" name="http://www.icsr.agh.edu.pl/ontologies/monitoring/resource" uri="resource-v11.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306059865128" name="http://www.icsr.agh.edu.pl/semmon_1.owl" uri="semmon_1.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306059865128" name="http://www.icsr.agh.edu.pl/semmon_2.owl" uri="semmon_2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306662628315" name="http://www.icsr.agh.edu.pl/ontologies/monitoring/metric" uri="metric-v4.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306662628315" name="http://www.icsr.agh.edu.pl/ontologies/monitoring/resource" uri="resource-v11.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306662628315" name="http://www.icsr.agh.edu.pl/semmon_1.owl" uri="semmon_1.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306662628315" name="http://www.icsr.agh.edu.pl/semmon_2.owl" uri="semmon_2.owl"/>
     </group>
 </catalog>

@@ -46,7 +46,7 @@ public class ConfigJmxNodes extends BaseWizardPageController {
   }
 
   @Override
-  public void pageHiding() {
+  public void pageHiding(boolean forward) {
     for (TextInput input : nodeUrisTextInputs) {
       nodeUris.add(input.getText());
     }

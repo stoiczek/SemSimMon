@@ -168,7 +168,7 @@
       <artifactId>mon-hub-app</artifactId>
       <version>${project.version}</version>
       <type>tar.gz</type>
-      <!-- Make sure this isn't included on any classpath-->
+      <!-- Make sure this isn't included in any classpath-->
       <scope>provided</scope>
     </dependency>
 

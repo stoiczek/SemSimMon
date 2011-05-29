@@ -66,8 +66,15 @@ public class JmxTransportProxy extends AbstractTransportProxy {
             IResourceDiscoveryEvent.EventType.RESOURCES_REMOVED);
         fireEvent(resourceRemovedEvent);
       }
-      throw new TransportException(e);
+    } catch (ItemRemovedException e) {
+      log.warn("Thread exited");
+      ResourceDiscoveryEvent resourceRemovedEvent = new ResourceDiscoveryEvent(Arrays.asList(resource),
+          IResourceDiscoveryEvent.EventType.RESOURCES_REMOVED);
+      fireEvent(resourceRemovedEvent);
+    } catch (RuntimeException e) {
+      log.error("Caught exception", e);
     }
+    return new CapabilityValue(Double.NaN);
   }
 
   @Override
@@ -95,7 +102,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
       // don't need to drop children
       return true;
     }
-    //  need to drop children
+    //  application or cluster is being removed - need to drop children
     return false;
   }
 

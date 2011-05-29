@@ -99,6 +99,14 @@ public class CoreConnectionsManagerImpl implements CoreConnectionsManager, Resou
   @Override
   public void disconnectFromExternalCore(String connectionId) throws IOException {
     log.debug("Disconnecting from external core instance with id: {}", connectionId);
+    CoreConnection conn = connections.get(connectionId);
+    if(conn instanceof ExternalProcessCoreConnection) {
+      ExternalProcessCoreConnection eConn = (ExternalProcessCoreConnection) conn;
+      eConn.stopCore();
+      eConn.disconnect();
+    } else if(conn instanceof ExternalCoreConnection) {
+      ((ExternalCoreConnection) conn).disconnect();
+    }
     connections.remove(connectionId);
     try {
       UnicastRemoteObject.unexportObject(remoteEventsListeners.get(connectionId), false);

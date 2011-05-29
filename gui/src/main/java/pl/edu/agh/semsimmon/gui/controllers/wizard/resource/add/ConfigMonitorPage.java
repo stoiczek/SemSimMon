@@ -17,6 +17,7 @@ import pl.edu.agh.semsimmon.gui.util.ButtonDataContainer;
 import pl.edu.agh.semsimmon.gui.util.ListItemDataContainer;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -74,17 +75,28 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
 
   private JmxConnectionType connectionType;
 
-  private CoreConnection externalConnection;
+  private CoreConnection externalConnection = null;
 
   private long bytesToUpload;
 
   @Override
   public void pageShowing() {
-
+    // It's not null, so we're came here back from next step - disconnect old connection (unused)
+    if(externalConnection != null) {
+      try {
+        coreConnectionsManager.disconnectFromExternalCore(externalConnection.getId());
+        externalConnection = null;
+      } catch (IOException e) {
+        log.error("Got exception", e);
+      }
+    }
   }
 
   @Override
-  public void pageHiding() {
+  public void pageHiding(boolean forward) {
+    if (!forward) {
+      return;
+    }
     try {
       log.debug("Config monitor page is hiding - setting up core");
       connectionType = getSelectedConnectionType();
@@ -93,11 +105,6 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
           sshConnectionString = sshUserAndHostTextInput.getText();
           password = passwordTextInput.getText();
           externalConnection = coreConnectionsManager.startExternalCoreProcess(sshConnectionString, password, this);
-          try {
-            Thread.sleep(5000);
-          } catch (InterruptedException e) {
-            log.error("Impossible", e);
-          }
           break;
         case USE_EXISTING:
           existingConnectionId = ((ListItemDataContainer) monitorsList.getSelectedItem()).getId();
@@ -214,8 +221,11 @@ public class ConfigMonitorPage extends BaseWizardPageController<BoxPane> impleme
   @Override
   public void appendLogStatus(String msg, String... args) {
     log.debug("Appending log from connection");
-    sshExternalLogsSink.add(new Label(JSON.<String>get(resources, msg)));
-    sshExternalLogsSink.getParent().repaint();
+    MessageFormat fmt = new MessageFormat(JSON.<String>get(resources, msg));
+    String content = fmt.format(args);
+    sshExternalLogsSink.add(new Label(content));
+    sshExternalLogsSink.repaint(true);
+    sshExternalLogsSink.getParent().repaint(true);
   }
 
   @Override

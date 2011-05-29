@@ -4,11 +4,13 @@ import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semsimmon.registries.jmx.ItemRemovedException;
 import pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe;
 
 import javax.management.MBeanServerConnection;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 
 /**
@@ -30,6 +32,10 @@ public class ThreadTimingProbe implements CapabilityProbe {
     }
     ThreadMXBean threadMXBean = ManagementFactory.newPlatformMXBeanProxy(connection, ManagementFactory.THREAD_MXBEAN_NAME, ThreadMXBean.class);
     long threadId = (Long) resource.getProperty(ResourcePropertyNames.Thread.ID);
+    ThreadInfo info = threadMXBean.getThreadInfo(threadId);
+    if(info == null) {
+      throw new ItemRemovedException();
+    }
     long time = 0;
     if(capabilityUri.equals(KnowledgeConstants.THREAD_USER_TIME_CAP)) {
       time =  threadMXBean.getThreadUserTime(threadId);

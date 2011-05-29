@@ -112,7 +112,7 @@
                     "useExistingMonitor" :"Use already configured monitor",
                     "externalMonitor" : "Attach to external monitor",
                     "sshConn" : "Connection details for SSH access:",
-                    "sshConnStatus" : "Connection staus:z",
+                    "sshConnStatus" : "Connection staus:",
                     "uploadStatus" : "Upload staus:",
                     "userAndHost" : "User name nad host:",
                     "passwd" : "Password:",

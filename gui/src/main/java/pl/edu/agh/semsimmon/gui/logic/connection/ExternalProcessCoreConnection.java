@@ -3,10 +3,8 @@ package pl.edu.agh.semsimmon.gui.logic.connection;
 import com.jcraft.jsch.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.remoting.RemoteConnectFailureException;
 
 import java.io.*;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   /**
    * Core resource bundle url
    */
-  private static final String CORE_RESOURCE = "core-app-0.1-SNAPSHOT.tar.gz";
+  private static final String CORE_RESOURCE = "mon-hub-app.tar.gz";
 
   /**
    * Delimiter used to fetch end of execued command output
@@ -52,7 +50,9 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   /**
    * Name od directory with core installed
    */
-  private static final String SEMMON_CORE_DIR_NAME = ".semmon_core";
+  private static final String SEMMON_CORE_DIR_NAME = ".semsimmon_mon_hub";
+
+  private static final String SUCCESS_PATTERN = ".*SUCCESS.*";
 
   /**
    * Directory where core should be installed
@@ -67,7 +67,7 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   /**
    * Name of script used for starting
    */
-  private static final String SEMMON_CORE_SCRIPT_NAME = "semsimmon-core.sh";
+  private static final String SEMMON_CORE_SCRIPT_NAME = "monhub-app.sh";
 
   /**
    * Absolute path to core control script.
@@ -144,10 +144,13 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
         feedbackSink.setBytesToUpload(10);
         feedbackSink.setBytesUploaded(10);
       }
-      doStartCore();
+      doStartCore(host);
     } catch (Exception e) {
-      shell.disconnect();
-      session.disconnect();
+      log.error("Exception caught", e);
+      if (shell != null)
+        shell.disconnect();
+      if (session != null)
+        session.disconnect();
       if (e instanceof IOException) {
         throw (IOException) e;
       } else {
@@ -172,20 +175,21 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
   @Override
   public void connect() throws IOException {
     final int maxTries = 15;
-    int i = 0;
+    int i;
     for (i = 0; i < maxTries; i++) {
       try {
-        appendExternalFeedbackLog("coreConnecting", Integer.toString(i));
-        super.connect();
-        break;
-      } catch (Exception e) {
-        appendExternalFeedbackLog("coreConnectingError");
-        log.warn("Error connecting - core haven't initialized properly");
+        appendExternalFeedbackLog("coreConnecting", Integer.toString(i + 1));
         try {
           Thread.sleep(2000);
         } catch (InterruptedException e1) {
           log.error("Impossible", e1);
         }
+        super.connect();
+        break;
+      } catch (Exception e) {
+        appendExternalFeedbackLog("coreConnectingError");
+        log.warn("Error connecting - core haven't initialized properly");
+
       }
     }
     if (i == maxTries) {
@@ -194,22 +198,18 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
 
   }
 
-  private void doStartCore() throws IOException {
+  private void doStartCore(String host) throws IOException {
     appendExternalFeedbackLog("startingCoreProcess");
-    String cmd = SEMMON_CORE_SCRIPT_LOCATION + " start";
+    String cmd = SEMMON_CORE_SCRIPT_LOCATION + " start " + host;
     List<String> result = executeCmd(cmd);
     if (result.isEmpty()) {
-      cmd = SEMMON_CORE_SCRIPT_LOCATION + " start";
-      executeCmd(cmd);
       throw new IOException("Error starting external core process.");
     }
-    if (!result.get(result.size() - 1).equals("0")) {
+    if (!result.get(1).matches(SUCCESS_PATTERN)) {
       StringBuilder msgBuilder = new StringBuilder("Error starting external core process. Script's output:\n");
       for (String line : result) {
         msgBuilder.append(line).append('\n');
       }
-      cmd = SEMMON_CORE_SCRIPT_LOCATION + " start";
-      executeCmd(cmd);
       throw new IOException(msgBuilder.toString());
     }
   }
@@ -274,13 +274,10 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
     sftp.connect();
     log.debug("Creating dir: {}", SEMMON_CORE_LOCATION);
     executeCmd("mkdir -p " + SEMMON_CORE_LOCATION);
-    ClassLoader cl = ClassLoader.getSystemClassLoader();
-    URL coreBundleResourceURL = cl.getResource(CORE_RESOURCE);
-    if (coreBundleResourceURL == null) {
-      throw new IOException("Cannot find resource containing core bundle: " + CORE_RESOURCE + ". Check classpath");
-    }
-    final long bytes = new File(coreBundleResourceURL.getFile()).length();
-    final InputStream coreResourceInputStream = coreBundleResourceURL.openStream();
+
+    final File monHubBundleFile = new File("resources" + File.separator + CORE_RESOURCE);
+    final long bytes = monHubBundleFile.length();
+    final InputStream coreResourceInputStream = new FileInputStream(monHubBundleFile);
     log.debug("Uploading data - {} bytes", bytes);
     sftp.cd(SEMMON_CORE_DIR_NAME);
     final String packageFile = "core.tar.gz";
@@ -340,7 +337,7 @@ public class ExternalProcessCoreConnection extends ExternalCoreConnection {
 
   private int getPort(String connectionString) {
     if (connectionString.indexOf(':') > 0) {
-      return Integer.parseInt(connectionString.substring(connectionString.indexOf(':') + 1 ));
+      return Integer.parseInt(connectionString.substring(connectionString.indexOf(':') + 1));
     } else {
       return DEF_SSH_PORT;
     }

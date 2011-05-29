@@ -48,7 +48,8 @@ public class AddOcmgResourceWizardController extends BaseAddResourceWizardCtrl {
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-    } else if (oldPage instanceof ConfigMainSMPage) {
+      // if going forward from mainSM to select applications
+    } else if (oldPage instanceof ConfigMainSMPage && newPage instanceof SelectAppsPageController) {
       populateApps((ConfigMainSMPage) oldPage, (SelectAppsPageController) newPage);
     }
   }

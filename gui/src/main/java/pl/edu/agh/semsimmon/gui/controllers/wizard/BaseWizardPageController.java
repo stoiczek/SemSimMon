@@ -19,9 +19,10 @@ public abstract class BaseWizardPageController<T extends Component> extends Base
 
   /**
    * Called before hiding given page. Best point to validate data. This method can veto change by throwing any
-   * exception. 
+   * exception.
+   * @param forward
    */
-  public abstract void pageHiding();
+  public abstract void pageHiding(boolean forward);
 
 
 }

@@ -30,7 +30,7 @@ public abstract class BaseAddResourceWizardCtrl extends BaseWizardController {
     CoreConnection connection;
     switch (monitorPage.getConnectionType()) {
       case START_NEW_MONITOR:
-        connection = coreConnectionsManager.startExternalCoreProcess(monitorPage.getSshConnectionString(), monitorPage.getPassword(), null);
+        connection = monitorPage.getExternalConnection();
         break;
       case USE_EXTERNAL:
         connection = monitorPage.getExternalConnection();

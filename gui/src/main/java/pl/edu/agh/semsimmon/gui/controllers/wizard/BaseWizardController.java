@@ -70,18 +70,20 @@ public abstract class BaseWizardController extends BaseDialogController {
 
   @ButtonAction(type = ButtonAction.Type.BACKGROUND)
   private void backButtonPressed() {
-    if (currentPageNo == 1) {
+    if (!switchPages(false)) {
+      return;
+    }
+    if (currentPageNo == 0) {
       backButton.setVisible(false);
       cancelButton.setVisible(true);
     }
-    if (currentPageNo == pages.size() - 1) {
+    if (currentPageNo == pages.size() - 2) {
       finishButton.setVisible(false);
       nextButton.setVisible(true);
     }
-    switchPages(false);
   }
 
-  @ButtonAction(type = ButtonAction.Type.INSTANT)
+  @ButtonAction(type = ButtonAction.Type.BACKGROUND)
   private void nextButtonPressed() {
     if (!switchPages(true)) {
       return;
@@ -93,7 +95,7 @@ public abstract class BaseWizardController extends BaseDialogController {
       cancelButton.setVisible(false);
       backButton.setVisible(true);
     }
-    component.repaint();
+    component.repaint(true);
   }
 
   @ButtonAction(target = "finishButton", type = ButtonAction.Type.INSTANT)
@@ -104,7 +106,7 @@ public abstract class BaseWizardController extends BaseDialogController {
 
   @ButtonAction(type = ButtonAction.Type.BACKGROUND)
   private void finishButtonPressed() {
-    pages.get(currentPageNo).pageHiding();
+    pages.get(currentPageNo).pageHiding(true);
     try {
       wizardFinished();
     } catch (Exception e) {
@@ -133,15 +135,17 @@ public abstract class BaseWizardController extends BaseDialogController {
 
   private boolean switchPages(boolean ascending) {
     int newPageNo;
-    if (ascending) {
-      newPageNo = currentPageNo + 1;
-    } else {
-      newPageNo = currentPageNo - 1;
-    }
-    BaseWizardPageController oldPage = pages.get(currentPageNo);
-    BaseWizardPageController currentPage = pages.get(newPageNo);
+    boolean status;
     try {
-      oldPage.pageHiding();
+      if (ascending) {
+        newPageNo = currentPageNo + 1;
+      } else {
+        newPageNo = currentPageNo - 1;
+      }
+      BaseWizardPageController oldPage = pages.get(currentPageNo);
+      BaseWizardPageController currentPage = pages.get(newPageNo);
+
+      oldPage.pageHiding(ascending);
       pageSwitching(oldPage, currentPage);
       pageContainer.remove(oldPage.getComponent());
 
@@ -149,11 +153,13 @@ public abstract class BaseWizardController extends BaseDialogController {
       pageContainer.add(currentPage.getComponent());
       pageSwitched(oldPage, currentPage);
       currentPageNo = newPageNo;
+      status = true;
     } catch (VetoException e) {
       log.warn("Page vetoed change by throwing an exception.", e);
-      return false;
+      // fail if going forward, proceed if going back
+      status = !ascending;
     }
-    return true;
+    return status;
   }
 
   protected void pageSwitching(BaseWizardPageController oldPage, BaseWizardPageController newPage) {
@@ -165,7 +171,7 @@ public abstract class BaseWizardController extends BaseDialogController {
   }
 
   protected void wizardCancelled() throws IOException {
-    
+
   }
 
   public void setTitleKey(String title) {

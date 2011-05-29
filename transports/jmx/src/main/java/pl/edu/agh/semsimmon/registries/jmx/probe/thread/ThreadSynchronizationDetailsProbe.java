@@ -4,6 +4,7 @@ import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
+import pl.edu.agh.semsimmon.registries.jmx.ItemRemovedException;
 import pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe;
 
 import javax.management.MBeanServerConnection;
@@ -31,6 +32,9 @@ public class ThreadSynchronizationDetailsProbe implements CapabilityProbe {
     }
     final ThreadMXBean threadMXBean = ManagementFactory.newPlatformMXBeanProxy(connection, ManagementFactory.THREAD_MXBEAN_NAME, ThreadMXBean.class);
     final ThreadInfo info = threadMXBean.getThreadInfo((Long) resource.getProperty(ResourcePropertyNames.Thread.ID));
+    if(info == null) {
+      throw new ItemRemovedException();
+    }
     long value = -1;
     if (capabilityUri.equals(KnowledgeConstants.THREAD_BLOCKED_COUNT_CAP)) {
       value = info.getBlockedCount();

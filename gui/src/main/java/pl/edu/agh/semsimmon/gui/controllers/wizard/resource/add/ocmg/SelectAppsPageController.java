@@ -32,7 +32,7 @@ public class SelectAppsPageController extends BaseWizardPageController<BoxPane> 
   }
 
   @Override
-  public void pageHiding() {
+  public void pageHiding(boolean forward) {
     for(Checkbox appCheckbox : applicationCheckboxes) {
       if(appCheckbox.isSelected()) {
         ListItemDataContainer container = (ListItemDataContainer) appCheckbox.getButtonData();

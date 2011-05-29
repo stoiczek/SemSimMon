@@ -124,6 +124,7 @@ public class CoreResourcesServiceImpl implements CoreResourcesService, IResource
    */
   @Override
   public void unregisterResource(String uri) {
+    log.debug("Trying to remove resource with uri: " + uri);
     if (!resources.containsKey(uri)) {
       return;
     }

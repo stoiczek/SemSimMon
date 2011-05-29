@@ -28,7 +28,7 @@ public class ConfigHierarchyPage extends BaseWizardPageController<BoxPane> {
   }
 
   @Override
-  public void pageHiding() {
+  public void pageHiding(boolean forward) {
     clusterId = clusterTextInput.getText();
     application = applicationTextInput.getText();
 

@@ -1,19 +1,29 @@
 #!/bin/bash
 
 ACTION=$1
+HOST=$2
 START_ACTION="start"
 STOP_ACTION="stop"
 
 PID_FILE="core.pid"
 
+set SUCCESS_STATUS=SUCCESS
+
+export APP_JAR=mon-hub-app-0.1-SNAPSHOT.jar
+
 function start {
-  echo "Starting semmon core service"
-  java -cp resources/: -jar lib/core-app-0.1-SNAPSHOT.jar > /dev/null 2>&1 &
+  java -Djava.rmi.server.hostname=$HOST -jar lib/${APP_JAR} > /dev/null 2>&1 &
   STATUS=$?
   PID=$!
   echo $PID > $PID_FILE
-  echo $STATUS
+  JAVA_STARTED=`ps aux | grep "$APP_JAR" | wc -l`
+  if [ $JAVA_STARTED -eq 2 ]; then
+        echo "SUCCESS"
+  else
+        echo "FAIL"
+  fi
 }
+
 
 function stop {
   echo  "Stopping semmon core service"
