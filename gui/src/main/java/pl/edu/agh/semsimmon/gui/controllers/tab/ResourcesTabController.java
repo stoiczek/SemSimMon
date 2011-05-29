@@ -24,7 +24,10 @@ import pl.edu.agh.semsimmon.gui.util.TreeBranchContainer;
 import pl.edu.agh.semsimmon.gui.util.TreeNodeContainer;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Controller responsible for handling actions related to resources tab.
@@ -298,32 +301,98 @@ private utilities
 
   private void addResourceNode(TreeBranchContainer<Resource> parent, ResourcesTreeNode node) throws IOException {
     log.debug("Adding resource node");
-    if (node.getChildren().isEmpty()) {
-      TreeNodeContainer<Resource> treeNode = new TreeNodeContainer<Resource>();
-      treeNode.setContent(node.getResource());
-      String label = getNodeLabel(node);
-      if (label == null || label.isEmpty()) {
-        log.warn("Cannot get name of resource");
-        label = "name_unknown";
+    Resource resource = node.getResource();
+    TreeNode same = null;
+    for (TreeNode sibling : parent) {
+      if (getNodeResource(sibling).getUri().equals(resource.getUri())) {
+        same = sibling;
+        break;
       }
-      treeNode.setText(label);
-      if (iconsMap.containsKey(node.getResource().getTypeUri())) {
-        treeNode.setIcon(iconsMap.get(node.getResource().getTypeUri()).getURL());
-      }
-      parent.add(treeNode);
-      nodesMap.put(node.getResource().getUri(), treeNode);
+    }
+
+    // We've already got a node with same URI on the tree.
+    if (same != null) {
+      mergeResourceIntoTree(node, same);
     } else {
-      TreeBranchContainer<Resource> treeBranch = new TreeBranchContainer<Resource>();
-      treeBranch.setContent(node.getResource());
-      treeBranch.setText(getNodeLabel(node));
-      parent.add(treeBranch);
-      nodesMap.put(node.getResource().getUri(), treeBranch);
-      for (ResourcesTreeNode child : node.getChildren()) {
-        addResourceNode(treeBranch, child);
-      }
+      appendNodeToTheTree(parent, node);
     }
     log.debug("Resource node added");
     resourcesTree.repaint();
+  }
+
+  private Resource getNodeResource(TreeNode sibling) {
+    Resource siblingResource = null;
+    if(sibling instanceof TreeBranchContainer) {
+      siblingResource = (Resource) ((TreeBranchContainer) sibling).getContent();
+    } else if(sibling instanceof TreeNodeContainer) {
+      siblingResource = (Resource) ((TreeNodeContainer) sibling).getContent();
+    }
+    return siblingResource;
+  }
+
+  private void appendNodeToTheTree(TreeBranchContainer<Resource> parent, ResourcesTreeNode node) throws IOException {
+    // We need to create new node and add it to the tree
+    TreeNode container;
+    if (node.getChildren().isEmpty()) {
+      // If resource is leaf - create node container
+      final TreeNodeContainer<Resource> resourceTreeNodeContainer = new TreeNodeContainer<Resource>();
+      resourceTreeNodeContainer.setContent(node.getResource());
+      container = resourceTreeNodeContainer;
+    } else {
+      // If resource is branch - create branch container
+      final TreeBranchContainer<Resource> resourceTreeBranchContainer = new TreeBranchContainer<Resource>();
+      resourceTreeBranchContainer.setContent(node.getResource());
+      container = resourceTreeBranchContainer;
+    }
+
+    // Setup common properties of new node:
+    // label
+    String label = getNodeLabel(node);
+    if (label == null || label.isEmpty()) {
+      log.warn("Cannot get name of resource");
+      label = "name_unknown";
+    }
+    container.setText(label);
+
+    // icon
+    if (iconsMap.containsKey(node.getResource().getTypeUri())) {
+      container.setIcon(iconsMap.get(node.getResource().getTypeUri()).getURL());
+    }
+
+    // Insert node to the tree
+    parent.add(container);
+    nodesMap.put(node.getResource().getUri(), container);
+
+    if (!node.getChildren().isEmpty()) {
+      // Again, if new node is branch - add all it's children
+      for (ResourcesTreeNode child : node.getChildren()) {
+        //noinspection unchecked
+        addResourceNode((TreeBranchContainer<Resource>) container, child);
+      }
+    }
+  }
+
+  private void mergeResourceIntoTree(ResourcesTreeNode node, TreeNode same) throws IOException {
+    if (same instanceof TreeBranchContainer) {
+      // existing node is a branch. Definitely merge resources
+      getNodeResource(same).merge(node.getResource());
+      if (!node.getChildren().isEmpty()) {
+        // Additionally, if new node is branch, add children.
+        for (ResourcesTreeNode child : node.getChildren()) {
+          addResourceNode((TreeBranchContainer<Resource>) same, child);
+        }
+      }
+    } else if (same instanceof TreeNodeContainer) {
+      if (node.getChildren().isEmpty()) {
+        // both nodes are leafs - just merge resources and we're done
+        getNodeResource(same).merge(node.getResource());
+      } else {
+        // existing node is a leaf, new one is a branch
+        TreeBranchContainer<Resource> treeBranch = new TreeBranchContainer<Resource>();
+        treeBranch.setContent(node.getResource());
+        treeBranch.setText(getNodeLabel(node));
+      }
+    }
   }
 
 

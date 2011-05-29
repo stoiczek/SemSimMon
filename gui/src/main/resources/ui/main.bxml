@@ -1,4 +1,4 @@
-<Window title="SemMon - SEMantic MONitor" maximized="true"
+<Window title="%mainTitle" maximized="true"
         xmlns:bxml="http://pivot.apache.org/bxml"
         xmlns:content="org.apache.pivot.wtk.content"
         xmlns="org.apache.pivot.wtk" visible="false">

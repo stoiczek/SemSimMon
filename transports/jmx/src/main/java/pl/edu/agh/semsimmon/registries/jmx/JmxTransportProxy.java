@@ -99,6 +99,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
     if (resource.getTypeUri().equals(KnowledgeConstants.NODE_URI)) {
       String transportURI = (String) resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY);
       connections.remove(transportURI);
+      fireResourceRemovedEvent(resource);
       // don't need to drop children
       return true;
     }

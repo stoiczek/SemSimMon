@@ -1,4 +1,4 @@
-{
+{   "mainTitle" : "SemSimMon - SEMantic SIMple MONitor",
     "menu" :{
         "file" : "File",
         "fileGroup" : {
