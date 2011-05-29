@@ -49,10 +49,6 @@ public class TimeSeriesChartViewSkin extends BaseSemmonChartViewSkin {
 //    chart.setBackgroundPaint();
   }
 
-  @Override
-  public void paint(Graphics2D graphics2D) {
-
-  }
 
   @Override
   public void newCapabilityValues(java.util.List<CapabilityValue> values) {

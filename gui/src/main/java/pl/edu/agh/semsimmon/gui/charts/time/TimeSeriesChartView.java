@@ -3,6 +3,7 @@ package pl.edu.agh.semsimmon.gui.charts.time;
 import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartView;
 import pl.edu.agh.semsimmon.gui.charts.BaseSemmonChartViewSkin;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
+import pl.edu.agh.semsimmon.gui.util.UriUtils;
 
 import java.util.List;
 
