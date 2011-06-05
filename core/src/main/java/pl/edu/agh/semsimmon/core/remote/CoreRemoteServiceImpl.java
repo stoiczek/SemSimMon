@@ -7,6 +7,7 @@ import pl.edu.agh.semsimmon.common.api.resource.ResourceEvent;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 
 import javax.annotation.PreDestroy;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,7 +45,6 @@ public class CoreRemoteServiceImpl implements CoreRemoteService, Runnable {
   public void newCapabilityValues(List<CapabilityValue> values) {
     log.debug("Got new capability values");
     if (listeners.isEmpty()) {
-      log.warn("There are noe listeners to dispatch values to. Skipping.");
       return;
     }
     synchronized (capabilitiesQueue) {
@@ -56,7 +56,6 @@ public class CoreRemoteServiceImpl implements CoreRemoteService, Runnable {
   public void processEvent(ResourceEvent event) throws Exception {
     log.debug("Got new resource event");
     if (listeners.isEmpty()) {
-      log.warn("There are no listeners to dispatch event to. Skipping.");
       return;
     }
     synchronized (resourceEventsQueue) {
@@ -88,7 +87,7 @@ public class CoreRemoteServiceImpl implements CoreRemoteService, Runnable {
       } catch (InterruptedException e) {
         log.warn("Events dispatching thread interrupted");
       } catch (Exception e) {
-        log.warn("Exception during events dispatching",e);
+        log.warn("Exception during events dispatching", e);
       }
     }
 
@@ -108,10 +107,12 @@ public class CoreRemoteServiceImpl implements CoreRemoteService, Runnable {
     for (RemoteEventsListener listener : listeners) {
       try {
         listener.newCapabilityValues(values);
+      } catch (ConnectException e) {
+        badListeners.add(listener);
       } catch (RemoteException e) {
         log.error("Error sending events to listener: {}", listener);
         log.error("Cause: ", e);
-        badListeners.add(listener);
+
       }
     }
     listeners.removeAll(badListeners);
@@ -121,7 +122,6 @@ public class CoreRemoteServiceImpl implements CoreRemoteService, Runnable {
     List<ResourceEvent> events;
     synchronized (resourceEventsQueue) {
       if (resourceEventsQueue.isEmpty()) {
-        log.debug("There are no resource events to dispatch. Skipping");
         return;
       }
       events = new LinkedList<ResourceEvent>(resourceEventsQueue);
@@ -132,12 +132,13 @@ public class CoreRemoteServiceImpl implements CoreRemoteService, Runnable {
     for (RemoteEventsListener listener : listeners) {
       try {
         listener.processEvent(events);
+      } catch (ConnectException e) {
+        badListeners.add(listener);
       } catch (RemoteException e) {
         log.error("Error sending events to listener: {}", listener);
         log.error("Cause: ", e);
-        badListeners.add(listener);
       }
     }
-    listeners.removeAll(badListeners);
+    badListeners.removeAll(badListeners);
   }
 }

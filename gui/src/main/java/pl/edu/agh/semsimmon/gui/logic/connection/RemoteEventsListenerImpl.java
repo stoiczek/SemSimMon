@@ -31,9 +31,11 @@ public class RemoteEventsListenerImpl implements RemoteEventsListener {
 
   @Override
   public void newCapabilityValues(List<CapabilityValue> values) throws RemoteException {
-
-    capabilityValueListener.newCapabilityValues(values);
-
+    try {
+      capabilityValueListener.newCapabilityValues(values);
+    } catch (Exception e) {
+      log.error("Got exception while dispatching capabilities", e);
+    }
   }
 
   @Override

@@ -6,11 +6,13 @@ import org.jfree.chart.plot.SpiderWebPlot;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.ui.RectangleEdge;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.gui.charts.CategoryDatasetChartViewSkin;
 import pl.edu.agh.semsimmon.gui.logic.metric.Measurement;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * TODO description
@@ -19,6 +21,8 @@ import java.util.Set;
  *         Created at 17:32 19-09-2010
  */
 public class SpiderWebChartViewSkin extends CategoryDatasetChartViewSkin {
+
+  private static final Logger log = LoggerFactory.getLogger(SpiderWebChartViewSkin.class.getName());
 
   SpiderWebPlot spiderWebPlot;
 
@@ -38,13 +42,4 @@ public class SpiderWebChartViewSkin extends CategoryDatasetChartViewSkin {
     capabilities.add(measurement.getCapabilityUri());
   }
 
-  @Override
-  protected String getRowKey(Measurement measurement) {
-    return super.getColumnKey(measurement);
-  }
-
-  @Override
-  protected String getColumnKey(Measurement measurement) {
-    return super.getRowKey(measurement);
-  }
 }

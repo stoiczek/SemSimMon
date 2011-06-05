@@ -51,10 +51,6 @@ public class AddMeasurToVisDialogCtrl extends BaseDialogController {
     return AddMeasurToVisDialogCtrl.class;
   }
 
-  @Override
-  protected void postBinding() throws IOException {
-    measurementsList.getListViewSelectionListeners().add(new DetailsFillSelectionListener());
-  }
 
 
   @ButtonAction
@@ -95,22 +91,5 @@ public class AddMeasurToVisDialogCtrl extends BaseDialogController {
     Measurement measurement = (Measurement) container.getAdditionalContent();
     return measurement;
   }
-
-  private class DetailsFillSelectionListener extends ListViewSelectionListener.Adapter {
-
-
-    @Override
-    public void selectedRangesChanged(ListView listView, Sequence<Span> previousSelectedRanges) {
-      // TODO copied and pasted to add measurement to visualization dialog - pull it up and reuse
-      Measurement measurement = getMeasurement();
-      measurementResourceName.setText(measurement.getResourceUri());
-      measurementCapabilityName.setText(getLabelForURI(measurement.getCapabilityUri()));
-      measurementId.setText(measurement.getId());
-      measurementStartDate.setText(getFormattedDate(measurement.getCreationDate()));
-    }
-
-
-  }
-
 
 }

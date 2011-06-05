@@ -58,7 +58,7 @@ public class TimeSeriesChartViewSkin extends BaseSemSimMonChartViewSkin {
       if (data.getSeries(measurement.getLabel()) == null) {
         data.addSeries(new TimeSeries(measurement.getLabel()));
       }
-      data.getSeries(measurement.getLabel()).add(new Second(value.getGatherTimestamp()), value.getNumericValue());
+      data.getSeries(measurement.getLabel()).addOrUpdate(new Second(value.getGatherTimestamp()), value.getNumericValue());
       log.debug("Amount of series: {}", data.getSeries().size());
     }
   }

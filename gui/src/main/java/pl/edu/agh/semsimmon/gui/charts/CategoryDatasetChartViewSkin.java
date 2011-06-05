@@ -28,7 +28,7 @@ public class CategoryDatasetChartViewSkin extends BaseSemSimMonChartViewSkin {
   private static final Logger log = LoggerFactory.getLogger(CategoryDatasetChartViewSkin.class);
 
   protected DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-  private Map<String, Measurement> measurements = new HashMap<String, Measurement>();
+  protected Map<String, Measurement> measurements = new HashMap<String, Measurement>();
 
   public CategoryDatasetChartViewSkin() {
     dataSet = new DefaultCategoryDataset();
