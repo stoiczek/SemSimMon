@@ -37,7 +37,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
   /**
    *
    */
-  private Map<String, Map<String, DiscoveryAgent>> discoveryAgents;
+  private Map<String, DiscoveryAgent> discoveryAgents;
 
   /**
    *
@@ -145,17 +145,13 @@ public class JmxTransportProxy extends AbstractTransportProxy {
     if (!isResourceSupported(resource)) {
       throw new TransportException("Given resource is unsupported with this proxy");
     }
-    if (!discoveryAgents.containsKey(resource.getTypeUri())) {
-      log.error("Cannot discover child resources from given parent: " + resource.getUri() + "(" + resource.getTypeUri() + ")");
-      return;
-    }
-    Map<String, DiscoveryAgent> agents = discoveryAgents.get(resource.getTypeUri());
+
     final List<Resource> children = new LinkedList<Resource>();
     final String connectionUri = resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY).toString();
     final MBeanServerConnection connection = connections.get(connectionUri);
     for (final String type : types) {
-      if (agents.containsKey(type)) {
-        final DiscoveryAgent agent = agents.get(type);
+      if (discoveryAgents.containsKey(type)) {
+        final DiscoveryAgent agent = discoveryAgents.get(type);
         List<Resource> childResources = null;
         try {
           childResources = agent.discoveryChildren(connection, resource, type);
@@ -181,7 +177,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
     }
     registerResource(resource);
     final String transportUri = (String) resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY);
-    DiscoveryAgent agent = discoveryAgents.get(resource.getTypeUri()).get(type);
+    DiscoveryAgent agent = discoveryAgents.get(type);
     try {
       return agent.discoveryChildren(connections.get(transportUri), resource, type);
     } catch (IOException e) {
@@ -189,7 +185,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
     }
   }
 
-  public void setDiscoveryAgents(Map<String, Map<String, DiscoveryAgent>> discoveryAgents) {
+  public void setDiscoveryAgents(Map<String, DiscoveryAgent> discoveryAgents) {
     this.discoveryAgents = discoveryAgents;
   }
 

@@ -21,86 +21,19 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
   <util:map id="jmxDiscoveryAgents" key-type="java.lang.String" value-type="java.util.HashMap">
-    <entry value-ref="nodeDiscoveryAgents">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="jvmDiscoveryAgents">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
-      </key>
-    </entry>
+    <entry key-ref="osUri" value-ref="osDiscoveryAgent"/>
+    <entry key-ref="cpuUri" value-ref="cpuDiscoveryAgent"/>
+    <entry key-ref="jvmUri" value-ref="jvmDiscoveryAgent"/>
+    <entry key-ref="physicalMemoryUri" value-ref="genericDiscoveryAgent"/>
+    <entry key-ref="virtualMemUri" value-ref="genericDiscoveryAgent"/>
+    <entry key-ref="hardDriveUri" value-ref="genericDiscoveryAgent"/>
+    <entry key-ref="netfaceUri" value-ref="genericDiscoveryAgent"/>
+    <entry key-ref="classLoaderUri" value-ref="genericDiscoveryAgent"/>
+    <entry key-ref="threadUri" value-ref="threadDiscoveryAgent"/>
+    <entry key-ref="gcUri" value-ref="gcDiscoveryAgent"/>
   </util:map>
 
-  <util:map id="nodeDiscoveryAgents" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.discovery.DiscoveryAgent" map-class="java.util.HashMap">
-    <entry value-ref="osDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="cpuDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CPU_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="jvmDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="genericDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="genericDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="genericDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.HARD_DRIVE_URI"/>
-      </key>
-    </entry>
 
-    <entry value-ref="genericDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.NETWORK_INTERFACE_URI"/>
-      </key>
-    </entry>
-
-
-  </util:map>
-
-  <util:map id="jvmDiscoveryAgents" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.discovery.DiscoveryAgent" map-class="java.util.HashMap">
-    <entry value-ref="genericDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CLASS_LOADER_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="genericDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
-      </key>
-    </entry>
-
-    <entry value-ref="threadDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
-      </key>
-    </entry>
-
-    <entry value-ref="gcDiscoveryAgent">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
-      </key>
-    </entry>
-
-  </util:map>
 
   <bean id="genericDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.jmx.discovery.GenericDiscoveryAgent"/>
 

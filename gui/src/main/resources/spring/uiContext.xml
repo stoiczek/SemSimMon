@@ -295,11 +295,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <property name="enabled" value="true"/>
     <property name="closeListener" ref="ontologySelectedListener"/>
     <property name="owner" ref="mainWindowController"/>
-    <property name="exceptionHandler" ref="promptExceptionHandler"/>
   </bean>
 
   <bean id="ontologySelectedListener" class="pl.edu.agh.semsimmon.gui.controllers.action.OntologyFileSelectedListener">
     <property name="connectionsManager" ref="coreConnectionsManager"/>
+    <property name="exceptionHandler" ref="promptExceptionHandler"/>
   </bean>
 
   <bean id="addOcmgResourceAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">
