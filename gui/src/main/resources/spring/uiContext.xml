@@ -275,6 +275,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <util:map id="actionMap" key-type="java.lang.String" value-type="org.apache.pivot.wtk.Action">
     <entry key="close" value-ref="closeAction"/>
+    <entry key="reloadOntology" value-ref="reloadOntologyAction"/>
     <entry key="addOcmgResource" value-ref="addOcmgResourceAction"/>
     <entry key="addJmxResource" value-ref="addJmxResourceAction"/>
     <entry key="pauseAllMeasurements" value-ref="pauseAllMeasurementsAction"/>
@@ -288,6 +289,17 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <bean id="closeAction" class="pl.edu.agh.semsimmon.gui.action.CloseAction">
     <property name="enabled" value="true"/>
+  </bean>
+
+  <bean id="reloadOntologyAction" class="pl.edu.agh.semsimmon.gui.action.ReloadOntologyAction" scope="prototype">
+    <property name="enabled" value="true"/>
+    <property name="closeListener" ref="ontologySelectedListener"/>
+    <property name="owner" ref="mainWindowController"/>
+    <property name="exceptionHandler" ref="promptExceptionHandler"/>
+  </bean>
+
+  <bean id="ontologySelectedListener" class="pl.edu.agh.semsimmon.gui.controllers.action.OntologyFileSelectedListener">
+    <property name="connectionsManager" ref="coreConnectionsManager"/>
   </bean>
 
   <bean id="addOcmgResourceAction" class="pl.edu.agh.semsimmon.gui.action.ReflectionAction">

@@ -2,7 +2,8 @@
     "menu" :{
         "file" : "File",
         "fileGroup" : {
-            "close" : "Close"
+            "close" : "Close",
+            "reloadOntology" : "Reload ontology"
         },
         "resources" : "Resources",
         "resourcesGroup" : {

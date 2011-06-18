@@ -23,6 +23,11 @@
                             <content:ButtonData text="%menu.fileGroup.close"/>
                           </buttonData>
                         </Menu.Item>
+                        <Menu.Item action="reloadOntology">
+                          <buttonData>
+                            <content:ButtonData text="%menu.fileGroup.reloadOntology"/>
+                          </buttonData>
+                        </Menu.Item>
                       </Menu.Section>
                     </sections>
                   </Menu>
