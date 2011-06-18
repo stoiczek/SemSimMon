@@ -1,5 +1,6 @@
 package pl.edu.agh.semsimmon.common.api;
 
+import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeService;
 import pl.edu.agh.semsimmon.common.api.measurement.CoreMeasurementService;
 import pl.edu.agh.semsimmon.common.api.remote.RemoteClientsService;
 import pl.edu.agh.semsimmon.common.api.resource.CoreResourcesService;
@@ -11,6 +12,6 @@ import pl.edu.agh.semsimmon.common.api.resource.CoreResourcesService;
  * @author Tadeusz Kozak
  */
 public interface CoreServiceFacade extends CoreResourcesService,
-    CoreMeasurementService, RemoteClientsService {
+    CoreMeasurementService, RemoteClientsService, KnowledgeService {
 
 }

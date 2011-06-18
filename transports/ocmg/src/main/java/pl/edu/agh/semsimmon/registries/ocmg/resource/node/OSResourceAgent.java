@@ -27,8 +27,4 @@ public class OSResourceAgent extends BaseNodesChildrenRA {
     return Arrays.asList(osResource);
   }
 
-  //  @Override
-//  public boolean supportsChildrenType(Resource parent, String type) {
-//    return false;  //To change body of implemented methods use File | Settings | File Templates.
-//  }
 }

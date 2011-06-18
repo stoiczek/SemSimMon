@@ -8,6 +8,7 @@ import pl.edu.agh.semsimmon.common.api.knowledge.IKnowledge;
 import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants;
 import pl.edu.agh.semsimmon.knowledge.ontology.IOntModelProvider;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,8 +32,17 @@ public class KnowledgeImpl implements IKnowledge {
     return selectObjectsForPropertyOfSubject(type, KnowledgeConstants.HAS_RESOURCE_CAP_PROPERTY_URI);
   }
 
-  private List<String> selectObjectsForPropertyOfSubject(String subject,
-                                                         String property) {
+  @Override
+  public void reloadOntology(byte[] ontologyPayload) throws IOException {
+    ontModelProvider.reloadOntology(ontologyPayload);
+  }
+
+  @Override
+  public List<String> getChildrenResourceTypes(String type) {
+    return selectObjectsForPropertyOfSubject(type, KnowledgeConstants.HAS_RESOURCE_PROPERTY_URI);
+  }
+
+  private List<String> selectObjectsForPropertyOfSubject(String subject, String property) {
     List<String> retVal = new LinkedList<String>();
     OntModel model = ontModelProvider.getOntModel();
 
@@ -52,72 +62,6 @@ public class KnowledgeImpl implements IKnowledge {
     return selectObjectsForPropertyOfSubject(metricURI, KnowledgeConstants.USES_CAP_PROPERTY_URI);
   }
 
-  @Override
-  public List<String> getChildrenResourceTypes(String type) {
-    return selectObjectsForPropertyOfSubject(type, KnowledgeConstants.HAS_RESOURCE_PROPERTY_URI);
-  }
-
-  public String getClassNameForCustomMetric(String uri) {
-    // there should be only one class ... in case there are more - we take
-    // the first one ;)
-    List<String> clazz = selectObjectsForPropertyOfSubject(uri, KnowledgeConstants.HAS_CUSTOM_CLASS_PROPERTY_URI);
-    return clazz.get(0);
-  }
-
-  public boolean isCustomMetric(String uri) {
-    List<String> classes = selectObjectsForPropertyOfSubject(uri, KnowledgeConstants.HAS_CUSTOM_CLASS_PROPERTY_URI);
-    return classes.size() > 0;
-  }
-
-  public List<String> getAllAvailableMetrics() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  public List<String> getMetricsForResourceType(String type) {
-    Set<String> capabilities = new HashSet<String>();
-
-    capabilities.addAll(selectObjectsForPropertyOfSubject(type, KnowledgeConstants.HAS_RESOURCE_CAP_PROPERTY_URI));
-
-    return getMetricsUsingCapabilitiesForResourceType(type, capabilities);
-  }
-
-  public List<String> getMetricsSuggestedToStart(String metricURI,
-                                                 String resourceURI) {
-    throw new RuntimeException("Method unimplemented!");
-  }
-
-  private List<String> getMetricsUsingCapabilitiesForResourceType(
-      String resourceType, Set<String> capabilities) {
-
-    Set<String> allMetrics = new HashSet<String>();
-    for (String capability : capabilities) {
-      List<String> metrics = selectObjectsForPropertyOfSubject(capability,
-          KnowledgeConstants.CAP_IS_USED_BY_PROPERTY_URI);
-      allMetrics.addAll(metrics);
-    }
-
-    List<String> retVal = new LinkedList<String>();
-
-    for (String metric : allMetrics) {
-      List<String> usedCapabilities = getUsedCapabilities(metric);
-      if (capabilities.containsAll(usedCapabilities)) {
-        retVal.add(metric);
-      }
-    }
-    return retVal;
-  }
-
-  public List<String> getMetricsUsingCapabilityForResourceType(
-      String resourceType, String capabilityURI) {
-
-    Set<String> capabilities = new HashSet<String>();
-
-    capabilities.add(capabilityURI);
-
-    return getMetricsUsingCapabilitiesForResourceType(resourceType,
-        capabilities);
-  }
 
 
   @SuppressWarnings({"UnusedDeclaration"})

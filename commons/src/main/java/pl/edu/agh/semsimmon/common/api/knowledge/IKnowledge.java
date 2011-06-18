@@ -1,5 +1,6 @@
 package pl.edu.agh.semsimmon.common.api.knowledge;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,5 +16,6 @@ public interface IKnowledge {
 
   List<String> getCapabilitiesOfResourceType(String type);
 
+  void reloadOntology(byte ontologyPayload[]) throws IOException;
 
 }

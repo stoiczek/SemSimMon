@@ -13,7 +13,7 @@ import java.lang.management.ManagementFactory;
 import java.util.*;
 
 /**
- * TODO description
+ * Discovery agent, that can list JVM's garbage collectors
  *
  * @author tkozak
  *         Created at 19:18 19-07-2010

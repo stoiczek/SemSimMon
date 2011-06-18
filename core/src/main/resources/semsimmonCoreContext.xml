@@ -16,6 +16,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <property name="coreResourcesService" ref="coreResourcesService"/>
     <property name="measurementService" ref="coreMeasurementService"/>
     <property name="coreRemoteService" ref="coreRemoteService"/>
+    <property name="knowledgeService" ref="knowledgeService"/>
   </bean>
 
 
@@ -51,6 +52,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </bean>
 
   <!-- Knowledge Core Bean -->
+
+  <bean id="knowledgeService" class="pl.edu.agh.semsimmon.core.knowledge.KnowledgeServiceImpl">
+    <property name="knowledge" ref="knowledgeBean"/>
+  </bean>
+
   <bean id="knowledgeBean" class="pl.edu.agh.semsimmon.knowledge.impl.KnowledgeImpl">
     <property name="ontModelProvider" ref="ontModelProvider"/>
   </bean>

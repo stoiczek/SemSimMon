@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TODO description
+ * Discovery agent that is capable of listing JVM's threads
  *
  * @author tkozak
  *         Created at 21:19 11-07-2010
@@ -25,9 +25,7 @@ public class ThreadsDiscoveryAgent implements DiscoveryAgent {
 
   @Override
   public List<Resource> discoveryChildren(MBeanServerConnection connection, Resource parent, String type) throws IOException {
-    if (!parent.getTypeUri().equals(KnowledgeConstants.JVM_URI)) {
-      throw new IllegalArgumentException("Got invalid parent resource type: " + parent.getTypeUri());
-    }
+
     final ThreadMXBean threadProxy = ManagementFactory.newPlatformMXBeanProxy
         (connection, ManagementFactory.THREAD_MXBEAN_NAME, ThreadMXBean.class);
     ThreadInfo[] threadsDetails = threadProxy.getThreadInfo(threadProxy.getAllThreadIds());

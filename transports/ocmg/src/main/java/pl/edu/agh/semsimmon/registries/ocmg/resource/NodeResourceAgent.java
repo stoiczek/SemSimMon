@@ -49,8 +49,4 @@ public class NodeResourceAgent extends AbstractResourceAgent {
     }
   }
 
-//  @Override
-//  public boolean supportsChildrenType(Resource parent, String type) {
-//    return parent.getType().equals(KnowledgeConstants.CLUSTER_URI) && type.equals(KnowledgeConstants.NODE_URI);
-//  }
 }

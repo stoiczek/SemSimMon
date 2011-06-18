@@ -42,11 +42,4 @@ public class ClustersResourceAgent extends AbstractResourceAgent {
     }
   }
 
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public boolean supportsChildrenType(Resource parent, String type) {
-//    return parent.getType().equals(KnowledgeConstants.APPLICATION_URI) && type.equals(KnowledgeConstants.CLUSTER_URI);
-//  }
 }

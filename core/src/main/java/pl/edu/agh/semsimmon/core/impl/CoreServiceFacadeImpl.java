@@ -1,6 +1,7 @@
 package pl.edu.agh.semsimmon.core.impl;
 
 import pl.edu.agh.semsimmon.common.api.CoreServiceFacade;
+import pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeService;
 import pl.edu.agh.semsimmon.common.api.measurement.CapabilityValueListener;
 import pl.edu.agh.semsimmon.common.api.resource.CoreResourcesService;
 import pl.edu.agh.semsimmon.common.api.measurement.CoreMeasurementService;
@@ -15,6 +16,7 @@ import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.common.exception.ResourceAlreadyRegisteredException;
 import pl.edu.agh.semsimmon.core.remote.CoreRemoteService;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -26,18 +28,13 @@ import java.util.Map;
  */
 public class CoreServiceFacadeImpl implements CoreServiceFacade {
 
-
-  /**
-   *
-   */
   private CoreResourcesService coreResourcesService = null;
 
-  /**
-   *
-   */
   private CoreMeasurementService measurementService;
 
   private CoreRemoteService coreRemoteService;
+
+  private KnowledgeService knowledgeService;
 
   /*
   * ===================================================================================================================
@@ -258,6 +255,17 @@ public class CoreServiceFacadeImpl implements CoreServiceFacade {
 
   /*
   * ===================================================================================================================
+  * KnowledgeService delegations
+  * ===================================================================================================================
+  */
+
+  @Override
+  public void reloadOntology(byte[] ontologyContent) throws IOException {
+    knowledgeService.reloadOntology(ontologyContent);
+  }
+
+  /*
+  * ===================================================================================================================
   * Spring initialization
   * ===================================================================================================================
   */
@@ -274,5 +282,9 @@ public class CoreServiceFacadeImpl implements CoreServiceFacade {
 
   public void setCoreRemoteService(CoreRemoteService coreRemoteService) {
     this.coreRemoteService = coreRemoteService;
+  }
+
+  public void setKnowledgeService(KnowledgeService knowledgeService) {
+    this.knowledgeService = knowledgeService;
   }
 }
