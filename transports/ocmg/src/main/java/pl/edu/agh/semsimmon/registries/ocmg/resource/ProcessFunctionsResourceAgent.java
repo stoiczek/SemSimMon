@@ -16,6 +16,7 @@ import pl.edu.agh.semsimmon.registries.ocmg.OcmgException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import static pl.edu.agh.semsimmon.registries.ocmg.AppHierarchyParsingUtils.findProcess;
 
@@ -54,7 +55,10 @@ public class ProcessFunctionsResourceAgent extends AbstractResourceAgent {
         LibCallMeter callMeter = new LibCallMeter(application.getMonitor(), null, function.getFunctionName(),
             null, null, LibCallMeter.Type.TYPE_COUNT_TIME);
         final Resource resource = wrapResource(parent, type, functionId);
-        metersContainer.addMeter(resource.getUri(), callMeter);
+        final String uuid = UUID.randomUUID().toString();
+
+        metersContainer.addMeter(uuid, callMeter);
+        resource.setProperty(ResourcePropertyNames.Function.UUID, uuid);
         resource.setProperty(ResourcePropertyNames.Function.FILE_NAME, function.getFileName());
         resource.setProperty(ResourcePropertyNames.Function.FUNCTION_NAME, function.getFunctionName());
         resource.setProperty(ResourcePropertyNames.Function.START_ADDRESS, function.getStartAddress());

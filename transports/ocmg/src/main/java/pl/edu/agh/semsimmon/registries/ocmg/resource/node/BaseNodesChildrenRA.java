@@ -1,16 +1,16 @@
 package pl.edu.agh.semsimmon.registries.ocmg.resource.node;
 
-import org.balticgrid.ocmg.base.*;
+import org.balticgrid.ocmg.base.ConnectionException;
+import org.balticgrid.ocmg.base.MonitorException;
 import org.balticgrid.ocmg.objects.Application;
 import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.AppHierarchyParsingUtils;
 import pl.edu.agh.semsimmon.registries.ocmg.OcmgException;
 import pl.edu.agh.semsimmon.registries.ocmg.resource.AbstractResourceAgent;
 
 import java.util.List;
-
-import static pl.edu.agh.semsimmon.registries.ocmg.AppHierarchyParsingUtils.getUriParts;
 
 /**
  * @author tkozak
@@ -21,9 +21,8 @@ public abstract class BaseNodesChildrenRA extends AbstractResourceAgent {
 
   @Override
   public List<Resource> discoverChildResources(Application application, Resource parent, String type) throws OcmgException {
-    final String[] uriParts = getUriParts(parent);
-    final String site = uriParts[uriParts.length - 2];
-    final String nodeId = uriParts[uriParts.length - 1];
+    final String site = (String) parent.getProperty(ResourcePropertyNames.Cluster.CLUSTER_ID);
+    final String nodeId = (String) parent.getProperty(ResourcePropertyNames.Node.ID);
     try {
       final NodeTree nodeTree = AppHierarchyParsingUtils.findNodeTree(application, site, nodeId);
       return doDiscover(nodeTree, parent, type);

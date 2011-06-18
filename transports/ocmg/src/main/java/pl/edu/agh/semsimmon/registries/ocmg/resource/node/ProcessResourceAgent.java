@@ -41,6 +41,7 @@ public class ProcessResourceAgent extends BaseNodesChildrenRA {
       resource.setProperty(ResourcePropertyNames.Process.GLOBAL_ID, staticInfo.getGlobalId());
       resource.setProperty(ResourcePropertyNames.Process.USER_ID, staticInfo.getUserId());
       resource.setProperty(ResourcePropertyNames.Process.GROUP_ID, staticInfo.getGroupId());
+      resource.setProperty(ResourcePropertyNames.Process.PROCESS_GLOBAL_ID, staticInfo.getGlobalId());
       resource.setProperty(ResourcePropertyNames.RESOURCE_PAUSEABLE_PN, true);
       resource.setProperty(ResourcePropertyNames.RESOURCE_STOPPABLE_PN, true);
       ResourceState state;

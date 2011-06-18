@@ -20,12 +20,9 @@ public class TotalCpuTimeCapabilityProbe implements CapabilityProbe {
 
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
-    if (!resource.getTypeUri().equals(KnowledgeConstants.PROCESS_URI)) {
-      throw new IllegalArgumentException("Invalid uri type");
-    }
     try {
-      org.balticgrid.ocmg.objects.Process proc = findProcess(resource, application);
-      return new CapabilityValue(proc.getDynamicInfo().getTotalTime());
+      org.balticgrid.ocmg.objects.Process process = findProcess(resource, application);
+      return new CapabilityValue(process.getDynamicInfo().getTotalTime());
     } catch (MonitorException e) {
       throw new OcmgException(e);
     } catch (ConnectionException e) {

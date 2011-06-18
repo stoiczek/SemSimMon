@@ -58,6 +58,7 @@ public final class ResourcePropertyNames {
   public final class Cluster {
 
     public static final String ID = RESOURCE_PROPERTY_PREFIX + "cluster.id";
+    public static final String CLUSTER_ID = PROPAGABLE_RESOURCE_NAME_PRFX +  ".clusterId";
 
     private Cluster() {
 
@@ -76,6 +77,8 @@ public final class ResourcePropertyNames {
      *
      */
     public static final String NAME = RESOURCE_PROPERTY_PREFIX + "node.name";
+
+    public static final String ID = PROPAGABLE_RESOURCE_NAME_PRFX + ".nodeId";
   }
 
   public final class Os {
@@ -94,6 +97,7 @@ public final class ResourcePropertyNames {
     public static final String GLOBAL_ID = RESOURCE_PROPERTY_PREFIX + "process.globalId";
     public static final String USER_ID = RESOURCE_PROPERTY_PREFIX + "process.userId";
     public static final String GROUP_ID = RESOURCE_PROPERTY_PREFIX + "process.groupId";
+    public static final String PROCESS_GLOBAL_ID = PROPAGABLE_RESOURCE_NAME_PRFX + ".processGlobalId";
 
     private Process() {
     }
@@ -102,6 +106,7 @@ public final class ResourcePropertyNames {
 
   public final class Function {
 
+    public static final String UUID = PROPAGABLE_RESOURCE_NAME_PRFX + ".libCallMeterUuuid";
     public static final String FILE_NAME = RESOURCE_PROPERTY_PREFIX + "function.fileName";
     public static final String FUNCTION_NAME = RESOURCE_PROPERTY_PREFIX + "function.functionName";
     public static final String START_ADDRESS = RESOURCE_PROPERTY_PREFIX + "function.startAddr";
@@ -128,6 +133,8 @@ public final class ResourcePropertyNames {
     public static final String NAME = RESOURCE_PROPERTY_PREFIX + "thread.name";
 
     public static final String OWNING_PROCESS_ID = "thread.ownerId";
+
+    public static final String THREAD_ID = PROPAGABLE_RESOURCE_NAME_PRFX + ".threadId";
 
   }
 

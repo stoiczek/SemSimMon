@@ -32,6 +32,7 @@ public class ClustersResourceAgent extends AbstractResourceAgent {
         site.getSite().attach();
         final Resource resource = wrapResource(parent, type, siteName);
         resource.setProperty(ResourcePropertyNames.Cluster.ID, site.getSite().getCacheName());
+        resource.setProperty(ResourcePropertyNames.Cluster.CLUSTER_ID, site.getSite().getCacheName());
         childResources.add(resource);
       }
       return childResources;

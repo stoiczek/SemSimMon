@@ -5,12 +5,17 @@ import org.balticgrid.ocmg.base.MonitorException;
 import org.balticgrid.ocmg.objects.Application;
 import org.balticgrid.ocmg.objects.apphierarchy.NodeTree;
 import org.balticgrid.ocmg.objects.apphierarchy.SiteTree;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.OcmgException;
 
+
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
 
 
 /**
@@ -20,9 +25,15 @@ import java.util.List;
  */
 public class NodeResourceAgent extends AbstractResourceAgent {
 
+  private static final Logger log = LoggerFactory.getLogger(NodeResourceAgent.class);
+
   @Override
   public List<Resource> discoverChildResources(Application application, Resource parent, String type) throws OcmgException {
-    String siteId = (String) parent.getProperty(ResourcePropertyNames.Cluster.ID);
+    String siteId = (String) parent.getProperty(ResourcePropertyNames.Cluster.CLUSTER_ID);
+    if(siteId == null) {
+      log.warn("Cluster ID not specified - cannot discover nodes");
+      return new LinkedList<Resource>();
+    }
     List<NodeTree> nodeTrees = null;
     try {
       for (SiteTree siteTree : application.getHierarchy().getSiteTree()) {
@@ -37,8 +48,11 @@ public class NodeResourceAgent extends AbstractResourceAgent {
       for (NodeTree nodeTree : nodeTrees) {
         final org.balticgrid.ocmg.objects.Node node = nodeTree.getNode();
         node.attach();
-        final Resource resource = wrapResource(parent, type, nodeTree.getNode().getCacheName());
-        resource.setProperty(ResourcePropertyNames.Node.NAME, node.getInfo().getName());
+        final String cacheName = nodeTree.getNode().getCacheName();
+        final String name = node.getInfo().getName();
+        final Resource resource = wrapResource(parent, type, name);
+        resource.setProperty(ResourcePropertyNames.Node.NAME, name);
+        resource.setProperty(ResourcePropertyNames.Node.ID, cacheName);
         nodes.add(resource);
       }
       return nodes;

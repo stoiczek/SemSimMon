@@ -40,6 +40,7 @@ public class ThreadsDiscoveryAgent implements DiscoveryAgent {
   private Resource getThreadDetails(ThreadMXBean threadProxy, ThreadInfo info, Resource parent) {
     final Map<String, Object> props = new HashMap<String, Object>();
     props.put(ResourcePropertyNames.Thread.ID, info.getThreadId());
+    props.put(ResourcePropertyNames.Thread.THREAD_ID, info.getThreadId());
     props.put(ResourcePropertyNames.Thread.NAME, info.getThreadName());
     return new Resource(parent.getUri() + "/Thread_" + info.getThreadId(), KnowledgeConstants.THREAD_URI, props);
   }

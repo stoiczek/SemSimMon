@@ -28,11 +28,8 @@ public class ThreadsCP implements CapabilityProbe {
 
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
-    if (!resource.getTypeUri().equals(KnowledgeConstants.PROCESS_URI)) {
-      throw new IllegalArgumentException("Invalid uri type");
-    }
-    org.balticgrid.ocmg.objects.Process proc = findProcess(resource, application);
-    List<Thread> threads = proc.getThreads();
+    org.balticgrid.ocmg.objects.Process process = findProcess(resource, application);
+    List<Thread> threads = process.getThreads();
     int blockedThreadsCount = 0;
     try {
     switch (type) {

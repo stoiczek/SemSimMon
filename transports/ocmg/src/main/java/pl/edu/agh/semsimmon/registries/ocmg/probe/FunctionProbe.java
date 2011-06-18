@@ -4,6 +4,7 @@ import org.balticgrid.ocmg.base.ConnectionException;
 import org.balticgrid.ocmg.base.MonitorException;
 import org.balticgrid.ocmg.meters.LibCallMeter;
 import org.balticgrid.ocmg.objects.Application;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.LibCallMetersContainer;
@@ -26,7 +27,7 @@ public class FunctionProbe implements CapabilityProbe {
 
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
-    LibCallMeter libCallMeter = libCallMetersContainer.getMeter(resource.getUri());
+    LibCallMeter libCallMeter = libCallMetersContainer.getMeter((String) resource.getProperty(ResourcePropertyNames.Function.UUID));
     if(libCallMeter == null) {
       return new CapabilityValue(Double.NaN);
     }

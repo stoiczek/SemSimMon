@@ -2,6 +2,7 @@ package pl.edu.agh.semsimmon.registries.ocmg.probe.node;
 
 import org.balticgrid.ocmg.base.*;
 import org.balticgrid.ocmg.objects.Application;
+import pl.edu.agh.semsimmon.common.api.resource.ResourcePropertyNames;
 import pl.edu.agh.semsimmon.common.vo.core.measurement.CapabilityValue;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.OcmgException;
@@ -30,8 +31,7 @@ public class LoadAvgProbe implements CapabilityProbe {
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, Application application, String capabilityType) throws OcmgException {
     final Connection connection = application.getConnection();
-    final String[] uriParts = getUriParts(resource);
-    final String node = uriParts[uriParts.length - 1];
+    final String node = (String) resource.getProperty(ResourcePropertyNames.Node.ID);
     final String query = MessageFormat.format(QUERY, node);
     ReplyFragment statusFragment = null;
     try {
