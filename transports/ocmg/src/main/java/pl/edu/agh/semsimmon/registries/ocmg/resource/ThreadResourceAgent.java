@@ -9,6 +9,7 @@ import pl.edu.agh.semsimmon.common.api.resource.ResourceState;
 import pl.edu.agh.semsimmon.common.vo.core.resource.Resource;
 import pl.edu.agh.semsimmon.registries.ocmg.OcmgException;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class ThreadResourceAgent extends AbstractResourceAgent {
         ResourceState state;
 
         try {
-          if (process.isRunning()) {
+          if (thread.isRunning()) {
             state = ResourceState.RUNNING;
           } else if (process.isTerminated()) {
             state = ResourceState.STOPPED;
@@ -82,6 +83,7 @@ public class ThreadResourceAgent extends AbstractResourceAgent {
     Thread thread = findThread((Integer) resource.getProperty(ResourcePropertyNames.Thread.OWNING_PROCESS_ID),
         (String) resource.getProperty(TOKEN_ID_PARAM), app);
     try {
+      Thread.cont(thread.getMonitor(), Arrays.asList(thread), true);
       thread.resume();
     } catch (ConnectionException e) {
       throw new OcmgException(e);

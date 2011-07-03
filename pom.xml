@@ -20,6 +20,7 @@
     <module>transports</module>
     <module>core-app</module>
     <module>gui</module>
+    <module>test-webapp</module>
 
   </modules>
 

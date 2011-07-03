@@ -7,6 +7,8 @@
 \section{Future work}
 \label{sec:ch8_future_work}
  
+\subsection{Potential enhancements}
+ 
 Although implementation of project claims to be completed, there is also field for future improvements. Suggestions on new features that could potentially improve application functionality as well as some issues that still requires some revision can be found in list below:
 
 \begin{itemize}
@@ -43,3 +45,18 @@ There should be view that will allow user to register functions of interest. Esp
 After spending some time on working with application, I\rq{}ve found that some tasks should be eased even more. The most significant enhancement would be to allow user to perform bulk operations, on multiple resources. I\rq{}m thinking here mostly about adding multiple measurements of same type to set of selected resources that have those capabilities. 
 
 \end{itemize}
+
+\subsection{Extending application}
+
+One of main design goals I wanted to achieve was extendability. The easiest way to extend application is to add another monitoring back end. Because of that, during the development I was focusing on making this process as easy as possible. As an outcome, extending application of ability to analyze applications that are monitored using other systems requires just implementation of new Transport Proxy module, registration of this module in Monitoring Hub and necessary changes in GUI, related mostly to adding resources of new type.
+
+Implementation of new Transport Proxy module requires either realization of TransportProxy interface, which is described in Section~\ref{subs:TransportProxyInterface}, or extending of BaseTransportProxy class which was designed to simplify the task even more.
+
+Registration of new Transport Proxy module in Monitoring Hub is straightforward. To do so, one must:
+\begin{itemize}
+\item Add dependency to new module in pom.xml of Monitoring Hub, Monitoring Hub Application and GUI  submodules.
+\item Define spring bean that provides new implementation of Transport Proxy 
+\item Add this bean to the transportProxiesManager bean defined in spring configuration file semsimmonCoreConfig.xml, which can be found in Monitoring Hub module.
+\end{itemize}
+
+As of changes in GUI it really depends on how this new measuring platform works and must be considered carefully. There will be definitely need to add new type of \lq\lq{}Add resource...\rq\rq{} wizard. And, as rest of application is build on generic resources and measurements ontology it should be enough.

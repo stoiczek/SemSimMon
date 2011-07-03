@@ -261,7 +261,11 @@ public class ResourcesTabController extends BaseTabController implements Resourc
       resourcesTree.setVisible(true);
     }
     resourcesTree.setTreeData(treeData);
+    try {
     resourcesTree.getParent().repaint(true);
+    } catch (NullPointerException e) {
+      // Got it really frequently :/
+    }
   }
 
   /**
