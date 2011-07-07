@@ -61,12 +61,11 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
      if(!isOsSupported()) {
       return;
     }
-    Map<String, Map<String, CapabilityProbe>> probes = new HashMap<String, Map<String, CapabilityProbe>>();
     CapabilityProbe probe = mock(CapabilityProbe.class);
     String resourceType = KnowledgeConstants.ONTOLOGY_URI + "#TestResource";
     String capabilityType = KnowledgeConstants.ONTOLOGY_URI + "#TestCapability";
-    probes.put(resourceType, Collections.singletonMap(capabilityType, probe));
-    transportProxy.setProbes(probes);
+
+    transportProxy.setProbes(Collections.singletonMap(capabilityType, probe));
     try {
       Resource reallyBadResource = new Resource("SomeURI", "Some bad type", Collections.<String, Object>emptyMap());
       transportProxy.hasCapability(reallyBadResource, "test capability");
@@ -87,12 +86,11 @@ public class OcmgTransportProxyImplUnitTest extends OcmgRequringTest {
     if (!isOsSupported()) {
       return;
     }
-    Map<String, Map<String, CapabilityProbe>> probes = new HashMap<String, Map<String, CapabilityProbe>>();
     CapabilityProbe probe = mock(CapabilityProbe.class);
     String resourceType = KnowledgeConstants.ONTOLOGY_URI + "#TestResource";
     String capabilityType = KnowledgeConstants.ONTOLOGY_URI + "#TestCapability";
-    probes.put(resourceType, Collections.singletonMap(capabilityType, probe));
-    transportProxy.setProbes(probes);
+
+    transportProxy.setProbes(Collections.singletonMap(capabilityType, probe));
     Resource properResource = new Resource("ocmg://test.com:58947/test_app", resourceType,
         Collections.<String, Object>emptyMap());
     when(probe.getCapabilityValue(eq(properResource), any(Application.class), "")).thenReturn(new CapabilityValue(10));

@@ -141,6 +141,7 @@ public final class ResourcePropertyNames {
 
   public final class GarbageCollector {
     public static final String NAME = RESOURCE_PROPERTY_PREFIX + "gc.name";
+    public static final String GC_NAME = PROPAGABLE_RESOURCE_NAME_PRFX + "gc.name";
 
   }
 

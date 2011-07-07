@@ -45,7 +45,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
   private final Map<String, MBeanServerConnection> connections = new HashMap<String, MBeanServerConnection>();
 
 
-  private Map<String, Map<String, CapabilityProbe>> capabilityProbes = new HashMap<String, Map<String, CapabilityProbe>>();
+  private Map<String, CapabilityProbe> capabilityProbes = new HashMap<String, CapabilityProbe>();
 
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, String capabilityType) throws TransportException {
@@ -55,7 +55,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
           new Object[]{resource, capabilityType});
       return new CapabilityValue(Double.NaN);
     }
-    final CapabilityProbe probe = capabilityProbes.get(resource.getTypeUri()).get(capabilityType);
+    final CapabilityProbe probe = capabilityProbes.get(capabilityType);
     try {
       return probe.getCapabilityValue(resource, capabilityType, connections.get(
           resource.getProperty(JmxRegistryConsts.SERVICE_URL_PROPERTY)));
@@ -84,11 +84,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
     if (!resource.getProperties().containsKey(JmxRegistryConsts.SERVICE_URL_PROPERTY)) {
       return false;
     }
-    if (!capabilityProbes.containsKey(resource.getTypeUri())) {
-      return false;
-    }
-    final Map<String, CapabilityProbe> probes = capabilityProbes.get(resource.getTypeUri());
-    return probes.containsKey(capabilityType);
+    return capabilityProbes.containsKey(capabilityType);
   }
 
   @Override
@@ -189,7 +185,7 @@ public class JmxTransportProxy extends AbstractTransportProxy {
     this.discoveryAgents = discoveryAgents;
   }
 
-  public void setCapabilityProbes(Map<String, Map<String, CapabilityProbe>> capabilityProbes) {
+  public void setCapabilityProbes(Map<String, CapabilityProbe> capabilityProbes) {
     this.capabilityProbes = capabilityProbes;
   }
 }

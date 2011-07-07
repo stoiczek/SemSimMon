@@ -9,11 +9,13 @@
   <util:constant id="applicationUri"
                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.APPLICATION_URI"/>
 
-  <util:constant id="clusterUri" static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CLUSTER_URI"/>
+  <util:constant id="clusterUri"
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CLUSTER_URI"/>
 
   <util:constant id="nodeUri" static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.NODE_URI"/>
 
-  <util:constant id="processUri" static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.PROCESS_URI"/>
+  <util:constant id="processUri"
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.PROCESS_URI"/>
 
   <util:constant id="osUri" static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
 
@@ -88,10 +90,13 @@
 
 
   <util:constant id="callCountCapabilityUri"
-                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.TOTAL_CALLS_COUNT"/>
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.TOTAL_CALLS_COUNT"/>
 
-   <util:constant id="callTimeCapabilityUri"
-                  static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.TOTAL_CALL_TIMES"/>
+  <util:constant id="callTimeCapabilityUri"
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.TOTAL_CALL_TIMES"/>
+
+  <util:constant id="cpuUsageCapabilityUri"
+                 static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.CPU_USAGE_CAP"/>
 
 
 </beans>

@@ -44,7 +44,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
   /**
    *
    */
-  private Map<String, Map<String, CapabilityProbe>> probes = new HashMap<String, Map<String, CapabilityProbe>>();
+  private Map<String, CapabilityProbe> probes = new HashMap<String, CapabilityProbe>();
 
 
   /**
@@ -66,7 +66,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
       return new CapabilityValue(Double.NaN);
     }
 
-    final CapabilityProbe probe = probes.get(resource.getTypeUri()).get(capabilityType);
+    final CapabilityProbe probe = probes.get(capabilityType);
     final Application app = getApplication(resource);
     try {
       return probe.getCapabilityValue(resource, app, capabilityType);
@@ -84,11 +84,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
       throw new TransportException("Got hasCapability check request with unsupported resource: " + resource.getUri());
     }
     final String resourceType = resource.getTypeUri();
-    if (!probes.containsKey(resourceType)) {
-      return false;
-    }
-    Map<String, CapabilityProbe> resourceProbes = probes.get(resourceType);
-    return resourceProbes.containsKey(capabilityType);
+    return probes.containsKey(capabilityType);
   }
 
 
@@ -279,7 +275,7 @@ public class OcmgTransportProxyImpl extends AbstractTransportProxy {
     }
   }
 
-  public void setProbes(Map<String, Map<String, CapabilityProbe>> probes) {
+  public void setProbes(Map<String, CapabilityProbe> probes) {
     this.probes = probes;
   }
 

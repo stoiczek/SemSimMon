@@ -76,55 +76,33 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <!--===============================================================================================-->
 
 
-  <util:map id="ocmgProbes" key-type="java.lang.String" value-type="java.util.HashMap">
-    <entry key-ref="nodeUri" value-ref="ocmgNodeProbes"/>
-    <entry key-ref="processUri" value-ref="ocmgProcesProbes"/>
-    <entry key-ref="functionUri" value-ref="ocmgFunctionProbes"/>
-    <entry key-ref="virtualMemUri" value-ref="virtualMemProbes"/>
-    <entry key-ref="physicalMemoryUri" value-ref="physicalMemProbes"/>
-  </util:map>
-
-  <util:map id="ocmgNodeProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
+  <util:map id="ocmgProbes" key-type="java.lang.String" value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="load1MinCapabilityUri" value-ref="ocmgNodeLoad1minProbe"/>
     <entry key-ref="load5MinCapabilityUri" value-ref="ocmgNodeLoad5minProbe"/>
     <entry key-ref="load15MinCapabilityUri" value-ref="ocmgNodeLoad15minProbe"/>
     <entry key-ref="uptimeCapabilityUri" value-ref="uptimeProbe"/>
-  </util:map>
-
-  <util:map id="ocmgProcesProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="totalCpuTimeCapabilityUri" value-ref="ocmgProcessCpuTimeProbe"/>
     <entry key-ref="liveThreadsCapabilityUri" value-ref="ocmgLiveThreadsProbe"/>
     <entry key-ref="startedThreadsCapabilityUri" value-ref="ocmgAllThreadsProbe"/>
-  </util:map>
-
-  <util:map id="ocmgFunctionProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="callCountCapabilityUri" value-ref="ocmgFunctionCallCountProbe"/>
     <entry key-ref="callTimeCapabilityUri" value-ref="ocmgFunctionCallTimeProbe"/>
-  </util:map>
-
-  <util:map id="virtualMemProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="freeMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
     <entry key-ref="usedMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
     <entry key-ref="totalMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
     <entry key-ref="cachedMemoryCapabilityUri" value-ref="virtualMemoryProbe"/>
-  </util:map>
-
-  <util:map id="physicalMemProbes" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.ocmg.probe.CapabilityProbe">
     <entry key-ref="freeMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
     <entry key-ref="usedMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
     <entry key-ref="totalMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
     <entry key-ref="cachedMemoryCapabilityUri" value-ref="phyMemoryProbe"/>
+    <entry key-ref="cpuUsageCapabilityUri" value-ref="ocmgCpuUsageProbe"/>
 
   </util:map>
 
   <!--===============================================================================================-->
   <!--                                   Pure probes                                                 -->
   <!--===============================================================================================-->
+
+  <bean id="ocmgCpuUsageProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.process.CpuUsageProbe"/>
 
   <!-- Node -->
   <bean id="ocmgNodeLoad1minProbe" class="pl.edu.agh.semsimmon.registries.ocmg.probe.node.LoadAvgProbe">

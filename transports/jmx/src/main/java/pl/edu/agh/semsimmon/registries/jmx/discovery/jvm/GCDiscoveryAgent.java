@@ -30,6 +30,7 @@ public class GCDiscoveryAgent implements DiscoveryAgent {
         String gcName = gcObjectName.getKeyProperty("name");
         final Map<String,Object> properties = new HashMap<String, Object>();
         properties.put(ResourcePropertyNames.GarbageCollector.NAME, gcName);
+        properties.put(ResourcePropertyNames.GarbageCollector.GC_NAME, gcName);
         resources.add(new Resource(parent.getUri() + "/" + gcName, KnowledgeConstants.GC_URI, properties));
       }
     } catch (MalformedObjectNameException e) {

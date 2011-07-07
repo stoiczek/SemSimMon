@@ -24,10 +24,7 @@ public class GarbageCollectionsProbe implements CapabilityProbe {
   @Override
   public CapabilityValue getCapabilityValue(Resource resource, String capabilityUri, MBeanServerConnection connection)
       throws IOException {
-    if (!resource.getTypeUri().equals(KnowledgeConstants.GC_URI)) {
-      throw new IllegalArgumentException("This probe supports only GarbageCollector resources");
-    }
-    if (!resource.getProperties().containsKey(ResourcePropertyNames.GarbageCollector.NAME)) {
+    if (!resource.getProperties().containsKey(ResourcePropertyNames.GarbageCollector.GC_NAME)) {
       throw new IllegalArgumentException("Given resource is not properly discovered GC - missing name property");
     }
     final String gcName = resource.getProperty(ResourcePropertyNames.GarbageCollector.NAME).toString();

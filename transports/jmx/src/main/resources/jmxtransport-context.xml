@@ -34,7 +34,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   </util:map>
 
 
-
   <bean id="genericDiscoveryAgent" class="pl.edu.agh.semsimmon.registries.jmx.discovery.GenericDiscoveryAgent"/>
 
   <!--Node's resource agents-->
@@ -56,51 +55,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
   <util:map id="jmxCapabilityProbes" map-class="java.util.HashMap" key-type="java.lang.String"
             value-type="java.util.HashMap">
-    <entry value-ref="physicalMemoryProbes">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.PHYSICAL_MEMORY_URI"/>
-      </key>
-    </entry>
-    <entry value-ref="virtMemoryProbes">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.VIRTUAL_MEMORY_URI"/>
-      </key>
-    </entry>
 
-    <entry value-ref="osProbes">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.OS_URI"/>
-      </key>
-    </entry>
-
-    <entry value-ref="gcProbes">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.GC_URI"/>
-      </key>
-    </entry>
-
-    <entry value-ref="threadProbes">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.THREAD_URI"/>
-      </key>
-    </entry>
-
-
-    <entry value-ref="jvmProbes">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.JVM_URI"/>
-      </key>
-    </entry>
-
-
-  </util:map>
-
-
-  <!--===============================================================================================-->
-  <!--                          Memory Probes                                                        -->
-  <!--===============================================================================================-->
-  <util:map id="physicalMemoryProbes" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe">
     <entry value-ref="nodeMemoryProbe">
       <key>
         <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.FREE_MEM_CAP"/>
@@ -116,10 +71,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.USED_MEM_CAP"/>
       </key>
     </entry>
-  </util:map>
-
-  <util:map id="virtMemoryProbes" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe">
     <entry value-ref="nodeMemoryProbe">
       <key>
         <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.FREE_MEM_CAP"/>
@@ -135,52 +86,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.USED_MEM_CAP"/>
       </key>
     </entry>
-  </util:map>
 
-  <bean id="nodeMemoryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.MemoryProbe"/>
-
-  <!--===============================================================================================-->
-  <!--                          OS Probes                                                           -->
-  <!--===============================================================================================-->
-
-  <util:map id="osProbes" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe">
     <entry value-ref="osQueryProbe">
       <key>
         <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.LOAD_1MIN_CAP"/>
       </key>
     </entry>
 
-
-  </util:map>
-
-  <bean id="osQueryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQueryCapabilityProbe">
-    <property name="queries" ref="osQueries"/>
-  </bean>
-
-  <util:map id="osQueries" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQuery">
-    <entry value-ref="osLoad1min">
-      <key>
-        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.LOAD_1MIN_CAP"/>
-      </key>
-    </entry>
-  </util:map>
-
-  <bean id="osLoad1min" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQuery">
-    <property name="objectName">
-      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
-    </property>
-    <property name="operationName" value="SystemLoadAverage"/>
-  </bean>
-
-
-  <!--===============================================================================================-->
-  <!--                          GC Probes                                                           -->
-  <!--===============================================================================================-->
-
-  <util:map id="gcProbes" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe">
     <entry value-ref="gcCollectionProbes">
       <key>
         <util:constant
@@ -193,15 +105,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
             static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.GC_TIME_CAP"/>
       </key>
     </entry>
-  </util:map>
-  <bean id="gcCollectionProbes" class="pl.edu.agh.semsimmon.registries.jmx.probe.GarbageCollectionsProbe"/>
 
-  <!--===============================================================================================-->
-  <!--                          Thread Probes                                                           -->
-  <!--===============================================================================================-->
-
-  <util:map id="threadProbes" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe">
     <entry value-ref="threadTimingProbe">
       <key>
         <util:constant
@@ -241,21 +145,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <util:constant
             static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.THREAD_WAITED_TIME_CAP"/>
       </key>
+
     </entry>
 
-
-  </util:map>
-
-  <bean id="threadTimingProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.thread.ThreadTimingProbe"/>
-  <bean id="threadSynchronizationProbe"
-        class="pl.edu.agh.semsimmon.registries.jmx.probe.thread.ThreadSynchronizationDetailsProbe"/>
-
-
-  <!--===============================================================================================-->
-  <!--                          JVM Probes                                                           -->
-  <!--===============================================================================================-->
-  <util:map id="jvmProbes" map-class="java.util.HashMap" key-type="java.lang.String"
-            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.CapabilityProbe">
     <entry value-ref="jvmQueryProbe">
       <key>
         <util:constant
@@ -320,8 +212,41 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
       </key>
     </entry>
     <entry key-ref="uptimeCapabilityUri" value-ref="jvmQueryProbe"/>
+    <entry key-ref="cpuUsageCapabilityUri" value-ref="cpuUsageProbe"/>
 
   </util:map>
+
+
+  <bean id="nodeMemoryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.MemoryProbe"/>
+
+
+  <bean id="osQueryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQueryCapabilityProbe">
+    <property name="queries" ref="osQueries"/>
+  </bean>
+
+  <util:map id="osQueries" map-class="java.util.HashMap" key-type="java.lang.String"
+            value-type="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQuery">
+    <entry value-ref="osLoad1min">
+      <key>
+        <util:constant static-field="pl.edu.agh.semsimmon.common.api.knowledge.KnowledgeConstants.LOAD_1MIN_CAP"/>
+      </key>
+    </entry>
+  </util:map>
+
+  <bean id="osLoad1min" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQuery">
+    <property name="objectName">
+      <util:constant static-field="java.lang.management.ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME"/>
+    </property>
+    <property name="operationName" value="SystemLoadAverage"/>
+  </bean>
+
+
+  <bean id="gcCollectionProbes" class="pl.edu.agh.semsimmon.registries.jmx.probe.GarbageCollectionsProbe"/>
+
+
+  <bean id="threadTimingProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.thread.ThreadTimingProbe"/>
+  <bean id="threadSynchronizationProbe"
+        class="pl.edu.agh.semsimmon.registries.jmx.probe.thread.ThreadSynchronizationDetailsProbe"/>
 
 
   <bean id="jvmMemoryUsageProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.HeapProbe"/>
@@ -329,6 +254,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <bean id="jvmQueryProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQueryCapabilityProbe">
     <property name="queries" ref="jvmQueries"/>
   </bean>
+
+  <bean id="cpuUsageProbe" class="pl.edu.agh.semsimmon.registries.jmx.probe.CpuUsageProbe"/>
 
   <!--===============================================================================================-->
   <!--Map with jvm probe queries:-->
@@ -398,6 +325,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
       </key>
     </entry>
   </util:map>
+
+  <bean id="cpuUsage" class="pl.edu.agh.semsimmon.registries.jmx.probe.CpuUsageProbe"/>
 
   <bean id="totalStartedThreads" class="pl.edu.agh.semsimmon.registries.jmx.probe.JmxQuery">
     <property name="objectName">
