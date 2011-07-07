@@ -2,7 +2,6 @@
 % Working with semsimmon.
 %
 %---------------------------------------------------------------------------
-
 \section{Working with application}
 
 \subsection{Installation}
@@ -10,66 +9,94 @@
 
 Within this section, I will try to introduce the end-user with initial knowledge that needs to be learned in order to use application. Only real basics will be covered here, like system deliverable structure, basic installation guideline, requirements, etc.
 
-The main and only one deliverable containing fully-functional system is package built from GUI submodule. This component\rq{}s building script defines dependencies to all other components that needs to be obtained in order to use application. The application package comes in a form of zip archive or gzipped tarball. 
+The main and only one deliverable containing fully-functional system is package built from GUI sub module. This pom file (maven configuration file) of this component defines dependencies to all other components that need to be obtained in order to use application. The application package comes in a form of zip archive or gzipped tarball. 
 
-To build application, one should just issue {\bf mvn package} command, using any command line environment (bash, csh, cmd.exe) from project root - SemSimMon directory. As a result, application bundle can be found in directory SemSimMon/gui/target/gui-bin.{tar.gz,zip}.
+To build application, one should just issue {\bf mvn package} command, using any command line environment (bash, csh, and cmd.exe) from project root - SemSimMon directory. As a result, application bundle can be found in directory SemSimMon/gui/target/gui-bin.{tar.gz,zip}.
 
 Application bundle contains following items:
+
 \begin{itemize}
-  \item {\bf lib} directory, containing all Java binaries. It includes libraries with SemSimMon components as well as their dependencies.
-  \item {\bf resources} directory, containing other resources. Currently, within this directory, there is only package with Monitoring Hub Application component - {\bf mon-hub-app.tar.gz} archive.
-  \item {\bf semsimmon-gui.bat} and {\bf semsimmon-gui.sh} scripts. Those scripts should be used to launch the application	
-\end{itemize}  
+
+\item {\bf lib} directory, containing all Java binaries. It includes libraries with SemSimMon components as well as their dependencies.
+
+\item {\bf resources} directory, containing other resources. Currently, within this directory, there is only package with Monitoring Hub Application component - {\bf mon-hub-app.tar.gz} archive.
+
+\item {\bf semsimmon-gui.bat} and {\bf semsimmon-gui.sh} scripts. Those scripts should be used to launch the application 
+
+\end{itemize} 
 
 In order to install application, one needs just to extract above archive in desired directory. Additionally, at least at the moment, startup scripts does not bother about finding Java executable, so user must have Java Runtime Environment binaries available from PATH system variable. To start GUI application, user needs to navigate to directory where it was installed, and simply launch appropriate script.
 
-The mon-hub-app.tar.gz package is used internally by GUI, to automatically deploy Monitoring Hub Application into desired host/ Because of that, if user removes the archive, automatic deployment will simply fail. Additionally, user may manually deploy Monitoring Hub. To do so, one must just send package to desired host, unpack it into selected directory, and start by invoking script {\bf monhub-app.sh} or {\bf monhub-app.bat} that can be found inside of the package. 
+The mon-hub-app.tar.gz package is used internally by GUI, to automatically deploy Monitoring Hub Application into desired host. Because of that, if user removes the archive, automatic deployment will simply fail. Additionally, user may manually deploy Monitoring Hub. To do so, one must just send package to desired host, unpack it into selected directory, and start by invoking script {\bf monhub-app.sh} or {\bf monhub-app.bat} that can be found inside of the package. 
 
-The bash version of script, takes two parameters as an input - the first one is action, and can be either \lq{}start\rq{} or \lq{}stop\rq{}. Start will just launch this component in a background, stop will terminate background process started previously. Additionally, when starting hub, one must define which interface will be used to listen for GUI connections. It must be given as second parameter, if first is \lq{}start\rq{} and should be either an IP address or interface\rq{}s DNS alias.  
+The bash version of script, takes two parameters as an input - the first one is action, and can be either \lq{}start\rq{} or \lq{}stop\rq{}. Start will just launch this component in a background, stop will terminate background process started previously. Additionally, when starting hub, one must define which interface will be used to listen for GUI connections. It must be given as second parameter, if first is \lq{}start\rq{} and should be either an IP address or interface\rq{}s DNS alias. 
 
-Because Windows does not support starting background tasks in cmd.exe, the startup script on this platform takes just one parameter - listening interface. Proper values are same as in bash version - either IP  address or DNS name.
+Because Windows does not support starting background tasks in cmd.exe, the startup script on this platform takes just one parameter - listening interface. Proper values are same as in bash version - either IP address or DNS name.
 
 \subsection{User guide}
 
-Although application aims to be easy to use and self-explanatory having basic uses cases described as a set of steps to perform given action is really helpful for the end user. Within this section, I will describe most important uses cases in that way. I will start from steps needed to actually start working with application - attach to running JVM process and OCMG application by adding appropriate resources. Then I will cover steps needed to create measurement and visualizations	. All steps lists below, assume that GUI module is already started.
+Although application aims to be easy to use and self-explanatory having basic use cases described as a set of steps to perform given action is really helpful for the end user. Within this section, I will describe most important uses cases in that way. I will start from steps needed to actually start working with application - attach to running JVM process and OCMG application by adding appropriate resources. Then I will cover steps needed to create measurement and visualizations . All steps lists below, assume that GUI module is already started.
 
 In order to start monitoring JVM application, using embedded monitoring hub, one should do as follows:
 
 \begin{enumerate}
+
 \item Click on \lq\lq{}Add Resource\rq\rq{} button list 
+
 \item From drop down menu, select Add JMX Resource
-\item In first screen of Add JMX Resources wizard, use default setting, and just click \lq\lq{}Next >>\rq\rq{} button
+
+\item In first screen of Add JMX Resources wizard, use default settings, and just click \lq\lq{}Next >>\rq\rq{} button
+
 \item In second screen of this wizard, specify aggregation parameters - names of application and cluster to which new JVM resources should belong. Click Next button when done
-\item In last screen of wizard, configure one or more JMX URIs. To add new JVM just click Add Node, and specify new URI. If by mistake there were too many nodes added, just click the \lq\lq{}X\rq\rq{} button next to URI which should be removed. When all URIs are configured, click Finish which ends this action.
+
+\item In last screen of wizard, configure one or more JMX URIs. To add new JVM just click Add Node, and specify new URI. If by mistake there were too many nodes added, just click the \lq\lq{}X\rq\rq{} button next to URI which should be then removed. When all URIs are configured, click Finish which ends this action.
+
 \end{enumerate}
 
-Starting monitoring of OCMG application is quite similar. To achieve this, one should perform following steps:
+Starting monitoring of OCM-G application is quite similar. To achieve this, one should perform following steps:
 
 \begin{enumerate}
+
 \item Click on \lq\lq{}Add Resource\rq\rq{} button list 
+
 \item From drop down menu, select Add OCMG Resource
-\item In first screen of Add JMX Resources wizard, use default setting, and just click \lq\lq{}Next >>\rq\rq{} button
+
+\item In first screen of Add JMX Resources wizard, use default settings, and just click \lq\lq{}Next >>\rq\rq{} button
+
 \item In second screen of the wizard, type in connection string, as printed out by cg-ocmg-monitor, click Next
+
 \item After that, application will connect to the MainSM and will grab list of applications currently monitored by it. To start monitoring particular application, just select it by ticking checkbox next to its name. Click Finish to end this action.
+
 \end{enumerate}
 
 After finishing one of above actions, we can actually start monitoring application behavior. To do so, new measurement must be created. In order to achieve this, one should do as follows:
 
 \begin{enumerate}
+
 \item In Resources view, find and select resources to measure capabilities of.
+
 \item After selecting the resource, click \lq\lq{}Add Measurement\rq\rq{} button.
+
 \item Within \lq\lq{}Add new measurement\rq\rq{} dialog, configure measurement details, like label of measurement, capability that should be measured and polling interval.
-\item After filling in all data, just click OK. This ends creation of measurement.  
+
+\item After filling in all data, just click OK. This ends creation of measurement. 
+
 \item To see newly created measurement, just change context view, by clicking on \lq\lq{}Measurements\rq\rq{} tab on left side of window.
+
 \end{enumerate}
 
 The last most important feature is visualization. In order to start visualization of previously created measurement do as follows:
 
 \begin{enumerate}
-\item Go to visualization context view, by clicking \lq\lq{}Visualizations\rq\rq{} tab on left side of main window.
-\item Either create new visualization template by clicking the plus tab or select existing one by just clicking its tab
-\item Open visualization\rq{}s settings pane, by hovering mouse over right side of visualization (the one marked with four \lq\lq{}<\rq\rq{} marks)
-\item Open \lq\lq{}Add Measurement\rq\rq{} dialog by clicking \lq\lq{}Add\rq\rq{} button in measurements section
-\item In this dialog, select measurement by clicking its label on list provided, click OK button, which finishes this action.
-\end{enumerate}
 
+\item Go to visualization context view, by clicking \lq\lq{}Visualizations\rq\rq{} tab on left side of main window.
+
+\item Either create new visualization template by clicking the plus tab or select existing one by just clicking its tab
+
+\item Open visualization\rq{}s settings pane, by hovering mouse over right side of visualization (the one marked with four \lq\lq{}<\rq\rq{} marks)
+
+\item Open \lq\lq{}Add Measurement\rq\rq{} dialog by clicking \lq\lq{}Add\rq\rq{} button in measurements section
+
+\item In this dialog, select measurement by clicking its label on list provided, click OK button, which finishes this action.
+
+\end{enumerate}

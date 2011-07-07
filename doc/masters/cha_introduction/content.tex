@@ -2,76 +2,56 @@
 % Chapter 1 - Introduction
 %
 %---------------------------------------------------------------------------
-
-
 \chapter{Introduction}
 \label{cha:intro}
 
-%---------------------------------------------------------------------------
 
+\parbox{0.8\textwidth}{
+\makebox{\large Abstract}
+
+{\small
+Monitoring of application that are more and more complex systems is very challenging task. At the beginning of this chapter I would like to introduce the measuring systems problem domain and my personal motivation into the subject. In the next part, user may find definition of objectives that should be achieved with this work. Finally last section is purely pragmatic - covers description of document structure to make navigation over the thesis a bit easier.
+}
+}
+
+%---------------------------------------------------------------------------
 \section{Motivation}
 \label{ch1:Motivation}
 
-Developers nowadays must face working with vast variety of environments. Applications can operate on lightweight, mobile platforms, standalone desktop computers, clusters of interconnected computers creating homogeneous computational environment, up to most complex deployments, that uses heterogeneous configuration composed of clusters mentioned previously. Although it is rather hard to imagine application  that evolves from the one being processed on mobile devices, to one that runs on cluster, or grid, but server application designed to work as standalone application will need such an evolution process much more likely. Such a use case forces the developer to stand against scalability issues.
+Implementation of performance monitoring system is a challenging task. It is truism to say, but it is just true. As the problem is multidimensional in nature it is just hard to find optimal solution. Such as system first must leave almost untraceable footprint on application as bigger overhead on resources usage will actual measurements and thus will make it useless. But on the other hand user need loads of information about application to tell whether it works fine or not and if not, then why? How to fetch those data but do not destroy them in the same time? How to grab all those data and do not disturb normal development cycle? How to allow user to get deep insight into the application without flooding him with views, configuration dialogs, actions, operations etc. Definitely, implementation of performance monitoring system is a challenging task.
 
-Even development of stand alone application is not straightforward at all, but when we need to increase processing power that application should employ in order to realize its use cases and make application to operate in distributed manner, the complexity increases even more. Distributed environments add another dimensions to application performance optimizations - communication cost between computing nodes.
+Developer nowadays must be able to working with vast variety of environments. Applications can operate on mobile and lightweight platforms, standalone desktop computers, clusters of interconnected computers that create homogeneous computational system, up to most complex deployments, that use heterogeneous configuration composed of clusters mentioned previously. Although it is rather hard to imagine application that evolves from one that targets mobile devices, to one that must operate on cluster, or even grid, but server application that originally was designed to work as standalone application will need such an evolution process more likely. Such a use case forces the developer to stand against scalability issues.
 
-After increasing scale further more, and deploying application on grid environments the complexity increases enormously. Such an highly distributed platform, adds another dimensions of problems - issues related to heterogeneous nature of grids, reduced reliability, need to potentially share resources with other applications, and finally potential problems with work scheduling.
+Development of standalone application is not a straightforward task, so when need to increase processing power emerges and forces it to operate in distributed manner, the complexity increases even more. Distributed environment adds another dimension to application performance optimizations - communication cost between computing nodes.
 
-Often it is also required to increase complexity even more, by dividing application into components that are created using different technologies, even including different programming language. For example - it doesn\rq{}t make sense to implement HTML-based application front end using C++ or CPU-intensive entropy coding in Javascript. Such an approach increases performance, but also complexity, as developers need to know many technologies and also, such an approach introduces another optimization factor - need to implement efficient interaction between components different in nature.
+After increasing scale furthermore and deploying application on grid environments the complexity increases enormously. Such a highly distributed platform, adds another dimensions of problem - issues related to heterogeneous nature of grids, reduced reliability, need to potentially share resources with other applications, and finally potential problems with jobs scheduling.
 
-In order to create efficient software, sooner or later developers needs take performance into account. In order to evaluate application behavior performance measurement applications should be employed. Due to  complexity of distributed systems performance measurements of them is even more important. Such a tool when used to monitor distributed application should aid developer in finding processing bottlenecks, resources consumption imbalance, to find most optimal communication to computation rate, etc. 
+Often it is also required to increase complexity even more, by dividing application into components created using different technologies, even different programming language. For example - it is not rational to implement HTML-based application front end using C++ or CPU-intensive entropy coding in JavaScript. Such an approach increases performance, scalability, manageability but also complexity, as developers need to know many technologies. Additionally heterogeneous introduces another optimization factor - need to implement efficient interaction between components that are different in nature.
 
-As it seems quite logical, complexity of performance measurement and applications responsible for it increases with increased scale and complexity of source application. Because of that creation of monitoring application that can operate with heterogeneous grid environments, and different implementation language is really challenging. This process is non trivial in almost every area - defining use cases, designing data model that can be used to logically represent variety of types, up to implementation, especially when paying attention to proper user experience engineering.
+In order to create efficient software, sooner or later developer needs to take performance into account. In order to evaluate application behavior, measurement applications should be employed. Performance evaluation is even more important when working with distributed systems, as complexity in this case is significantly greater. Measuring tools when used to monitor such a big scale application should aid developer in finding processing bottlenecks, resources consumption imbalance, to find most optimal communication to computation rate, etc. 
 
-Although there are numerous works on the subject but it is still difficult to find the one that will match all those requirements in a satisfactory manner. Either those applications focus on one particular technology or are overcomplex from user point of view. 
+Complexity of performance measuring applications increases with increasing scale and complexity of source application. This implies that creation of monitoring application which can operate with heterogeneous grid environments, and different implementation language is really challenging. This process is not trivial in almost every area - defining use cases, designing data model which logically represents variety of types, up to implementation. The last factor especially matters when paying attention to proper user experience engineering.
 
-%X 1. Scale
+Although there are numerous works on the subject but it is still difficult to find the one that will match all those requirements in a satisfactory manner. Either those applications focus on one particular technology or tend to be too complex from user point of view. 
 
-%X 1.5 Applications must evolve and 
-%X 2. Biggest scale - distributed environments
-
-%X 3. Variety of languages, technologies that are avail currently
-%X 4. Mixing of those techs - how beneficial it can be -> to solve parts of a problems using means that fits to the problem the best
-
-%5. How important performance analysis is, and something about possibilities that devs might use to measure
-%6. How difficult it is to measure heterogeneous envs, due to different types of resources, which have common semantics
-%7. How semantic web can help to build usasble tool that can work with different techonolgies/resources, as long as they share same semantics
-%8. That there are vast amount of tools, but how difficult they are
-%9. That it would be great to have tool that can a lot, but still be easy to use and can evolve to do even more.
-%9.5 and how great it would be to have a tool that can work with all those scales (closing bracket)
-%10. Done.
- 
 %---------------------------------------------------------------------------
 
 \section{Objectives}
 \label{ch1:Objectives}
+Main objective of this thesis is to design, implement and document system that can be used to easily monitor wide range of application types that represents any scale. From single process ones, running on single PC, through those working on medium scaled clusters, up to highly distributed solutions, that use multiple computing nodes and heterogeneous grid environment. Implemented solution should be easy to use by variety of users - students, lecturers, software engineers or scientists. This last objective was the source of project's code name - SemSimMon, Semantic Simple Monitor. 
 
-Main objective of this thesis is to design, implement and document system, that can be used to easily monitor applications with wide range of scale. From single process applications running on one PC machine, through those working on medium scaled clusters, up to highly distributed solutions, that use multiple computing nodes and grid environment. Created solution should be easy to use by variety of users - students, lecturers, software engineers or scientists. This last objective was the source of project's code name - SemSimMon, Semantic Simple Monitor. 
+To extend application's life time, it should be released as open source project, and meet all criteria for such software: open standards, open protocols, open source dependencies. Additionally, development process should come in pair with extensive documentation, to shorten learning curve for new or additional developers.
 
-To extend application's life time, it should be released as open source project, and meet all criteria for such a software: open standards, open protocols, open source dependencies. Additionally, what is probably most important, development process should come in pair with extensive documentation, to shorten learning curve for new or additional developers.
-
-Another aspect of having widely used application is portability - user should be able to work with application on majority of currently available platforms, which includes all flavors of *nixs (Unix, Linux, Mac OS X\textregistered) and Microsoft\textregistered~Windows\textregistered. 
-
+Another aspect of having widely used application is portability - user should be able to run it on majority of currently available platforms, which includes all flavors of *nixs (UNIX, Linux, Mac OS X\textregistered) and Microsoft\textregistered~Windows\textregistered. 
 
 \section{Document structure}
 \label{ch1:docStructure}
 
 Reader of this Thesis can find its content divided into \ref{cha:summary} chapters. 
 
-Chapter~\ref{cha:background} contains detailed description of problem domain. Covers background technologies and review
-of software
-with similar purpose. One may find there results of initial analysis that made rest of this work possible.
+Chapter~\ref{cha:background} contains detailed description of problem domain. Covers background technologies and review of software with similar purpose. One may find there results of initial analysis that made rest of this work possible.
 
-Chapters ~\ref{cha:requirements}~to~\ref{cha:deployment} focuses solely on development process of created application. All steps of application's initial life cycle have been described - starting from gathering requirements of potential users and formalizing them into use cases (chapter~\ref{cha:requirements}). As next step, chapter~\ref{cha:sys_arch} I'd like to take reader through design stage. This chapter contains system analysis, top to bottom. - from highest point of view (high level functional decomposition), down to deep insight into way each high level component should work. 
+Chapters ~\ref{cha:requirements}~to~\ref{cha:deployment} focuses solely on development process of created application. All steps of its initial life cycle have been described. First there is description of gathering requirements users and formalizing them into use cases (chapter~\ref{cha:requirements}). As next step, in Chapter~\ref{cha:sys_arch} I would like to take reader through design stage. This chapter covers system analysis, top to bottom. - from highest point of view (high level functional decomposition), down to deep insight into way each high level component should work. Implementation process was described in Chapter~\ref{cha:implementation}), where we can find detailed description of development tools used and short overview on system from programming point of view. Description of initial life cycle steps ends on Chapter~\ref{cha:deployment}, which covers tests and deployment of complete solution.
 
-Implementation process was described in Chapter~\ref{cha:implementation}), where we can find detailed description of developing tools used and short overview on system from programming point of view.
-
-Description of initial application's life cycle steps ends on Chapter~\ref{cha:deployment}, covering tests and
-deployment of ready solution.
-
-Additionally, in last chapter (Chapter~\ref{cha:summary}), author tries to summarize achieved results. Within this part of thesis dear reader may find also short description of ideas on next steps that could be taken to let application evolve.
-
-
-
+Additionally, in last Chapter~\ref{cha:summary}, author tries to summarize achieved results. Within this part of thesis dear reader may find also short description of ideas on next steps that could be taken to let application evolve.
 

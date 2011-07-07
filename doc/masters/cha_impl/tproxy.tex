@@ -3,8 +3,9 @@
 \subsection{JMX Transport Proxy Implementation}
 
 JMX Transport Proxy is build around two concepts: discovery agent and capability probe. Implementation consist following discovery agent classes:
+
 \begin{itemize} 
-  \item{\bf{GCDiscoveryAgent}} - discovers garbage collectors within single running JVM instance boundaries
+  \item{\bf{GCDiscoveryAgent}} - discovers garbage collectors 
   \item{\bf{ThreadsDiscoveryAgent}} - discovers all threads running in single JVM
   \item{\bf{CPUDiscoveryAgent}} - discovers CPUs on given computing node
   \item{\bf{JvmDiscoveryAgent}} - discovers specific JVM running on node
@@ -12,10 +13,11 @@ JMX Transport Proxy is build around two concepts: discovery agent and capability
   \item{\bf{GenericDiscoveryAgent}} - can \lq{}discover\rq{} components that exists but any of their properties can be extracted
 \end{itemize} 
 
-Additionally, JMX Transpor proxy uses following probes to fetch capability values: 
+Additionally, JMX Transport proxy uses following probes to fetch capability values: 
+
 \begin{itemize} 
   \item{\bf{GarbageCollectionsProbe}} - gets values of Garbage Collector related capabilities (CollectionCountCapability and CollectionTimeCapability)
-  \item{\bf{MemoryProbe}} - gathers values memory related capabilities: total, free and used. It is used in conjunction with both physical and virtual memory resources
+  \item{\bf{MemoryProbe}} - gathers values of memory related capabilities: total, free and used. It is used in conjunction with both physical and virtual memory resources
   \item{\bf{HeapProbe}} - measures heap usage  
   \item{\bf{ThreadTimingProbe}} - monitors threads timings: ThreadCPUTimeCapability and ThreadUserTimeCapability capabilities
   \item{\bf{ThreadSynchronizationDetailsProbe}} - monitors capabilities related to threads synchronization: ThreadBlockedCountCapability, ThreadBlockedTimeCapability, ThreadWaitedCountCapability and ThreadWaitedTimeCapability
@@ -24,7 +26,7 @@ Additionally, JMX Transpor proxy uses following probes to fetch capability value
 
 \subsection{OCM-G Transport Proxy Implementation}
 
-OCM-G Transport Proxy implementation uses similar approach to JMX one. In this case, are also employed two concepts - probes (works in same way as in JMX Transport Proxy) and resource agents. OCM-G proxy consists of resource agents instead of discovery agents, because OCM-G have means to actually manage resources that are monitored by this system, and those means are used in SemSimMon. Thus, resource agents have two purposes - discovery resources and manage them.
+OCM-G Transport Proxy implementation uses similar approach to JMX one. In this case, there are also employed two concepts - probes (works in same way as in JMX Transport Proxy) and resource agents. OCM-G proxy consists of resource agents instead of discovery agents, because OCM-G have means to actually manage resources and those means are used in SemSimMon. Thus, resource agents have two purposes - discovery resources and manage them.
 
 There are following resource agents implemented:
 
@@ -64,4 +66,4 @@ Although Transport Proxies are components where most of actual magic occurs, it\
   \label{fig:transport_proxy}
 \end{figure} 
 
-Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduced, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one must create new class that inherits from BaseTransportProxy and implement only abstract methods that defined there.
+Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduced, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one should just  create new class that inherits from BaseTransportProxy and implement only abstract methods that defined there.

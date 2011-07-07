@@ -1,64 +1,47 @@
- 
 %---------------------------------------------------------------------------
 % Content of Chapter 6 - Implementation
 %
 %---------------------------------------------------------------------------
-
-
 \chapter{Implementation details}
 \label{cha:implementation}
 
-Within this chapter reader may find rough implementation details of SemSimMon application. Authoer doesn\rq{}t intent to cover
-source code in detail, instead would like to describe most important interfaces, technologies  that were
-employed during implementation and will try to bring some light on source code structure. The main purpose of this chapter is to lower the learning curve, needed to continue working on the project by other developers.
+\parbox{0.8\textwidth}{
+\makebox{\large Abstract}
 
-Each an every component of SemSimMon system was implemented using Java programming language. Decision to use this
-particular technology is quite obvious, after even brief analysis of requirements that system must met. Java is
-actually the most mature, cross platform programming language, so during development there is no need to worry about
-platform specific issues, as it's part of Java Virtual Machine vendor responsibility. Additionally, one of major
-requirement is to monitor processes running on JVM, using JMX protocol, which in fact forces usage of Java. The second communication
-requirement - interactions with OMIS compliant tools, can be easily achieved using Java bindings for OCM-G
-platform\footnote{\url{http://grid.cyfronet.pl/ocmg/japi.html}}.  
+{\small
+Within this chapter reader may find rough details of SemSimMon application implementation. I do not intent to cover source code in detail, instead would like to describe most important interfaces, technologies that were employed during implementation and will try to bring some light on source code structure. The main purpose of this chapter is to lower the learning curve, needed to continue working on the project by other developers.
 
-Although build process isn't directly part of implementation, understanding this process is crucial for someone
-who would like to work with project. SemSimMon uses Apache Maven\footnote{\url{http://maven.apache.org/}} as build
-manager. Maven recently became the de facto standard in helping managing Java based projects. Features like dependencies
-management, build configuration instead of scripting actions needed to build project and extensive usage of plug-in
-architecture are most probably major reasons of it\rq{}s popularity. Project configuration uses maven's aggregation facility to ease dependencies and configuration management. Project structure contains following maven modules:
- 
+}
+}
+
+
+\section{Introduction}
+
+Each and every component of SemSimMon system was implemented using Java programming language. Decision to use this particular technology is quite obvious, after even brief analysis of requirements that system must met. Java is actually the most mature, cross platform programming language, so during development there is no need to worry about platform specific issues, as its part of Java Virtual Machine vendor responsibility. Additionally, one of major requirement is to monitor processes running on JVM, using JMX protocol, which in fact forces usage of Java. The second communication requirement - interactions with OMIS compliant tools, can be easily achieved using Java bindings for OCM-G platform\footnote{\url{http://grid.cyfronet.pl/ocmg/japi.html}}. 
+
+Although build process is not directly part of implementation, understanding this process is crucial for someone who would like to work with project. SemSimMon uses Apache Maven\footnote{\url{http://maven.apache.org/}} as build manager. Maven recently became the de facto standard in helping managing Java based projects. Features like dependencies management, build configuration instead of scripting actions needed to build project and extensive usage of plug-in architecture are most probably major reasons of its popularity. Project configuration uses maven's aggregation facility to ease dependencies and configuration management. Project structure contains following maven modules:
+
 \begin{itemize}
- \item pl.edu.agh.semsimmon:semsimmon - root module
- \item pl.edu.agh.semsimmon:gui - GUI component
- \item pl.edu.agh.semsimmon:mon-hub - Monitoring Hub component
- \item pl.edu.agh.semsimmon:mon-hub-app - Monitoring Hub Application component 
- \item pl.edu.agh.semsimmon:commons - component containing Transfer Objects and interfaces shared among all other
-components
- \item pl.edu.agh.semsimmon:knowledge - Knowledge component
- \item pl.edu.agh.semsimmon:transports - parent module for all transport components
- \item pl.edu.agh.semsimmon.transports:jmx - JMX Transport component
- \item pl.edu.agh.semsimmon.transports:ocmg - OCM-G Transport component
+\item pl.edu.agh.semsimmon:semsimmon - root module
+\item pl.edu.agh.semsimmon:gui - GUI component
+\item pl.edu.agh.semsimmon:mon-hub - Monitoring Hub component
+\item pl.edu.agh.semsimmon:mon-hub-app - Monitoring Hub Application component 
+\item pl.edu.agh.semsimmon:commons - component containing Transfer Objects and interfaces shared among all other components
+\item pl.edu.agh.semsimmon:knowledge - Knowledge component
+\item pl.edu.agh.semsimmon:transports - parent module for all transport components
+\item pl.edu.agh.semsimmon.transports:jmx - JMX Transport component
+\item pl.edu.agh.semsimmon.transports:ocmg - OCM-G Transport component
 \end{itemize}
-
 
 \section{Common frameworks}
 
-Using Java as main implementation technology has another significant implication - wide usage and uncounted amount of
-open source libraries that can shorten development time.
+Using Java as main implementation technology has another significant implication - wide usage and uncounted amount of open source libraries that can simplify development.
 
-There are two areas of implementation that are shared among all components, namely logging and testing. As a logging
-framework, SemSimMon uses combined slf4j\footnote{\url{http://www.slf4j.org}} and
-log4j\footnote{\url{http://logging.apache.org/log4j}} libraries. Apache Log4j is probably most widely used logging
-framework for Java and is known for it's low performance impact and extensive configuration options. slf4j stands for
-Simple Logging Facade for Java, it's main purpose is to simplify logging interface even more, and decouple code from
-actually used logging framework. This is quite important, as logging invocations tends to spread over code, which makes any
-change in core logging facility quite a challenging task. With slf4j changing logging framework requires only change in
-configuration code.
+There are two areas of implementation that are shared among all components, namely logging and testing. As a logging framework, SemSimMon uses combined slf4j\footnote{\url{http://www.slf4j.org}} and log4j\footnote{\url{http://logging.apache.org/log4j}} libraries. Apache Log4j is probably most widely used logging framework for Java and is known for its low performance impact and extensive configuration options. slf4j stands for Simple Logging Facade for Java, its main purpose is to simplify logging interface even more, and decouple code from actually used logging framework. This is quite important, as logging invocations tends to spread over code, which makes any change in core logging facility quite a challenging task. With slf4j changing logging framework requires only change in configuration code.
 
-As a testing framework, SemSimMon uses 2 libraries: TestNG\footnote{\url{http://testng.org/doc/index.html}} and
-mockito\footnote{\url{http://mockito.org/}}. TestNG provides test runners and means to implement test cases. On the
-other hand, mockito is excellent library for implementing unit tests - it provides facility for creating easy to use
-mock objects, which are essential in Test Driven Development.
+As a testing framework, SemSimMon uses 2 libraries: TestNG\footnote{\url{http://testng.org/doc/index.html}} and mockito\footnote{\url{http://mockito.org/}}. TestNG provides test runners and means to implement test cases. On the other hand, mockito is excellent library for implementing unit tests - it provides facility for creating easy to use mock objects, which are essential in Test Driven Development.
 
 \input{cha_impl/gui}
 \input{cha_impl/knowledge}
 \input{cha_impl/tproxy}
+

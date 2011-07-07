@@ -2,61 +2,44 @@
 % Future work.
 %
 %---------------------------------------------------------------------------
-
-
 \section{Future work}
 \label{sec:ch8_future_work}
- 
+
 \subsection{Potential enhancements}
- 
-Although implementation of project claims to be completed, there is also field for future improvements. Suggestions on new features that could potentially improve application functionality as well as some issues that still requires some revision can be found in list below:
+
+Although implementation of project claims to be completed, there is also field for future improvements. Suggestions on new features that could potentially improve application functionality as well as some issues that still require some revision can be found in list below:
 
 \begin{itemize}
- \item {\bf Add option to use SSH tunnel in connection between GUI and Monitoring Hub Application}
- 
- This will work as an option when starting new Monitoring Hub. It will allow bypassing every firewall configuration - as long as user has ability to connect to target host using the SSH, He or She will be able to use the application. Additionally, it will increase security a bit.
- 
-\item {\bf Add ability to monitor long running tasks or 24/7 systems }  
-
+\item {\bf Add option to use SSH tunnel in connection between GUI and Monitoring Hub Application}
+This will work as an option when starting new Monitoring Hub. It will allow bypassing every firewall configuration - as long as user has ability to connect to target host using the SSH, He or She will be able to use the application. Additionally, it will increase security a bit.
+\item {\bf Add ability to monitor long running tasks or 24/7 systems } 
 In current release, system was designed focusing mostly on on-line monitoring, thus for example, GUI must be connected to Monitoring Hub Application all the time. It would be great feature to be able to start remote monitoring hub, configure all resources and measurements and then detach GUI and let the monitoring hub to do it\rq{}s job. After a while or on scheduled basis, user should be able to attach to given monitoring hub and review all measurement results.
-
-\item {\bf Application state persistence }  
-
+\item {\bf Application state persistence } 
 Another feature increasing usability would be to allow user to save current state of work. It would increase usability a lot, if user could save connections to JMX nodes and use this configuration to easily restart working with system. 
-
- \item {\bf Improve the way application uses Semantic Web framework} 
-     
+\item {\bf Improve the way application uses Semantic Web framework} 
 Current implementation supports OWL only partially - it uses ontology to manage relationships between monitored resources, measurements but internal storage of resources is done in plain Java.
-          
 \item {\bf Java instrumentation}
-
-Adding ability to instrument Java code will increase usability of system in context of monitoring JVM a lot. At this stage of development, user can found only that there is a problem with his or hers application. To allow tracking of an actual source of the problem, user must be able to instrument code.      
-     
+Adding ability to instrument Java code will increase usability of system in context of monitoring JVM a lot. At this stage of development, user can find only that there is a problem with application. To allow tracking of an actual source of the problem, user must be able to instrument code. 
 \item {\bf Better connections management}
-
-Currently, application provides the user only basic management of external connections to monitoring hubs. User can add new connection while adding resource, but there is no view for checking all active connections and explicitly connect or disconnect from given monitoring hub. At this stage, I think that connections management is a bit too transparent for the end user, thus might be confusing. It will require changes only in GUI subsystem. This item overlaps a bit with adding ability to monitor long running tasks.
-
+Currently, application provides to the user only basic management of external connections to monitoring hubs. User can add new connection while adding resource, but there is no view for checking all active connections and explicitly connect or disconnect from given monitoring hub. At this stage, I think that connections management is a bit too transparent for the end user, thus might be confusing. It will require changes only in GUI subsystem. This item overlaps a bit with adding ability to monitor long running tasks.
 \item{\bf Better functions/methods management}
-
-There should be view that will allow user to register functions of interest. Especially after realizing Java instrumentation. User should be able to define which parts of code should be monitored, to measure invocation count and total time. Currently, system monitors only some default MPI* functions and this configuration is defined in OCMG Transport Proxy component.
-
+There should be view that allows user to register functions of interest, especially after implementing Java instrumentation. User should be able to define which parts of code should be monitored, to measure invocation count and total time. Currently, system monitors only some default MPI* functions and this configuration is defined in OCMG Transport Proxy component.
 \item {\bf Some usability enhancements}
-
-After spending some time on working with application, I\rq{}ve found that some tasks should be eased even more. The most significant enhancement would be to allow user to perform bulk operations, on multiple resources. I\rq{}m thinking here mostly about adding multiple measurements of same type to set of selected resources that have those capabilities. 
-
+After spending some time on working with application, I have found that some tasks should be eased even more. The most significant enhancement would be to allow user to perform bulk operations, on multiple resources. I am thinking here mostly about adding multiple measurements of same type to set of selected resources that have those capabilities. 
 \end{itemize}
 
 \subsection{Extending application}
 
-One of main design goals I wanted to achieve was extendability. The easiest way to extend application is to add another monitoring back end. Because of that, during the development I was focusing on making this process as easy as possible. As an outcome, extending application of ability to analyze applications that are monitored using other systems requires just implementation of new Transport Proxy module, registration of this module in Monitoring Hub and necessary changes in GUI, related mostly to adding resources of new type.
+One of main design goals I wanted to achieve was extendibility. The easiest way to extend application is to add another monitoring back end. Because of that, during the development I was focusing on making this process as easy as possible. As an outcome, extending system by adding the ability to analyze applications that are monitored using other systems requires just implementation of new Transport Proxy module, registration of this module in Monitoring Hub and necessary changes in GUI, related mostly to adding resources of new type.
 
-Implementation of new Transport Proxy module requires either realization of TransportProxy interface, which is described in Section~\ref{subs:TransportProxyInterface}, or extending of BaseTransportProxy class which was designed to simplify the task even more.
+Implementation of new Transport Proxy module requires either realization of TransportProxy interface, which is described in Section~\ref{subs:TransportProxyInterface}, or extending BaseTransportProxy class which was designed to simplify the task even more.
 
 Registration of new Transport Proxy module in Monitoring Hub is straightforward. To do so, one must:
+
 \begin{itemize}
-\item Add dependency to new module in pom.xml of Monitoring Hub, Monitoring Hub Application and GUI  submodules.
+\item Add dependency to new module in pom.xml of Monitoring Hub, Monitoring Hub Application and GUI sub modules.
 \item Define spring bean that provides new implementation of Transport Proxy 
 \item Add this bean to the transportProxiesManager bean defined in spring configuration file semsimmonCoreConfig.xml, which can be found in Monitoring Hub module.
 \end{itemize}
 
-As of changes in GUI it really depends on how this new measuring platform works and must be considered carefully. There will be definitely need to add new type of \lq\lq{}Add resource...\rq\rq{} wizard. And, as rest of application is build on generic resources and measurements ontology it should be enough.
+As of changes in GUI it really depends on how this new measuring platform works and must be considered carefully. There will be definitely need to add new type of \lq\lq{}Add resource...\rq\rq{} wizard. And, as rest of application is built on generic resources and measurements ontology it should be enough.
