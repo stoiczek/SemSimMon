@@ -5,13 +5,22 @@
 \section{Decomposition}
 \label{sec:arch_decomposition}
 
-During design stage several high level components have been introduced. All distinguished components, with relationships between them can be found in Figure~\ref{fig:arch_overall}. Each of those components should be interpreted as independent one, which means that it is either standalone application or library, with API containing one or more interfaces. This API is then shared between provider, which is component that realizes given interface and consumer - module that actually uses those functionalities to realize its own aims. Following subsection tries to list those components and describe them roughly. 
+The high level system architecture is depicted in figure~\ref{fig:arch_overall}. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{arch_flows}
+\caption{Overall system architecture}
+\label{fig:arch_overall}
+\end{figure}
+
+During the design stage, several high level components have been introduced. All distinguished components, with relationships between them can be found in Figure~\ref{fig:decomposition_overall}. Each of those components should be interpreted as independent one, which means that it is either standalone application or library, with API containing one or more interfaces. This API is then shared between provider, which is a component that realizes given interface and consumer - module that uses those functionalities to realize its own aims. Following subsection tries to list those components and describe them roughly.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1\textwidth]{arch_overall}
 \caption{Overall system decomposition}
-\label{fig:arch_overall}
+\label{fig:decomposition_overall}
 \end{figure}
 
 \subsection{Components overview}
@@ -21,26 +30,26 @@ As can be seen in Figure~\ref{fig:arch_overall}, system has been decomposed into
 \begin{itemize}
 
 \item {\bf GUI}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
-Graphic User Interface. GUI is standalone, desktop application, used directly by user. It provides facilities that allow management of the whole system. It does not perform any measurements or analysis, it only gives control over other components (direct or indirect) and visualizes results of measurements.
-GUI application contains embedded Monitoring Hub, which allows system to operate also in smallest scale - single measuring process with one or more measured processes attached directly. Additionally it connects to Monitoring Hub Application which allows using remote Monitoring Hub.
+Graphic User Interface is standalone, desktop application, used directly by the user. It provides facilities that allow management of the whole system. It does not perform any measurements or analysis. It only gives control over other components (direct or indirect) and visualizes results of measurements.
+GUI application contains embedded Monitoring Hub, which allows the system to operate also in smallest scale - single measuring process with one or more measured processes attached directly. Additionally it connects to Monitoring Hub Application which allows using remote Monitoring Hub.
 
 \item {\bf Monitoring Hub}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
-Monitoring hub is definitely most important component. Contains all logic needed for resources and measurements management. To fulfill its duties it uses Knowledge and Transport Proxies (one or more implementation) components. At this stage of development only JMX and OCM-G transport proxies will be provided, but proposed architecture allows easy addition of new proxies. 
-Monitoring Hub doesn't work as standalone application. Instead, it is in form of library (Java JAR) that will be used by other components, which will work as processes. Monitoring Hub component is used by GUI (in embedded mode) and by Monitoring Hub Application.
+Monitoring hub is most crucial component. Contains all logic needed for resources and measurements management. It uses Knowledge and Transport Proxies (one or more implementation) components, to fulfill its duties. Only JMX and OCM-G transport proxies will be provided at this stage of development, but proposed architecture allows easy addition of new proxies.
+Monitoring Hub does not work as standalone application. Instead, it is in the form of library (Java JAR) that other components will use. Additionally, Monitoring Hub component is used by GUI (in embedded mode) and Monitoring Hub Application.
 
 \item {\bf Monitoring Hub Application}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
 Monitoring Hub Application will be standalone, command line application (or daemon if possible) that exposes services of Monitoring Hub to other components with remote access through the network (either LAN or WAN). It can accept remote connections from GUI components.
-Its main responsibility is to allow system to work in distributed manner. Having process that is separate, and independent from GUI application, which continuously measures work of long lasting jobs is crucial to allow system to scale up. 
+Its main responsibility is to allow the system to work in distributed manner. Having a process that is separate, and independent from GUI application, which continuously measures work of long-lasting jobs is crucial to allow the system to scale up.
+
 
 \item {\bf Knowledge}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
-Knowledge component realizes semantic approach of application. It provides ontology functionalities to Monitoring Hub. It's responsible for initializing ontology database and response to all queries issued by Monitoring Hub regarding relationships between resource types, resources or capabilities.
-This component is in form of a library that is dependency for Monitoring Hub, and must be included in both GUI and Monitoring Hub Application distributions.
+Knowledge component realizes semantic approach of application. It provides ontology functionalities to Monitoring Hub. It is responsible for initializing ontology database and response to all queries issued by Monitoring Hub regarding relationships between resource types, resources or capabilities. This component is in the form of a library that is a dependency for Monitoring Hub, and must be included in both GUI and Monitoring Hub Application distributions.
 
 \item {\bf JMX Transport Proxy}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
-Transport proxy component, which can communicate with JVM processes using JMX protocol. Its main responsibilities include: establishing connection with JVM, mapping between generic, knowledge-based resources or capability value requests into Java specific components or JMX queries.
+Transport proxy component, which can communicate with JVM processes using JMX protocol. Its main responsibilities include: establishing a connection with JVM, mapping between generic, knowledge-based resources or capability value requests into Java components or JMX queries.
 
 \item {\bf OCM-G Transport Proxy}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak
-Transport proxy component that communicates with OCM-G MainSM monitor. Its responsibilities are similar to those of JMX Transport Proxy - establish and maintain connection to MainSM, translate queries given in ontology terms to OMIS specific requests.
+Transport proxy component that communicates with OCM-G MainSM monitor. Its responsibilities are similar to those of JMX Transport Proxy - establish and maintain connection to MainSM, translate queries given in ontology terms to OMIS requests.
 
 \end{itemize}
 

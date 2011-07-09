@@ -5,19 +5,19 @@
 \section{Transport Proxy component}
 \label{sec:arch_tproxy}
 
-Transport proxies are components responsible for communication with external components that perform actual, low-level analysis of processing tree and measurements. Each proxy implementation specializes generic, ontology based concept into item specific to platform or measuring system. All transport proxies implementations are being used by Monitoring Hub component, and distributed in form of library (Java JAR). 
+Transport proxies are components responsible for communication with external components that perform actual, low-level analysis of processing tree and measurements. Each proxy implementation specializes generic, ontology based concept into item specific to platform or measuring system. Monitoring Hub component uses all transport proxies implementations, which are distributed in the form of library (Java JAR).
 
-Because all proxies have rather straight purpose, further decomposition of those components won't be provided. In following subsection, I would like to cover overall design principles of two transport proxies provided with initial implementation of SemSimMon system.
+Because all proxies have rather straight purpose, further decomposition of those components will not be provided. In the following subsection, I would like to cover overall design principles of two transport proxies provided with initial implementation of SemSimMon system.
 
 \subsection{JMX Transport Proxy}
 
-Implementation of transport proxy component responsible for integration with Java JMX consist of one root component - JmxTransportProxy, several DiscoveryAgent and CapabilityProbe components. JmxTransportProxy component implements interface used by other high-level system modules and performs all operations, delegating requests to appropriate probes or discovery agents.
+Implementation of transport proxy component responsible for integration with Java JMX consists of one root component - JmxTransportProxy, several DiscoveryAgent and CapabilityProbe components. JmxTransportProxy component implements interface used by other high-level system modules and performs all operations, delegating requests to appropriate probes or discovery agents.
 
-DiscoveryAgents are responsible for fetching all sub resources of given resource. Each agent can be interpreted as a mapping between ontology based, generic concept and item specific to JVM domain. Additionally, agents are responsible for gathering all static properties of all discovered components.
+DiscoveryAgent implementations are responsible for fetching all sub resources of given resource. Each agent can be interpreted as a mapping between ontology based, generic concept and item specific to JVM domain. Additionally, agents are responsible for gathering all static properties of all discovered components.
 
-If DiscoveryAgent can be seen as mapping between resource and JMX-specific entity, then CapabilityProbe should be interpreted as mapping between generic capability described by ontology language and JMX specific feature. The only responsibility of CapabilityProbe is to fetch value of capability that it can measure using given resource as an input.
+If DiscoveryAgent can be seen as mapping between resource and JMX-specific entity, then CapabilityProbe should be interpreted as mapping between generic capability described by ontology language and JMX feature. The only responsibility of CapabilityProbe is to fetch value of capability that it can measure using given resource as an input.
 
-To fulfill its duties, JmxTransportProxy component maintains maps of discovery agents and capability probes. In both cases map associates ontology URL of given concept to explicit probe or agent. Additionally it is responsible for setting up and maintaining connection to JVMs.
+JmxTransportProxy component maintains maps of discovery agents and capability probes to fulfill its duties. In both cases map associates ontology URL of given concept to explicit probe or agent. Additionally it is responsible for setting up and maintaining a connection to JVMs.
 
 \subsection{OCM-G Transport Proxy}
 

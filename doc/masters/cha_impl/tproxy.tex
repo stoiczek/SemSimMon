@@ -8,25 +8,24 @@ JMX Transport Proxy is build around two concepts: discovery agent and capability
   \item{\bf{GCDiscoveryAgent}} - discovers garbage collectors 
   \item{\bf{ThreadsDiscoveryAgent}} - discovers all threads running in single JVM
   \item{\bf{CPUDiscoveryAgent}} - discovers CPUs on given computing node
-  \item{\bf{JvmDiscoveryAgent}} - discovers specific JVM running on node
-  \item{\bf{OsDiscoveryAgent}} - discovers operating system that runs on given node
-  \item{\bf{GenericDiscoveryAgent}} - can \lq{}discover\rq{} components that exists but any of their properties can be extracted
+  \item{\bf{JvmDiscoveryAgent}} - discovers JVM running on a node
+  \item{\bf{OsDiscoveryAgent}} - discovers an operating system that runs on given node
 \end{itemize} 
 
-Additionally, JMX Transport proxy uses following probes to fetch capability values: 
+Additionally the JMX Transport proxy uses following probes to fetch capability values: 
 
 \begin{itemize} 
-  \item{\bf{GarbageCollectionsProbe}} - gets values of Garbage Collector related capabilities (CollectionCountCapability and CollectionTimeCapability)
-  \item{\bf{MemoryProbe}} - gathers values of memory related capabilities: total, free and used. It is used in conjunction with both physical and virtual memory resources
+  \item{\bf{GarbageCollectionsProbe}} - gets values of a Garbage Collector related capabilities (CollectionCountCapability and CollectionTimeCapability)
+  \item{\bf{MemoryProbe}} - gathers values of a memory related capabilities: total, free and used. It is used in conjunction with both a physical and a virtual memory resources
   \item{\bf{HeapProbe}} - measures heap usage  
   \item{\bf{ThreadTimingProbe}} - monitors threads timings: ThreadCPUTimeCapability and ThreadUserTimeCapability capabilities
-  \item{\bf{ThreadSynchronizationDetailsProbe}} - monitors capabilities related to threads synchronization: ThreadBlockedCountCapability, ThreadBlockedTimeCapability, ThreadWaitedCountCapability and ThreadWaitedTimeCapability
-  \item{\bf{JmxQueryCapabilityProbe}} - generic probe that can measure capabilities using JMX query given by initialization parameter
+  \item{\bf{ThreadSynchronizationDetailsProbe}} - monitors capabilities related to a thread\rq{}s synchronization: ThreadBlockedCountCapability, ThreadBlockedTimeCapability, ThreadWaitedCountCapability and ThreadWaitedTimeCapability
+  \item{\bf{JmxQueryCapabilityProbe}} - generic probe that can measure capabilities using JMX query
 \end{itemize} 
 
 \subsection{OCM-G Transport Proxy Implementation}
 
-OCM-G Transport Proxy implementation uses similar approach to JMX one. In this case, there are also employed two concepts - probes (works in same way as in JMX Transport Proxy) and resource agents. OCM-G proxy consists of resource agents instead of discovery agents, because OCM-G have means to actually manage resources and those means are used in SemSimMon. Thus, resource agents have two purposes - discovery resources and manage them.
+The OCM-G Transport Proxy implementation uses similar approach to the JMX one. In this case, there are also two concepts employed: probes (works in same way as in JMX Transport Proxy) and resource agents. The OCM-G proxy consists of resource agents instead of discovery agents, because the OCM-G have means to actually manage resources and those means are used in the SemSimMon. Thus, resource agents have two purposes - discovery and management of resources.
 
 There are following resource agents implemented:
 
@@ -43,21 +42,21 @@ There are following resource agents implemented:
   \item{\bf{ProcessResourceAgent}} - manages processes
   \item{\bf{StorageResourceAgent}} - manages storage devices
   \item{\bf{VirtualMemoryRA}} - manages virtual memory
-  \item{\bf{BasicHardwareResourceAgent}} - it\rq{}s type of generic hardware resource agent that can simply discover hardware devices that can\rq{}t be distinguished
-\end{itemize} 
+ \end{itemize} 
   
-OCM-G Transport Proxy uses following probes:
+The OCM-G Transport Proxy uses following probes:
 
 \begin{itemize} 
-  \item{\bf{LoadAvgProbe}} - monitors node\rq{}s load average 
-  \item{\bf{ThreadsCP}} - monitors capability probes related to threads
-  \item{\bf{TotalCpuTimeCapabilityProbe}} - measures CPU total time
-  \item{\bf{FunctionProbe}} - monitors capabilities related to functions (TotalCallsTimeCapability and TotalCallsCountCapability)
+  \item{\bf{LoadAvgProbe}} - measures the node\rq{}s load average 
+  \item{\bf{ThreadsCP}} - measures capabilities related to threads (total and live threads count)
+  \item{\bf{TotalCpuTimeCapabilityProbe}} - measures total CPU time of a process
+  \item{\bf{FunctionProbe}} - measures capabilities related to functions (TotalCallsTimeCapability and TotalCallsCountCapability)
 \end{itemize} 
 
 \subsection{TransportProxy interface}
 \label{subs:TransportProxyInterface}
-Although Transport Proxies are components where most of actual magic occurs, it\rq{}s implementation is relatively simple. To use functionalities provided by this component, Monitoring Hub uses only one single interface, which can be seen in Figure~\ref{fig:transport_proxy}.
+
+Although Transport Proxies are components where most of \lq\lq{}the magic\rq\rq{} occurs, its implementation is relatively simple. To use functionalities provided by this component, the Monitoring Hub uses only one single interface, which can be seen in Figure~\ref{fig:transport_proxy}.
 
 \begin{figure}[ht]
   \centering
@@ -66,4 +65,4 @@ Although Transport Proxies are components where most of actual magic occurs, it\
   \label{fig:transport_proxy}
 \end{figure} 
 
-Additionally, to make extending application with new transport proxies even more simple, BaseTransportProxy class was introduced, to implement most of functionalities that aren\rq{}t aware of underlaying communication mechanisms. Because of that, to add new transport proxy, one should just  create new class that inherits from BaseTransportProxy and implement only abstract methods that defined there.
+Additionally, to make extending of the application with a new transport proxy even more simple, the BaseTransportProxy class was introduced. Its main purpose is to implement most of functionalities that are not aware of underlaying communication mechanisms. Because of that, one should just create a new class that inherits from the BaseTransportProxy and implement only abstract methods that are defined there to add new transport proxy.
