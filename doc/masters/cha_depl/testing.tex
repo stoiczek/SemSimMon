@@ -75,42 +75,42 @@ After attaching to all resources, I have started the following metrics:
 \item A system load for both MPI nodes
 \end{itemize}
 
-Figures~\ref{fig:http_cpu}~and~\ref{fig:http_memory} depicts screen shots made of the SemSimMon\rq{}s visualizations view. As we can see, the memory usage was constant during all the test time. The non-heap memory usage (red, labeled as HTTPNH) was between 22MB and 23MB. The heap memory usage was a bit more dynamic, but was oscillating between 4MB and 8MB. The CPU usage was  traceable - between 0\% and 5.5\%. The area of plot marked with an ellipse, highlights a slightly bigger CPU usage. This area represents a time frame, when the system was under load. There were several requests performed and all of them on solver processing request in serial manner. During this stage the web application was frequently polling for a resource file. 
+Figures~\ref{fig:http_cpu}~and~\ref{fig:http_memory} depicts screen shots made of the SemSimMon\rq{}s visualizations view. As we can see, the memory usage was almost constant during all the test time. The non-heap memory usage (red, labeled as HTTP NON HEAP) was between 22MB and 25MB. The heap memory usage was a bit more dynamic, but was oscillating between 3MB and 8MB. The CPU usage was traceable - between 0\% and 5.75\%. There are several areas of plots, marked with black ellipses. The areas marked with 1a and 1b in the memory usage plot and 1 in the CPU usage, points to time when I have started to sending requests the the sample application. This action caused a spike in CPU usage (1), slight increase of non heap memory (1a) and an anomaly in heap memory usage (1b). This is related to initialization of resources made by Tomcat, like compilation of JSP page into servlet. The areas marked with ellipse no 2 on both plots, represents time when system was constantly on load. As we can see, the CPU usage is in range of 0,5\% to 2,5\% and also, the garbage collection interval is a bit shorter. The ellipses labeled with 3 on both graphs shows the time frame when the system\rq{}s load test is complete and the web application is idle.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{http_memory}
+\includegraphics[width=0.7\textwidth]{memory_http2}
 \caption{Test J2EE web app monitoring - memory}
 \label{fig:http_memory}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{http_cpu}
+\includegraphics[width=0.7\textwidth]{CPU_USAGE_HTTP2}
 \caption{Test J2EE web app monitoring - CPU}
 \label{fig:http_cpu}
 \end{figure}
 
 
-Results of the system solver analysis are a bit more interesting. In Figure~\ref{fig:clu1_clu3_asymetry} we can see plot of node average load in last 1min of both nodes in cluster. The red line, labeled as \lq\lq{}Clu3Load\rq\rq{} represents a load of the working node (the one with rank != 0), the blue one, with the \lq\lq{}CLu1Load\rq\rq{} label, represents the master node. We can see clearly that the implemented application has a huge imbalance - while the master node is mostly idle, the slave is using nearly 99\% of CPU time. The part of plot highlighted with ellipse covers time when system were working under some moderate load. As we can see, load of master node increased a bit, but the working node was constantly using most of CPU time. Figure~\ref{fig:clu1_clu3_asymetry2} contains a bar chart with measurements of a Average Node Load in last 5 minutes of both those nodes. While the node \lq\lq{}clu1\rq\rq{} stays below 0.1, the \lq\lq{}clu3\rq\rq{} one is above 0.9. Figure~\ref{fig:total_cpu_time} depicts the total CPU time of both processes running the example solver. Here, the process running a worker process reached 325 seconds, while the master was totally idle. The last figure was made before any input was given for the application, which shows that the master process waits for the input data appropriately.
+Results of the system solver analysis are a bit more interesting. In Figure~\ref{fig:nodes_load2} we can see plot of measurement covering average load in last 1min of both nodes. The red line, labeled as \lq\lq{}CLU3 Load1\rq\rq{} represents a load of the working node (the one with rank != 0), the blue one, with the \lq\lq{}CLU1 Load1min\rq\rq{} label, represents the master node. We can see clearly that the implemented application has a huge imbalance - while the master node is mostly idle, the slave is using nearly 99\% of CPU time. The part of plot highlighted with ellipses 1a-1e represents the spikes in load due to a vast amount of jobs submitted the system. As we can see, load of master node was increasing to the level of the working nodes, but as the queue of input tasks got cleared, it was returning to almost idle state. In same time the working node was constantly using most of CPU time. Ellipse 2 and 3 shows the spike due to last testing sessions, where I have started submitting jobs after a while of a break before the 2 and between the 2 and 3. Those spikes also have a reflection in http server\rq{}s CPU usage plot. Figure~\ref{fig:load5_pie2} contains a pie chart with measurements of a Average Node Load in last 5 minutes of both those nodes. It depicts the asymmetry from a longer period of time, including the one when system was on load. Figure~\ref{fig:total_cpu_time} depicts the total CPU time of both processes running the example solver application. Here, the process running a worker routine reached 750 seconds, while the master was almost idle. This asymmetry is caused by a bug in a routines of nodes other then master - those nodes tries to received the data without any blocking in infinite loop.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{clu1_clu3_asymetry}
+\includegraphics[width=0.8\textwidth]{nodes_load2}
 \caption{MPI based linear systems solver: Node Load Average - 1min}
-\label{fig:clu1_clu3_asymetry}
+\label{fig:nodes_load2}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{clu1_clu3_asymetry2}
+\includegraphics[width=0.5\textwidth]{load5_pie2}
 \caption{MPI based linear systems solver: Node Load Average - 5min}
-\label{fig:clu1_clu3_asymetry2}
+\label{fig:load5_pie2}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.7\textwidth]{total_cpu_time}
+\includegraphics[width=0.4\textwidth]{cpu_time2}
 \caption{MPI based linear systems solver: CPU time}
 \label{fig:total_cpu_time}
 \end{figure}
