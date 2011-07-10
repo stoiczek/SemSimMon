@@ -6,11 +6,11 @@
 \section{Semantic Web}
 \label{sec:ch2_semantic_web}
 
-In 2001 Tim Berners-Lee, inventor of the World Wide Web and director of World Wide Web Consortium, in his article published in Scientific American\cite{berneslee:semanticWeb} introduced the term Semantic Web. The original idea behind this concept was to change the way how WWW works, from \lq\lq{}web of documents\rq\rq{} towards \lq\lq{}web of data\rq\rq{}. The new web will allow machines to understand the meaning (\emph{semantic}) of information found on the Web. Such an approach will allow developers to create automated agents. They will be able to that can access Web resources in more intelligent way and thus perform more complex tasks on user\rq{}s behalf.
+In 2001 Tim Berners-Lee, inventor of the World Wide Web and director of World Wide Web Consortium, in his article published in Scientific American~\cite{berneslee:semanticWeb} introduced the term Semantic Web. The original idea behind this concept was to change the way how WWW works, from \lq\lq{}web of documents\rq\rq{} towards \lq\lq{}web of data\rq\rq{}. The new web will allow machines to understand the meaning (\emph{semantic}) of information found on the Web. Such an approach will allow developers to create automated agents. They will be able to that can access Web resources in more intelligent ways and thus perform more complex tasks on user\rq{}s behalf.
 
 From a practical point of view, semantic web is all about two things. First, there is a need to define common formats that allow integration and combination of data provided by different, diverse sources. The second key thing is language that can record how the data relates to real-world entities.
 
-Realization of this idea is currently maintained by Semantic Web Activity\footnote{\url{http://www.w3.org/2001/sw}} organized within W3C boundaries. This activity with a set of established working groups is responsible for defining technology standards that must be employed in order to make the Semantic Web operational. Currently, there are following standards defined RDF, OWL, SPARQL, RDFa, SKOS, RDFS, GRDDL, POWDER, RIF, and SAWSDL. Figure~\ref{fig:sem_web_layers} depicts Semantic Web \lq\lq{}Layer Cake\rq\rq{}, layers of technologies that set up the concept. It contains also layers that the user must provide to create the final product. Semantic Web responsibility is all above XML (or URI/IRI) and below Unifying Logic components.
+Realization of this idea is currently maintained by Semantic Web Activity\footnote{\url{http://www.w3.org/2001/sw}} organized within W3C boundaries. This activity with a set of established working groups is responsible for defining technology standards that must be employed in order to make the Semantic Web operational. Currently, there are following standards defined RDF, OWL, SPARQL, RDFa, SKOS, RDFS, GRDDL, POWDER, RIF, and SAWSDL. Figure~\ref{fig:sem_web_layers} depicts Semantic Web\rq{}s \lq\lq{}Layer Cake\rq\rq{}, layers of technologies that set up the concept. It contains also layers that the user must provide to create the final product. Semantic Web responsibility is all above XML (or URI/IRI) and below Unifying Logic components.
 
 \begin{figure}[ht]
 	\centering
@@ -19,19 +19,17 @@ Realization of this idea is currently maintained by Semantic Web Activity\footno
 	\label{fig:sem_web_layers}
 \end{figure}
 
-In following subsections, I would like to describe roughly most crucial (in the context of this work) standards from those mentioned above.
+In following subsections, I would like to describe roughly the most crucial (in the context of this work) standards from those mentioned above.
 
 \subsection{RDF}
 
-RDF stands for Resource Description Framework (\cite{rdfPrimer:2004}) and is a standard model for data interchange on the Web. The main idea behind RDF is to make statements about resources. RDF extends the linking structure of the WWW, by adding usage of URIs to name the relationship between entities together with two ends of the link, creating so called \emph{triples} or subject-predicate-object expressions. In this case, subject denotes the resource, predicate denotes traits or aspects of the resource and expresses a relationship between the subject and the object. With this model standard allows mixing, exposition and sharing of structured and semi-structured data.
+RDF stands for Resource Description Framework (\cite{rdfPrimer:2004}) and is a standard model for data interchange on the Web. The main idea behind RDF is to make statements about resources. RDF extends the linking structure of the WWW, by adding usage of URIs to name the relationship between entities together with two ends of the link, creating so called \emph{triples} or subject-predicate-object expressions. In this case, subject denotes the resource, predicate denotes traits or aspects of the resource and expresses a relationship between the subject and the object. With this model standard allows mixing, exposition and sharing of structured and semi-structured data. This linking structure forms a directed, labeled graph, where edges define a named link between two resources, represented by the graph nodes. Visualization of such a graph forms the easiest possible mental model for RDF and is often used in easy-to-understand visual explanations.
 
-This linking structure forms a directed, labeled graph, where edges define a named link between two resources, represented by the graph nodes. Visualization of such a graph forms easiest possible mental model for RDF and is often used in easy-to-understand visual explanations.
-
-In order to make this a bit clearer, let us consider the following example statement:
+In order to make this a bit clearer, let us consider the following, example statement:
 
 \lq\lq{}There is a person called John, whose full name is John Webber, who is British, whose e-mail address is john@agh.edu.pl and is single.\rq\rq{}
 
-Now, we would like to represent it as a RDF graph. Illustration of such a graph can be found in Figure~\ref{fig:sample_rdf}.
+We would like to represent it as a RDF graph now. The illustration of such a graph can be found in Figure~\ref{fig:sample_rdf}.
 
 \begin{figure}[ht]
 	\centering
@@ -40,7 +38,7 @@ Now, we would like to represent it as a RDF graph. Illustration of such a graph 
 	\label{fig:sample_rdf}
 \end{figure}
 
-Pure RDF is just a concept, as its name states - framework. In order to use this concept, form of data serialization was introduced: RDFS, which stands for RDF Schema\cite{rdfRef:2004}. Most popular form of RDF serialization is the one using XML markup (application/rdf+xml mime type). Figure~\ref{fig:sample_rdf_xml} depicts the previous example using this notation.
+Pure RDF is just a concept, as its name states, a framework. In order to use this concept, a form of data serialization was introduced: RDFS, which stands for RDF Schema~\cite{rdfRef:2004}. The most popular form of RDF serialization is the one using XML markup (application/rdf+xml mime type). Figure~\ref{fig:sample_rdf_xml} depicts the previous example using this notation.
 
 \begin{figure}[ht]
 	\centering
@@ -51,11 +49,9 @@ Pure RDF is just a concept, as its name states - framework. In order to use this
 
 \subsection{OWL}
 
-RDF is an extremely powerful language due to its general form. Although this feature allows one to describe nearly everything with this technology, it also makes it difficult to employ in real-life applications. To bypass those issues, OWL, which is an abbreviation for Web Ontology Language was introduced. OWL is a language with stronger syntax, greater machine interoperability and a larger vocabulary than RDF.
+RDF is an extremely powerful language due to its general form. Although this feature allows to describe nearly everything with this technology, it also makes it difficult to employ in real-life applications. To bypass those issues, OWL, which is the abbreviation for Web Ontology Language was introduced. OWL is a language with a stronger syntax, a greater machine interoperability and a larger vocabulary than RDF. OWL as a web standard was originally published in 2004, and with reviews and updates, the most recent version of standard (called OWL 2.0) was released in 2009\cite{owlRef:2009, owlPrimer:2009}.
 
-OWL as a web standard was originally published in 2004, and with reviews and updates, most recent version of standard (called OWL 2.0) was released in 2009\cite{owlRef:2009, owlPrimer:2009}.
-
-The standard comes with following profiles:
+The standard comes with the following profiles:
 
 \begin{itemize}
 	\item{ {\bf OWL Lite}}
@@ -66,12 +62,12 @@ The standard comes with following profiles:
 	\item{ {\bf OWL RE} (Defined by 2.0 specification)}
 \end{itemize}
 
-Profiles Lite, DL and Full were introduced in 2004 version of the specification. Each of those sublanguages is a syntactic extension of its simpler predecessor. Every legal OWL Lite ontology is legal OWL DL ontology, also every legal OWL DL ontology is a legal OWL Full. Those relations are asymmetric so their inverse does not hold.
+Profiles Lite, DL and Full were introduced in the 2004 version of the specification. Each of those sublanguages is a syntactic extension of its simpler predecessor. Every legal OWL Lite ontology is a legal OWL DL ontology, also every legal OWL DL ontology is a legal OWL Full. Those relations are asymmetric so their inverse does not hold.
 
-OWL Lite was initially designed to create relatively simple tools and allow quick migration from systems employing thesauri and other taxonomies. It supports classification hierarchy and basic constraints, e.g. while it supports cardinality, it only permits values of 0 or 1. In practice, most of the constructs available in OWL DL can be created using complex combination of OWL Lite features Becasue of that, development of tools based on the OWL Lite is almost as difficult as those using OWL DL.
+The OWL Lite was initially designed to create relatively simple tools and allow a quick migration from systems employing thesauri and other taxonomies. It supports a classification hierarchy and a basic constraints, e.g. while it supports a cardinality, it only permits values of 0 or 1. In practice, most of the constructs available in OWL DL can be created using a complex combination of OWL Lite features. Because of that, a development of tools based on the OWL Lite is almost as difficult as those using the OWL DL.
 
-OWL DL was named that way due to its correspondence with a field of research that forms the formal foundation of OWL - Description Logic. It was designed to provide maximum expressiveness while retaining computational completeness, decidability and the availability of practical reasoning algorithms.
+The OWL DL was named that way due to its correspondence with a field of a research that forms the formal foundation of OWL - the Description Logic. It was designed to provide the maximum expressiveness while retaining the computational completeness, the decidability and the availability of practical reasoning algorithms.
 
-OWL Full is based on a different semantics from OWL Lite or DL and was designed to preserve some compatibility with RDF Schema.
+The OWL Full is based on a a different semantics from the OWL Lite or the DL and was designed to preserve some compatibility with the RDF Schema.
 
-Profiles introduced by 2.0 spec aims for offering significant advantages in a particular application scenario. Each one is defined as a syntactic restriction of the OWL 2 Structural Specification and is more restrictive than OWL DL. Restrictions defined in OWL 2 EL allow definition of polynomial-time algorithms, for all the standard reasoning tasks. It should be used primarily by applications where unusually large ontologies are employed, and where expressive power can be traded off for performance guarantees. OWL 2 QL enables conjunctive queries to be answered in LogSpace (can be solved using a logarithmic amount of memory) using standard relational database technology. This profile targets application where relatively lightweight ontologies are used to organize large numbers of individuals and where it is useful or necessary to access the data directly via relational queries (e.g. SQL). The last subset, OWL 2 RL allows implementation of polynomial time reasoning algorithms using rule-extended database technologies that operate directly on RDF triples. It is mostly suitable for applications, where relatively lightweight ontologies are used to organize large numbers of individuals and where it is useful or necessary to operate directly on data in the form of RDF triples.
+Profiles introduced by the 2.0 specification aim at offering significant advantages in a particular application scenario. Each one is defined as a syntactic restriction of the OWL 2 Structural Specification and is more restrictive than OWL DL. Restrictions defined in the OWL 2 EL allow definition of polynomial-time algorithms, for all the standard reasoning tasks. It should be used primarily by applications, where unusually large ontologies are employed, and where the expressive power can be traded off for the performance guarantees. The OWL 2 QL enables conjunctive queries to be answered in the LogSpace (can be solved using a logarithmic amount of a memory), using a standard relational database technology. This profile targets applications where relatively lightweight ontologies are used to organize large numbers of individuals and where it is useful or necessary to access the data directly via relational queries (e.g. SQL). The last subset, the OWL 2 RL allows implementation of polynomial-time reasoning algorithms using rule-extended database technologies that operate directly on RDF triples. It is mostly suitable for applications, where relatively lightweight ontologies are used to organize large numbers of individuals, and where it is useful or necessary to operate directly on data in the form of RDF triples.

@@ -2,10 +2,20 @@
 % System Requirements.
 %
 %---------------------------------------------------------------------------
+
+\section{Introduction}
+\label{sec:RequirementsIntroduction}
+
+In order to perform an accurate requirements analysis, one should first try to evaluate objectives of the project. Section~ref{ch1:Objectives} states that system to be implemented should be easy-to-use, able to operate with applications written in multiple programming languages and a variety of deployment sizes of monitored applications. In following paragraphs, I would like to evaluate those objectives a bit more to prepare solid base for the requirements analysis.
+
+I would like to consider an ability to operate with applications written in multiple languages at the beginning. The first question that emerges here is: which languages should the application operate with? My personal experience and statistics found on the Internet\footnote{I am considering services like \url{http://langpop.com/} and \url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}.} shows that the C/C++ and the Java programming languages are the most popular nowadays. The next question that should be answered is: should the created system be responsible for fetching the performance data? Is there maybe an existing facility that allows or easies this task? I have decided to use aid of the Java JMX facilities to monitor JVM applications and the OCM-G for applications written in the C/C++, after roughly analyzing existing, similar tools. What is also worth noticing, usage of these tools will also allow to solve the problem of different deployments sizes easily, as both these systems are responsible for most of the difficult tasks.
+
+The next objective to consider is ease-of-use. I have decided that semantic approach will be a key feature here. Application will use a common, shared semantics that will be used to map all platform-specific entities into abstract concepts managed by ontologies. The user will also be able to change the ontology that the system uses, in order to extend the usage of the application. It will allow fine-tune of the application, to satisfy the user\rq{}s need. Additionally, this approach will also simplify a variety of scales problem, as regardless of size of the monitored application, common concepts will be used to represent application\rq{}s resources.
+
 \section{System Requirements}
 \label{sec:SystemRequirements}
 
-This section contains requirements that SemSimMon, as a product must meet. Requirements listing and description is divided into two categories, namely functional and non-functional requirements. Main purpose of functional requirements analysis is to key out roughly what user can do with application, to describe its functionality. On the other hand, nonfunctional requirements add constraints to functional ones. Nonfunctional requirements analysis defines conditions under which application must operate, specify properties the software must exhibit\cite{Windle:SoftReq}.
+This section contains requirements that SemSimMon, as a product must meet. The catalogue of requirements and their description is divided into two categories, namely functional and non-functional requirements. The main purpose of a functional requirements analysis is to key out roughly what the user can do with an application, to describe its functionality. On the other hand, nonfunctional requirements add constraints to functional ones. The nonfunctional requirements analysis defines conditions under which the application must function, specify properties the software must exhibit~\cite{Windle:SoftReq}.
 
 Requirement levels described in the following Requirements specifications using terms such as ``must'', ``must not'', ``should/shall'' and ``should/shall not'' are to be read with reference to RFC 2119\cite{rfc:2119}.
 
@@ -16,61 +26,61 @@ Application provides to the end user following functionalities:
 
 \begin{itemize}
 
-\item {\bf Connect to already running JVM process using JMX extension.} 
-Application should allow user to connect to application that has been previously started. User should be able to connect to both remote and local Virtual Machine process. Additionally, to allow monitoring of environment that user has poor connectivity to, or to bypass firewall restrictions, user should be able to start component responsible for remote measuring. This component shall aggregate results from one or more measurements and send them to component controlled directly by user in packaged manner.
+\item {\bf Connect to an already running JVM process using JMX extension.} 
+The facility should allow user to connect to application that has been previously started. User should be able to connect to both remote and local Virtual Machine process. Additionally, to allow the monitoring of environment that user has poor connectivity to, or to bypass firewall restrictions, user should be able to start a component responsible for remote measuring. This component shall aggregate results from one or more measurements and send them to a component controlled directly by user in a packaged manner.
 
-\item {\bf Aggregate monitored JVM processes into applications and clusters.}
-User should be able to manage existing connections to processes being monitored in easy fashion, thus should be able to group them into logical units like clusters (group of nodes) or applications (collection of nodes or clusters that runs same program)
+\item {\bf Group monitored JVM processes into logical applications and clusters.}
+User should be able to manage existing connections to processes being monitored in an easy fashion, thus should be able to group them into logical units like clusters (group of nodes) or applications (collection of nodes or clusters that runs same program)
 
-\item {\bf Connect to already running OCM-G MainSM monitor.}
-User must be able to analyze performance of applications being monitored by OCM-G system. To allow this, application must provide facility for connecting to MainSM monitor, list already registered applications and attach to selected ones. Requirements related to environments to which user has limited access (in terms of network quality) applies here. Additionally, user should be able to work with both resource types (based on JMX and OCM-G monitoring beck-ends) in same time, with seamless integration (user shouldn't perform any action to switch context of work).
+\item {\bf Connect to the already running OCM-G MainSM monitor.}
+User must be able to analyze the performance of applications being monitored by OCM-G system. The facility must provide facility for connecting to MainSM monitor, list already registered applications and attach to selected ones, in order to allow this. The requirements related to the environment to which user has limited access (in terms of network quality) applies here. Additionally, user should be able to work with both resource types (based on JMX and OCM-G monitoring beck-ends) at the same time, with seamless integration (user shouldn't perform any action to switch the context of work).
 
-\item {\bf Extract and list resources of given resource.}
-Application should be able to perform deep discovery mechanisms of monitored resources and visualize them.
+\item {\bf Extract and list sub-resources of a given resource.}
+The facility should be able to provide discovery mechanisms of the monitored resources and visualize them.
 
 \item {\bf Control measuring capabilities of given resource.}
-Application must provide facility to start, stop, pause and resume monitoring of given resource's capability. This includes also definition of value gathering interval. Additionally user should be able to configure and update parameters of measurement, like polling frequency. 
+The facility must provide a capability to start, stop, pause and resume the monitoring of a given resource's capability. This includes also a definition of value gathering interval. Additionally user should be able to configure and update parameters of measurement. 
 
-\item {\bf List values of given resource's capabilities at current point of time.}
-Per user request, application should provide value of given capability (or multiple capabilities at once) at given moment of time.
+\item {\bf List values of given resource's capabilities at a given point of time.}
+Per user request, the facility should return a value of given capability (or multiple capabilities at once) at a given moment of time.
 
-\item {\bf List all capability values from given, started measurement.}
-After starting measurement user should be able to view all its values since start. Each value should be displayed with time stamp pointing to exact moment when measurement was taken. Additionally, view that will show those values must be able to self-refresh on-line in case of pending measurements.
+\item {\bf List all capability values from a given, launched measurement.}
+After starting a measurement the user should be able to view all its values since start. Each value should be displayed with a time stamp pointing to the exact moment when the measurement was taken. Additionally, a display that will show those values must be able to self-refresh on-line in case of pending measurements.
 
 \item {\bf Visualize measurement results.}
-User must be able to select measurement and plot results on graph. User should be able to choose from more than one graph type. Each graph should be able to render results from multiple measurements. Plots should be updated on-line with new values of pending measurements.
+The user must be able to select a measurement and plot results on a graph. User should be able to choose a graph from a set of types. Each graph should be able to render results from multiple measurements. Plots should be updated on-line with new values of pending measurements.
 
-\item {\bf List properties of given resource.}
-User should be able view all static meta-data of given, selected, resource. By static meta-data I mean attributes of resource that doesn't change in time, like: host name, OS version, JVM version, etc.
+\item {\bf List properties of a given resource.}
+The user should be able view all static meta-data of a given, selected, resource. By static meta-data I mean attributes of the resource that do not change in time, like: host name, OS version, JVM version, etc.
 
 \item {\bf Change ontology}
-User should be able to change ontology that system internally uses for building resource tree or arranges measurements.
+The user should be able to change the ontology that the system internally uses for building a resource tree or arranges measurements.
 
 \end{itemize}
 
 \subsection{Nonfunctional Requirements}
 \label{subsec:NonFunctionalRequirements}
 
-SemSimMon shall meet following nonfunctional requirements:
+SemSimMon shall meet the following nonfunctional requirements:
 
 \begin{itemize}
 
 \item {\bf Reliability.}
-It's the most important nonfunctional requirement. Application cannot have any critical bugs that can cause it crash. Application failure, cannot lead to data loss. 
+It's the most important nonfunctional requirement. The application cannot have any critical bugs that can cause it crash. Application failures cannot lead to data loss. 
 
 \item {\bf Scalability.}
-User should be able to work with wide variety of environments - from single process running on single host, up to highly distributed application running on several clusters containing vast amount of computing units.
+User should be able to work with wide variety of environments - from a single process running on a single host, up to a highly distributed application running on several clusters containing a vast amount of computing units.
 
 \item {\bf Interoperability.}
-Application should operate on most currently available platforms: Linux, Microsoft\textregistered~Windows\textregistered or Mac OS X\textregistered.
+The application should operate on most currently available platforms: Linux, Microsoft\textregistered~Windows\textregistered or Mac OS X\textregistered.
 
 \item {\bf Usability.}
-User interface should be as much user-friendly as it's possible. User shouldn't lose time on learning how application actually works. Each function should be just in the place, where casual user will expect it to be.
+User interface should be as much user-friendly as possible. User should not lose time on learning how the application works. Each function should be just in the place, where a casual user will expect it to be.
 
 \item {\bf Driven by Open Source.}
-To allow extend of application's life cycle, its development should be based on open source resources.
+To enable extending  application's life cycle, its development should be based on open source resources.
 
 \item {\bf Well documented.}
-Extensive documentation is crucial to allow other developers contributing to the project.
+Extensive documentation is crucial to allow other developers to contribute to the project.
 
 \end{itemize}
