@@ -2,37 +2,37 @@
 
 \subsection{JMX Transport Proxy Implementation}
 
-JMX Transport Proxy is build around two concepts: discovery agent and capability probe. Implementation consist following discovery agent classes:
+JMX Transport Proxy is built around two concepts: a discovery agent and a capability probe. The implementation consist of the following discovery agent classes:
 
 \begin{itemize} 
   \item{\bf{GCDiscoveryAgent}} - discovers garbage collectors 
-  \item{\bf{ThreadsDiscoveryAgent}} - discovers all threads running in single JVM
-  \item{\bf{CPUDiscoveryAgent}} - discovers CPUs on given computing node
-  \item{\bf{JvmDiscoveryAgent}} - discovers JVM running on a node
-  \item{\bf{OsDiscoveryAgent}} - discovers an operating system that runs on given node
+  \item{\bf{ThreadsDiscoveryAgent}} - discovers all threads running in a single JVM
+  \item{\bf{CPUDiscoveryAgent}} - discovers CPUs on a given computing node
+  \item{\bf{JvmDiscoveryAgent}} - discovers a JVM running on a node
+  \item{\bf{OsDiscoveryAgent}} - discovers an operating system that runs on a given node
 \end{itemize} 
 
-Additionally the JMX Transport proxy uses following probes to fetch capability values: 
+Additionally the JMX Transport proxy uses the following probes to fetch capability values: 
 
 \begin{itemize} 
-  \item{\bf{GarbageCollectionsProbe}} - gets values of a Garbage Collector related capabilities (CollectionCountCapability and CollectionTimeCapability)
-  \item{\bf{MemoryProbe}} - gathers values of a memory related capabilities: total, free and used. It is used in conjunction with both a physical and a virtual memory resources
-  \item{\bf{HeapProbe}} - measures heap usage  
-  \item{\bf{ThreadTimingProbe}} - monitors threads timings: ThreadCPUTimeCapability and ThreadUserTimeCapability capabilities
-  \item{\bf{ThreadSynchronizationDetailsProbe}} - monitors capabilities related to a thread\rq{}s synchronization: ThreadBlockedCountCapability, ThreadBlockedTimeCapability, ThreadWaitedCountCapability and ThreadWaitedTimeCapability
-  \item{\bf{JmxQueryCapabilityProbe}} - generic probe that can measure capabilities using JMX query
+  \item{\bf{GarbageCollectionsProbe}} - gets the values of a Garbage Collector related capabilities (\texttt{CollectionCountCapability} and \texttt{CollectionTimeCapability})
+  \item{\bf{MemoryProbe}} - gathers the values of memory related capabilities: total, free and used. It is used in conjunction with both a physical and a virtual memory resources
+  \item{\bf{HeapProbe}} - measures the heap usage  
+  \item{\bf{ThreadTimingProbe}} - monitors thread timings: the \texttt{ThreadCPUTimeCapability} and \texttt{ThreadUserTimeCapability} capabilities
+  \item{\bf{ThreadSynchronizationDetailsProbe}} - monitors capabilities related to a thread synchronization: \texttt{ThreadBlockedCountCapability}, \texttt{ThreadBlockedTimeCapability}, \texttt{ThreadWaitedCountCapability} and \texttt{ThreadWaitedTimeCapability}
+  \item{\bf{JmxQueryCapabilityProbe}} - a generic probe that can measure capabilities using a JMX query
 \end{itemize} 
 
 \subsection{OCM-G Transport Proxy Implementation}
 
-The OCM-G Transport Proxy implementation uses similar approach to the JMX one. In this case, there are also two concepts employed: probes (works in same way as in JMX Transport Proxy) and resource agents. The OCM-G proxy consists of resource agents instead of discovery agents, because the OCM-G have means to actually manage resources and those means are used in the SemSimMon. Thus, resource agents have two purposes - discovery and management of resources.
+The OCM-G Transport Proxy implementation uses a similar approach as JMX one. In this case, there are also two concepts employed: probes (works in the same way as in JMX Transport Proxy) and resource agents. The OCM-G proxy consists of resource agents instead of discovery agents, because the OCM-G has means to actually manage resources and these means are used in the SemSimMon. Thus, resource agents have two purposes - discovery and management of resources.
 
-There are following resource agents implemented:
+There are the following resource agents implemented:
 
 \begin{itemize} 
-  \item{\bf{AppsResourceAgent}} - manages applications monitored by given MainSM
-  \item{\bf{ClustersResourceAgent}} - manages clusters within given application
-  \item{\bf{NodeResourceAgent}} - manages nodes within given cluster
+  \item{\bf{AppsResourceAgent}} - manages applications monitored by a given MainSM
+  \item{\bf{ClustersResourceAgent}} - manages clusters within a given application
+  \item{\bf{NodeResourceAgent}} - manages nodes within a given cluster
   \item{\bf{ProcessFunctionsResourceAgent}} - manages function resources
   \item{\bf{ThreadResourceAgent}} - manages threads
   \item{\bf{CpuResourceAgent}} - manages processors
@@ -44,19 +44,19 @@ There are following resource agents implemented:
   \item{\bf{VirtualMemoryRA}} - manages virtual memory
  \end{itemize} 
   
-The OCM-G Transport Proxy uses following probes:
+The OCM-G Transport Proxy uses the following probes:
 
 \begin{itemize} 
   \item{\bf{LoadAvgProbe}} - measures the node\rq{}s load average 
   \item{\bf{ThreadsCP}} - measures capabilities related to threads (total and live threads count)
   \item{\bf{TotalCpuTimeCapabilityProbe}} - measures total CPU time of a process
-  \item{\bf{FunctionProbe}} - measures capabilities related to functions (TotalCallsTimeCapability and TotalCallsCountCapability)
+  \item{\bf{FunctionProbe}} - measures capabilities related to functions (\texttt{TotalCallsTimeCapability} and \texttt{TotalCallsCountCapability})
 \end{itemize} 
 
 \subsection{TransportProxy interface}
 \label{subs:TransportProxyInterface}
 
-Although Transport Proxies are components where most of \lq\lq{}the magic\rq\rq{} occurs, its implementation is relatively simple. To use functionalities provided by this component, the Monitoring Hub uses only one single interface, which can be seen in Figure~\ref{fig:transport_proxy}.
+Although Transport Proxies are components where most of the \lq\lq{}magic\rq\rq{} occurs, their implementation is relatively simple. To use the functionalities provided by this component, the Monitoring Hub uses only a single interface shown in Figure~\ref{fig:transport_proxy}.
 
 \begin{figure}[ht]
   \centering
@@ -65,4 +65,4 @@ Although Transport Proxies are components where most of \lq\lq{}the magic\rq\rq{
   \label{fig:transport_proxy}
 \end{figure} 
 
-Additionally, to make extending of the application with a new transport proxy even more simple, the BaseTransportProxy class was introduced. Its main purpose is to implement most of functionalities that are not aware of underlaying communication mechanisms. Because of that, one should just create a new class that inherits from the BaseTransportProxy and implement only abstract methods that are defined there to add new transport proxy.
+Additionally, to extend the application by new transport proxy even more simple, the \texttt{BaseTransportProxy} class was introduced. Its main purpose is to implement most of functionalities that are not aware of the underlying communication mechanisms. Because of that to add a new transport proxy, one should just create a new class that inherits from the \texttt{BaseTransportProxy} and implement only abstract methods that are defined there.

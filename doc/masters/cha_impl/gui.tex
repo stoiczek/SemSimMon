@@ -1,7 +1,7 @@
 \section{GUI Implementation}
 \subsection{Frameworks}
 
-The most fundamental framework used by GUI is Apache Pivot\footnote{\url{http://pivot.apache.org/}}. As authors say, \lq\lq{}Apache Pivot is an open-source platform for building installable Internet applications (IIAs)\rq\rq{}. It is quite new Apache project, which brings entirely new approach to GUI building in Java. The biggest feature of Pivot is the ability to totally decouple interface description from a programming language. The framework uses XML markup in the form of BXML files to build interfaces. Example of such a file can be found in Figure~\ref{fig:bxml_example}.
+The most fundamental framework used by GUI is Apache Pivot\footnote{\url{http://pivot.apache.org/}}. As authors say, \lq\lq{}Apache Pivot is an open-source platform for building installable Internet applications (IIAs)\rq\rq{}. It is quite a new Apache project, which brings an entirely new approach to GUI building in Java. The biggest feature of Pivot is the ability to totally decouple interface description from a programming language. The framework uses XML markup in the form of BXML files to build interfaces. An example of such a file can be found in Figure~\ref{fig:bxml_example}.
 
 \begin{figure}[ht]
 \centering
@@ -18,19 +18,19 @@ The most fundamental framework used by GUI is Apache Pivot\footnote{\url{http://
 \label{fig:bxml_example}
 \end{figure}
 
-Another great mechanism of Pivot is data binding. Pivot provides own collections, which triggers updates of UI state, on change of its content and vice versa, updating state of view components is automatically applied to underlying data structure. Additionally, it provides means to bind UI items with controller class members. Those features simplify realization of MVC design pattern a lot. All views in GUI component are implemented using BXML and are bound to controllers. What is also worth to mention, Pivot allows to easily internationalizing application, and SemSimMon uses its i18n features - all texts in labels and other UI widgets are internationalized. The default, English localization has been provided.
+Another great mechanism of Pivot is data binding. Pivot provides own collections, which triggers updates of UI state, on change of its content and vice versa, updating the state of view components is automatically applied to an underlying data structure. Additionally, it provides means to bind UI items with controller class members. Those features simplify realization of MVC design pattern a lot. All views in GUI component are implemented using BXML and are bound to controllers. What is also worth to mention, Pivot allows to easily internationalize the application, and SemSimMon uses its i18n features - all texts in labels and other UI widgets are internationalized. The default, English localization has been provided.
 
-Another framework that GUI uses is well known Spring Framework\footnote{\url{http://www.springsource.org}}. Spring integrates all components of this module, to associate controllers with views and model. For that purpose, I use Inversion of Control Container\footnote{\url{http://static.springsource.org/spring/docs/3.0.x/reference/beans.html}}. 
+Another framework that GUI uses is well known Spring Framework\footnote{\url{http://www.springsource.org}}. Spring integrates all components of this module, to associate controllers with views and the model. For this purpose, I use Inversion of Control Container\footnote{\url{http://static.springsource.org/spring/docs/3.0.x/reference/beans.html}}. 
 
 \subsection{Controller infrastructure}
 
-Controllers are most salient in MVC, and thus need significant attention. There are a few core mechanisms in SemSimMon that needs to be understood in order to work with GUI module.
+Controllers are most salient in MVC, and thus need more attention. There are a few core mechanisms in SemSimMon that needs to be understood to enable work with the GUI module.
 
-All controllers inherit from common super class, namely BaseController. This class contains a pivot component (view) that given controller manages, aresource (reference to bxml file) that must be used to read and instantiate view and a i18n resource file. BaseController is responsible for creating view component from resource, and bind all widgets and button actions. Additionally, it defines two abstract methods that can be used for fine-tune of configuration: \textbf{preDeserialize} and \textbf{postBinding}. The preDeserialize callback is called after spring initializes controller, after all dependencies are configured and just before BasicController tries to deserialize view. It can be used to initialize resources needed by deserializer or edit in some other way resource that will be used for parsing components. On the other hand, BasicController calls postBinding directly after completing deserialization of view component. It can be used to initialize UI components, populate some static data etc.
+All controllers inherit from a common super class, namely \texttt{BaseController}. This class contains a pivot component (view) that a given controller manages, aresource (reference to bxml file) that must be used to read and instantiate view and a i18n resource file. \texttt{BaseController} is responsible for creating a view component from resource, and bind all widgets and button actions. Additionally, it defines two abstract methods that can be used for fine-tuning of configuration: \texttt{preDeserialize} and \texttt{postBinding}. The \texttt{preDeserialize} callback is called after Spring initializes the controller, after all dependencies are configured and just before \texttt{BasicController} tries to deserialize a view. It can be used to initialize resources needed by deserializer or edit in some other way resource that will be used for parsing components. On the other hand, \texttt{BasicController} calls \texttt{postBinding} directly after completing the deserialization of view component. It can be used to initialize UI components or populate some static data.
 
-Binding button actions needs to be described in a bit more detail, as it is a crucial mechanism in GUI module. It was created with the assumption that most actions in GUI applications are triggered by the user clicking on button (class PushButton in Apache Pivot). To reduce boilerplate code that needs to be written to handle single action, I have designed ButtonAction mechanism. It is composed of BasicController that binds actions to methods, @ButtonAction annotation that can be used to mark method which should be called on button click, and finally class ReflectionButtonPressListener, which is responsible for processing given method. To handle action request made by user, developer needs to do three things: define push button with appropriate id in view, define class member of type PushButton and the same name as id defined in view and finally declare a method in the controller and mark it using @ButtonAction.
+Binding button actions needs to be described a bit more detailed, as it is a crucial mechanism in GUI module. It was created with an assumption that most actions in GUI applications are triggered by the user clicking on a button (class \texttt{PushButton} in Pivot). To reduce boilerplate code that needs to be written to handle single action, I have designed a \texttt{ButtonAction} mechanism. It is composed of \texttt{BasicController} that binds actions to methods, \texttt{@ButtonAction} annotation that can be used to mark a method which should be called on a button click, and finally class \texttt{ReflectionButtonPressListener}, which is responsible for processing a given method. To handle action request made by the user, developer needs to do three things: define a push button with an appropriate id in view, define a class member of type \texttt{PushButton} and of the same name as the id defined in the view and finally declare a method in the controller and mark it using \texttt{@ButtonAction}.
 
-Example is the best way, to show how MVC works in SemSimMon. Let us assume that we need basic view composed of one panel with a single label and button. On button click, label gets filed with random content. First thing that needs to be done is to define view using BXML. This example view can be found in Figure~\ref{fig:sample_view}.
+Example is the best way, to show how MVC works in the SemSimMon. Let us assume that we need a basic view composed of one panel with a single label and a button. On a button click, the label gets filed with a random content. The first thing that needs to be done is to define a view using BXML. This example view can be found in Figure~\ref{fig:sample_view}.
 
 \begin{figure}[ht]
 \centering
@@ -43,11 +43,11 @@ Example is the best way, to show how MVC works in SemSimMon. Let us assume that 
 \PY{n+na}{buttonData=}\PY{l+s}{"%sample.generate"}\PY{n+nt}{/>}
 \PY{n+nt}{</BoxPane>}
 \end{Verbatim} 
-\caption{Sample view}
+\caption{BXML definition of the example UI component.}
 \label{fig:sample_view}
 \end{figure}
 
-This view consists only three items: box pane, with vertical orientation, and inside of it: label and push button. What should be additionally noticed is that texts of labels and buttons are internationalized. In pivot, i18n keys are stored in JSON files. Figure~\ref{fig:i18n} covers content of example JSON file that is valid Pivot i18n resource. 
+This view consists of only three items: a box pane, with vertical orientation, and inside of it: a label and a push button. What should be additionally noticed is that the texts of labels and buttons are internationalized. In Pivot, i18n keys are stored in JSON\footnote{JSON stands for(JavaScript Object Notation, see \url{http://www.json.org/}} files. Figure~\ref{fig:i18n} covers the content of an example JSON file that is a valid Pivot i18n resource. 
 
 \begin{figure}[ht]
 \centering
@@ -63,9 +63,7 @@ This view consists only three items: box pane, with vertical orientation, and in
 \label{fig:i18n}
 \end{figure}
 
-Next thing to do is to create SampleController. It will contain label and button and 2 handler methods, to show that one button may trigger multiple methods, which can be called either on UI thread (Event Dispatching Thread) or as a background task. Figure~\ref{fig:sample_controller} shows listing of SampleController class.
-
-\pagebreak
+A next thing to do is to create a \texttt{SampleController}. It will contain a label and a button and 2 handler methods, to show that one button may trigger multiple methods, which can be called either on a UI thread (Event Dispatching Thread) or as a background task. Figure~\ref{fig:sample_controller} shows a listing of the \texttt{SampleController} class implementation.
 
 \begin{figure}[ht]
 \centering
@@ -74,16 +72,14 @@ Next thing to do is to create SampleController. It will contain label and button
 \label{fig:sample_controller}
 \end{figure} 
 
-In line 12 of SampleController.java, we can see the class definition. BaseController is a class template and takes class of pivot component as specification parameter. In this case, it is BoxPane. Next noteworthy lines are 15-16 and 18-19. Those lines contain a declaration of UI widgets that will be bound from view. To define that given class member should be bound to given UI widget, it must be marked using @BXML annotation and must have name same as bxml:id property of a widget. This class defines two handlers that a click on generateButton triggers.
+In the line 12 of SampleController.java, we can see a class definition. \texttt{BaseController} is a class template and takes the class of pivot component as a specification parameter. In this case, it is \texttt{BoxPane} class. The Next noteworthy lines are 15-16 and 18-19. These lines contain a declaration of UI widgets that will be bound from the view. In oder to bound to a view\rq{}s UI widget to given controller\rq{}s class attribute, the attribute must be marked using \texttt{@BXML} annotation and must have a name same as the \texttt{bxml:id} property of the widget. This class defines two handlers that a click on \texttt{generateButton} triggers.
 
-\pagebreak
-
-The final step is to associate all items using spring xml configuration. Such a configuration can be found in Figure~\ref{fig:sample_spring}.
+The final step is to associate all items using Spring xml configuration. Such a configuration can be found in Figure~\ref{fig:sample_spring}.
 
 \begin{figure}[ht]
 \centering
 \input{cha_impl/spring} 
-\caption{Listing of sample spring configuration}
+\caption{Listing of a sample Spring configuration}
 \label{fig:sample_spring}
 \end{figure}
 
