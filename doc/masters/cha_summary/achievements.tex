@@ -10,56 +10,55 @@
 
 \label{sec:achievements}
 
-Analysis of achieved results should always be performed in the context of system requirements, defined in Section~\ref{sec:SystemRequirements}. This section describes functional, and nonfunctional requirements which both should be considered here.
+The analysis of the achieved results should always be performed in the context of the system requirements, defined in Section~\ref{sec:SystemRequirements}. This section describes functional, and nonfunctional requirements which both should be considered here.
 
-Analysis of functional requirements realization is relatively straightforward, as they are defined strictly.
-
-Following points covers each defined functional requirement with the degree of implementation:
+The analysis covering how the functional requirements have been realized is relatively straightforward, as they are defined strictly. The following points cover each defined functional requirement with the degree of implementation:
 
 \begin{itemize}
 
 \item {\bf Connect to already running JVM process using JMX extension.}
 
-This item is fully implemented. User can connect and monitor JVM instance, using JMX Transport Proxy. From UI perspective, user can perform this task, by adding new JVM resource using Add resource wizard.
+This item is fully implemented. User can connect to and monitor a JVM instance, using the JMX Transport Proxy. From an UI perspective, user can perform this task, by adding a new JVM resource using the \lq\lq{}Add resource wizard\rq\rq{}.
 
-\item {\bf Aggregate monitored JVM processes into applications and clusters.}
+\item {\bf Group monitored JVM processes into applications and clusters.}
 
-As a part of "add new JVM resource" wizard, user can select application and logical cluster to which monitored JVM should be assigned.
+As part of the \lq\lq{}Add new JVM resource\rq\rq{} wizard, user can select an application and a logical cluster to which the monitored JVM should be assigned.
 
-\item {\bf Connect to already running OCM-G MainSM monitor.}
+\item {\bf Connect to an already running OCM-G MainSM monitor.}
 
-Similar to managing JVM processes, user can manage OCM-G monitored applications using OCMG Transport Proxy. User can perform this task, by adding new OCM-G resource, using appropriate wizard.
+Similar to managing JVM processes, user can manage OCM-G monitored applications using OCMG Transport Proxy. User can perform this task, by adding a new OCM-G resource, using an appropriate wizard.
 
-\item {\bf Extract and list resources of given resource.}
+\item {\bf Extract and list the resources of a given resource.}
 
-This requirement is fully implemented - extraction of resource is automatically performed on resource addition.
+This requirement is fully implemented - the extraction of a resource is automatically performed on resource addition.
 
-\item {\bf Control measuring capabilities of given resource.}
+\item {\bf Control measuring capabilities of a given resource.}
 
-This feature is fully implemented - user can add new measurements of resources in resources context view. In the measurements context view, user can perform the rest of measurement management operations - view, pause, resume and remove measurements.
+This feature is fully implemented - user can add new measurements of resources in the resources context view. In the measurements context view, user can perform the rest of measurement management operations - view, pause, resume and remove measurements.
 
-\item {\bf List values of given resource\rq{}s capabilities at current point of time.}
+\item {\bf List values of given resource capabilities at a given point of time.}
 
-This feature is implemented in resources view - user there can select resource from tree on left, and then refresh capabilities in accordion on the right.
+This feature is implemented in the resources view - user can select there a resource from the resources tree, and then refresh capabilities in the provided pane.
 
 \item {\bf List properties of given resource.}
 
-This feature is also implemented in resources view. The user can also view its static properties after selecting a resource.
+This feature is also implemented in the resources view. The user can also view resource
+s static properties after selecting one.
 
-\item {\bf List all capability values from given, started measurement.}
+\item {\bf List all capability values from a given, started measurement.}
 
-This requirement is implemented. User can view all historical measurement values using measurements context view, after selecting measurement of interest from the list on left.
+This requirement is implemented. User can view all historical measurement values using the measurements context view, after selecting a measurement of interest from the list provided.
 
 \item {\bf Visualize measurement results.}
 
-Visualizations requirement is fully implemented. System provides the user ability to render measurement values, using bar, line, pie and spider web charts.
+The requirement for visualizations is fully implemented. The system provides the user with the ability to render measurement values, using bar, line, pie and spider web charts.
 
 \end{itemize}
 
-Nonfunctional requirements, defined in Section~\ref{subsec:NonFunctionalRequirements}, aren\rq{}t defined so clearly as functional ones; thus, it\rq{}s more difficult to analyze achievements in this context.
+The Nonfunctional requirements, defined in Section~\ref{subsec:NonFunctionalRequirements}, aren\rq{}t defined so clearly as functional ones; thus, it\rq{}s more difficult to analyze the achievements in this context.
 
-IIRegarding it is almost impossible to tell whether reliability, scalability usability and quality of documentation requirements are met, as any clear metrics of those concepts just does not exist. Although it is extremely hard to tell, whether given system is stable or scalable, tests performed, and casual work with application during development proved that those requirements are mostly met. Application does not crash at all; most bugs are fixed and every potential error is handled. Application behaves appropriate up to medium scale (single cluster).
+It is almost impossible to tell whether reliability, scalability usability and quality of documentation requirements are met, as any clear metrics of those concepts just does not exist. Although it is hard to tell, whether a given system is stable or scalable, tests performed, and casual work with the application during development proved that those requirements are mostly met. Application never crashed at all; most bugs are fixed and every potential I/O or any external error is handled.
 
-Usability requirement is most fuzzy one, because it is extremely relative whether given interface is user friendly or not. I can state clearly only that the application interface employs most popular concepts that make modern GUI applications usable. Quality of documentation is also highly subjective, but this Thesis covers every aspect of design and implementation and aims in shortening the learning curve, needed to start working with project.
+The usability requirement is the most fuzzy one, because it is extremely relative whether a given interface is user friendly or not. I can state clearly only that the application interface employs the most popular concepts that make modern GUI applications usable. The quality of documentation is also highly subjective, but the Thesis covers each aspect of design and implementation and aims at shortening the learning curve, needed to start working with the system.
 
-Interoperability requirement, was met entirely - application was tested on all targeted platforms - Linux, Microsoft\textregistered~Windows\textregistered and Mac OS X\textregistered. The same applies to driven by the open-source requirement - all libraries that SemSimMon depends on are released under terms of GPL or LGPL license and are freely available to any developer of open-source applications.
+The interoperability requirement, was met entirely - the application was tested on all targeted platforms - Linux, Microsoft\textregistered~Windows\textregistered and Mac OS X\textregistered. The same applies to the driven by the open-source requirement - all libraries that SemSimMon depends on are released under terms of GPL or LGPL license and are freely available to any developer of open-source applications.

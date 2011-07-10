@@ -7,65 +7,65 @@
 %---------------------------------------------------------------------------
 
 \section{Future work}
-
 \label{sec:ch8_future_work}
 
 \subsection{Potential enhancements}
 
-Although implementation of project claims to be completed, there is also field for future improvements. Suggestions on new features that could potentially improve application functionality as well as some issues that still require some revision can be found in the list below:
+Although the implementation of the project claims to be completed, there is a field for future improvements. Suggestions on new features that could potentially improve the application\rq{}s functionality as well as some issues that still require revision can be found in the the list below:
 
 \begin{itemize}
 
-\item {\bf Add option to use SSH tunnel in connection between GUI and Monitoring Hub Application}
+\item {\bf Add option to use SSH tunnel in connection between GUI and Monitoring Hub Application.}
 
-This will work as an option when starting new Monitoring Hub. It will allow bypassing every firewall configuration, as long as the user can connect to target host, using the SSH protocol. Additionally, it will increase security a bit.
+This will work as an option when starting a new Monitoring Hub. It will allow bypassing each firewall configuration, as long as the user can connect to a target host, using the SSH protocol. Additionally, it will increase the security a bit.
 
-\item {\bf Add ability to monitor long-running tasks or 24/7 systems }
+\item {\bf Add ability to monitor long-running tasks or 24/7 systems.}
 
-In the current release, while designing the system, I was focusing mostly on on-line monitoring. For example, GUI must be connected to Monitoring Hub Application all the time. It would be a terrific feature to be able to start remote monitoring hub, configure all resources and measurements and then detach GUI and let the monitoring hub do it\rq{}s job. After a while or on scheduled basis, user should be able to attach to given monitoring hub and review all measurement results.
+In the current release, while designing the system, I was focusing mostly on on-line monitoring. For example, GUI must be connected to Monitoring Hub Application all the time. It would be a terrific feature to start a remote monitoring hub, configure all resources and measurements and then detach GUI and let the monitoring hub do its job. After a while or on a scheduled basis, user should be able to attach to a given monitoring hub and review all measurement results.
 
-\item {\bf Application state persistence }
+\item {\bf Application state persistence.}
 
-Another feature increasing usability would be to allow the user to save the current state of work. It would increase usability a lot, if the user could save connections to JMX nodes and use this configuration to restart working with system easily.
+Another feature increasing the usability would be to allow the user to save a current state of work. It would increase the usability a lot, if the user could save connections to JMX nodes and use this configuration to resume working with system easily.
 
-\item {\bf Improve the way application uses Semantic Web framework}
+\item {\bf Improve the way the application uses Semantic Web framework}
 
-Current implementation supports OWL only partially. It uses ontology to manage relationships between monitored resources and measurements, but the Java is still responsible for internal storage of resources.
+The current implementation supports OWL only partially. It uses ontology to manage relationships between the monitored resources and measurements, but Java is still responsible for the internal storage of resources.
 
-\item {\bf Java instrumentation}
+\item {\bf Java instrumentation.}
 
-Adding the ability to instrument Java code will increase usability of system in the context of monitoring JVM a lot. At this stage of development, user can find only that there is a problem with application. User must be able to instrument code, to allow tracking of an actual source of the problem.
+Adding the ability to instrument Java code will increase usability of system, in the context of JVM monitoring. At this stage of development, the user can find only that there is a problem with an application. The user must be able to instrument code, to allow the tracking of an actual source of the problem.
 
-\item {\bf Better connections management}
+\item {\bf Better connections management.}
 
-Currently, application provides to the user only basic management of external connections to monitoring hubs. User can add new connection while adding resource, but there is no view for checking all active connections and explicitly connecting or disconnecting from given monitoring hub. At this stage, I think that connections management is a bit too transparent for the end user, thus might be confusing. It will require changes only in GUI subsystem. This item overlaps a bit with adding the ability to monitor long-running tasks.
+Currently, the application provides for the user only a basic management of external connections to monitoring hubs. The user can add a new connection while adding a resource, but there is no view for checking all active connections and explicitly connecting or disconnecting from a given monitoring hub. At this stage, I think that connections management is a bit too transparent for the end user, thus might be confusing. It will require changes only in GUI subsystem. This item overlaps a bit with adding an ability to monitor long-running tasks.
 
-\item{\bf Better functions/methods management}
+\item{\bf Better functions/methods management.}
 
-There should be a view that allows the user to register functions of interest, especially after implementing Java instrumentation. User should be able to define which parts of code should be monitored, to measure invocation count and total time. Currently, system monitors only some default MPI* functions and OCMG Transport Proxy component defines this configuration internally.
+There should be a view that allows the user to register functions of interest, especially after implementing Java instrumentation. User should be able to define which parts of code should be monitored, to measure an invocation count and total time. Currently, the system monitors only some default MPI* functions and the OCMG Transport Proxy component defines this configuration internally.
 
-\item {\bf Some usability enhancements}
+\item {\bf Some usability enhancements.}
 
-After spending some time on working with the application, I have found that some tasks should be eased even more. The most significant enhancement would be to allow the user to perform bulk operations, on multiple resources. I am thinking here mostly about adding multiple measurements of the same type to set of selected resources that have those capabilities.
+After spending some time on working with the application, I have found that some tasks should be eased even more. The most significant enhancement would be to allow the user to perform bulk operations, on multiple resources. I am thinking here mostly about adding multiple measurements of the same type to a set of selected resources that posses these capabilities.
 
 \end{itemize}
 
 \subsection{Extending the application}
 
-One of the main design goals I wanted to achieve was extendibility. The easiest way to extend application is to add another monitoring back end. Because of that, during the development I was focusing on making this process as easy as possible. In order to integrate the system with new monitoring platform, one must just implement a new Transport Proxy module, register it in the Monitoring Hub and apply necessary changes in the GUI module. GUI modifications are related mostly to adding resources of a new type.
+One of the main design goals I wanted to achieve was extendibility. The easiest way to extend an application is to add another monitoring back end. Because of that, during the development I was focusing on making this process as easy as possible. In order to integrate the system with a new monitoring platform, one must just implement a new Transport Proxy module, register it in the Monitoring Hub and apply necessary changes in the GUI module. GUI modifications are related mostly to adding resources of a new type.
 
-Implementation of new Transport Proxy module requires either realization of TransportProxy interface, which Section~\ref{subs:TransportProxyInterface} describes, or extending BaseTransportProxy class, designed to simplify the task even more.
+Implementation of a new Transport Proxy module requires either a realization of \texttt{TransportProxy} interface, which Section~\ref{subs:TransportProxyInterface} describes, or extending \texttt{BaseTransportProxy} class, designed to simplify the task even more.
 
-Registration of new Transport Proxy module in Monitoring Hub is straightforward. To do so, one must:
+The registration of a new Transport Proxy module in Monitoring Hub is straightforward. To do so, one must:
 
 \begin{itemize}
 
-\item Add dependency to new module in pom.xml of Monitoring Hub, Monitoring Hub Application and GUI sub modules.
+\item Add a dependency to new module in \texttt{pom.xml} file of Monitoring Hub, Monitoring Hub Application and GUI submodules.
 
-\item Define spring bean that provides new implementation of Transport Proxy
+\item Define Spring bean that provides a new implementation of Transport Proxy
 
-\item Add this bean to the transportProxiesManager bean defined in semsimmonCoreConfig.xml file, which can be found in Monitoring Hub module.
+\item Add this bean to the transportProxiesManager bean defined in \texttt{semsimmonCoreConfig.xml} file, which can be found in Monitoring Hub module\rq{}s sources.
 
 \end{itemize}
 
-As of changes in GUI it depends on how this new measuring platform works and must be considered carefully. There will be a need to add a new \lq\lq{}Add resource...\rq\rq{} wizard type. Because the rest of the application is built on generic resources and measurements ontology, it should be enough.
+As to changes to GUI, it depends on how this new measuring platform works and must be considered carefully. There will be a need to add a new \lq\lq{}Add resource...\rq\rq{} wizard type. Rest of the application is built on generic resources and measurements ontology, so it should require any changes.
+
