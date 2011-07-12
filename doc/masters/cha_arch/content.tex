@@ -8,13 +8,13 @@
 \label{cha:sys_arch}
 
 \chabstract{
-This chapter focuses on the design aspect of software development. At the beginning, I would like to share the basic principles, that I have been trying to follow while designing the application. The rest of the chapter covers a top-to-bottom analysis of system architecture. First there is a decomposition of top-level components and their interactions (modules). The subsequent sections cover a more detailed analysis and a decomposition of the high-level modules.
+This chapter focuses on the design aspect of the software development. At the beginning, I would like to share the basic principles, that I have been trying to follow while designing the application. The rest of the chapter covers a top-to-bottom analysis of system architecture. First there is a decomposition of top-level components and their interactions (modules). The subsequent sections cover a more detailed analysis and a decomposition of the high-level modules.
 }
 
 \section{Introduction}
 \label{sec:gui}
 
-Design stage is probably the most influential in the whole life cycle of an application. Decisions made during this stage affect the all the following ones. A properly designed architecture of the a system or an application reduces the possibility of pitfalls during the implementation stage. It also allows easier extension, growth of application, as well as better integration with other systems; thus, extends application lifetime.
+Design stage is probably the most influential in the whole life cycle of an application. Decisions made during this stage affect all the following ones. A properly designed architecture of a system or an application reduces the possibility of pitfalls during the implementation stage. It also allows an easier extension, a growth of application, as well as a better integration with other systems; thus, extends the application\rq{}s lifetime.
 
 While designing the application under discussion, I was trying to follow a few, well known, software design principles, like:
 
@@ -26,12 +26,12 @@ principle}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak App
 
 \item {\bf Principle of Least Knowledge (Law of Demeter~-~LoD)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak Each component or module should be responsible for only a specific feature or functionality, or aggregation of cohesive functionality.
 
-\item {\bf Do not repeat yourself (DRY)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak One should only specify an intent in one place. For example, in terms of application design, functionality should be implemented in only one component; the functionality should not be duplicated in any other component.
+\item {\bf Do not repeat yourself (DRY)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak One should only specify an intent in one place. For example, in terms of an application design, functionality should be implemented only in one component; the functionality should not be duplicated in any other component.
 
-\item {\bf Keep It Simple Stupid! (KISS)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak it is a broad principle, but works in software architecture domain quite well. Generally speaking, it states that while designing an application, one should try to avoid creating unnecessarily complex structures.
+\item {\bf Keep It Simple Stupid! (KISS)}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\linebreak it is a broad principle, but works in the software architecture domain quite well. Generally speaking, it states that while designing an application, one should try to avoid creating an unnecessarily complex structures.
 \end{itemize}
 
-In this chapter, I am going to describe the architecture of the proposed system. First, in Section~\ref{sec:arch_decomposition} I will try to distinguish high-level components, describe them roughly and present most critical data flows between them. The subsequent sections (\ref{sec:arch_gui}, \ref{sec:arch_monitoring_hub}, \ref{sec:arch_monitoring_hub_application} , \ref{sec:arch_knowledge}, and \ref{sec:arch_tproxy}) contain a deeper analysis of each high-level component.
+In this chapter, I am going to describe the architecture of the proposed system. First, in Section~\ref{sec:arch_decomposition} I will try to distinguish the high-level components, describe them roughly and present most critical data flows between them. The subsequent sections (\ref{sec:arch_gui}, \ref{sec:arch_monitoring_hub}, \ref{sec:arch_monitoring_hub_application} , \ref{sec:arch_knowledge}, and \ref{sec:arch_tproxy}) contain a deeper analysis of each high-level component.
 
 
 %---------------------------------------------------------------------------

@@ -9,7 +9,7 @@
 
 \label{ssec:kwfgrid}
 
-K-WfGrid, which stands for Knowledge-based Workflow System for Grid Applications (\cite{KWfGrid1, flow-cgw04, wct-kwf-book-07}), is both middleware solution that aims in setting up infrastructure for the future Grid environments and consortium of institutions participating in development of this solution. To solve problems caused by dynamic and complex nature of Grid environments, the consortium adopts approaches envisioned by Semantic Web, agent technologies and Grid communities. As an outcome, K-Wf Grid system assists users in the creation of Grid workflows using rule-based expert system. The system adopts ontological descriptions of the environment and applications.
+K-WfGrid, which stands for Knowledge-based Workflow System for Grid Applications (\cite{KWfGrid1, flow-cgw04, wct-kwf-book-07}), is both a middleware solution that aims at setting up an infrastructure for the future Grid environments and consortium of institutions participating in development of this solution. To solve problems caused by the dynamic and complex nature of Grid environments, the consortium adopted approaches envisioned by Semantic Web, agent technologies and Grid communities. As an outcome, K-Wf Grid system assists users in the creation of Grid workflows using rule-based expert system. The system adopted ontological descriptions of the environment and applications.
 
 The implemented system, is capable of handling the whole life cycle of workflow, which includes:
 
@@ -17,7 +17,7 @@ The implemented system, is capable of handling the whole life cycle of workflow,
 
 \item{semi-automatic composition of application workflow} \item{execution of composed workflow} \item{monitoring performance of execution} \item{analyzing monitoring results} \item{capturing the knowledge contained in this information and tries to {\bf reuse} it in order to construct more efficient, future workflows} \end{itemize}
 
-The main workflow composition functionality is defined as a transformation of a user request document into a solution workflow document in the same data format. The input document must be written using fixed notation - \emph{GWorkflowDL} and may contain some parts of workflow already specified. Parts that are still undefined (called \emph{Unsatisfied Dependency}) contain specification of data that are required at a certain stage of processing. System must find suitable providers of those data in order to generate the whole workflow. Providers, in the form of one or more Grid services are looked up in ontological registry. The workflow is considered to be done, when all unsatisfied dependencies are resolved.
+The main workflow composition functionality is defined as a transformation of a user request document into a solution workflow document in the same data format. The input document must be written using a fixed notation - \emph{GWorkflowDL} and may contain some parts of workflow already specified. Parts that are still undefined (called \emph{Unsatisfied Dependency}) contain specification of data that are required at a certain stage of processing. The system must find suitable providers of those data in order to generate the whole workflow. Providers, in the form of one or more Grid services are looked up in an ontological registry. The workflow is considered to be done, when all the unsatisfied dependencies are resolved.
 
 %---------------------------------------------------------------------------
 
@@ -27,9 +27,9 @@ The main workflow composition functionality is defined as a transformation of a 
 
 OMIS, On-Line Monitoring Interface Specification, is another example of efforts aiming at standardization and interoperability between grid monitoring tools. Work on this project was started in 1995. As an outcome, an interface specification in three versions was created: OMIS 1.0~\cite{OMIS1}, 2.0~\cite{OMIS2} and 2.1.
 
-The main purpose of this project is to define an interface that will allow communication between development tools (e.g. debuggers, performance analyzers or load balancers) and parallel programs running in distributed environment. The researchers had three main goals to achieve: to define an interface that will be extensive and complete to allow usage in existing tools, to allow extendibility and usage in tools not known yet and finally to allow high adaptability to current and future programming paradigms (shared memory, remote procedure call or client/server).
+The main purpose of this project is to define an interface that will allow communication between development tools (e.g. debuggers, performance analyzers or load balancers) and parallel programs running in a distributed environment. The researchers had three main goals to achieve: to define an interface that will be extensive and complete to allow usage in existing tools, to allow extendibility and usage in tools not known yet and finally to allow high adaptability to current and future programming paradigms (shared memory, remote procedure call or client/server).
 
-Authors introduced two sub-interfaces to achieve those goals. The first one is for communication between tool and program (monitor/program-interface). The second one lies between tool and monitors (tool/monitor-interface) and has additional extension points. The illustration of this model can be found in Figure~\ref{fig:omis}.
+The authors introduced two sub-interfaces to achieve those goals. The first one is for communication between the tool and the program (monitor/program-interface). The second one lies between the tool and monitors (tool/monitor-interface) and has additional extension points. An illustration of this model can be found in Figure~\ref{fig:omis}.
 
 \begin{figure}[ht]
 
@@ -39,7 +39,7 @@ Authors introduced two sub-interfaces to achieve those goals. The first one is f
 
 \end{figure}
 
-The OMIS standard defines two kinds of monitoring request - unconditional and conditional ones. Unconditional services specify a set of actions to be performed immediately. It can be interpreted as querying a monitoring mode, where results are obtained instantly and unconditionally. Requests of this type are composed just of one and more information or manipulation services. It creates a request/response communication model. In the second mode, requests contain an event service and a set of actions. In this mode, request tells the monitoring system to execute actions substantially. It creates a publish/subscribe communication model.
+The OMIS standard defines two kinds of monitoring request - unconditional and conditional ones. Unconditional services specify a set of actions to be performed immediately. It can be interpreted as querying a monitoring mode, where results are obtained instantly and unconditionally. Requests of this type are composed just of one and more information or manipulation services. It creates a request/response communication model. In the second mode, requests contain an event service and a set of actions. In this mode, a request tells the monitoring system to execute actions substantially. It creates a publish/subscribe communication model.
 
 \subsection{GMA}
 

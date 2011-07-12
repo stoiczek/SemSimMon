@@ -5,20 +5,20 @@
 \section{Transport Proxy component}
 \label{sec:arch_tproxy}
 
-Transport proxies are components responsible for communication with external components that perform actual, low-level analysis of processing tree and measurements. Each proxy implementation specializes a generic, ontology based concept into item specific to a platform or measuring system. Monitoring Hub component uses all transport proxies implementations, which are distributed in the form of a library (Java JAR).
+Transport proxies are components responsible for a communication with external components that perform an actual, low-level analysis of the processing tree and measurements. Each proxy implementation specializes a generic, ontology based concept into item specific to the platform or measuring system. The Monitoring Hub component uses all the transport proxy implementations, which are distributed in the form of a library (Java JAR).
 
-Because all proxies have rather a straight purpose, further decomposition of those components will not be provided. In the following subsection, I would like to cover the overall design principles of two transport proxies provided with the initial implementation of the SemSimMon system.
+Because all proxies have rather a straight purpose, further decomposition of these components will not be provided. In the following subsection, I would like to cover the overall design principles of two transport proxies provided with the initial implementation of the SemSimMon system.
 
 \subsection{JMX Transport Proxy}
 
-Implementation of transport proxy component responsible for integration with Java JMX consists of one root component - \texttt{JmxTransportProxy}, several \texttt{DiscoveryAgent} and \texttt{CapabilityProbe} components. The \texttt{JmxTransportProxy} component implements the interface used by other high-level system modules and performs all operations, delegating requests to appropriate probes or discovery agents.
+Implementation of the transport proxy component responsible for integration with the Java JMX consists of one root component - the \texttt{JmxTransportProxy}, several \texttt{DiscoveryAgent} and \texttt{CapabilityProbe} components. The \texttt{JmxTransportProxy} component implements the interface used by other high-level system modules and performs all its operations, delegating requests to the appropriate probes or discovery agents.
 
-\texttt{DiscoveryAgent} implementations are responsible for fetching all sub resources of a given resource. Each agent can be interpreted as a mapping between an ontology-based, generic concept and an item specific to JVM. 
+\texttt{DiscoveryAgent} implementations are responsible for fetching all sub resources of a given resource. Each agent can be interpreted as a mapping between an ontology-based, generic concept and an item specific to the JVM. 
 
-If \texttt{DiscoveryAgent} can be seen as a mapping between a resource and a JMX-specific entity, then \texttt{CapabilityProbe} should be interpreted as a mapping between a generic capability described in an ontology language and a JMX feature. The only responsibility of \texttt{CapabilityProbe} is to fetch the value of capability that it can measure using a given resource as an input.
+If \texttt{DiscoveryAgent} can be seen as a mapping between a resource and a JMX-specific entity, then the \texttt{CapabilityProbe} should be interpreted as a mapping between a generic capability described in an ontology language and a JMX feature. The only responsibility of each \texttt{CapabilityProbe} is to fetch the value of capability that it can measure, using a given resource as an input.
 
-The \texttt{JmxTransportProxy} component maintains maps of discovery agents and capability probes to fulfill its duties. In both cases the map associates ontology URL of given a concept to an explicit probe or agent. Additionally, it is responsible for setting up and maintaining a connection to JVMs.
+The \texttt{JmxTransportProxy} component maintains maps of discovery agents and capability probes to fulfill its duties. In both cases the map associates an ontology URL of a given concept to an explicit probe or agent. Additionally, it is responsible for setting up and maintaining  connections to JVMs.
 
 \subsection{OCM-G Transport Proxy}
 
-The OCM-G Transport Proxy component integrates the SemSimMon with a distributed monitoring system compliant with OMIS interface specification - OCM-G. This implementation will use OMIS Java bindings developed under OCM-G project. The design of this component is similar to the JMX transport proxy - there will be one \texttt{OcmgTransportProxy} component, responsible for maintaining connections, associations, and several probes and discovery agents.
+The OCM-G Transport Proxy component integrates the SemSimMon with a distributed monitoring system compliant with the OMIS interface specification - the OCM-G. This implementation will use OMIS Java bindings developed under the OCM-G project. The design of this component is similar to the JMX transport proxy - there will be one \texttt{OcmgTransportProxy} component, responsible for maintaining connections, associations, and several probes and discovery agents.

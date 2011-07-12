@@ -7,11 +7,11 @@
 \subsection{Installation}
 \label{sec:ch7_working_with}
 
-Within this section, I will try to provide the end-user with initial knowledge that is necessary to use the application. It covers only basics here, like the system deliverable structure, basic installation guideline and requirements.
+Within this section, I will try to provide the end-user with an initial knowledge that is necessary to use the application. It covers only basics here, like the system deliverable structure, basic installation guideline and requirements.
 
-The main and only one deliverable, containing the fully-functional system is a package built from GUI submodule. The pom file (maven configuration file) of this component defines dependencies to all other components that need to be obtained in order to use the application. The application package comes in  form of a zip archive or a gzipped tarball.
+The main and only one deliverable, containing the fully-functional system is a package built from the GUI module. A pom file (maven configuration file) of this component defines dependencies to all other components that need to be obtained in order to use the application. The application package comes in  form of a zip archive or a gzipped tarball.
 
-To build the application, one should just issue {\bf mvn package} command, using any command line environment (bash, csh, and cmd.exe) from the project root - SemSimMon directory. As a result, the application bundle can be found in directory {\bf SemSimMon/gui/target}.
+To build the application, one should just issue the {\bf mvn package} command, using any command line environment (bash, csh, and cmd.exe) from the project root - SemSimMon directory. As a result, the application bundle can be found in the directory {\bf SemSimMon/gui/target}.
 
 The Application bundle contains the following items:
 
@@ -19,25 +19,25 @@ The Application bundle contains the following items:
 
 \item {\bf lib} directory containing all Java binaries. It includes libraries with SemSimMon components as well as their dependencies.
 
-\item {\bf resources} directory containing other resources. Currently, within this directory, there is only a package with Monitoring Hub Application component - {\bf mon-hub-app.tar.gz} archive.
+\item {\bf resources} directory containing other resources. Currently, within this directory, there is only a package with the Monitoring Hub Application component - {\bf mon-hub-app.tar.gz} archive.
 
 \item {\bf semsimmon-gui.bat} and {\bf semsimmon-gui.sh} scripts. These scripts should be used to launch the application 
 
 \end{itemize} 
 
-In order to install the application, one needs just to extract the above archive to a desired directory. Additionally, at least at the moment, startup scripts do not bother about finding a Java executable, so the user must have Java Runtime Environment binaries available from PATH system variable. To start GUI application, the user needs to navigate to the installation directory, and simply launch an appropriate script.
+In order to install the application, one needs just to extract the above archive to a desired directory. Additionally, at least at the moment, startup scripts do not bother about finding a Java executable, so the user must have Java Runtime Environment binaries available from the PATH system variable. To start the GUI application, the user needs to navigate to the installation directory, and simply launch an appropriate script.
 
-The GUI module internally uses the mon-hub-app.tar.gz package to deploy the Monitoring Hub Application into a desired host automatically. Because of that, if a user removes the archive, automatic deployment will simply fail. Additionally, user may manually deploy Monitoring Hub. To do so, one must just send a package to the desired host, unpack it into a selected directory, and start by invoking script {\bf monhub-app.sh} or {\bf monhub-app.bat} that can be found inside of the package.
+The GUI module internally uses the mon-hub-app.tar.gz package to deploy the Monitoring Hub Application into a desired host automatically. Because of that, if the user removes the archive, automatic deployment will simply fail. Additionally, the user may manually deploy the Monitoring Hub Application. To do so, one must just send the package to the desired host, unpack it into a selected directory, and start it, by invoking  {\bf monhub-app.sh} or {\bf monhub-app.bat} script that can be found inside of the package.
 
-The bash version of the script takes two parameters as an input - the first one is action, and can be either \lq{}start\rq{} or \lq{}stop\rq{}. \lq{}Start\rq{} will just launch this component in the background. \lq{}Stop\rq{} will terminate the background process started previously. Additionally, when starting a hub, one must define which interface to use, when listening to GUI connections. It must be given as the second parameter, if the first one is \lq{}start\rq{} and should be either an IP address or a DNS alias.
+The bash version of the script takes two parameters as an input. The first one is action, and can be either \lq{}start\rq{} or \lq{}stop\rq{}. \lq{}Start\rq{} will just launch this component in the background. \lq{}Stop\rq{} will terminate the background process started previously. Additionally, when starting a hub, one must define which network interface to use, when listening to GUI connections. It must be given as the second parameter and should be either an IP address or a DNS alias.
 
 Because Windows does not support starting background tasks in cmd.exe, the startup script on this platform takes just one parameter, the listening interface. Proper values are the same as in the bash version - either an IP address or a DNS name.
 
 \subsection{User guide}
 
-Although the application aims to be easy to use and self-explanatory, having basic use cases described in the form of set of steps to perform a given action is helpful for the end-user. Within this section, I will describe the most notable uses cases. I will start with the steps needed to start working with the application - attach to a running JVM process and to the distributed application, monitored wiht OCM-G, by adding appropriate resources. Then I will cover steps needed to create a measurement and visualizations. All steps listed below, assume that the GUI module is already started.
+Although the application aims to be easy to use and self-explanatory, having basic use cases described in the form of set of steps to perform a given action is helpful for the end-user. Within this section, I will describe the most notable uses cases. I will start with the steps needed to start working with the application - attach to a running JVM process and to the distributed application, monitored with the OCM-G, by adding appropriate resources. Then I will cover steps needed to create a measurement and visualizations. All steps listed below, assume that the GUI module is already started.
 
-In order to start monitoring JVM application, one should do as follows:
+In order to start monitoring a JVM application, one should do as follows:
 
 \begin{enumerate}
 
@@ -59,7 +59,7 @@ Starting the monitoring of an C/C++ application monitored by OCM-G is  similar. 
 
 \item Click on the \lq\lq{}Add Resource\rq\rq{} button list.
 
-\item From drop down menu, select the \lq\lq{}Add OCMG Resource\rq\rq{} button.
+\item From the drop down menu, select the \lq\lq{}Add OCMG Resource\rq\rq{} button.
 
 \item In the first screen of \lq\lq{}Add JMX Resources\rq\rq{} wizard, use default settings, and just click the \lq\lq{}Next >>\rq\rq{} button.
 
@@ -95,7 +95,7 @@ The last most significant feature is a visualization. In order to start a visual
 
 \item Open the visualization settings pane, by hovering the mouse over the right side of visualization (the one marked with four \lq\lq{}<\rq\rq{} marks).
 
-\item Open the \lq\lq{}Add Measurement\rq\rq{} dialog by clicking the \lq\lq{}Add\rq\rq{} button in measurements section of configuration pane.
+\item Open the \lq\lq{}Add Measurement\rq\rq{} dialog by clicking the \lq\lq{}Add\rq\rq{} button in the measurements section of configuration pane.
 
 \item In this dialog, select a measurement by clicking its label on the list provided and click the \lq\lq{}OK\rq\rq{} button, which finishes this action.
 

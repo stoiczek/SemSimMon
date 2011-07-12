@@ -6,23 +6,23 @@
 \section{Introduction}
 \label{sec:RequirementsIntroduction}
 
-In order to perform an accurate requirements analysis, one should first try to evaluate objectives of the project. Section~ref{ch1:Objectives} states that system to be implemented should be easy-to-use, able to operate with applications written in multiple programming languages and a variety of deployment sizes of monitored applications. In following paragraphs, I would like to evaluate those objectives a bit more to prepare solid base for the requirements analysis.
+In order to perform an accurate requirements analysis, one should first try to evaluate objectives of the project. Section~\ref{ch1:Objectives} states that the system to be implemented should be easy-to-use, able to handle applications written in multiple programming languages and a variety of deployment sizes of monitored applications. In the following paragraphs, I would like to evaluate these objectives a bit more detailed to prepare a solid base for the requirements analysis.
 
-I would like to consider an ability to operate with applications written in multiple languages at the beginning. The first question that emerges here is: which languages should the application operate with? My personal experience and statistics found on the Internet\footnote{I am considering services like \url{http://langpop.com/} and \url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}.} shows that the C/C++ and the Java programming languages are the most popular nowadays. The next question that should be answered is: should the created system be responsible for fetching the performance data? Is there maybe an existing facility that allows or easies this task? I have decided to use aid of the Java JMX facilities to monitor JVM applications and the OCM-G for applications written in the C/C++, after roughly analyzing existing, similar tools. What is also worth noticing, usage of these tools will also allow to solve the problem of different deployments sizes easily, as both these systems are responsible for most of the difficult tasks.
+I would like to consider an ability to operate with applications written in multiple languages at the beginning. The first question that arises here is: which languages should the application operate with? My personal experience and statistics found on the Internet\footnote{I am considering services like \url{http://langpop.com/} and \url{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}.} shows that the C/C++ and the Java programming languages are the most popular nowadays. The next question that should be answered is: should the created system be responsible for fetching the performance data? Is there maybe an existing facility that allows or facilitates this task? I have decided to make use of the Java JMX facilities to monitor JVM applications and the OCM-G for applications written in the C/C++, after analyzing the relevant domain. What is also worth noticing, the use of these tools will also allow to solve the problem of different deployments sizes easily, as both these systems are responsible for most of the difficult tasks.
 
-The next objective to consider is ease-of-use. I have decided that semantic approach will be a key feature here. Application will use a common, shared semantics that will be used to map all platform-specific entities into abstract concepts managed by ontologies. The user will also be able to change the ontology that the system uses, in order to extend the usage of the application. It will allow fine-tune of the application, to satisfy the user\rq{}s need. Additionally, this approach will also simplify a variety of scales problem, as regardless of size of the monitored application, common concepts will be used to represent application\rq{}s resources.
+The next objective to consider is ease-of-use. I have decided that semantic approach will be a key feature here. The application will use a common, shared semantics that will be used to map all platform-specific entities into abstract concepts managed by ontologies. The user will also be able to change the ontology that the system uses, in order to extend the usability of the application. It will enable fine-tuning of the application, to satisfy the user\rq{}s need to for example drop resources out-of-interest from the resources tree. Additionally, this approach will also simplify addressing the problem of a variety of scales problem, i.e. regardless of the size of the monitored application, some common concepts will be used to represent application\rq{}s resources.
 
 \section{System Requirements}
 \label{sec:SystemRequirements}
 
-This section contains requirements that SemSimMon, as a product must meet. The catalogue of requirements and their description is divided into two categories, namely functional and non-functional requirements. The main purpose of a functional requirements analysis is to key out roughly what the user can do with an application, to describe its functionality. On the other hand, nonfunctional requirements add constraints to functional ones. The nonfunctional requirements analysis defines conditions under which the application must function, specify properties the software must exhibit~\cite{Windle:SoftReq}.
+This section contains the requirements that SemSimMon, as a product must meet. The catalogue of requirements and their description is divided into two categories, namely functional and non-functional requirements. The main purpose of a functional requirements analysis is to key out roughly what the user can do with an application, to describe its functionality. On the other hand, nonfunctional requirements add constraints to the functional ones. The nonfunctional requirements analysis defines conditions under which the application must function, specify properties the software must exhibit~\cite{Windle:SoftReq}.
 
 Requirement levels described in the following Requirements specifications using terms such as ``must'', ``must not'', ``should/shall'' and ``should/shall not'' are to be read with reference to RFC 2119\cite{rfc:2119}.
 
 \subsection{Functional Requirements}
 \label{subsec:FunctionalRequirements}
 
-Application provides to the end user following functionalities: 
+The Application facility provides to the end user following functionalities: 
 
 \begin{itemize}
 
@@ -38,11 +38,11 @@ User must be able to analyze the performance of applications being monitored by 
 \item {\bf Extract and list sub-resources of a given resource.}
 The facility should be able to provide discovery mechanisms of the monitored resources and visualize them.
 
-\item {\bf Control measuring capabilities of given resource.}
+\item {\bf Control measuring capabilities of a given resource.}
 The facility must provide a capability to start, stop, pause and resume the monitoring of a given resource's capability. This includes also a definition of value gathering interval. Additionally user should be able to configure and update parameters of measurement. 
 
 \item {\bf List values of given resource's capabilities at a given point of time.}
-Per user request, the facility should return a value of given capability (or multiple capabilities at once) at a given moment of time.
+Per user request, the facility should return a value of a given capability (or multiple capabilities at once) at a given moment of time.
 
 \item {\bf List all capability values from a given, launched measurement.}
 After starting a measurement the user should be able to view all its values since start. Each value should be displayed with a time stamp pointing to the exact moment when the measurement was taken. Additionally, a display that will show those values must be able to self-refresh on-line in case of pending measurements.
@@ -51,7 +51,7 @@ After starting a measurement the user should be able to view all its values sinc
 The user must be able to select a measurement and plot results on a graph. User should be able to choose a graph from a set of types. Each graph should be able to render results from multiple measurements. Plots should be updated on-line with new values of pending measurements.
 
 \item {\bf List properties of a given resource.}
-The user should be able view all static meta-data of a given, selected, resource. By static meta-data I mean attributes of the resource that do not change in time, like: host name, OS version, JVM version, etc.
+The user should be able view all static meta-data of a given, selected, resource. By static meta-data I mean the attributes of a resource that do not change in time, like: host name, OS version, JVM version, etc.
 
 \item {\bf Change ontology}
 The user should be able to change the ontology that the system internally uses for building a resource tree or arranges measurements.

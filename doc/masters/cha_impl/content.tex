@@ -6,15 +6,15 @@
 \label{cha:implementation}
 
 \chabstract{
-The reader may find rough details of a SemSimMon application implementation within this chapter. I do not intend to cover the source code in detail, instead I would like to describe most critical interfaces, technologies that were employed during implementation and will try to bring some light on a source code structure. The main purpose of this chapter is to lower the learning curve, for other developers who will further evolve the project.
+The reader may find rough details of a SemSimMon application implementation within this chapter. I do not intend to cover the source code in detail, instead I would like to describe most critical interfaces, technologies that were employed during the implementation and will try to bring some light on a source code structure. The main purpose of this chapter is to lower the learning curve, for other developers who will further evolve the project.
 }
 
 
 \section{Introduction}
 
-Each and every component of SemSimMon system was implemented using Java programming language. The decision to use this technology is quite obvious, after even a brief analysis of requirements that the system must meet. Java is the most mature, cross platform programming language, so during development there is no need to worry about platform-specific issues, as it is part of Java Virtual Machine vendor responsibility. Additionally, one of utmost requirements is to monitor processes running on the JVM, using the JMX protocol, which forces the usage of Java. The second communication requirement, interactions with OMIS compliant tools, can be easily achieved using Java bindings for OCM-G platform\footnote{\url{http://grid.cyfronet.pl/ocmg/japi.html}}.
+Each and every component of the SemSimMon system was implemented using Java programming language. The decision to use this technology is quite obvious, after even a brief analysis of requirements that the system must meet. Java is the most mature, cross platform programming language, so during the development there is no need to worry about platform-specific issues, as it is part of Java Virtual Machine vendor responsibility. Additionally, one of utmost requirements is to monitor processes running on the JVM, using the JMX protocol, which forces the use of Java. The second communication requirement, interactions with OMIS compliant tools, can be easily achieved using Java bindings for OCM-G platform\footnote{\url{http://grid.cyfronet.pl/ocmg/japi.html}}.
 
-Although build process is not directly part of implementation, understanding this process is crucial for someone who would like to work with the project. The SemSimMon uses the Apache Maven\footnote{\url{http://maven.apache.org/}} as a build manager. Maven recently became a de facto standard in helping managing Java based projects. The Project configuration uses Maven's aggregation facility to ease the dependencies and configuration management. The project structure contains following maven modules: 
+Although a build process is not directly part of an implementation, understanding this process is crucial for someone who would like to work with the project. SemSimMon uses the Apache Maven\footnote{\url{http://maven.apache.org/}} as a build manager. Maven recently became a de facto standard in supporting Java-based projects. The Project configuration uses the Maven's aggregation facility to ease the dependencies and configuration management. The project structure contains the following Maven modules: 
 
 \begin{itemize}
 \item \texttt{pl.edu.agh.semsimmon:semsimmon} - root module
@@ -30,9 +30,9 @@ Although build process is not directly part of implementation, understanding thi
 
 \section{Common frameworks}
 
-Using Java as the main implementation technology has another significant implication - wide usage and uncounted amount of open source libraries that can simplify development.
+Using Java as the main implementation technology has another significant implication - a wide usage and an uncounted amount of open source libraries that can simplify the development.
 
-There are two areas of implementation that all components share, namely logging and testing. As a logging framework, the SemSimMon uses combined slf4j\footnote{\url{http://www.slf4j.org}} and log4j\footnote{\url{http://logging.apache.org/log4j}} libraries. Apache Log4j is probably the most widely used logging framework for Java and has low performance impact and extensive configuration options. Slf4j stands for Simple Logging Facade for Java. Its main purpose is to simplify logging interface even more and decouple code from the logging framework used. This is quite noteworthy, as logging invocations tends to spread over code, which makes any change in a core logging facility quite a challenging task. With slf4j changing a logging framework requires only change in configuration code.
+There are two areas of implementation that all components share, namely logging and testing. As a logging framework, the SemSimMon uses combined slf4j\footnote{\url{http://www.slf4j.org}} and log4j\footnote{\url{http://logging.apache.org/log4j}} libraries. Apache Log4j is probably the most widely used logging framework for Java and has a low performance impact and an extensive configuration options. Slf4j stands for Simple Logging Facade for Java. Its main purpose is to simplify the logging interface even more and decouple the code from the logging framework used. This is quite noteworthy, as logging invocations tends to spread over the code, which makes any change in a core logging facility quite a challenging task. With slf4j changing a logging framework requires only change in the configuration code.
 
 As a testing framework, SemSimMon uses 2 libraries: TestNG\footnote{\url{http://testng.org/doc/index.html}} and mockito\footnote{\url{http://mockito.org/}}. TestNG provides test runners and means to implement test cases. On the other hand, mockito is an excellent library for implementing unit tests - it provides a facility for creating easy to use mock objects, which are essential in Test Driven Development.
 

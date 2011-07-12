@@ -8,7 +8,7 @@
 
 In 2001 Tim Berners-Lee, inventor of the World Wide Web and director of World Wide Web Consortium, in his article published in Scientific American~\cite{berneslee:semanticWeb} introduced the term Semantic Web. The original idea behind this concept was to change the way how WWW works, from \lq\lq{}web of documents\rq\rq{} towards \lq\lq{}web of data\rq\rq{}. The new web will allow machines to understand the meaning (\emph{semantic}) of information found on the Web. Such an approach will allow developers to create automated agents. They will be able to that can access Web resources in more intelligent ways and thus perform more complex tasks on user\rq{}s behalf.
 
-From a practical point of view, semantic web is all about two things. First, there is a need to define common formats that allow integration and combination of data provided by different, diverse sources. The second key thing is language that can record how the data relates to real-world entities.
+From a practical point of view, semantic web is all about two things. First, there is a need to define common formats that allow integration and combination of data provided by different, diverse sources. The second key thing is a language that can record how the data relates to real-world entities.
 
 Realization of this idea is currently maintained by Semantic Web Activity\footnote{\url{http://www.w3.org/2001/sw}} organized within W3C boundaries. This activity with a set of established working groups is responsible for defining technology standards that must be employed in order to make the Semantic Web operational. Currently, there are following standards defined RDF, OWL, SPARQL, RDFa, SKOS, RDFS, GRDDL, POWDER, RIF, and SAWSDL. Figure~\ref{fig:sem_web_layers} depicts Semantic Web\rq{}s \lq\lq{}Layer Cake\rq\rq{}, layers of technologies that set up the concept. It contains also layers that the user must provide to create the final product. Semantic Web responsibility is all above XML (or URI/IRI) and below Unifying Logic components.
 
@@ -19,17 +19,17 @@ Realization of this idea is currently maintained by Semantic Web Activity\footno
 	\label{fig:sem_web_layers}
 \end{figure}
 
-In following subsections, I would like to describe roughly the most crucial (in the context of this work) standards from those mentioned above.
+In the following subsections, I would like to describe roughly the most crucial (in the context of this work) standards from those mentioned above.
 
 \subsection{RDF}
 
-RDF stands for Resource Description Framework (\cite{rdfPrimer:2004}) and is a standard model for data interchange on the Web. The main idea behind RDF is to make statements about resources. RDF extends the linking structure of the WWW, by adding usage of URIs to name the relationship between entities together with two ends of the link, creating so called \emph{triples} or subject-predicate-object expressions. In this case, subject denotes the resource, predicate denotes traits or aspects of the resource and expresses a relationship between the subject and the object. With this model standard allows mixing, exposition and sharing of structured and semi-structured data. This linking structure forms a directed, labeled graph, where edges define a named link between two resources, represented by the graph nodes. Visualization of such a graph forms the easiest possible mental model for RDF and is often used in easy-to-understand visual explanations.
+RDF stands for Resource Description Framework (\cite{rdfPrimer:2004}) and is a standard model for data interchange on the Web. The main idea behind RDF is to make statements about resources. RDF extends the linking structure of the WWW, by adding usage of URIs to name the relationship between entities together with two ends of the link, creating so called \emph{triples} or subject-predicate-object expressions. In this case, subject denotes the resource, predicate denotes traits or aspects of the resource and expresses a relationship between the subject and the object. With this model, the standard allows mixing, exposition and sharing of structured and semi-structured data. This linking structure forms a directed, labeled graph, where edges define a named link between two resources, represented by the graph nodes. Visualization of such a graph forms the easiest possible mental model for RDF and is often used in easy-to-understand visual explanations.
 
 In order to make this a bit clearer, let us consider the following, example statement:
 
 \lq\lq{}There is a person called John, whose full name is John Webber, who is British, whose e-mail address is john@agh.edu.pl and is single.\rq\rq{}
 
-We would like to represent it as a RDF graph now. The illustration of such a graph can be found in Figure~\ref{fig:sample_rdf}.
+We would like to represent it as a RDF graph now. An illustration of such a graph can be found in Figure~\ref{fig:sample_rdf}.
 
 \begin{figure}[ht]
 	\centering

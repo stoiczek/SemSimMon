@@ -11,21 +11,21 @@
 
 \subsection{Potential enhancements}
 
-Although the implementation of the project claims to be completed, there is a field for future improvements. Suggestions on new features that could potentially improve the application\rq{}s functionality as well as some issues that still require revision can be found in the the list below:
+Although the implementation of the project claims to be completed, there is a field for future improvements. Some suggestions on new features that could potentially improve the application\rq{}s functionality as well as some issues that still require revision can be found in the the list below:
 
 \begin{itemize}
 
-\item {\bf Add option to use SSH tunnel in connection between GUI and Monitoring Hub Application.}
+\item {\bf Add an option to use SSH tunnel in connection between GUI and Monitoring Hub Application.}
 
-This will work as an option when starting a new Monitoring Hub. It will allow bypassing each firewall configuration, as long as the user can connect to a target host, using the SSH protocol. Additionally, it will increase the security a bit.
+This will work as an option when starting a new Monitoring Hub. It will allow bypassing each firewall configuration, as long as the user can connect to a target host, using the SSH protocol. Additionally, it will increase a security a bit.
 
-\item {\bf Add ability to monitor long-running tasks or 24/7 systems.}
+\item {\bf Add an ability to monitor long-running tasks or 24/7 systems.}
 
-In the current release, while designing the system, I was focusing mostly on on-line monitoring. For example, GUI must be connected to Monitoring Hub Application all the time. It would be a terrific feature to start a remote monitoring hub, configure all resources and measurements and then detach GUI and let the monitoring hub do its job. After a while or on a scheduled basis, user should be able to attach to a given monitoring hub and review all measurement results.
+In the current release, while designing the system, I was focusing mostly on on-line monitoring. For example, GUI must be connected to Monitoring Hub Application all the time. It would be a terrific feature to start a remote monitoring hub, configure all resources and measurements and then detach GUI and let the monitoring hub do its job. After a while or on a scheduled basis, the user should be able to attach to a given monitoring hub and review all measurement results.
 
 \item {\bf Application state persistence.}
 
-Another feature increasing the usability would be to allow the user to save a current state of work. It would increase the usability a lot, if the user could save connections to JMX nodes and use this configuration to resume working with system easily.
+Another feature increasing the usability would be to allow the user to save a current state of work. It would increase the usability a lot, if the user could save connections to JMX nodes and use this configuration to resume working with the system.
 
 \item {\bf Improve the way the application uses Semantic Web framework}
 
@@ -45,7 +45,7 @@ There should be a view that allows the user to register functions of interest, e
 
 \item {\bf Some usability enhancements.}
 
-After spending some time on working with the application, I have found that some tasks should be eased even more. The most significant enhancement would be to allow the user to perform bulk operations, on multiple resources. I am thinking here mostly about adding multiple measurements of the same type to a set of selected resources that posses these capabilities.
+After spending some time on working with the application, I have found that some tasks should be eased even more. The most significant enhancement would be to allow the user to perform bulk operations, on multiple resources. I am thinking here mostly about adding multiple measurements of the same type to a set of selected resources that possess these capabilities.
 
 \end{itemize}
 
@@ -53,7 +53,7 @@ After spending some time on working with the application, I have found that some
 
 One of the main design goals I wanted to achieve was extendibility. The easiest way to extend an application is to add another monitoring back end. Because of that, during the development I was focusing on making this process as easy as possible. In order to integrate the system with a new monitoring platform, one must just implement a new Transport Proxy module, register it in the Monitoring Hub and apply necessary changes in the GUI module. GUI modifications are related mostly to adding resources of a new type.
 
-Implementation of a new Transport Proxy module requires either a realization of \texttt{TransportProxy} interface, which Section~\ref{subs:TransportProxyInterface} describes, or extending \texttt{BaseTransportProxy} class, designed to simplify the task even more.
+Implementation of a new Transport Proxy module requires either a realization of the \texttt{TransportProxy} interface, described in Section~\ref{subs:TransportProxyInterface}, or extending the \texttt{BaseTransportProxy} class, designed to simplify the task even more.
 
 The registration of a new Transport Proxy module in Monitoring Hub is straightforward. To do so, one must:
 
@@ -61,11 +61,11 @@ The registration of a new Transport Proxy module in Monitoring Hub is straightfo
 
 \item Add a dependency to new module in \texttt{pom.xml} file of Monitoring Hub, Monitoring Hub Application and GUI submodules.
 
-\item Define Spring bean that provides a new implementation of Transport Proxy
+\item Define a Spring bean that provides a new implementation of Transport Proxy
 
 \item Add this bean to the transportProxiesManager bean defined in \texttt{semsimmonCoreConfig.xml} file, which can be found in Monitoring Hub module\rq{}s sources.
 
 \end{itemize}
 
-As to changes to GUI, it depends on how this new measuring platform works and must be considered carefully. There will be a need to add a new \lq\lq{}Add resource...\rq\rq{} wizard type. Rest of the application is built on generic resources and measurements ontology, so it should require any changes.
+As to changes to GUI, it depends on how this new measurement platform works and must be considered carefully. There will be a need to add a new \lq\lq{}Add resource...\rq\rq{} wizard type. The rest of the application is built on generic resources and measurements ontology, so it should not require any changes.
 

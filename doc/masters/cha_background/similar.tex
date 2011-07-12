@@ -9,9 +9,9 @@
 
 The perfSONAR (\cite{perfSonar1,perfSonar2,perfSonar3}) is an infrastructure for network performance monitoring. It aims at making the process of solving end-to-end performance problems on paths crossing several networks easier. It is composed of a set of services delivering performance measurements in a federated environment. This approach allows to characterize the project as a middle ware service that is used by performance measuring tools and diagnostic or visualization applications. The perfSonar layer tries to generate and exchange measurement data between networks. It performs communication using well defined protocols. The architecture of perfSONAR is service oriented, which means that the set of elementary functions (\emph{services}) has been isolated and can be provided by several, independent entities.
 
-The work done on perfSONAR is made around three contexts. First, there is a consortium of organizations that build a network of performance middle ware that is interoperable across multiple networks and useful for a variety of network analysis. The second context is a protocol. It is built on an assumption of fixed, well defined roles (service types) and defines a communication model between components implementing each role. The defined protocol is one of the most important means to achieve interoperability. What is also worth mentioning, the proposed protocol is based on SOAP XML messages format and follows Network Measurement Working Group\footnote{\url{http://nmwg.internet2.edu}} schema. The third context is a set of the implemented software packages that provide services mentioned above.
+The work done on perfSONAR is made around three contexts. First, there is a consortium of organizations that build a network of performance middle ware that is interoperable across multiple networks and useful for a variety of network analysis. The second context is a protocol. It is built on an assumption of fixed, well defined roles (service types) and defines a communication model between components implementing each role. The defined protocol is one of the most important means to achieve interoperability. What is also worth mentioning, the proposed protocol is based on SOAP XML messages format and follows Network Measurement Working Group\footnote{\url{http://nmwg.internet2.edu}} schema. The third context is a set of the implemented software packages that provide the services mentioned above.
 
-The framework defines following types of services:
+The framework defines the following types of services:
 
 \begin{itemize}
 
@@ -19,15 +19,15 @@ The framework defines following types of services:
 
 \item{ {\bf Measurement Archive Service} is responsible for archiving data. It can use any storage facility underneath (Round Robin Database or any other RDBMS). Additionally, it can publish received information. }
 
-\item{ {\bf Lookup Service} enables services to discover each other. It acts as a service-directory, where providers can advertise themselves and requesters are able to find any service needed}
+\item{ {\bf Lookup Service} enables services to discover each other. It acts as a service-directory, where providers can advertise themselves and requesters are able to find any service needed.}
 
-\item{ {\bf Authentication Service} helps domains which would like to restrict access to given service capabilities for some groups of users. It is responsible for both authorization and authentication. It acts as, so called, an attribute authority which decides which attribute can be disclosed to a resource}
+\item{ {\bf Authentication Service} helps domains which would like to restrict access to given service capabilities for some groups of users. It is responsible for both authorization and authentication. It acts as, so called, an attribute authority which decides which attribute can be disclosed to a resource.}
 
-\item{ {\bf Transformation Service} is a generic service type that allows to create of data conversion pipelines. It can perform any function upon data taken from a producer and return transformed data to a consumer}
+\item{ {\bf Transformation Service} is a generic service type that allows to create data conversion pipelines. It can perform any function upon data taken from a producer and return transformed data to a consumer.}
 
-\item{ {\bf Topology Service}, provides the framework information about a network topology, which allows, for example, visualization of network maps. Additionally it gives information on geolocation, like GPS coordinates.}
+\item{ {\bf Topology Service}, provides the framework information about a network topology, which allows, for example, visualization of network maps. Additionally it provides information on geolocation, like GPS coordinates.}
 
-\item{ {\bf Resource Protector Service} - it is used to arbitrate the consumption of limited, shared resources, e.g. network bandwidth} \end{itemize}
+\item{ {\bf Resource Protector Service} - it is used to arbitrate the consumption of limited, shared resources, e.g. network bandwidth.} \end{itemize}
 
 %---------------------------------------------------------------------------
 
@@ -35,9 +35,9 @@ The framework defines following types of services:
 
 SCALEA~\cite{SCALEA1} is a tool for instrumentation, measurement, analysis and visualization of parallel programs execution. It can work with OpenMP, MPI, HPF, and mixed parallel/distributed systems. Its measurements are based on a variety of performance metrics, but SCALEA also supports multiple experiment performance analysis that allows to compare and to evaluate the performance outcome of several experiments.
 
-The architecture of the system distinguishes three main components: SCALEA Instrumentation System (\emph{SIS}), SCALEA Runtime System (\emph{SRS}) and SCALEA Performance Analysis \& Visualization System. SIS can instrument any of FORTRAN, OpenMP, MPI, HPF or even hybrid programs like OpenMP/MPI and allows the user to select code regions and performance metrics of interest. Using this input, SIS inserts probes in the code which will collect all relevant performance information. Those data are saved in a set of profile (trace) files during program execution, which is monitored by SRS. Additionally, SIS component is responsible for generation of instrumentation description file that can be used to associate gathered performance data back to the input program. Performance Analysis \& Visualization sub system can use raw data gathered either during the program execution or post-mortem.
+The architecture of the system distinguishes three main components: SCALEA Instrumentation System (\emph{SIS}), SCALEA Runtime System (\emph{SRS}) and SCALEA Performance Analysis \& Visualization System. SIS can instrument any of FORTRAN, OpenMP, MPI, HPF or even hybrid programs like OpenMP/MPI and allows the user to select code regions and performance metrics of interest. Using this input, SIS inserts probes in the code which will collect all relevant performance information. Those data are saved in a set of profile (trace) files during program execution, which is monitored by SRS. Additionally, the SIS component is responsible for generation of instrumentation description file that can be used to associate gathered performance data back to the input program. Performance Analysis \& Visualization sub system can use raw data gathered either during the program execution or post-mortem.
 
-The main purpose of SCALEA-G (\cite{SCALEA2, SCALEA3}) is to bring functionality of SCALEA to the grid environment. Originally it was implemented as a set of OGSA services based on Globus Toolkit 3.0, but it was ported then into WSRF-based services with Globus Toolkit 4.0. The most recent implementation of SCALEA-G is composed of following services:
+The main purpose of SCALEA-G (\cite{SCALEA2, SCALEA3}) is to bring the functionality of SCALEA to the grid environment. Originally it was implemented as a set of OGSA services based on Globus Toolkit 3.0, but it was ported then into WSRF-based services with Globus Toolkit 4.0. The most recent implementation of SCALEA-G is composed of the following services:
 
 \begin{itemize}
 
@@ -69,14 +69,13 @@ DIPAS provides performance analysis and interpretation for workflows which is ba
 
 Additionally, DIPAS provides a web portal for the user to conduct performance monitoring and analysis of workflows with underlying infrastructure. This component substantially simplifies the way that the user interacts with the tool.
 
-The overall architecture of the system is outlined in Figure~\ref{fig:dipas}
+The overall architecture of the system is outlined in Figure~\ref{fig:dipas}.
 
 \begin{figure}[ht]
-
 \centering
-
-\includegraphics[width=0.6\textwidth]{dipas} \caption{Overall architecture of DIPAS} \label{fig:dipas}
-
+\includegraphics[width=0.6\textwidth]{dipas} 
+\caption{Overall architecture of DIPAS} 
+\label{fig:dipas}
 \end{figure}
 
 %---------------------------------------------------------------------------
@@ -87,9 +86,9 @@ As part of work on OMIS (See Section~\ref{ssec:omis}), several tools that are co
 
 OCM (\cite{RWspdt98, RW:ppam99b}) - OMIS Compliant Monitoring System is the first tool in the whole set. The main goal of this project was to create a reference implementation of an OMIS compliant monitoring system. Initially it has been supporting PVM (versions 3.3 and 3.4) and then the system was extended to support also the MPI-1.
 
-As a next step in the platform evolution, later on, OCM-G (\cite{axgrid03b}) was introduced. Name of the project is an abbreviation for Grid-enabled OMIS-Compliant Monitoring system. This project focuses on using the OMIS interface with grid environment. It was designed to work with Globus Toolkit and is fully compliant with EGEE environment including gLite 3.x\footnote{\url{http://glite.cern.ch/}} and LCG 2.7.
+As a next step in the platform evolution, later on, OCM-G (\cite{axgrid03b}) was introduced. The name of the project is an abbreviation for Grid-enabled OMIS-Compliant Monitoring system. This project focuses on using the OMIS interface with grid environment. It was designed to work with Globus Toolkit and is fully compliant with EGEE environment including gLite 3.x\footnote{\url{http://glite.cern.ch/}} and LCG 2.7.
 
-The latest addition to the set of OMIS-compliant tools is J-OCM - Java oriented monitoring infrastructure (\cite{jocm}). It adds the ability of monitoring JVM based applications. It has extended the OMIS interface by a set of new, specific for Java services, like garbage collection, threads execution, class loading or method invocation. Then the project implementation was focused on monitoring Java Web Services and component oriented applications.
+The latest addition to the set of OMIS-compliant tools is J-OCM - Java oriented monitoring infrastructure (\cite{jocm}). It adds the ability of monitoring JVM based applications. It has extended the OMIS interface by a set of new services, specific for Java, like garbage collection, threads execution, class loading or method invocation. Then the project implementation was focused on monitoring Java Web Services and component oriented applications.
 
 A general architecture shared by all the above implementations is depicted in Figure~\ref{fig:ocmg}.
 

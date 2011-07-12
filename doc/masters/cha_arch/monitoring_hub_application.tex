@@ -5,7 +5,7 @@
 \section{Monitoring Hub Application}
 \label{sec:arch_monitoring_hub_application}
 
-Monitoring Hub Application is a component which has only one purpose, but crucial for using the system in distributed manner,  it allows using Monitoring Hub remotely. A deeper analysis of Monitoring Hub Application will not be covered, because of its rather narrow functionality. It contains code responsible for starting a process (a class with \texttt{main} method), initializing the components of Monitoring Hub and resolving dependencies between the components.
+Monitoring Hub Application is a component which has only one purpose that is crucial for using the system in a distributed manner - it allows using the Monitoring Hub remotely. A deeper analysis of the Monitoring Hub Application component will not be covered, because of its rather narrow functionality. It contains a code responsible for starting a process (a class with a \texttt{main} method), initializing the components of the Monitoring Hub and resolving dependencies between the components.
 
-Additionally, in order to provide its distributed services, Monitoring Hub Application is responsible for the initialization of remoting context. This involves creation of all remote services and export of Monitoring Hub functionality to remote clients exposing its services using a ready to use RMI middleware.
+Additionally, in order to provide its distributed services, the Monitoring Hub Application module is responsible for the initialization of a remoting context. This involves a creation of all remote services and export of the Monitoring Hub functionality to remote clients using a ready to use RMI middleware.
 

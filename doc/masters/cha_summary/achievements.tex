@@ -10,23 +10,23 @@
 
 \label{sec:achievements}
 
-The analysis of the achieved results should always be performed in the context of the system requirements, defined in Section~\ref{sec:SystemRequirements}. This section describes functional, and nonfunctional requirements which both should be considered here.
+The analysis of the achieved results should always be performed in the context of the system requirements. This section describes functional, and nonfunctional requirements which both should be considered here.
 
 The analysis covering how the functional requirements have been realized is relatively straightforward, as they are defined strictly. The following points cover each defined functional requirement with the degree of implementation:
 
 \begin{itemize}
 
-\item {\bf Connect to already running JVM process using JMX extension.}
+\item {\bf Connect to an already running JVM process using the JMX extension.}
 
-This item is fully implemented. User can connect to and monitor a JVM instance, using the JMX Transport Proxy. From an UI perspective, user can perform this task, by adding a new JVM resource using the \lq\lq{}Add resource wizard\rq\rq{}.
+This item is fully implemented. The user can connect to and monitor a JVM instance, using the JMX Transport Proxy. From an UI perspective, the user can perform this task, by adding a new JVM resource using the \lq\lq{}Add resource wizard\rq\rq{}.
 
 \item {\bf Group monitored JVM processes into applications and clusters.}
 
-As part of the \lq\lq{}Add new JVM resource\rq\rq{} wizard, user can select an application and a logical cluster to which the monitored JVM should be assigned.
+As part of the \lq\lq{}Add new JVM resource\rq\rq{} wizard, the user can select an application and a logical cluster to which the monitored JVM should be assigned.
 
 \item {\bf Connect to an already running OCM-G MainSM monitor.}
 
-Similar to managing JVM processes, user can manage OCM-G monitored applications using OCMG Transport Proxy. User can perform this task, by adding a new OCM-G resource, using an appropriate wizard.
+Similar to managing JVM processes, the user can manage OCM-G monitored applications using the OCMG Transport Proxy. The user can perform this task, by adding a new OCM-G resource, using an appropriate wizard.
 
 \item {\bf Extract and list the resources of a given resource.}
 
@@ -34,31 +34,30 @@ This requirement is fully implemented - the extraction of a resource is automati
 
 \item {\bf Control measuring capabilities of a given resource.}
 
-This feature is fully implemented - user can add new measurements of resources in the resources context view. In the measurements context view, user can perform the rest of measurement management operations - view, pause, resume and remove measurements.
+This feature is fully implemented - the user can add new measurements of resources in the resources context view. In the measurements context view, the user can perform the rest of measurement management operations - view, pause, resume and remove measurement.
 
-\item {\bf List values of given resource capabilities at a given point of time.}
+\item {\bf List capability values of a given resource at a given point of time.}
 
-This feature is implemented in the resources view - user can select there a resource from the resources tree, and then refresh capabilities in the provided pane.
+This feature is implemented in the resources view - the user can select there a resource from the resources tree, and then refresh capabilities in the provided pane.
 
-\item {\bf List properties of given resource.}
+\item {\bf List properties of a given resource.}
 
-This feature is also implemented in the resources view. The user can also view resource
-s static properties after selecting one.
+This feature is also implemented in the resources view. The user can also view resource\rq{}s static properties after selecting one.
 
 \item {\bf List all capability values from a given, started measurement.}
 
-This requirement is implemented. User can view all historical measurement values using the measurements context view, after selecting a measurement of interest from the list provided.
+This requirement is implemented. The user can view all the historical measurement values using the measurements context view, after selecting a measurement of interest from the list provided.
 
 \item {\bf Visualize measurement results.}
 
-The requirement for visualizations is fully implemented. The system provides the user with the ability to render measurement values, using bar, line, pie and spider web charts.
+The requirement for visualization displays is fully implemented. The system provides the user with the ability to render measurement values, using \emph{bar}, \emph{line}, \emph{pie} and \emph{spider web} charts.
 
 \end{itemize}
 
-The Nonfunctional requirements, defined in Section~\ref{subsec:NonFunctionalRequirements}, aren\rq{}t defined so clearly as functional ones; thus, it\rq{}s more difficult to analyze the achievements in this context.
+The nonfunctional requirements, defined in Section~\ref{subsec:NonFunctionalRequirements}, are not defined so clearly as functional ones; thus, it is more difficult to analyze the achievements in this context.
 
-It is almost impossible to tell whether reliability, scalability usability and quality of documentation requirements are met, as any clear metrics of those concepts just does not exist. Although it is hard to tell, whether a given system is stable or scalable, tests performed, and casual work with the application during development proved that those requirements are mostly met. Application never crashed at all; most bugs are fixed and every potential I/O or any external error is handled.
+It is almost impossible to tell whether the requirements for reliability, scalability usability and quality of documentation are met, as any clear metrics of these concepts just does not exist. Although it is hard to tell, whether a given system is stable or scalable, tests performed, and a casual work with the application during the development proved that these requirements are mostly met. The Application never crashed at all; most bugs are fixed and every potential I/O or any external error is handled.
 
-The usability requirement is the most fuzzy one, because it is extremely relative whether a given interface is user friendly or not. I can state clearly only that the application interface employs the most popular concepts that make modern GUI applications usable. The quality of documentation is also highly subjective, but the Thesis covers each aspect of design and implementation and aims at shortening the learning curve, needed to start working with the system.
+The usability requirement is the most fuzzy one, because it is an extremely relative term whether a given interface is user-friendly or not. I can state clearly only that the application\rq{}s interface employs the most popular concepts that make modern GUI applications usable. The quality of documentation is also highly subjective, but Thesis covers each aspect of design and implementation and aims at shortening the learning curve, needed to start working with the system.
 
-The interoperability requirement, was met entirely - the application was tested on all targeted platforms - Linux, Microsoft\textregistered~Windows\textregistered and Mac OS X\textregistered. The same applies to the driven by the open-source requirement - all libraries that SemSimMon depends on are released under terms of GPL or LGPL license and are freely available to any developer of open-source applications.
+The interoperability requirement, was met entirely - the application was tested on all the targeted platforms - Linux, Microsoft\textregistered~Windows\textregistered and Mac OS X\textregistered. The same applies to the \lq\lq{}driven by the open-source\rq\rq{} requirement - all libraries that SemSimMon depends on are released under the terms of GPL or LGPL license and are freely available to any developer of open-source applications.
