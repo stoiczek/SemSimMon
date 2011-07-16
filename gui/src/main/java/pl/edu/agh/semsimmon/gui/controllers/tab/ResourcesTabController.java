@@ -262,7 +262,7 @@ public class ResourcesTabController extends BaseTabController implements Resourc
     }
     resourcesTree.setTreeData(treeData);
     try {
-    resourcesTree.getParent().repaint(true);
+    resourcesTree.getParent().repaint();
     } catch (NullPointerException e) {
       // Got it really frequently :/
     }
@@ -274,7 +274,7 @@ public class ResourcesTabController extends BaseTabController implements Resourc
   @Override
   public void resourceRemoved(String resourceUri) {
     removeNode((TreeNode) nodesMap.get(resourceUri));
-    resourcesTree.getParent().repaint(true);
+    resourcesTree.getParent().repaint();
   }
 
 

@@ -95,7 +95,9 @@ public abstract class BaseWizardController extends BaseDialogController {
       cancelButton.setVisible(false);
       backButton.setVisible(true);
     }
+    try {
     component.repaint(true);
+    } catch (Exception e){}
   }
 
   @ButtonAction(target = "finishButton", type = ButtonAction.Type.INSTANT)

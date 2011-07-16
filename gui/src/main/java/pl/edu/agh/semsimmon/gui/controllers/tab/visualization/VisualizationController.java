@@ -135,7 +135,9 @@ public class VisualizationController extends BaseController<BoxPane> {
     final org.apache.pivot.collections.List data = measurementsList.getListData();
     measurements.remove(measurement);
     data.remove(container);
+    try {
     component.repaint(true);
+    } catch (Exception e) {}
   }
 
   @ButtonAction
